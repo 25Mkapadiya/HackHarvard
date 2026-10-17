@@ -1,11 +1,11 @@
-import { Link, useParams } from 'react-router';
+import { lazy, Suspense } from 'react';
+import { Link, Navigate, useParams } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { useMarket, usePrograms, useVendors } from '../app/data';
 import { useNow, useStoreState } from '../app/context';
 import { isoDay, localNow, marketStatus, nextOpening, occurrencesOn } from '../lib/schedule/occurs';
 import { describeMonthDay, describeRule } from '../lib/schedule/describe';
-import { hours, walkMinutes } from '../lib/format';
-import { directionsUrl } from '../lib/geo';
+import { hours } from '../lib/format';
 import { REPO_URL } from '../app/config';
 import { ErrorState, Loading, ProgramChip, SampleBadge, StaleNote } from '../components/Badges';
 import { StatusBadge } from '../components/StatusBadge';
@@ -13,6 +13,8 @@ import { Icon } from '../components/Icon';
 import { Calendar } from '../features/markets/Calendar';
 import { Weather } from '../features/markets/Weather';
 import { CheckInQr } from '../features/markets/CheckInQr';
+
+const LocationMap = lazy(() => import('../features/map/LocationMap'));
 
 function Section({ title, children, id }: { title: string; children: React.ReactNode; id: string }) {
   return (
@@ -37,6 +39,8 @@ export default function MarketDetail() {
   const { surplus } = useStoreState();
 
   if (market.loading) return <Loading />;
+  // Ids gained a state suffix when the map went national; every older id was a Massachusetts market.
+  if (market.error && id && !/-[a-z]{2}$/.test(id)) return <Navigate to={`/market/${id}-ma`} replace />;
   if (market.error || !market.data)
     return (
       <div className="mx-auto max-w-3xl px-4 py-8">
@@ -80,7 +84,7 @@ export default function MarketDetail() {
       <header className="stall-sign space-y-3 rounded-xl p-5 text-white">
         <h1 className="text-3xl font-extrabold text-white sm:text-4xl">{m.name}</h1>
         <p className="text-lg">
-          {m.address.city}
+          {m.address.city}, {m.address.state}
           {m.winter ? ` · ${t('filters.winter')}` : ''}
         </p>
         <div className="flex flex-wrap items-center gap-3">
@@ -172,7 +176,7 @@ export default function MarketDetail() {
             )}
           </Section>
 
-          <Section title={t('market.getThere')} id="there">
+          <Section title={t('market.location')} id="there">
             <p>
               {m.address.street && <span className="block font-bold">{m.address.street}</span>}
               {m.locationNote && <span className="block">{m.locationNote}</span>}
@@ -180,29 +184,9 @@ export default function MarketDetail() {
                 {m.address.city}, {m.address.state} {m.address.zip}
               </span>
             </p>
-            {m.nearestTransit && (
-              <p className="flex items-start gap-2">
-                <Icon name="walk" className="mt-1" />
-                {t('market.transit', {
-                  stop: m.nearestTransit.stopName,
-                  mode: t(`modes.${m.nearestTransit.mode}`),
-                  min: walkMinutes(m.nearestTransit.meters),
-                })}
-              </p>
-            )}
-            <div className="flex flex-wrap gap-2">
-              <a className="btn-primary" href={directionsUrl(m.geo, m.name)} target="_blank" rel="noreferrer">
-                {t('market.googleMaps')}
-              </a>
-              <a
-                className="btn-secondary"
-                href={directionsUrl(m.geo, m.name, true)}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {t('market.appleMaps')}
-              </a>
-            </div>
+            <Suspense fallback={null}>
+              <LocationMap geo={m.geo} label={`${m.name}, ${m.address.city}, ${m.address.state}`} />
+            </Suspense>
             {m.website && (
               <a href={m.website} target="_blank" rel="noreferrer">
                 {t('market.website')}

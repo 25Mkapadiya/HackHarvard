@@ -46,6 +46,9 @@
     "dairy": "dairy",
     "milk": "dairy",
     "firewood": "firewood",
-    "wildharvested": "vegetables"
+    "wildharvested": "vegetables",
+    "veggies": "vegetables",
+    "grain": "grains",
+    "wildharv": "vegetables"
   }
 }

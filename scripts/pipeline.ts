@@ -14,18 +14,19 @@ import {
   type SourceMeta,
   type SourceRef,
 } from '../src/types';
-import { parseSchedule } from '../src/lib/schedule/parse';
+import { parseSchedule, parseUsdaSchedule } from '../src/lib/schedule/parse';
 import { SEARCH_OPTIONS, type SearchDoc } from '../src/lib/search/options';
 import { CATEGORY_LABELS } from '../src/lib/labels';
 import { fetchMassgis } from './fetch/massgis';
 import { fetchSnapRetailers } from './fetch/snap-retailers';
 import { fetchUsdaLfp } from './fetch/usda-lfp';
+import { fetchUsdaFmd } from './fetch/usda-fmd';
+import { isMainland } from './lib/states';
 import { fetchErsTracts } from './fetch/ers-tracts';
-import { fetchMbta } from './fetch/mbta';
 import { fetchMars, fetchNass } from './fetch/keyed';
 import { geocodeMissing } from './geocode';
 import { dedupe, mergeCluster } from './dedupe';
-import { addTracts, addTransit, assignSampleVendors, type SeedVendor } from './enrich';
+import { addTracts, assignSampleVendors, type SeedVendor } from './enrich';
 import {
   displayName,
   inferLocationType,
@@ -52,7 +53,11 @@ function isStale(lastUpdated: string, now = new Date()): boolean {
 }
 
 function toMarket(m: SourceMarket & { all: SourceMarket[] }): Omit<Market, 'id'> {
-  const parsed = parseSchedule(m.dayTimeRaw, m.seasonRaw);
+  // MDAR text when we have it (newer); otherwise the USDA directory's structured seasons.
+  const parsed =
+    m.dayTimeRaw || m.seasonRaw || !m.usdaSeasons
+      ? parseSchedule(m.dayTimeRaw, m.seasonRaw)
+      : parseUsdaSchedule(m.usdaSeasons);
   const sources: SourceRef[] = [];
   const seen = new Set<string>();
   for (const r of m.all) {
@@ -102,7 +107,7 @@ function assignIds(markets: Omit<Market, 'id'>[]): Market[] {
         .replace(/\bwinter\b/i, '')
         .trim();
       const city = base.toLowerCase().includes(m.address.city.toLowerCase()) ? '' : ` ${m.address.city}`;
-      let id = slug(`${base}${city}${m.winter ? ' winter' : ''}`);
+      let id = slug(`${base}${city}${m.winter ? ' winter' : ''} ${m.address.state}`);
       const n = used.get(id) ?? 0;
       used.set(id, n + 1);
       if (n > 0) id = `${id}-${n + 1}`;
@@ -119,9 +124,8 @@ function buildSearch(markets: Market[], vendors: Vendor[], crops: CropCalendar):
       name: m.name,
       city: m.address.city,
       ref: m.id,
-      text: [m.address.street, m.locationNote, ...m.products.map((p) => CATEGORY_LABELS[p])]
-        .filter(Boolean)
-        .join(' '),
+      // Kept short: with ~8,000 markets the index is the biggest lazy-loaded file.
+      text: m.address.state,
     })),
     ...vendors.map((v) => ({
       id: `v:${v.id}`,
@@ -178,19 +182,20 @@ when no public source lists them (\`productsAreSample\` / \`paymentsAreSample\` 
 async function main() {
   const builtAt = new Date().toISOString();
   log('pipeline', 'fetching sources');
-  const [massgis, snap, lfp, ers, mbta, mars, nass] = await Promise.all([
+  const [massgis, usda, snap, lfp, ers, mars, nass] = await Promise.all([
     fetchMassgis(),
+    fetchUsdaFmd(),
     fetchSnapRetailers(),
     fetchUsdaLfp(),
     fetchErsTracts(),
-    fetchMbta(),
     fetchMars(),
     fetchNass(),
   ]);
 
   const records: SourceMarket[] = [
     ...massgis.flatMap((r) => r.markets ?? []),
-    ...(lfp.markets ?? []).filter((m) => m.state === 'MA'),
+    ...(usda.markets ?? []),
+    ...(lfp.markets ?? []).filter((m) => isMainland(m.state)),
     ...(snap.markets ?? []),
   ];
   if (!records.some((r) => !r.confirmOnly))
@@ -205,7 +210,6 @@ async function main() {
 
   log('pipeline', 'enriching');
   const tractHits = addTracts(markets, ers.tracts);
-  const transitHits = addTransit(markets, mbta.stops);
   const seeds = readJson<{ vendors: SeedVendor[] }>('data/seed/vendors.json').vendors;
   const vendors = assignSampleVendors(markets, seeds);
   const prices = readJson<{ prices: Price[] }>('data/seed/prices.json').prices;
@@ -253,17 +257,17 @@ async function main() {
   ];
   const sourceMeta: SourceMeta[] = [
     ...massgis.map((r) => r.meta),
+    usda.meta,
     snap.meta,
     lfp.meta,
     ers.meta,
-    mbta.meta,
     mars.meta,
     nass.meta,
     ...manualMeta,
   ];
   const meta: Meta = {
     builtAt,
-    region: 'Massachusetts (Greater Boston focus)',
+    region: 'Contiguous United States (Greater Boston focus)',
     marketCount: markets.length,
     sources: sourceMeta,
   };
@@ -274,9 +278,11 @@ async function main() {
     name: m.name,
     type: m.type,
     city: m.address.city,
+    state: m.address.state,
     schedules: m.schedules,
     scheduleParsed: m.scheduleParsed,
-    scheduleRaw: m.scheduleRaw,
+    // The map payload carries raw text only where we couldn't parse it.
+    scheduleRaw: m.scheduleParsed ? undefined : m.scheduleRaw,
     products: m.products,
     productsAreSample: m.productsAreSample,
     paymentMethods: m.paymentMethods,
@@ -286,7 +292,6 @@ async function main() {
     indoor: m.indoor,
     stale: m.stale,
     lastUpdated: m.lastUpdated,
-    tract: m.tract,
     vendorIds: m.vendorIds,
     sustainabilityMax: Math.max(0, ...m.vendorIds.map((id) => scoreById.get(id) ?? 0)),
   }));
@@ -301,7 +306,11 @@ async function main() {
     ['crop calendar', CropCalendar, crops],
     ['meta', Meta, meta],
   ]);
-  if (markets.length < 100) throw new Error(`Only ${markets.length} markets — expected at least 100 for MA.`);
+  const ma = markets.filter((m) => m.address.state === 'MA').length;
+  if (ma < 100 || markets.length < 5000)
+    throw new Error(
+      `Only ${markets.length} markets (${ma} in MA) — expected at least 5,000 nationally and 100 in MA.`,
+    );
 
   log('pipeline', 'writing');
   fs.rmSync(path.join(ROOT, OUT, 'markets'), { recursive: true, force: true });
@@ -366,7 +375,6 @@ Generated ${builtAt}.
 - Schedules parsed into RRULEs: ${markets.length - unparsed.length} (${Math.round(((markets.length - unparsed.length) / markets.length) * 100)}%)
 - Stale (last updated more than ${STALE_MONTHS} months ago): ${markets.filter((m) => m.stale).length}
 - In a low-income or low-access tract: ${markets.filter((m) => m.tract && (m.tract.lowIncome || m.tract.lowAccess)).length} (tract found for ${tractHits})
-- With an MBTA stop within 1.2 km: ${transitHits}
 - With sample vendors: ${markets.filter((m) => m.vendorIds.length).length}
 
 ## Schedules shown as raw text (could not be parsed)

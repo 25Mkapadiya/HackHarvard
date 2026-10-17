@@ -1,6 +1,6 @@
 # Market Day Boston
 
-Find Greater Boston farmers markets that are **open now**, see **what's in season**, and learn **where SNAP, HIP and WIC
+Find farmers markets across the contiguous US — with the deepest coverage in Greater Boston — that are **open now**, see **what's in season**, and learn **where SNAP, HIP and WIC
 coupons are accepted** — in English and Spanish, on a phone, at an outdoor market with weak signal. Vendors get a
 transparent sustainability score and tools to post prices and end-of-day surplus; shoppers earn rewards for visiting.
 
@@ -10,22 +10,26 @@ transparent sustainability score and tools to post prices and end-of-day surplus
 | ------------------------------------------------------------------------ | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------- | -------------------------------------------------- |
 | ![Home: markets open now as stall-sign cards](docs/screenshots/home.jpg) | ![Map with clustered markets and filters](docs/screenshots/explore.jpg) | ![Market page with schedule calendar and benefits](docs/screenshots/market.jpg) | ![Phone map view](docs/screenshots/mobile-map.jpg) |
 
-> **Sample data.** Market locations, schedules and food-benefit participation are real public data (MassGIS/MDAR,
-> USDA). **Vendors, products, prices, vendor applications, and anything you save are invented sample data** for the
-> demo, and the app labels them "Sample data" everywhere they appear. Market schedules come from the state's
-> 2023-season listings, so every market is flagged as possibly out of date.
+> **Sample data.** Market locations, schedules and food-benefit participation are real public data (USDA,
+> MassGIS/MDAR). **Vendors, products and prices shown for Greater Boston markets, vendor applications, and anything
+> you save are invented sample data** for the demo, and the app labels them "Sample data" everywhere they appear.
+> **Schedules may be out of date:** outside Massachusetts they come from USDA's National Farmers Market Directory,
+> whose last public export is from 2014; Massachusetts uses the state's 2023-season list. Every market is flagged
+> so people check before they go.
 
 ## Features
 
-- **Open now near you** — 264 Massachusetts markets; schedules parsed from free text into iCal RRULEs (97% parse;
-  the rest show the source's raw text and are left out of "open now" rather than guessed). Time zone is
+- **8,162 markets in the 48 contiguous states and DC** — USDA's national directory, with the state's newer list
+  replacing it in Massachusetts and USDA's current SNAP retailer list confirming SNAP acceptance. Schedules are parsed
+  into iCal RRULEs (97% of Massachusetts listings, 91% of USDA listings that give hours); the rest show the source's
+  raw text and are left out of "open now" rather than guessed. Time zone is
   America/New_York, DST-safe, with season boundaries, "no market on 7/4" exceptions and manager-posted closures.
-- **Map + list** — clustered map (OpenStreetMap), keyboard-accessible list, filters for open now / today / this week /
-  a weekday, distance, food benefits, products, payment, winter and indoor markets, and sustainability. Filters live
-  in the URL so views are shareable. An optional layer shades USDA low-income / low-access census tracts.
-- **Market pages** — schedule and a 4-week calendar, how to use SNAP/HIP/WIC there, nearest MBTA stop and walking time,
-  Google/Apple Maps directions, National Weather Service forecast for the next market day, vendors, sources with
-  fetch dates, "Suggest a correction" (opens a GitHub issue), and a QR code for rewards check-in.
+- **Map + list** — clustered map (OpenStreetMap) with a "Whole US" button, keyboard-accessible list, filters for open
+  now / today / this week / a weekday, state, distance, food benefits, products, payment, winter and indoor markets,
+  and sustainability. Filters live
+  in the URL so views are shareable. An optional layer shades USDA low-income / low-access census tracts (Massachusetts only so far).
+- **Market pages** — schedule and a 4-week calendar, how to use SNAP/HIP/WIC there, the market's location (address
+  and site), National Weather Service forecast for the next market day, vendors, sources with fetch dates, "Suggest a correction" (opens a GitHub issue), and a QR code for rewards check-in.
 - **Find food** — "strawberries" → markets carrying them that are open in the next 7 days, plus whether they're in season.
 - **In season** — month-by-month Massachusetts crop guide (47 crops, English and Spanish names).
 - **SNAP & HIP guide** — plain-language guide in English and Spanish and a HIP calculator (monthly cap by household
@@ -48,13 +52,14 @@ collects public data, checks it, and commits static JSON that the browser loads;
 "open now" all run client-side.
 
 ```
- MassGIS / MDAR markets ─┐
+ USDA national directory ┐
+ MassGIS / MDAR markets  ┤
  USDA FNS SNAP retailers ┤
  USDA ERS food access    ┤   npm run data (Node, weekly in GitHub Actions)
- MBTA stops              ├─▶ fetch ─▶ normalize ─▶ geocode ─▶ dedupe ─▶ enrich ─▶ validate ─▶ write
- USDA LFP / MARS / NASS* ┤      │        │                       │         │          │          │
- data/manual, data/seed ─┘   raw/ snapshot  RRULEs, names,      150 m + name  tracts, transit, zod     public/data/*.json
-                             fallback       units, ZIPs         similarity   sample vendors           → GitHub Pages
+ optional keyed sources* ├─▶ fetch ─▶ normalize ─▶ geocode ─▶ dedupe ─▶ enrich ─▶ validate ─▶ write
+ (USDA LFP / MARS / NASS)┤      │        │                       │         │          │          │
+ data/manual, data/seed ─┘   raw/ snapshot  RRULEs, names,      150 m + name  tracts, sample    zod     public/data/*.json
+                             fallback       units, ZIPs         similarity   vendors                  → GitHub Pages
  * optional, need API keys
 ```
 
@@ -83,7 +88,7 @@ npm run data           # behind a proxy on Node ≥ 22.21: NODE_USE_ENV_PROXY=1 
 
 Optional keys (copy `.env.example`; in CI, add them as repository secrets): `USDA_LFP_API_KEY` (USDA Local Food
 Portal — also covers CSAs, on-farm markets and food hubs), `MARS_API_KEY` (USDA price benchmarks), `NASS_API_KEY`,
-`CENSUS_API_KEY`, `MBTA_API_KEY`. Without them those sources are recorded as `skipped`.
+`CENSUS_API_KEY`. Without them those sources are recorded as `skipped`.
 `.github/workflows/refresh-data.yml` runs the pipeline every Monday (and on demand), commits changed data to `main`,
 and triggers a deploy.
 
@@ -114,7 +119,7 @@ docs/           BUILD_PLAN.md · DECISIONS.md · screenshots/
 ## License
 
 Code: MIT. Data: each source's own terms apply (see `data/SOURCES.md`) — MassGIS data with attribution to
-MassGIS/MDAR, USDA data is public domain, MBTA data under the MassDOT developers license, map tiles © OpenStreetMap
+MassGIS/MDAR, USDA data is public domain, map tiles © OpenStreetMap
 contributors (ODbL). Sample data in `data/seed/` is invented.
 
 ## Open questions
@@ -122,8 +127,9 @@ contributors (ODbL). Sample data in `data/seed/` is invented.
 The product questions from the original spec still stand (see [Open Questions](#13-open-questions) below). Building
 the MVP added a few:
 
-- **Fresher schedules.** The state's market layer was last updated for the 2023 season. A USDA Local Food Portal key,
-  or a direct feed from MDAR / Mass Farmers Markets, would replace it.
+- **Fresher schedules.** Outside Massachusetts the newest public national data is USDA's 2014 directory export, and
+  the state's own layer was last updated for 2023. A USDA Local Food Portal API key (`USDA_LFP_API_KEY`) would bring
+  in USDA's current directory nationwide; the fetcher is written and waiting for one.
 - **Real vendor data.** No public source lists who sells at which market or at what price; that has to come from
   market managers and vendors.
 - **Boston coupon program.** No machine-readable list of participating markets was available, so none are tagged.

@@ -1,7 +1,7 @@
 {
-  "builtAt": "2026-10-17T12:34:42.418Z",
-  "region": "Massachusetts (Greater Boston focus)",
-  "marketCount": 264,
+  "builtAt": "2026-10-17T13:39:33.041Z",
+  "region": "Contiguous United States (Greater Boston focus)",
+  "marketCount": 8162,
   "sources": [
     {
       "id": "massgis-dph",
@@ -22,12 +22,21 @@
       "status": "ok"
     },
     {
+      "id": "usda-fmd",
+      "name": "USDA National Farmers Market Directory (2014 export, via Esri StoryMaps)",
+      "url": "https://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/Farmers_Markets_update/FeatureServer/0",
+      "license": "U.S. Government work (public domain); hosted by Esri",
+      "fetchedAt": "2026-10-17",
+      "records": 7980,
+      "status": "ok"
+    },
+    {
       "id": "usda-snap-retailers",
-      "name": "USDA FNS SNAP Retailer Locator (Farmers and Markets, MA)",
+      "name": "USDA FNS SNAP Retailer Locator (Farmers and Markets)",
       "url": "https://services1.arcgis.com/RLQu0rK7h4kbsBq5/arcgis/rest/services/snap_retailer_location_data/FeatureServer/0",
       "license": "U.S. Government work (public domain)",
       "fetchedAt": "2026-10-17",
-      "records": 475,
+      "records": 7042,
       "status": "ok"
     },
     {
@@ -47,15 +56,6 @@
       "license": "U.S. Government work (public domain)",
       "fetchedAt": "2026-10-17",
       "records": 1613,
-      "status": "ok"
-    },
-    {
-      "id": "mbta-stops",
-      "name": "MBTA V3 API — stops",
-      "url": "https://api-v3.mbta.com",
-      "license": "MassDOT Developers License Agreement",
-      "fetchedAt": "2026-10-17",
-      "records": 7149,
       "status": "ok"
     },
     {

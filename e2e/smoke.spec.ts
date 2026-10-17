@@ -10,7 +10,7 @@ test('home lists markets open now, loaded from static data under the sub-path', 
 });
 
 test('deep link to a market page works', async ({ page }) => {
-  await page.goto(`#/market/copley-square-boston?now=2026-07-14T12:00`);
+  await page.goto(`#/market/copley-square-boston-ma?now=2026-07-14T12:00`);
   await expect(page.getByRole('heading', { level: 1, name: 'Copley Square Farmers Market' })).toBeVisible();
   await expect(page.getByText('Open until 6:00 PM').first()).toBeVisible();
 });

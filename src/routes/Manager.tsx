@@ -16,7 +16,7 @@ export default function Manager() {
   const { now } = useNow();
   const markets = useMarkets();
   const state = useStoreState();
-  const [marketId, setMarketId] = useState('copley-square-boston');
+  const [marketId, setMarketId] = useState('copley-square-boston-ma');
   const market = useMarket(marketId);
   const options = useMemo(
     () =>

@@ -54,7 +54,9 @@ export function MarketCard({
                 </p>
               </>
             ) : (
-              <p className="font-display text-xl font-semibold">{t('status.unknown')}</p>
+              <p className="font-display text-xl font-semibold">
+                {m.scheduleRaw ? t('status.hoursAsListed') : t('status.noHours')}
+              </p>
             )}
           </div>
           <StatusBadge status={status} now={now} onDark short={!!h} />
@@ -70,7 +72,7 @@ export function MarketCard({
         <p className="flex flex-wrap items-center gap-x-3 text-ink-soft">
           <span className="inline-flex items-center gap-1">
             <Icon name="pin" size={16} />
-            {m.city}
+            {m.city}, {m.state}
           </span>
           {km !== undefined && <span>{t('common.miles', { n: (km * 0.621371).toFixed(1) })}</span>}
           {m.winter && <span className="chip">{t('filters.winter')}</span>}

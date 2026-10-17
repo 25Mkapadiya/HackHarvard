@@ -3,14 +3,12 @@ import { point } from '@turf/helpers';
 import type { Market, Vendor } from '../src/types';
 import { sustainabilityScore } from '../src/lib/score';
 import { metersBetween } from './dedupe';
-import type { Stop } from './fetch/mbta';
 import type { TractProps } from './fetch/ers-tracts';
 import type { FeatureCollection } from './fetch/arcgis';
 
 export const BOSTON_CITY_HALL = { lat: 42.3603, lng: -71.058 };
-/** "Greater Boston" for the MVP: markets within 25 km of City Hall get sample vendors and transit info. */
+/** "Greater Boston" for the MVP: markets within 25 km of City Hall get sample vendors. */
 export const GREATER_BOSTON_KM = 25;
-const MAX_TRANSIT_METERS = 1200;
 
 export const inGreaterBoston = (g: { lat: number; lng: number }) =>
   metersBetween(g, BOSTON_CITY_HALL) <= GREATER_BOSTON_KM * 1000;
@@ -49,30 +47,6 @@ export function addTracts(markets: Market[], tracts?: FeatureCollection): number
     hits++;
   }
   return hits;
-}
-
-export function addTransit(markets: Market[], stops?: Stop[]): number {
-  if (!stops?.length) return 0;
-  let n = 0;
-  for (const m of markets) {
-    if (!inGreaterBoston(m.geo)) continue;
-    let best: { s: Stop; d: number } | null = null;
-    for (const s of stops) {
-      if (Math.abs(s.lat - m.geo.lat) > 0.02 || Math.abs(s.lng - m.geo.lng) > 0.03) continue;
-      const d = metersBetween(m.geo, s);
-      // Prefer rapid transit when it's nearly as close as a bus stop.
-      const weighted = s.mode === 'bus' ? d : d * 0.6;
-      if (!best || weighted < best.d) best = { s, d: weighted };
-    }
-    if (best) {
-      const meters = Math.round(metersBetween(m.geo, best.s));
-      if (meters <= MAX_TRANSIT_METERS) {
-        m.nearestTransit = { stopName: best.s.name, meters, mode: best.s.mode };
-        n++;
-      }
-    }
-  }
-  return n;
 }
 
 /** Small deterministic hash so vendor assignment is stable across pipeline runs. */

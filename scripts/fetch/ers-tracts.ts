@@ -34,6 +34,7 @@ export async function fetchErsTracts(): Promise<{ meta: SourceMeta; tracts?: Fea
               'CensusTract20,LowIncomeTracts,SD_SRAM_LA1and10,SD_SRAM_LILATracts_1And10,POP2020,MedianFamilyIncome,Urban',
             maxAllowableOffset: '0.0008', // ~80 m simplification keeps the file under 1.5 MB
             geometryPrecision: '5',
+            orderByFields: 'OBJECTID',
           },
           2000,
         ),

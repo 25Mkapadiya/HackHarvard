@@ -116,6 +116,10 @@ export function inferLocationType(...texts: (string | undefined)[]): {
   const t = texts.filter(Boolean).join(' ').toLowerCase();
   if (!t) return {};
   if (/parking|\blot\b|garage/.test(t)) return { locationType: 'parking_lot', indoor: false };
+  // USDA directory categories.
+  if (/building grounds|closed-off public street/.test(t)) return { locationType: 'other', indoor: false };
+  if (/educational institution/.test(t)) return { locationType: 'school' };
+  if (/healthcare institution|wholesale market/.test(t)) return { locationType: 'other' };
   if (/\bchurch|parish|temple|synagogue|congregation/.test(t)) return { locationType: 'church' };
   if (/school|college|university|academy/.test(t)) return { locationType: 'school' };
   if (/\bhall\b|community center|senior center|library|armory|gym|mill|building|indoor|ymca|grange/.test(t))

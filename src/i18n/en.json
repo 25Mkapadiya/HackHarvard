@@ -1,7 +1,7 @@
 {
   "app": {
     "name": "Market Day",
-    "tagline": "Greater Boston farmers markets",
+    "tagline": "Farmers markets across the US",
     "skip": "Skip to content",
     "demo": "Demo mode — anything you save stays in your browser.",
     "clearData": "Clear my data",
@@ -9,7 +9,7 @@
     "language": "Español",
     "languageCode": "es",
     "simulated": "Simulated time: {{time}}",
-    "credits": "Market data: MassGIS / MDAR, USDA FNS, USDA ERS, MBTA. Map © OpenStreetMap contributors."
+    "credits": "Market data: USDA AMS, USDA FNS, USDA ERS, MassGIS / MDAR. Map © OpenStreetMap contributors."
   },
   "nav": {
     "home": "Home",
@@ -36,7 +36,10 @@
     "opens": "Opens {{day}} {{time}}",
     "noUpcoming": "No dates in the next few months",
     "unknown": "Check schedule",
-    "unknownHelp": "We couldn't read this market's schedule, so it isn't included in \"open now\". Here's what the source says:"
+    "unknownHelp": "We couldn't read this market's schedule, so it isn't included in \"open now\". Here's what the source says:",
+    "closingSoonShort": "Closing soon",
+    "hoursAsListed": "Hours as listed below",
+    "noHours": "Hours not listed"
   },
   "home": {
     "title": "Fresh food, close to home",
@@ -61,7 +64,7 @@
     "benefitsTitle": "Shopping with SNAP?",
     "benefitsBody": "At HIP markets, every SNAP dollar you spend on fruits and vegetables comes back on your card, up to a monthly limit.",
     "benefitsCta": "How HIP works",
-    "staleNote": "Market schedules come from the state's 2023 listings and may have changed. Check with the market before you go.",
+    "staleNote": "Schedules come from public listings that may be out of date: Massachusetts from the state's 2023 list, everywhere else from USDA's 2014 national directory. Check with the market before you go.",
     "yourLocation": "your location"
   },
   "explore": {
@@ -76,7 +79,7 @@
     "loosen": "Try removing a filter",
     "needLocation": "Set your location on the home page to filter by distance.",
     "lilaLayer": "Show low-income / low-access areas",
-    "lilaLegend": "Shaded: census tracts the USDA lists as low income and low access to food stores (1 mile urban / 10 miles rural).",
+    "lilaLegend": "Shaded: census tracts the USDA lists as low income and low access to food stores (1 mile urban / 10 miles rural). Massachusetts only for now.",
     "mapLabel": "Map of markets. The list shows the same markets and works with a keyboard and screen reader."
   },
   "filters": {
@@ -97,7 +100,9 @@
     "indoor": "Indoor",
     "sustainable": "Has a vendor scoring 60+ on sustainability",
     "search": "Market name or town",
-    "sampleNote": "Products and payment methods are from sample vendor data."
+    "sampleNote": "Products and payment methods are from sample vendor data.",
+    "state": "State",
+    "anyState": "All states"
   },
   "market": {
     "back": "Back to map",
@@ -114,11 +119,6 @@
     "howToUse": "How to use your benefits here",
     "vendors": "Vendors",
     "noVendors": "We don't have a vendor list for this market yet.",
-    "getThere": "Getting there",
-    "directions": "Directions",
-    "appleMaps": "Apple Maps",
-    "googleMaps": "Google Maps",
-    "transit": "{{stop}} ({{mode}}) is about a {{min}}-minute walk.",
     "address": "Address",
     "website": "Market website",
     "weather": "Forecast for the next market day",
@@ -362,10 +362,8 @@
     "loaf": "loaf",
     "half_gallon": "½ gallon"
   },
-  "modes": {
-    "bus": "bus",
-    "subway": "subway",
-    "light rail": "Green Line / trolley",
-    "commuter rail": "commuter rail"
+  "map": {
+    "details": "Details",
+    "wholeUs": "Whole US"
   }
 }

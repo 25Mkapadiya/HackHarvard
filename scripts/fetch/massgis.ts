@@ -71,7 +71,7 @@ export async function fetchMassgis(): Promise<FetchResult[]> {
       const r = await fetchWithSnapshot(
         layer.id,
         'geojson',
-        () => arcgisQuery(layer.url, {}),
+        () => arcgisQuery(layer.url, { orderByFields: 'OBJECTID' }),
         (b) => JSON.parse(b) as FeatureCollection,
       );
       const markets = massgisToMarkets(r.data, layer, r.fetchedAt);

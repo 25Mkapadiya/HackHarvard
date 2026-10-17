@@ -5,6 +5,7 @@ const base: MarketView = {
   name: 'Copley Square Farmers Market',
   type: 'farmers_market',
   city: 'Boston',
+  state: 'MA',
   schedules: [
     {
       rrule: 'FREQ=WEEKLY;BYDAY=TU,FR',
@@ -58,6 +59,7 @@ describe('filters', () => {
       when: 'now' as const,
       programs: ['snap' as const, 'hip' as const],
       maxKm: 5,
+      state: 'MA',
       winter: true,
     };
     expect(parseFilters(filtersToParams(f))).toEqual(f);
@@ -81,6 +83,12 @@ describe('filters', () => {
     expect(applyFilters(all, { ...DEFAULT_FILTERS, maxKm: 2 }, tueNoon, origin).map((m) => m.id)).toEqual([
       'a',
     ]);
+  });
+  it('state', () => {
+    const ny = { ...base, id: 'c', state: 'NY' };
+    expect(applyFilters([...all, ny], { ...DEFAULT_FILTERS, state: 'NY' }, tueNoon).map((m) => m.id)).toEqual(
+      ['c'],
+    );
   });
   it('winter, indoor and sustainability filters', () => {
     expect(

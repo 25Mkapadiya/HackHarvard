@@ -41,8 +41,3 @@ export async function geocodeAddress(query: string): Promise<(LatLng & { label: 
     ? { lat: Number(hit.lat), lng: Number(hit.lon), label: hit.display_name.split(',').slice(0, 3).join(',') }
     : null;
 }
-
-export const directionsUrl = (g: LatLng, name: string, apple = false) =>
-  apple
-    ? `https://maps.apple.com/?daddr=${g.lat},${g.lng}&q=${encodeURIComponent(name)}`
-    : `https://www.google.com/maps/dir/?api=1&destination=${g.lat},${g.lng}`;

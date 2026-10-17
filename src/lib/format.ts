@@ -102,9 +102,4 @@ export const nextDays = (now: Date, n: number) =>
 
 export const money = (n: number) => `$${n.toFixed(n % 1 === 0 ? 0 : 2)}`;
 
-export function walkMinutes(meters: number): number {
-  // Straight-line distance × 1.3 for street detours, at 80 m per minute.
-  return Math.max(1, Math.round((meters * 1.3) / 80));
-}
-
 export const miles = (km: number) => km * 0.621371;

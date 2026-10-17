@@ -338,3 +338,83 @@ export function parseSchedule(
   }
   return { schedules, parsed: true, raw };
 }
+
+// USDA National Farmers Market Directory format: up to four seasons, each with a date range
+// ("05/23/2014 to 08/29/2014" or "May to October") and per-day hours
+// ("Sat: 9:00 AM-1:00 PM;Sun: 10:00 AM-2:00 PM;"). Any unreadable part fails the whole market.
+
+const USDA_DAY: Record<string, string> = {
+  mon: 'MO',
+  tue: 'TU',
+  wed: 'WE',
+  thu: 'TH',
+  fri: 'FR',
+  sat: 'SA',
+  sun: 'SU',
+};
+
+function parseUsdaDates(raw: string): { start?: string; end?: string } | null {
+  const s = clean(raw);
+  const m = /^(\d{1,2})\/(\d{1,2})\/(\d{4})\s+to\s+(\d{1,2})\/(\d{1,2})\/(\d{4})$/.exec(s);
+  let start: string | null;
+  let end: string | null;
+  if (m) {
+    start = validMd(Number(m[1]), Number(m[2]));
+    end = validMd(Number(m[4]), Number(m[5]));
+    const span = (Date.UTC(+m[6], +m[4] - 1, +m[5]) - Date.UTC(+m[3], +m[1] - 1, +m[2])) / 86_400_000;
+    if (!start || !end || span < 0 || span > 400) return null;
+    if (span >= 364) return {};
+  } else {
+    // "May 20, 2012 to October 28, 2012" → "May 20 to October 28"
+    const season = parseSeason(s.replace(/,?\s*\d{4}\b/g, '').replace(/\b([A-Za-z]{3,4})\./g, '$1'));
+    if (!season || season.ranges.length !== 1 || season.dates || season.rruleOverride) return null;
+    ({ start = null, end = null } = season.ranges[0] as { start?: string; end?: string });
+    if (!start || !end) return {};
+  }
+  if (start === '01-01' && end === '12-31') return {};
+  return { start, end };
+}
+
+export function parseUsdaSchedule(seasons: { date?: string | null; time?: string | null }[]): ParseResult {
+  const used = seasons.filter((s) => s.time?.trim() || s.date?.trim());
+  const raw = used
+    .map((s) =>
+      [s.date?.trim(), s.time?.trim().replace(/;$/, '').replace(/;/g, ', ')].filter(Boolean).join(' · '),
+    )
+    .join(' | ');
+  const fail: ParseResult = { schedules: [], parsed: false, raw };
+  if (!used.length) return fail;
+  const schedules: MarketSchedule[] = [];
+  for (const season of used) {
+    // A season with dates but no hours adds nothing we can show; one with hours but no dates
+    // could be anything, so it fails the market.
+    if (!season.time?.trim()) continue;
+    if (!season.date?.trim()) return fail;
+    const range = parseUsdaDates(season.date);
+    if (!range) return fail;
+    // Group days that share the same hours into one rule: "Sat, Sun 9-1" → BYDAY=SA,SU.
+    const byHours = new Map<string, string[]>();
+    for (const seg of season.time
+      .split(';')
+      .map((x) => x.trim())
+      .filter(Boolean)) {
+      const d = /^(mon|tue|wed|thu|fri|sat|sun)[a-z]*\s*:\s*(.+)$/i.exec(seg);
+      const times = d ? parseTimeRange(d[2]) : null;
+      if (!d || !times) return fail;
+      const key = `${times.openTime}-${times.closeTime}`;
+      byHours.set(key, [...(byHours.get(key) ?? []), USDA_DAY[d[1].toLowerCase()]]);
+    }
+    for (const [key, days] of byHours) {
+      const [openTime, closeTime] = key.split('-');
+      const ordered = WEEKDAY_ORDER.filter((w) => days.includes(w));
+      schedules.push({
+        rrule: `FREQ=WEEKLY;BYDAY=${ordered.join(',')}`,
+        openTime,
+        closeTime,
+        ...(range.start ? { seasonStart: range.start, seasonEnd: range.end } : {}),
+      });
+    }
+  }
+  if (!schedules.length) return fail;
+  return { schedules, parsed: true, raw };
+}

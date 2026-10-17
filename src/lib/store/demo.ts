@@ -7,21 +7,21 @@ export const CHECKIN_POINTS = 10;
 const SEED_APPLICATIONS: StoreState['applications'] = [
   {
     id: 'app-1',
-    marketId: 'copley-square-boston',
+    marketId: 'copley-square-boston-ma',
     vendorName: 'Fern Gully Sprouts (sample)',
     products: 'Sprouts, microgreens',
     status: 'pending',
   },
   {
     id: 'app-2',
-    marketId: 'copley-square-boston',
+    marketId: 'copley-square-boston-ma',
     vendorName: 'Back Bay Bagel Co. (sample)',
     products: 'Bagels, cream cheese',
     status: 'pending',
   },
   {
     id: 'app-3',
-    marketId: 'central-square-cambridge',
+    marketId: 'central-square-cambridge-ma',
     vendorName: 'Riverside Herb Garden (sample)',
     products: 'Herbs, seedlings',
     status: 'pending',

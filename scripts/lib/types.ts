@@ -18,6 +18,8 @@ export type SourceMarket = {
   lng?: number;
   dayTimeRaw?: string;
   seasonRaw?: string;
+  /** USDA directory format: up to four seasons with dates and per-day hours. */
+  usdaSeasons?: { date?: string; time?: string }[];
   winter?: boolean;
   website?: string;
   programs: ProgramId[];

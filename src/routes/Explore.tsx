@@ -24,6 +24,10 @@ export default function Explore() {
   const desktop = useMedia('(min-width: 1024px)');
   const showMap = desktop || view === 'map';
 
+  const states = useMemo(() => [...new Set((markets.data ?? []).map((m) => m.state))].sort(), [markets.data]);
+  // The map rebuilds its markers when "now" changes, so it ticks every 5 minutes instead of every minute.
+  const bucket = Math.floor(now.getTime() / 300_000);
+  const mapNow = useMemo(() => new Date(bucket * 300_000), [bucket]);
   const query = sp.toString();
   const results = useMemo(() => {
     if (!markets.data) return [];
@@ -58,7 +62,7 @@ export default function Explore() {
               {activeFilterCount(f) > 0 && <span className="chip">{activeFilterCount(f)}</span>}
             </summary>
             <div className="mt-4">
-              <FilterPanel f={f} onChange={update} hasLocation={!isDefault} />
+              <FilterPanel f={f} onChange={update} hasLocation={!isDefault} states={states} />
             </div>
           </details>
         </aside>
@@ -116,7 +120,7 @@ export default function Explore() {
           <div className="h-[65vh] overflow-hidden rounded-xl border border-line lg:h-[calc(100%-3rem)]">
             {showMap && (
               <Suspense fallback={<Loading />}>
-                <MarketMap markets={results} now={now} origin={origin} showTracts={!!f.lila} />
+                <MarketMap markets={results} now={mapNow} origin={origin} showTracts={!!f.lila} />
               </Suspense>
             )}
           </div>

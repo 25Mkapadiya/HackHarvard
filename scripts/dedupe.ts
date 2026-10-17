@@ -63,6 +63,29 @@ const similarity = (a: SourceMarket, b: SourceMarket) => {
   return Math.max(jaroWinkler(na, nb), na && nb && (na.includes(nb) || nb.includes(na)) ? 0.9 : 0);
 };
 
+// Spatial grid so we only compare records in neighboring ~1 km cells (150 m ≪ cell size).
+const CELL_DEG = 0.01;
+const cellOf = (m: { lat: number; lng: number }) => [
+  Math.floor(m.lat / CELL_DEG),
+  Math.floor(m.lng / CELL_DEG),
+];
+
+function buildGrid<T extends { lat?: number; lng?: number }>(items: T[]): Map<string, number[]> {
+  const grid = new Map<string, number[]>();
+  items.forEach((m, i) => {
+    const [r, c] = cellOf(m as { lat: number; lng: number });
+    const k = `${r}:${c}`;
+    grid.set(k, [...(grid.get(k) ?? []), i]);
+  });
+  return grid;
+}
+
+function* nearby(grid: Map<string, number[]>, m: { lat: number; lng: number }): Generator<number> {
+  const [r, c] = cellOf(m);
+  for (let dr = -1; dr <= 1; dr++)
+    for (let dc = -1; dc <= 1; dc++) yield* grid.get(`${r + dr}:${c + dc}`) ?? [];
+}
+
 export function dedupe(all: SourceMarket[]): {
   clusters: Cluster[];
   log: MergeLog;
@@ -78,8 +101,10 @@ export function dedupe(all: SourceMarket[]): {
 
   type Pair = { i: number; j: number; meters: number; sim: number };
   const pairs: Pair[] = [];
+  const grid = buildGrid(primary);
   for (let i = 0; i < primary.length; i++) {
-    for (let j = i + 1; j < primary.length; j++) {
+    for (const j of nearby(grid, primary[i] as never)) {
+      if (j <= i) continue;
       const a = primary[i];
       const b = primary[j];
       if (a.source === b.source) continue;
@@ -118,11 +143,14 @@ export function dedupe(all: SourceMarket[]): {
   const clusters = [...byRoot.values()];
 
   // Attach each confirm-only record to its single best-matching market.
+  const flat = clusters.flatMap((cl) => cl.records.map((r) => ({ cl, r, lat: r.lat!, lng: r.lng! })));
+  const recordGrid = buildGrid(flat);
   let unmatchedConfirmations = 0;
   for (const c of confirms) {
     let best: { cluster: Cluster; meters: number; sim: number } | null = null;
-    for (const cl of clusters) {
-      for (const r of cl.records) {
+    for (const idx of nearby(recordGrid, c as never)) {
+      const { cl, r } = flat[idx];
+      {
         const meters = metersBetween(c as never, r as never);
         if (meters > MAX_METERS) continue;
         const sim = similarity(c, r);

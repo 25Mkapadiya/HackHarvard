@@ -1,7 +1,7 @@
 {
   "app": {
     "name": "Market Day",
-    "tagline": "Mercados de agricultores del Gran Boston",
+    "tagline": "Mercados de agricultores en EE. UU.",
     "skip": "Saltar al contenido",
     "demo": "Modo de demostración: lo que guardes se queda en tu navegador.",
     "clearData": "Borrar mis datos",
@@ -9,7 +9,7 @@
     "language": "English",
     "languageCode": "en",
     "simulated": "Hora simulada: {{time}}",
-    "credits": "Datos de mercados: MassGIS / MDAR, USDA FNS, USDA ERS, MBTA. Mapa © colaboradores de OpenStreetMap."
+    "credits": "Datos de mercados: USDA AMS, USDA FNS, USDA ERS, MassGIS / MDAR. Mapa © colaboradores de OpenStreetMap."
   },
   "nav": {
     "home": "Inicio",
@@ -36,7 +36,10 @@
     "opens": "Abre {{day}} a las {{time}}",
     "noUpcoming": "Sin fechas en los próximos meses",
     "unknown": "Revisa el horario",
-    "unknownHelp": "No pudimos leer el horario de este mercado, así que no aparece en \"abierto ahora\". Esto dice la fuente:"
+    "unknownHelp": "No pudimos leer el horario de este mercado, así que no aparece en \"abierto ahora\". Esto dice la fuente:",
+    "closingSoonShort": "Cierra pronto",
+    "hoursAsListed": "Horario según la fuente",
+    "noHours": "Horario no publicado"
   },
   "home": {
     "title": "Comida fresca, cerca de casa",
@@ -61,7 +64,7 @@
     "benefitsTitle": "¿Compras con SNAP?",
     "benefitsBody": "En los mercados HIP, cada dólar de SNAP que gastas en frutas y verduras vuelve a tu tarjeta, hasta un límite mensual.",
     "benefitsCta": "Cómo funciona HIP",
-    "staleNote": "Los horarios vienen de las listas estatales de 2023 y pueden haber cambiado. Confirma con el mercado antes de ir.",
+    "staleNote": "Los horarios vienen de listas públicas que pueden estar desactualizadas: Massachusetts de la lista estatal de 2023 y el resto del país del directorio nacional del USDA de 2014. Confirma con el mercado antes de ir.",
     "yourLocation": "tu ubicación"
   },
   "explore": {
@@ -76,7 +79,7 @@
     "loosen": "Prueba quitar un filtro",
     "needLocation": "Indica tu ubicación en la página de inicio para filtrar por distancia.",
     "lilaLayer": "Mostrar zonas de bajos ingresos / poco acceso",
-    "lilaLegend": "Sombreado: zonas censales que el USDA considera de bajos ingresos y poco acceso a tiendas de comida (1 milla urbana / 10 millas rural).",
+    "lilaLegend": "Sombreado: zonas censales que el USDA considera de bajos ingresos y poco acceso a tiendas de comida (1 milla urbana / 10 millas rural). Por ahora solo en Massachusetts.",
     "mapLabel": "Mapa de mercados. La lista muestra los mismos mercados y funciona con teclado y lector de pantalla."
   },
   "filters": {
@@ -97,7 +100,9 @@
     "indoor": "Bajo techo",
     "sustainable": "Tiene un vendedor con 60+ en sostenibilidad",
     "search": "Nombre del mercado o ciudad",
-    "sampleNote": "Los productos y formas de pago vienen de datos de muestra."
+    "sampleNote": "Los productos y formas de pago vienen de datos de muestra.",
+    "state": "Estado",
+    "anyState": "Todos los estados"
   },
   "market": {
     "back": "Volver al mapa",
@@ -114,11 +119,6 @@
     "howToUse": "Cómo usar tus beneficios aquí",
     "vendors": "Vendedores",
     "noVendors": "Todavía no tenemos la lista de vendedores de este mercado.",
-    "getThere": "Cómo llegar",
-    "directions": "Indicaciones",
-    "appleMaps": "Apple Maps",
-    "googleMaps": "Google Maps",
-    "transit": "{{stop}} ({{mode}}) queda a unos {{min}} minutos a pie.",
     "address": "Dirección",
     "website": "Sitio web del mercado",
     "weather": "Pronóstico para el próximo día de mercado",
@@ -362,10 +362,8 @@
     "loaf": "pan",
     "half_gallon": "½ galón"
   },
-  "modes": {
-    "bus": "autobús",
-    "subway": "metro",
-    "light rail": "Línea Verde / tranvía",
-    "commuter rail": "tren de cercanías"
+  "map": {
+    "details": "Detalles",
+    "wholeUs": "Todo EE. UU."
   }
 }

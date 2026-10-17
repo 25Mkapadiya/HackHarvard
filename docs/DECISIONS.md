@@ -28,12 +28,12 @@ Choices made where `docs/BUILD_PLAN.md` was silent or reality differed from it.
 10. **Food access tracts come pre-joined.** The ERS 2025 Atlas (SNAP Retailer Access Map measures) is served
     with 2020 tract polygons from ERS's ArcGIS server, simplified server-side (~80 m), so no separate Census
     boundary download or mapshaper step is needed. Only low-income or low-access tracts are written for the map.
-11. **"Greater Boston" = within 25 km of Boston City Hall.** Those markets get sample vendors and MBTA stops.
+11. **"Greater Boston" = within 25 km of Boston City Hall.** Those markets get sample vendors.
 12. **Sample vendors are assigned deterministically** (hash of market + vendor ids), 3–6 per Greater Boston
     market, so reruns don't churn the data. When no public source lists a market's products or payment methods,
     they are derived from those sample vendors and flagged `productsAreSample` / `paymentsAreSample`.
 13. **Raw snapshots keep only the latest file per source** (`data/raw/<source>/<date>.*`); git history keeps the
-    older ones. MBTA stops are saved slimmed (name, lat/lng, mode).
+    older ones.
 14. **Weekly refresh dispatches the deploy.** A push made with `GITHUB_TOKEN` does not trigger other workflows,
     so `refresh-data.yml` runs `gh workflow run deploy.yml` after committing new data.
 15. **lockfile is generated with npm 11** (the runner's `lts/*` Node ships npm 11, which rejects npm 10 lockfiles
@@ -57,3 +57,23 @@ Choices made where `docs/BUILD_PLAN.md` was silent or reality differed from it.
 23. **Markets outside Greater Boston have no vendors**, so their products/payment show "—" rather than invented data.
 24. **Lighthouse wasn't run in this environment.** The initial JS is about 140 KB gzipped (budget 250 KB); the map,
     MiniSearch, QR code and portal/manager routes are lazy-loaded.
+25. **National coverage comes from the USDA directory's last public export.** The Local Food Portal stays blocked
+    without a key, so markets outside Massachusetts come from USDA's National Farmers Market Directory as hosted by
+    Esri StoryMaps on ArcGIS Online (8,117 records, last updated 2009–2014). We keep the 48 contiguous states and DC
+    (dropping AK, HI and territories), skip placeholder rows like "Various Cities and Towns", and flag every record
+    stale. USDA's *current* SNAP retailer list (7,042 mainland "Farmers and Markets") confirms SNAP on ~840 of them.
+26. **Massachusetts: MDAR wins.** USDA and MassGIS records within 150 m with similar names merge, and the newer
+    MassGIS values take precedence. USDA-only Massachusetts records (markets the state no longer lists) are kept but
+    are as stale as everything else from 2014.
+27. **Ids now end in the state** (`copley-square-boston-ma`) so names can't collide across states. Old
+    Massachusetts links without the suffix redirect.
+28. **The map stays fast with 8,000 pins** by coloring pins with a state-only check (no look-ahead for the next
+    opening), building popup text on demand, chunked marker loading, and refreshing the map every 5 minutes instead of
+    every minute. `markets.geojson` carries raw schedule text only for unparsed markets: 4.9 MB, about 470 KB gzipped.
+29. **Tract shading and sample vendors stay Greater Boston / Massachusetts.** National low-income /
+    low-access tracts would be tens of MB; per-state tract files are a follow-up.
+30. **OpenStreetMap was not used for markets.** A nationwide Overpass query timed out through the build proxy, and
+    the public Overpass server isn't meant for that load; a regional extract would be the way to add it.
+31. **Location only, no routing.** Market pages show where the market is (address, site description, map pin) but
+    no directions links or transit/walking estimates, by request. The MBTA stop lookup was removed from the
+    pipeline with them.

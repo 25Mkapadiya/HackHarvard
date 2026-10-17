@@ -112,8 +112,20 @@ export function marketStatus(
     const left = toMinutes(current.closeTime) - ln.minutes;
     return { state: left <= CLOSING_SOON_MIN ? 'closing_soon' : 'open', closesAt: current.closeTime };
   }
-  return { state: 'closed', next: nextOpening(schedules, now, closures, horizonDays) };
+  // horizonDays = 0 skips the look-ahead (the expensive part) when only the state is needed.
+  return {
+    state: 'closed',
+    next: horizonDays > 0 ? nextOpening(schedules, now, closures, horizonDays) : undefined,
+  };
 }
+
+/** Just open / closing soon / closed / unknown, without searching for the next opening. */
+export const marketState = (
+  schedules: MarketSchedule[],
+  parsed: boolean,
+  now: Date,
+  closures: string[] = [],
+) => marketStatus(schedules, parsed, now, closures, 0).state;
 
 export function nextOpening(
   schedules: MarketSchedule[],

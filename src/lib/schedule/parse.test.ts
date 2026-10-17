@@ -1,4 +1,4 @@
-import { parseDayTime, parseSchedule, parseSeason, parseTimeRange } from './parse';
+import { parseDayTime, parseSchedule, parseSeason, parseTimeRange, parseUsdaSchedule } from './parse';
 
 // Every string below is copied verbatim from the MassGIS / MDAR farmers market layer.
 
@@ -175,4 +175,85 @@ describe('parseSchedule', () => {
     );
     expect(r.schedules).toHaveLength(4);
   });
+});
+
+describe('parseUsdaSchedule (real USDA directory strings)', () => {
+  const one = (date: string, time: string) => parseUsdaSchedule([{ date, time }]);
+  it('dated range and one day', () => {
+    expect(one('05/23/2014 to 08/29/2014', 'Fri: 9:00 AM-1:00 PM;').schedules).toEqual([
+      {
+        rrule: 'FREQ=WEEKLY;BYDAY=FR',
+        openTime: '09:00',
+        closeTime: '13:00',
+        seasonStart: '05-23',
+        seasonEnd: '08-29',
+      },
+    ]);
+  });
+  it('groups days with the same hours', () => {
+    expect(
+      one(
+        '06/01/2014 to 10/31/2014',
+        'Sat: 8:00 AM-12:00 PM;Wed: 3:00 PM-7:00 PM;Sun: 8:00 AM-12:00 PM;',
+      ).schedules.map((s) => s.rrule),
+    ).toEqual(['FREQ=WEEKLY;BYDAY=SA,SU', 'FREQ=WEEKLY;BYDAY=WE']);
+  });
+  it('month names and lower-case days with spaces', () => {
+    expect(one('June to October', 'sun:10:00 am - 2:00 pm;').schedules[0]).toMatchObject({
+      rrule: 'FREQ=WEEKLY;BYDAY=SU',
+      seasonStart: '06-01',
+      seasonEnd: '10-31',
+    });
+    expect(one('May to October', 'Sat:9:00 AM - 12:00 PM;').schedules[0].openTime).toBe('09:00');
+  });
+  it('full-year ranges become year-round', () => {
+    expect(one('01/01/2014 to 12/31/2014', 'Sun: 9:30 AM-2:30 PM;').schedules[0].seasonStart).toBeUndefined();
+    expect(one('January to December', 'Sat: 9:00 AM-1:00 PM;').schedules[0].seasonStart).toBeUndefined();
+    expect(one('01/04/2014 to 01/03/2015', 'Sat: 9:00 AM-1:00 PM;').schedules[0].seasonStart).toBeUndefined();
+  });
+  it('winter seasons across the new year', () => {
+    expect(one('11/01/2013 to 04/26/2014', 'Sat: 10:00 AM-1:00 PM;').schedules[0]).toMatchObject({
+      seasonStart: '11-01',
+      seasonEnd: '04-26',
+    });
+  });
+  it('multiple seasons', () => {
+    const r = parseUsdaSchedule([
+      { date: '05/03/2014 to 10/25/2014', time: 'Sat: 8:00 AM-12:00 PM;' },
+      { date: '11/01/2014 to 12/20/2014', time: 'Sat: 9:00 AM-12:00 PM;' },
+      { date: ' ', time: ' ' },
+    ]);
+    expect(r.schedules).toHaveLength(2);
+    expect(r.raw).toBe(
+      '05/03/2014 to 10/25/2014 · Sat: 8:00 AM-12:00 PM | 11/01/2014 to 12/20/2014 · Sat: 9:00 AM-12:00 PM',
+    );
+  });
+  it.each([
+    ['05/26/2014 to', 'Mon: 3:00 PM-6:00 PM;'],
+    ['06/01/2014 to 10/31/2014', 'Wed: 1:00 PM-;'],
+    ['06/01/2014 to 10/31/2014', 'Mon: -12:00 PM;Sat: 8:00 AM-;'],
+    ['06/01/2014 to 10/31/2014', 'Thu:TBD - TBD;'],
+    ['06/01/2014 to 10/31/2014', 'Thu:2 - 6;'],
+    ['10/01/2012 to 04/31/2013', 'Sat: 9:00 AM-1:00 PM;'],
+    [' ', 'Sat: 9:00 AM-1:00 PM;'],
+  ])('refuses to guess: %s / %s', (date, time) => expect(one(date, time).parsed).toBe(false));
+  it('dates written out with years', () => {
+    expect(one('May 20, 2012 to October 28, 2012', 'sun:9:00 AM - 1:00 PM;').schedules[0]).toMatchObject({
+      seasonStart: '05-20',
+      seasonEnd: '10-28',
+    });
+    expect(one('June 30, 2011 to Oct. 13, 2011', 'Thu:4:00 pm - 7:00 pm;').schedules[0]).toMatchObject({
+      seasonStart: '06-30',
+      seasonEnd: '10-13',
+    });
+  });
+  it('skips a season that has dates but no hours', () => {
+    const r = parseUsdaSchedule([
+      { date: '06/06/2014 to 09/26/2014', time: 'Fri: 7:00 AM-1:00 PM;' },
+      { date: '10/01/2012 to 12/31/2012', time: ' ' },
+    ]);
+    expect(r.schedules).toHaveLength(1);
+    expect(parseUsdaSchedule([{ date: 'June to October', time: ' ' }]).parsed).toBe(false);
+  });
+  it('no schedule at all', () => expect(parseUsdaSchedule([{ date: ' ', time: ' ' }]).parsed).toBe(false));
 });

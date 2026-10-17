@@ -136,7 +136,6 @@ export const Market = z.object({
   programs: z.array(ProgramId),
   amenities: z.array(AmenityId),
   accessibility: z.string().optional(),
-  nearestTransit: z.object({ stopName: z.string(), meters: z.number(), mode: z.string() }).optional(),
   tract: z.object({ geoid: z.string(), lowIncome: z.boolean(), lowAccess: z.boolean() }).optional(),
   vendorIds: z.array(z.string()),
   website: z.string().optional(),
@@ -167,7 +166,7 @@ export const MarketSummary = Market.pick({
   lastUpdated: true,
   tract: true,
   vendorIds: true,
-}).extend({ city: z.string(), sustainabilityMax: z.number() });
+}).extend({ city: z.string(), state: z.string(), sustainabilityMax: z.number() });
 export type MarketSummary = z.infer<typeof MarketSummary>;
 
 export const Certification = z.object({

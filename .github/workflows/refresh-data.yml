@@ -27,7 +27,6 @@ jobs:
           MARS_API_KEY: ${{ secrets.MARS_API_KEY }}
           NASS_API_KEY: ${{ secrets.NASS_API_KEY }}
           CENSUS_API_KEY: ${{ secrets.CENSUS_API_KEY }}
-          MBTA_API_KEY: ${{ secrets.MBTA_API_KEY }}
       - name: Commit changed data
         id: commit
         run: |

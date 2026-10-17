@@ -30,10 +30,12 @@ export function FilterPanel({
   f,
   onChange,
   hasLocation,
+  states,
 }: {
   f: Filters;
   onChange: (f: Filters) => void;
   hasLocation: boolean;
+  states: string[];
 }) {
   const { t, i18n } = useTranslation();
   const whenOptions: { v: When; label: string }[] = [
@@ -97,6 +99,22 @@ export function FilterPanel({
           ))}
         </div>
       </fieldset>
+
+      <label className="block">
+        <span className="label">{t('filters.state')}</span>
+        <select
+          className="field"
+          value={f.state ?? ''}
+          onChange={(e) => onChange({ ...f, state: e.target.value || undefined })}
+        >
+          <option value="">{t('filters.anyState')}</option>
+          {states.map((s) => (
+            <option key={s} value={s}>
+              {s}
+            </option>
+          ))}
+        </select>
+      </label>
 
       <label className="block">
         <span className="label">{t('filters.distance')}</span>

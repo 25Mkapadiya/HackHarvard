@@ -252,6 +252,9 @@ export const Program = z.object({
   lastVerified: z.string(),
   verificationNote: z.string().optional(),
   regions: z.array(z.string()),
+  es: z
+    .object({ name: z.string(), description: z.string(), howToRedeem: z.string(), eligibility: z.string() })
+    .optional(),
 });
 export type Program = z.infer<typeof Program>;
 

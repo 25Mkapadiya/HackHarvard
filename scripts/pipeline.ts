@@ -98,7 +98,7 @@ function assignIds(markets: Omit<Market, 'id'>[]): Market[] {
   return markets
     .map((m) => {
       const base = m.name
-        .replace(/\b(winter )?farmers market\b/i, '')
+        .replace(/\s*\b(winter )?farmers market$/i, '')
         .replace(/\bwinter\b/i, '')
         .trim();
       const city = base.toLowerCase().includes(m.address.city.toLowerCase()) ? '' : ` ${m.address.city}`;

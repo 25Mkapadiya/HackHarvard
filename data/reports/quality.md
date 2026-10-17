@@ -1,6 +1,6 @@
 # Data quality report
 
-Generated 2026-10-17T12:29:31.871Z.
+Generated 2026-10-17T12:34:42.418Z.
 
 - Markets: 264
 - Schedules parsed into RRULEs: 256 (97%)

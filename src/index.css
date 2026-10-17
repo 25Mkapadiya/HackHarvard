@@ -1,5 +1,168 @@
 @import 'tailwindcss';
+
 @theme {
   --font-display: 'Bricolage Grotesque', ui-sans-serif, system-ui, sans-serif;
-  --font-sans: 'Atkinson Hyperlegible', ui-sans-serif, system-ui, sans-serif;
+  --font-sans: 'Atkinson Hyperlegible', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --color-kale: #24513f;
+  --color-kale-dark: #183a2d;
+  --color-kale-light: #e4eee8;
+  --color-beet: #8c2d4f;
+  --color-beet-light: #f6e7ec;
+  --color-squash: #f2b33d;
+  --color-squash-light: #fdf1d8;
+  --color-sky: #dcebf2;
+  --color-paper: #fbfbf8;
+  --color-ink: #1d2422;
+  --color-ink-soft: #4a5552;
+  --color-line: #d9ddd8;
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    font-size: 1.0625rem;
+    line-height: 1.55;
+  }
+  h1,
+  h2,
+  h3 {
+    @apply font-display text-ink;
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+  }
+  a {
+    @apply text-kale underline decoration-1 underline-offset-2;
+  }
+  a:hover {
+    @apply decoration-2;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-squash);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+  /* Tables and form controls inherit the body face. */
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+}
+
+@utility btn {
+  @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-4 py-2 font-bold no-underline transition-colors;
+}
+
+@utility btn-primary {
+  @apply btn bg-kale text-white hover:bg-kale-dark;
+}
+
+@utility btn-secondary {
+  @apply btn border-2 border-kale bg-white text-kale hover:bg-kale-light;
+}
+
+@utility btn-quiet {
+  @apply btn text-kale hover:bg-kale-light;
+}
+
+@utility chip {
+  @apply inline-flex items-center gap-1 rounded-full border border-line bg-white px-2.5 py-0.5 text-sm font-bold text-ink;
+}
+
+@utility field {
+  @apply min-h-11 w-full rounded-lg border-2 border-line bg-white px-3 py-2 text-ink focus:border-kale;
+}
+
+@utility label {
+  @apply mb-1 block font-bold;
+}
+
+@utility card {
+  @apply rounded-xl border border-line bg-white;
+}
+
+@utility section-title {
+  @apply font-display text-2xl font-extrabold;
+}
+
+@utility toggle {
+  @apply inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-full border-2 border-line bg-white px-3 py-1.5 font-bold has-[:checked]:border-kale has-[:checked]:bg-kale has-[:checked]:text-white;
+}
+
+.toggle input {
+  @apply sr-only;
+}
+
+.toggle:has(input:focus-visible) {
+  outline: 3px solid var(--color-squash);
+  outline-offset: 2px;
+}
+
+/* The stall sign: chalkboard header with the day and hours as the loudest type on the card. */
+@utility stall-sign {
+  background-color: var(--color-kale);
+  background-image:
+    radial-gradient(circle at 20% 30%, rgb(255 255 255 / 0.05) 0 1px, transparent 2px),
+    radial-gradient(circle at 70% 60%, rgb(255 255 255 / 0.04) 0 1px, transparent 2px);
+  background-size:
+    18px 18px,
+    23px 23px;
+}
+
+.leaflet-container {
+  font: inherit;
+}
+
+.cluster-bubble {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--color-squash);
+  color: var(--color-ink);
+  border: 3px solid var(--color-kale);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.3);
+}
+
+.marker-pin {
+  width: 30px;
+  height: 30px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  border: 3px solid #fff;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.35);
+  display: grid;
+  place-items: center;
+}
+.marker-pin span {
+  transform: rotate(45deg);
+  color: #fff;
+  font-weight: 700;
+  font-size: 13px;
+  line-height: 1;
+}
+
+/* The single deliberate motion: a soft pulse on "open now". */
+@media (prefers-reduced-motion: no-preference) {
+  .pulse-dot {
+    animation: pulse 2.2s ease-out infinite;
+  }
+  @keyframes pulse {
+    0% {
+      box-shadow: 0 0 0 0 rgb(36 81 63 / 0.55);
+    }
+    70% {
+      box-shadow: 0 0 0 8px rgb(36 81 63 / 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgb(36 81 63 / 0);
+    }
+  }
 }

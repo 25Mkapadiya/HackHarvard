@@ -8,3 +8,4 @@ test-results
 playwright-report
 # raw snapshots: keep small ones, ignore bulky downloads
 data/raw/**/*.zip
+/blob-report

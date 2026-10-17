@@ -1,6 +1,6 @@
 # Dedupe report
 
-Generated 2026-10-17T12:29:31.871Z. Records from different sources within 150 m with name similarity ≥ 0.8 were merged.
+Generated 2026-10-17T12:34:42.418Z. Records from different sources within 150 m with name similarity ≥ 0.8 were merged.
 Review these for false merges.
 
 - Input records: 773 (475 confirm-only SNAP retailer records)

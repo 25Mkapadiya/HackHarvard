@@ -2,6 +2,7 @@ import { Link } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import { useMemo } from 'react';
 import { useCrops, useMarkets } from '../app/data';
+import { useRegion } from '../app/useRegion';
 import { useLocationState, useNow } from '../app/context';
 import { marketStatus, nextOpening, localNow } from '../lib/schedule/occurs';
 import { distanceKm } from '../lib/geo';
@@ -19,6 +20,7 @@ export default function Home() {
   const markets = useMarkets();
   const crops = useCrops();
   const month = localNow(now).m;
+  const region = useRegion();
 
   const { openNow, soon } = useMemo(() => {
     const near = (markets.data ?? [])
@@ -26,13 +28,13 @@ export default function Home() {
       .filter((x) => x.km <= NEARBY_KM)
       .sort((a, b) => a.km - b.km);
     const openNow = near.filter(({ m }) => {
-      const s = marketStatus(m.schedules, m.scheduleParsed, now, m.closures).state;
+      const s = marketStatus(m.schedules, m.scheduleParsed, now, m.closures, m.tz, 0).state;
       return s === 'open' || s === 'closing_soon';
     });
     const soon = near
       .map((x) => ({
         ...x,
-        next: x.m.scheduleParsed ? nextOpening(x.m.schedules, now, x.m.closures, 14) : undefined,
+        next: x.m.scheduleParsed ? nextOpening(x.m.schedules, now, x.m.closures, 14, x.m.tz) : undefined,
       }))
       .filter((x) => x.next)
       .sort(
@@ -47,7 +49,7 @@ export default function Home() {
     return { openNow: openNow.slice(0, 6), soon: soon.slice(0, 6) };
   }, [markets.data, origin, now]);
 
-  const inSeason = crops.data?.crops.filter((c) => c.months.includes(month)).slice(0, 12) ?? [];
+  const inSeason = crops.data?.crops.filter((c) => c.months[region.id]?.includes(month)).slice(0, 12) ?? [];
   const list = openNow.length ? openNow : soon;
 
   return (
@@ -92,6 +94,7 @@ export default function Home() {
       <section className="mx-auto grid max-w-6xl gap-6 px-4 pb-4 md:grid-cols-2">
         <div className="card space-y-3 p-5">
           <h2 className="section-title">{t('home.inSeason')}</h2>
+          {region.name && <p className="text-sm text-ink-soft">{region.name}</p>}
           <ul className="flex flex-wrap gap-2">
             {inSeason.map((c) => (
               <li key={c.id}>
@@ -104,7 +107,7 @@ export default function Home() {
               </li>
             ))}
           </ul>
-          <Link to="/seasonal" className="font-bold">
+          <Link to={`/seasonal?region=${region.id}`} className="font-bold">
             {t('home.seeSeason')}
           </Link>
         </div>

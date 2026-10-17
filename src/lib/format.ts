@@ -1,5 +1,5 @@
-import type { LocalDay, Occurrence, Status } from './schedule/occurs';
-import { addDays, dayDiff, localNow, weekdayOf } from './schedule/occurs';
+import type { LocalDay, Status } from './schedule/occurs';
+import { dayDiff, localNow, weekdayOf } from './schedule/occurs';
 
 const DAY_NAMES = {
   en: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
@@ -63,8 +63,14 @@ export const hours = (o: { openTime: string; closeTime: string }, lang = 'en') =
   `${clock(o.openTime, lang)} – ${clock(o.closeTime, lang)}`;
 
 /** "today", "tomorrow", "Saturday", or "Saturday, June 13" when more than a week out. */
-export function relativeDay(day: LocalDay, now: Date, t: (k: string) => string, lang = 'en'): string {
-  const diff = dayDiff(localNow(now), day);
+export function relativeDay(
+  day: LocalDay,
+  now: Date,
+  t: (k: string) => string,
+  lang = 'en',
+  tz?: string,
+): string {
+  const diff = dayDiff(localNow(now, tz), day);
   if (diff === 0) return t('time.today');
   if (diff === 1) return t('time.tomorrow');
   if (diff < 7) return dayName(day, lang);
@@ -76,6 +82,7 @@ export function statusText(
   now: Date,
   t: (k: string, o?: Record<string, string>) => string,
   lang = 'en',
+  tz?: string,
 ): string {
   switch (s.state) {
     case 'open':
@@ -85,7 +92,7 @@ export function statusText(
     case 'closed':
       return s.next
         ? t('status.opens', {
-            day: relativeDay(s.next.day, now, t, lang),
+            day: relativeDay(s.next.day, now, t, lang, tz),
             time: clock(s.next.openTime, lang),
           })
         : t('status.noUpcoming');
@@ -93,12 +100,6 @@ export function statusText(
       return t('status.unknown');
   }
 }
-
-export const occurrenceLabel = (o: Occurrence, now: Date, t: (k: string) => string, lang = 'en') =>
-  `${relativeDay(o.day, now, t, lang)} · ${hours(o, lang)}`;
-
-export const nextDays = (now: Date, n: number) =>
-  Array.from({ length: n }, (_, i) => addDays(localNow(now), i));
 
 export const money = (n: number) => `$${n.toFixed(n % 1 === 0 ? 0 : 2)}`;
 

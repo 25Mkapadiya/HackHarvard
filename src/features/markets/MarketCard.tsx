@@ -12,7 +12,7 @@ const BENEFIT_ORDER = ['snap', 'hip', 'wic_fmnp', 'sfmnp'] as const;
 
 export function headline(m: MarketView, status: Status, now: Date) {
   if (status.state === 'open' || status.state === 'closing_soon') {
-    const occ = occurrencesOn(m.schedules, localNow(now), m.closures).find(
+    const occ = occurrencesOn(m.schedules, localNow(now, m.tz), m.closures).find(
       (o) => o.closeTime === status.closesAt,
     );
     return occ ? { day: occ.day, occ } : null;
@@ -34,7 +34,7 @@ export function MarketCard({
   compact?: boolean;
 }) {
   const { t, i18n } = useTranslation();
-  const status = marketStatus(m.schedules, m.scheduleParsed, now, m.closures);
+  const status = marketStatus(m.schedules, m.scheduleParsed, now, m.closures, m.tz);
   const h = headline(m, status, now);
   const km = origin ? distanceKm(origin, m.geo) : undefined;
   const benefitPrograms = BENEFIT_ORDER.filter((p) => m.programs.includes(p));
@@ -47,7 +47,7 @@ export function MarketCard({
             {h ? (
               <>
                 <p className="font-display text-2xl leading-tight font-extrabold capitalize sm:text-3xl">
-                  {relativeDay(h.day, now, t, i18n.language)}
+                  {relativeDay(h.day, now, t, i18n.language, m.tz)}
                 </p>
                 <p className="font-display text-xl font-semibold text-squash">
                   {hours(h.occ, i18n.language)}
@@ -59,7 +59,7 @@ export function MarketCard({
               </p>
             )}
           </div>
-          <StatusBadge status={status} now={now} onDark short={!!h} />
+          <StatusBadge status={status} now={now} onDark short={!!h} tz={m.tz} />
         </div>
       </div>
       <div className="h-1.5 bg-squash" aria-hidden />
@@ -76,6 +76,7 @@ export function MarketCard({
           </span>
           {km !== undefined && <span>{t('common.miles', { n: (km * 0.621371).toFixed(1) })}</span>}
           {m.winter && <span className="chip">{t('filters.winter')}</span>}
+          {m.type === 'farm_stand' && <span className="chip">{t('types.farm_stand')}</span>}
         </p>
         {!compact && benefitPrograms.length > 0 && (
           <ul className="flex flex-wrap gap-1.5" aria-label={t('market.programs')}>

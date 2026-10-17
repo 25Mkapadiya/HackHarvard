@@ -16,6 +16,12 @@ import { CheckInQr } from '../features/markets/CheckInQr';
 
 const LocationMap = lazy(() => import('../features/map/LocationMap'));
 
+/** "Pacific Daylight Time" for a zone at a given moment. */
+const zoneName = (tz: string, lang: string, at: Date) =>
+  new Intl.DateTimeFormat(lang, { timeZone: tz, timeZoneName: 'long' })
+    .formatToParts(at)
+    .find((p) => p.type === 'timeZoneName')?.value ?? tz;
+
 function Section({ title, children, id }: { title: string; children: React.ReactNode; id: string }) {
   return (
     <section aria-labelledby={id} className="card space-y-3 p-5">
@@ -50,12 +56,12 @@ export default function MarketDetail() {
     );
 
   const m = market.data;
-  const status = marketStatus(m.schedules, m.scheduleParsed, now, m.closures);
+  const status = marketStatus(m.schedules, m.scheduleParsed, now, m.closures, m.tz);
   const next =
     status.state === 'open' || status.state === 'closing_soon'
-      ? occurrencesOn(m.schedules, localNow(now), m.closures)[0]
+      ? occurrencesOn(m.schedules, localNow(now, m.tz), m.closures)[0]
       : m.scheduleParsed
-        ? nextOpening(m.schedules, now, m.closures, 7)
+        ? nextOpening(m.schedules, now, m.closures, 7, m.tz)
         : undefined;
   const marketVendors = (vendors.data ?? []).filter((v) => v.marketIds.includes(m.id));
   const marketSurplus = surplus.filter((s) => s.marketId === m.id);
@@ -85,10 +91,10 @@ export default function MarketDetail() {
         <h1 className="text-3xl font-extrabold text-white sm:text-4xl">{m.name}</h1>
         <p className="text-lg">
           {m.address.city}, {m.address.state}
-          {m.winter ? ` · ${t('filters.winter')}` : ''}
+          {m.winter ? ` · ${t('filters.winter')}` : ''} · {t(`types.${m.type}`)}
         </p>
         <div className="flex flex-wrap items-center gap-3">
-          <StatusBadge status={status} now={now} onDark />
+          <StatusBadge status={status} now={now} onDark tz={m.tz} />
           {next && (
             <span className="font-display text-xl font-semibold text-squash">{hours(next, lang)}</span>
           )}
@@ -131,10 +137,12 @@ export default function MarketDetail() {
             </p>
           )}
           {biweekly && <p className="text-sm text-ink-soft">{t('market.biweekly')}</p>}
+          <p className="text-sm text-ink-soft">{t('market.timeZone', { zone: zoneName(m.tz, lang, now) })}</p>
           {m.scheduleParsed && (
             <>
               <h3 className="pt-2 font-bold">{t('market.nextFourWeeks')}</h3>
               <Calendar
+                tz={m.tz}
                 schedules={m.schedules}
                 closures={m.closures}
                 closureNotes={m.closureNotes}

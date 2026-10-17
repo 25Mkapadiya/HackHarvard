@@ -1,4 +1,4 @@
-import type { ProgramId, ProductCategoryId, PaymentMethodId, SourceMeta } from '../../src/types';
+import type { MarketType, ProgramId, ProductCategoryId, PaymentMethodId, SourceMeta } from '../../src/types';
 
 /** A market record from one source, before normalization and dedupe. */
 export type SourceMarket = {
@@ -8,6 +8,8 @@ export type SourceMarket = {
   sourceUrl: string;
   fetchedAt: string;
   name: string;
+  /** Defaults to farmers_market. */
+  type?: MarketType;
   street?: string;
   locationNote?: string;
   city: string;

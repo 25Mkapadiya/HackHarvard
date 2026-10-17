@@ -5,7 +5,8 @@ import { CATEGORY_LABELS, PAYMENT_LABELS } from '../../lib/labels';
 import type { PaymentMethodId, ProductCategoryId, ProgramId } from '../../types';
 import { dayName } from '../../lib/format';
 
-const PROGRAMS: ProgramId[] = ['snap', 'hip', 'wic_fmnp', 'sfmnp', 'city_coupon'];
+// Boston coupons are described in the guide but no source tags participating markets, so there's no filter.
+const PROGRAMS: ProgramId[] = ['snap', 'hip', 'wic_fmnp', 'sfmnp'];
 const DISTANCES_MI = [1, 3, 5, 10, 25];
 const POPULAR: ProductCategoryId[] = [
   'vegetables',
@@ -99,6 +100,19 @@ export function FilterPanel({
           ))}
         </div>
       </fieldset>
+
+      <label className="block">
+        <span className="label">{t('filters.type')}</span>
+        <select
+          className="field"
+          value={f.type ?? ''}
+          onChange={(e) => onChange({ ...f, type: (e.target.value || undefined) as Filters['type'] })}
+        >
+          <option value="">{t('filters.anyType')}</option>
+          <option value="farmers_market">{t('types.farmers_market')}</option>
+          <option value="farm_stand">{t('types.farm_stand')}</option>
+        </select>
+      </label>
 
       <label className="block">
         <span className="label">{t('filters.state')}</span>

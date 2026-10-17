@@ -1,12 +1,12 @@
 # Dedupe report
 
-Generated 2026-10-17T13:39:33.041Z. Records from different sources within 150 m with name similarity ≥ 0.8 were merged.
+Generated 2026-10-17T14:02:50.466Z. Records from different sources within 150 m with name similarity ≥ 0.8 were merged.
 Review these for false merges.
 
 - Input records: 15320 (7042 confirm-only SNAP retailer records)
-- Markets after dedupe: 8162
-- Merges: 956
-- SNAP retailer records that matched no market (not added): 6202
+- Markets after dedupe: 14241
+- Merges: 1059
+- SNAP retailer records that matched no market, added as their own locations: 6099 (6079 after collapsing duplicates)
 - Geocoded: 0, geocoding failed: 0
 
 | Kept | Merged in | Distance (m) | Name similarity |
@@ -129,21 +129,29 @@ Review these for false merges.
 | massgis-dph:13 Longmeadow (Longmeadow) | usda-fmd:1005149 Local Harvest Farmers Mkt at the Longmeadow Shops (Longmeadow) | 144 | 0.9 |
 | usda-fmd:1006471 Oak Harbor Farmer's Market (Oak Harbor) | usda-snap-retailers:1699913 Oak Harbor Farmers' Market (confirms SNAP) | 57 | 1 |
 | usda-fmd:1006192 New Brunswick Community Farmers Market (New Brunswick) | usda-snap-retailers:1102485 New Brunswick Community Farmers Market (confirms SNAP) | 15 | 1 |
+| massgis-dph:177 Natick Winter (Natick) | usda-snap-retailers:1687910 Fab Farms (SNAP vendor at this site) | 50 | 0 |
+| usda-fmd:1009319 Truly Living Well (East Point) | usda-snap-retailers:1634181 Fresh Market At Oyun Botanical Gardens (SNAP vendor at this site) | 15 | 0 |
 | usda-fmd:1010249 Winter Garden Farmers' Market (Winter Garden) | usda-snap-retailers:1417296 Winter Garden Farmer's Market NAFMNP (confirms SNAP) | 141 | 1 |
 | usda-fmd:1003189 Forsyth Farmers' Market (Savannah) | usda-snap-retailers:854848 FORSYTH FARMERS MARKET (confirms SNAP) | 43 | 1 |
 | usda-fmd:1005697 Metuchen Farmers Market (Metuchen) | usda-snap-retailers:1631729 Metuchen Farmers Market Inc (confirms SNAP) | 29 | 1 |
 | usda-fmd:1000785 Boulder County Farmers' Market - Longmont & Boulder (Boulder) | usda-snap-retailers:1407841 Boulder Farmers Market (confirms SNAP) | 133 | 0.9 |
 | usda-fmd:1009526 Vermillion Area Farmers Market - Winter Market - Saturdays (Vermillion) | usda-snap-retailers:878968 Vermillion Area Farmers Market (confirms SNAP) | 13 | 0.92 |
 | usda-fmd:1000280 Armory Farmers Market (Providence) | usda-snap-retailers:1638512 Armory Park Farmers Market (confirms SNAP) | 92 | 0.91 |
+| usda-fmd:1008292 Soulard Farmers Market (St Louis) | usda-snap-retailers:236645 J W Schroeter Produce 1 (SNAP vendor at this site) | 5 | 0 |
 | usda-fmd:1009415 University District Farmers Market (Seattle) | usda-snap-retailers:270050 University District Farmers Market (confirms SNAP) | 77 | 1 |
 | usda-fmd:1008939 The Farmers Market of Olympia (Olympia) | usda-snap-retailers:262728 OLYMPIA FARMERS MARKET (confirms SNAP) | 18 | 0.91 |
+| usda-fmd:1008292 Soulard Farmers Market (St Louis) | usda-snap-retailers:291532 S & M Schweiger Produce (SNAP vendor at this site) | 5 | 0 |
 | usda-fmd:1003117 Flagstaff Community Market (Flagstaff) | usda-snap-retailers:434983 FLAGSTAFF COMMUNITY MKT (confirms SNAP) | 57 | 1 |
 | massgis-dph:132 Greenfield (Greenfield) | usda-snap-retailers:1660912 Greenfield Farmers' Market Llc (confirms SNAP) | 2 | 1 |
 | usda-fmd:1000870 Brewer Farmers' Market (Brewer) | usda-snap-retailers:1646332 Brewer Farmers Market (confirms SNAP) | 49 | 1 |
 | usda-fmd:1002252 Division Street Chicago Farmers Market (Chicago) | usda-snap-retailers:1642314 Division Street Market (confirms SNAP) | 57 | 0.93 |
+| usda-fmd:1008292 Soulard Farmers Market (St Louis) | usda-snap-retailers:453015 Cheapos Produce (SNAP vendor at this site) | 5 | 0 |
+| usda-fmd:1000003 100-Mile Market (Kalamazoo) | usda-snap-retailers:358892 PEOPLES FOOD CO-OP OF KALAMAZOO (SNAP vendor at this site) | 19 | 0 |
 | usda-fmd:1007760 Santa Cruz Farmers' Market (Santa Cruz) | usda-snap-retailers:518525 Santa Cruz Community Farmers Market (confirms SNAP) | 2 | 0.9 |
+| usda-fmd:1008299 South Berkeley Farmers' Market (Berkeley) | usda-snap-retailers:517226 Ecology Center Farmers Market Tuesday S Berkley (SNAP vendor at this site) | 22 | 0 |
 | massgis-dph:125 Great Barrington (Great Barrington) | usda-snap-retailers:1654444 Great Barrington Farmers Market FFAB (confirms SNAP) | 24 | 0.95 |
 | usda-fmd:1003640 Grass Roots Farmers Market (New York) | usda-snap-retailers:854835 Grass Roots Farmers Market (confirms SNAP) | 26 | 1 |
+| usda-fmd:1008292 Soulard Farmers Market (St Louis) | usda-snap-retailers:566093 Scott B Schweiger (SNAP vendor at this site) | 5 | 0 |
 | usda-fmd:1003079 Ferry Plaza Farmers Market (San Francisco) | usda-snap-retailers:366890 Ferry Plaza Farmers Market (confirms SNAP) | 11 | 1 |
 | usda-fmd:1004203 Hollywood Farmers' Market (Los Angeles) | usda-snap-retailers:600770 Hollywood F M - Sust Econ Enterp of LA (confirms SNAP) | 19 | 0.9 |
 | usda-fmd:1003910 Hartford's North End Farmers' Market (Hartford) | usda-snap-retailers:858031 North End Farmers Market (confirms SNAP) | 81 | 0.9 |
@@ -153,12 +161,15 @@ Review these for false merges.
 | usda-fmd:1004780 La Cienega Farmers' Market (Mid-City Los Angeles) | usda-snap-retailers:492926 La Cienega Farmers Market (confirms SNAP) | 11 | 1 |
 | usda-fmd:1007646 Salem Public Market (Salem) | usda-snap-retailers:604599 Salem Saturday Market (confirms SNAP) | 19 | 0.82 |
 | usda-fmd:1001006 Burbank Certified Farmers' Market (Burbank) | usda-snap-retailers:470870 Burbank Certified Farmers Market (confirms SNAP) | 8 | 1 |
+| usda-fmd:1008292 Soulard Farmers Market (St Louis) | usda-snap-retailers:557748 J W Schroeter Produce (SNAP vendor at this site) | 5 | 0 |
 | usda-fmd:1000520 Beaverton Farmers Market (Beaverton) | usda-snap-retailers:800025 Beaverton Farmers Market (confirms SNAP) | 102 | 1 |
 | usda-fmd:1000337 Athens Farmers Market (Athens) | usda-snap-retailers:797977 Athens Farmers Market (confirms SNAP) | 128 | 1 |
 | usda-fmd:1004901 Lapeer Farmers Market (Lapeer) | usda-snap-retailers:1142369 Historic Farmers Market Of Lapeer (confirms SNAP) | 16 | 0.9 |
 | usda-fmd:1001365 Centreville Farmers' Market (Centreville) | usda-snap-retailers:1642265 Centreville Farmers Market (confirms SNAP) | 12 | 1 |
+| usda-fmd:1004436 Jack London Square CFM (Oakland) | usda-snap-retailers:663525 Old Oakland FM - Urban VIllage FM Assoc (SNAP vendor at this site) | 23 | 0 |
 | usda-fmd:1006829 Pasco Farmers Market (Pasco) | usda-snap-retailers:1591563 Pasco Farmer's Market (confirms SNAP) | 101 | 1 |
 | usda-fmd:1005445 Marina Certifed Farmers' Market (Marina) | usda-snap-retailers:647011 Marina Farmers Market (confirms SNAP) | 56 | 0.9 |
+| usda-fmd:1008292 Soulard Farmers Market (St Louis) | usda-snap-retailers:724635 Scharf Farm (SNAP vendor at this site) | 4 | 0 |
 | usda-fmd:1007175 Proctor Farmers' Market (Tacoma) | usda-snap-retailers:872570 Proctor Farmers Market (confirms SNAP) | 34 | 1 |
 | usda-fmd:1003877 Hardwick Farmers' Market (Hardwick) | usda-snap-retailers:995444 Hardwick Farmers Market (confirms SNAP) | 115 | 1 |
 | usda-fmd:1006714 Overland Park Farmers' Market (Overland Park) | usda-snap-retailers:995593 Overland Park Farmers Market (confirms SNAP) | 37 | 1 |
@@ -192,6 +203,7 @@ Review these for false merges.
 | usda-fmd:1005636 Melrose/Sally Frank's Farmers' Market (Melrose) | usda-snap-retailers:1011943 Melrose Farmers Market (confirms SNAP) | 116 | 0.9 |
 | usda-fmd:1007119 Portland Farmers' Market- Deering Oaks Park (Portland) | usda-snap-retailers:1013410 Portland Farmers Market Association (confirms SNAP) | 99 | 0.9 |
 | usda-fmd:1003576 Govanstowne Farmers' Market (Baltimore) | usda-snap-retailers:1013786 Govanstowne Farmers Market (confirms SNAP) | 64 | 1 |
+| usda-fmd:1006394 Northeast Georgia. Locally Grown.net - Habersham County site (Clarkesville) | usda-snap-retailers:1645671 Habersham Co Locally Grown (SNAP vendor at this site) | 39 | 0 |
 | usda-fmd:1003679 Green City Market - Outdoor (Chicago) | usda-snap-retailers:853387 Green City Market (confirms SNAP) | 18 | 1 |
 | usda-fmd:1003161 Fondy Farmers Market (Milwaukee) | usda-snap-retailers:850600 Fondy Food Center Inc (confirms SNAP) | 55 | 0.9 |
 | massgis-dph:59 Roslindale (Roslindale) | usda-snap-retailers:853727 Roslindale Farmers Market (confirms SNAP) | 80 | 0.9 |
@@ -224,6 +236,7 @@ Review these for false merges.
 | usda-fmd:1001392 Champlain Islands Farmers Market (Grand Isle) | usda-snap-retailers:933962 Champlain Islands Farmers Market Inc. (confirms SNAP) | 70 | 1 |
 | usda-fmd:1003706 Greendale Open Market (Greendale) | usda-snap-retailers:1591645 Greendale Downtown Market (confirms SNAP) | 91 | 0.9 |
 | usda-fmd:1004732 Klamath Falls Farmers Market Assoc. Inc. (Klamath Falls) | usda-snap-retailers:948171 Klamath Falls Farmers Market (confirms SNAP) | 43 | 1 |
+| usda-fmd:1006400 Northeast Minneapolis Farmers Market (Minneapolis) | usda-snap-retailers:949933 NE Minneapolis Farmers Market (SNAP vendor at this site) | 37 | 0 |
 | massgis-dph:139 Northampton (Northampton) | usda-snap-retailers:949967 Northampton Farmers Market (confirms SNAP) | 10 | 1 |
 | massgis-dph:134 Great Falls (Turners Falls) | usda-snap-retailers:1642706 Great Falls Farmers Market (confirms SNAP) | 62 | 1 |
 | usda-fmd:1000483 Bath Farmers Market (Bath) | usda-snap-retailers:950359 Bath Farmers Market (confirms SNAP) | 61 | 1 |
@@ -249,9 +262,11 @@ Review these for false merges.
 | usda-fmd:1004134 Hillsboro Tuesday Marketplace (Hillsboro) | usda-snap-retailers:863986 Hillsboro Farmers Markets (confirms SNAP) | 135 | 0.9 |
 | usda-fmd:1009171 The West River Farmers Market (Londonderry) | usda-snap-retailers:1044843 West River Farmers Market (confirms SNAP) | 8 | 1 |
 | usda-fmd:1000813 Boyne City Farmers Market (Boyne City) | usda-snap-retailers:1045704 Boyne City Farmers Market (confirms SNAP) | 71 | 1 |
+| usda-fmd:1009440 Uptown Martinsville Farmers' Market (Martinsville) | usda-snap-retailers:1044941 Martinsville Uptown Farmer's Market (SNAP vendor at this site) | 34 | 0 |
 | massgis-dph:47 Braintree (Braintree) | usda-snap-retailers:1044980 Braintree Farmers Market (confirms SNAP) | 44 | 1 |
 | usda-fmd:1004195 Holland  Farmers Market (Holland) | usda-snap-retailers:1043295 Holland Farmers Market (confirms SNAP) | 13 | 1 |
 | usda-fmd:1005861 Monroe Farmers Market (Monroe) | usda-snap-retailers:1096287 Monroe Farmers Market (confirms SNAP) | 55 | 1 |
+| usda-fmd:2000016 Ypsilanti Depot Town Farmers' Market (Ypsilanti) | usda-snap-retailers:1096465 Depot Town Farmers Market/Growing Hope Inc (SNAP vendor at this site) | 40 | 0 |
 | massgis-dph:144 Hopkinton (Hopkinton) | usda-snap-retailers:1096979 Hopkinton Farmers Market (confirms SNAP) | 85 | 1 |
 | usda-fmd:1006486 Oakland County Market (Waterford) | usda-snap-retailers:1095270 Oakland County Market Farmers Market (confirms SNAP) | 118 | 1 |
 | usda-fmd:1006370 North Square Farmers Market (Chambersburg) | usda-snap-retailers:1095393 North Square Farmers Market (confirms SNAP) | 123 | 1 |
@@ -268,16 +283,21 @@ Review these for false merges.
 | usda-fmd:1002823 Evart Farmers' Market- Evart DDA (Evart) | usda-snap-retailers:1100643 Evart Farmers' Market (confirms SNAP) | 73 | 0.9 |
 | usda-fmd:1000173 Alton Farmers' and Artisans' Market (Alton) | usda-snap-retailers:1100748 Alton Farmers & Artisans Farmers Market/Alton Main (confirms SNAP) | 79 | 0.92 |
 | usda-fmd:1005191 Lorton Farmers Market (Lorton) | usda-snap-retailers:1098496 Lorton Farmers Market/Arcadia Foods Inc (confirms SNAP) | 70 | 0.9 |
+| usda-fmd:1000435 Ballston FRESHFARM Market (Ballston) | usda-snap-retailers:1100841 FRESHFARM Ballston Farmers Market (SNAP vendor at this site) | 34 | 0 |
 | usda-fmd:1001034 Burrillville Farmers Market (Harrisville) | usda-snap-retailers:1100999 Burrillville Farmers Market Association Inc. (confirms SNAP) | 47 | 1 |
 | massgis-dph:194 West Stockbridge (West Stockbridge) | usda-snap-retailers:1099411 West Stockbridge Farmers Market (confirms SNAP) | 24 | 1 |
 | usda-fmd:1005598 McGolrick Park Farmers Market (Brooklyn) | usda-snap-retailers:1101214 McGolrick Park's Down to Earth Farmers Market (confirms SNAP) | 62 | 0.9 |
+| usda-fmd:1004910 Las Cruces Farmers' & Crafts Market (Las Cruces) | usda-snap-retailers:1102171 Farmers And Crafts Market Of Las Cruces Inc (SNAP vendor at this site) | 54 | 0 |
 | usda-fmd:1001417 Charles Town Farmers Market (Charles Town) | usda-snap-retailers:1100404 Charles Town Farmers Market (confirms SNAP) | 40 | 1 |
 | massgis-dph:235 Chicopee/Center Fresh (Chicopee) | usda-snap-retailers:1441096 Center Fresh Farmers' Market (confirms SNAP) | 8 | 0.9 |
 | usda-fmd:1010324 Wyckoff Farmhouse Farmers' Market (Brooklyn) | usda-snap-retailers:1441321 Wyckoff House & Association Farmers Market (confirms SNAP) | 41 | 0.89 |
 | usda-fmd:1000066 Abingdon Farmers Market (Abingdon) | usda-snap-retailers:893495 Abingdon Farmers Market (confirms SNAP) | 35 | 1 |
 | usda-fmd:1004540 Johnstown Farmers' Market (Johnstown) | usda-snap-retailers:1590540 Johnstown Farmers Market (confirms SNAP) | 89 | 1 |
+| usda-fmd:1003600 Grand Lake-Oakland Farmers Market (Oakland) | usda-snap-retailers:1077556 Grandlake Farmers Market/Ag Institute of Marin (SNAP vendor at this site) | 7 | 0 |
 | usda-fmd:1008616 Stonestown Farmers Market (San Francisco) | usda-snap-retailers:1077561 Stonestown Farmers Market/Ag Institute of Marin (confirms SNAP) | 54 | 0.9 |
 | usda-fmd:1006976 Pike Place Market (Seattle) | usda-snap-retailers:1062883 Pike Place Market PDA (confirms SNAP) | 135 | 0.94 |
+| usda-fmd:1008336 South Lake Union Market Featuring Pike Place Market Express (Seattle) | usda-snap-retailers:1062888 Pike Place Express at South Lake Union (SNAP vendor at this site) | 18 | 0 |
+| usda-fmd:1007609 Sacramento Central Certified Farmers' Market (Sacramento) | usda-snap-retailers:1063374 Central Farmers' Market Ebt Association (SNAP vendor at this site) | 3 | 0 |
 | usda-fmd:1007321 Redlands Farmers Market (Redlands) | usda-snap-retailers:1112248 Redlands Saturday Morning Farmers' Market (confirms SNAP) | 127 | 0.9 |
 | usda-fmd:1006255 Newport Farmers' Market (Newport) | usda-snap-retailers:1112458 Newport Farmers' Market (confirms SNAP) | 38 | 1 |
 | usda-fmd:1008090 SFC Farmers' Market Downtown (Austin) | usda-snap-retailers:1078284 SFC Farmers Market Downtown (confirms SNAP) | 120 | 1 |
@@ -290,6 +310,7 @@ Review these for false merges.
 | usda-fmd:1007652 Salinas Valley Memioral Healthcare Certified Farmers' Market (Salinas) | usda-snap-retailers:1103560 Salinas Valley Memorial Farmers Market (confirms SNAP) | 105 | 0.89 |
 | massgis-dph:72 Truro Educational (Truro) | usda-snap-retailers:1106618 Truro Farmers' Market (confirms SNAP) | 29 | 0.9 |
 | usda-fmd:1008577 Staunton/Augusta Farmers' Market (Staunton) | usda-snap-retailers:1441852 Staunton Farmers' Market (confirms SNAP) | 55 | 0.9 |
+| usda-fmd:1001833 Community Roots Market (Spokane) | usda-snap-retailers:1441890 Hillyard Farmers Market (SNAP vendor at this site) | 38 | 0 |
 | usda-fmd:1005061 Liberty Lake Farmers' Market (Liberty Lake) | usda-snap-retailers:1441892 Liberty Lake Farmers Market (confirms SNAP) | 21 | 1 |
 | usda-fmd:1010130 Wicker Park/Bucktown (Chicago) Farmers Market (Chicago) | usda-snap-retailers:1441942 Wicker Park Farmers Market (confirms SNAP) | 115 | 0.9 |
 | usda-fmd:1008041 Sedro-Woolley Farmers Market (Sedro-Woolley) | usda-snap-retailers:1054203 Sedro Woolley Farmers Market (confirms SNAP) | 31 | 1 |
@@ -305,8 +326,10 @@ Review these for false merges.
 | usda-fmd:1008745 Sustainable Nantucket Famers and Artisans Market (Nantucket) | usda-snap-retailers:1056983 Sustainable Nantucket Farmers & Artisans Market (confirms SNAP) | 1 | 0.94 |
 | usda-fmd:1002168 DeKalb Farmers' Market (DeKalb) | usda-snap-retailers:1135045 Dekalb Farmers' Market (confirms SNAP) | 25 | 1 |
 | usda-fmd:1002856 Fairfax Community Farmers' Market (Fairfax) | usda-snap-retailers:1134686 Fairfax Community Farmers Market (confirms SNAP) | 73 | 1 |
+| usda-fmd:1008033 Seattle City Hall Farmers Market featuring Pike Place Market Express (Seattle) | usda-snap-retailers:1060294 Pike Place Market Express at City Hall (SNAP vendor at this site) | 29 | 0 |
 | usda-fmd:1000981 Brunswick-Topsham Land Trust Farmers' Market at Crystal Spring Farm (Brunswick) | usda-snap-retailers:1135680 Brunswick - Topsham Land Trust Farmers' Market (confirms SNAP) | 59 | 0.91 |
 | usda-fmd:1005254 Lynchburg Community Market (Lynchburg) | usda-snap-retailers:1109325 Lynchburg Community Market (confirms SNAP) | 57 | 1 |
+| usda-fmd:1000769 Boring Farmer's Market (Boring) | usda-snap-retailers:898312 Schedeens (SNAP vendor at this site) | 25 | 0 |
 | usda-fmd:1006794 Paola Farmers Market (Paola) | usda-snap-retailers:1443857 Paola Farmers Market (confirms SNAP) | 85 | 1 |
 | usda-fmd:1008991 The Lexington Farmers' Market (Lexington) | usda-snap-retailers:898451 Lexington Farmers Market - Southland (confirms SNAP) | 78 | 0.9 |
 | usda-fmd:1002213 Des Moines Waterfront Farmers Market (Des Moines) | usda-snap-retailers:1443991 Des Moines Farmers Market (confirms SNAP) | 29 | 0.9 |
@@ -326,6 +349,7 @@ Review these for false merges.
 | usda-fmd:1002832 Evergreen Farmers' Market (San Jose) | usda-snap-retailers:1065707 Evergreen Farmers' Market (confirms SNAP) | 82 | 1 |
 | usda-fmd:1003089 Fillmore Farmers' Market (San Francisco) | usda-snap-retailers:1065710 Fillmore Farmers' Market (confirms SNAP) | 28 | 1 |
 | usda-fmd:1004385 Inner Sunset Farmers' Market (San Francisco) | usda-snap-retailers:1065713 Inner Sunset Farmers' Market (confirms SNAP) | 5 | 1 |
+| usda-fmd:1002429 Downtown San Leandro Certified Farmers' Market (San Leandro) | usda-snap-retailers:1065733 San Leandro Downtown Farmers' Market (SNAP vendor at this site) | 48 | 0 |
 | usda-fmd:1006995 Pinole Farmers' Market (Pinole) | usda-snap-retailers:1065741 Pinole Farmers' Market (confirms SNAP) | 18 | 1 |
 | usda-fmd:1007041 Pleasanton Farmers' Market (Pleasanton) | usda-snap-retailers:1065744 Pleasanton Farmers' Market (confirms SNAP) | 52 | 1 |
 | usda-fmd:1009394 Union City Farmers' Market (Union City) | usda-snap-retailers:1065759 Union City Farmers' Market (confirms SNAP) | 9 | 1 |
@@ -349,8 +373,11 @@ Review these for false merges.
 | usda-fmd:1000961 Brownsburg Farmers Market (Brownsburg) | usda-snap-retailers:1142232 Brownsburg Farmers Market (confirms SNAP) | 51 | 1 |
 | usda-fmd:1001141 Cameron Park Wednesday Farmers' Market (Cameron Park) | usda-snap-retailers:1445149 Cameron Park Certified Farmers Market NAFMNP (confirms SNAP) | 28 | 0.88 |
 | usda-fmd:1008335 South Lake Tahoe Tuesday Farmers Market (South Lake Tahoe) | usda-snap-retailers:1445156 South Lake Tahoe Certified Farmers Market NAFMNP (confirms SNAP) | 60 | 0.91 |
+| usda-fmd:1007426 River People Farmers Market (Astoria) | usda-snap-retailers:1445168 Astoria Sunday Market (SNAP vendor at this site) | 59 | 0 |
 | usda-fmd:1007373 Richland Farmers Market - Court House (Richland Center) | usda-snap-retailers:1446376 Richland Area Farmers Market (confirms SNAP) | 143 | 0.88 |
+| usda-fmd:1006122 Nashville F.A.R.M. IV (Nashville) | usda-snap-retailers:1152137 Smiley's Produce (SNAP vendor at this site) | 32 | 0 |
 | usda-fmd:1000334 Atchison Farmers Market (Atchison) | usda-snap-retailers:1151837 Atchison Farmers' Market Inc  (confirms SNAP) | 95 | 1 |
+| usda-fmd:1003155 Foggy Bottom FRESHFARM Market (Washington) | usda-snap-retailers:1145699 FRESHFARM Foggy Bottom Farmers Market (SNAP vendor at this site) | 60 | 0 |
 | usda-fmd:1003300 FRESHFARM Market, by the White House (Washington) | usda-snap-retailers:1145702 FRESHFARM By The White House Farmers Market (confirms SNAP) | 14 | 1 |
 | massgis-dph:61 Worcester/Beaver Brook Park (Worcester) | usda-snap-retailers:1149514 Beaver Brook Park Farmers Market (confirms SNAP) | 41 | 0.9 |
 | usda-fmd:1002256 Dixon Farmers' Market (Dixon) | usda-snap-retailers:1150914 Dixon Farmers Market (confirms SNAP) | 50 | 1 |
@@ -361,10 +388,12 @@ Review these for false merges.
 | usda-fmd:1001195 Cape Coral Farmers' Market (Cape Coral) | usda-snap-retailers:1069611 Cape Coral Farmers Market (confirms SNAP) | 90 | 1 |
 | usda-fmd:1008638 Stow Community Farmers Market (Stow) | usda-snap-retailers:1153542 Stow Community Farmers Market (confirms SNAP) | 42 | 1 |
 | usda-fmd:1001701 Clinton Bailey Farmers Market (Buffalo) | usda-snap-retailers:1068270 Clinton Bailey Farmers Market (confirms SNAP) | 141 | 1 |
+| usda-fmd:1008103 Shasta Growers Association Certified Farmers Markets (Anderson) | usda-snap-retailers:1070857 Anderson Farmers Market (SNAP vendor at this site) | 54 | 0 |
 | usda-fmd:1005442 Marilyn Miller FM (Redding) | usda-snap-retailers:1070912 Marilyn Miller Farmers Market (confirms SNAP) | 115 | 1 |
 | usda-fmd:1000199 Anacortes Farmers Market (Anacortes) | usda-snap-retailers:883082 Anacortes Farmers Market (confirms SNAP) | 24 | 1 |
 | usda-fmd:1002134 Davis Farmers Market (Davis) | usda-snap-retailers:963400 Davis Farmers Market (confirms SNAP) | 124 | 1 |
 | usda-fmd:1003984 Haymaker Farmers' Market (Kent) | usda-snap-retailers:1018510 Haymaker Farmers' Market (confirms SNAP) | 18 | 1 |
+| usda-fmd:1006617 Open Air Farmers Market (Mt Pleasant) | usda-snap-retailers:1118001 Mt. Pleasant Farmers' Market (SNAP vendor at this site) | 5 | 0 |
 | usda-fmd:1002348 Downtown Farmers Market (Walla Walla) | usda-snap-retailers:1118076 Downtown Farmers Market (confirms SNAP) | 42 | 1 |
 | usda-fmd:1007292 Red Bluff Saturday Farmers Market (Red Bluff) | usda-snap-retailers:1019849 Red Bluff Certified Farmer's Market (confirms SNAP) | 87 | 0.87 |
 | usda-fmd:1007005 Pittsfield Farmers' Market (Pittsfield) | usda-snap-retailers:1690844 Pittsfield Farmers Market (confirms SNAP) | 34 | 1 |
@@ -378,6 +407,7 @@ Review these for false merges.
 | massgis-dph:180 Plymouth Winter (Plymouth) | usda-snap-retailers:1243473 Plymouth Farmers Market (confirms SNAP) | 117 | 1 |
 | usda-fmd:1005996 Mount Vernon Farmers Market I (Mount Vernon) | usda-snap-retailers:1665210 Mount Vernon Farmers Market (confirms SNAP) | 18 | 0.97 |
 | usda-fmd:1004320 Huntington Park Farmers Market (Huntington Park) | usda-snap-retailers:1119522 Huntington Park Farmers Market (confirms SNAP) | 48 | 1 |
+| usda-fmd:1005179 Long Beach Uptown Farmers Market (Long Beach) | usda-snap-retailers:1119530 Uptown Long Beach Farmers Market (SNAP vendor at this site) | 49 | 0 |
 | usda-fmd:1004040 Henderson Center Eureka Farmers Market (Eureka) | usda-snap-retailers:1071764 Henderson Center Certified FM - North Coast Grower (confirms SNAP) | 2 | 0.88 |
 | usda-fmd:1006132 Natividad Medical Center Certified Farmers' Market (Salinas) | usda-snap-retailers:1072433 Natividad Farmers' Market (confirms SNAP) | 131 | 0.9 |
 | usda-fmd:1006754 Pacific Grove Certified Farmers' Market (Pacific Grove) | usda-snap-retailers:1073734 Pacific Grove Farmers' Market (confirms SNAP) | 7 | 0.91 |
@@ -397,15 +427,18 @@ Review these for false merges.
 | usda-fmd:1008815 Tamworth Farmers' Market (Tamworth) | usda-snap-retailers:1091849 Tamworth Farmers' Market (confirms SNAP) | 55 | 1 |
 | usda-fmd:1008750 Sutter Davis Hospital Farmers Market (Davis) | usda-snap-retailers:1075991 Sutter Davis Hospital Farmers Market (confirms SNAP) | 17 | 1 |
 | massgis-dph:55 Boston/Copley Square (Boston) | usda-snap-retailers:1076152 Copley Square Farmers Mkt/Fed of MA FM (confirms SNAP) | 75 | 0.91 |
+| usda-fmd:1006306 North Berkeley Farmers' Market (Berkeley) | usda-snap-retailers:1076355 Ecology Center Farmers' Market - Thursday N. Berk (SNAP vendor at this site) | 59 | 0 |
 | massgis-dph:154 Westfield (Westfield) | usda-snap-retailers:1188535 WESTFIELD FARMERS MARKET (confirms SNAP) | 18 | 1 |
 | usda-fmd:1006263 Newton Farmers' Markets (Newton) | usda-snap-retailers:1074644 Newton Farmers Market//Cold Spring Park (confirms SNAP) | 38 | 0.9 |
 | usda-fmd:1003990 Hayward Farmers Market (Hayward) | usda-snap-retailers:1076903 Hayward Farmers Market/Ag Institute of Marin (confirms SNAP) | 66 | 0.9 |
 | usda-fmd:1005140 Lloyd Farmers Market (Portland) | usda-snap-retailers:1215061 Lloyd Farmers Market (confirms SNAP) | 40 | 1 |
+| usda-fmd:1000116 Albert Lea Farmers Market (Albert Lea) | usda-snap-retailers:1663224 A. L. Farmers Market (SNAP vendor at this site) | 60 | 0 |
 | usda-fmd:1005067 Lilburn Farmers Market (Lilburn) | usda-snap-retailers:1208922 Lilburn Farmers Market (confirms SNAP) | 70 | 1 |
 | usda-fmd:1006579 Old Towne Orange Farmers & Artisans Market (Orange) | usda-snap-retailers:1212612 Orange Home Grown Farmers And Artisans Market (confirms SNAP) | 48 | 0.84 |
 | usda-fmd:1001840 Concordia Farmers Market (Concordia) | usda-snap-retailers:1643310 Concordia KS Farmer's Market  (confirms SNAP) | 39 | 0.95 |
 | usda-fmd:1007013 Plain City Farmers Market (Plain City) | usda-snap-retailers:1521891 Plain City Farmers' Market NAFMNP (confirms SNAP) | 43 | 1 |
 | usda-fmd:1009178 The Woodland Farmers Market at Woodland Healthcare (Woodland) | usda-snap-retailers:1219625 The Woodland Farmers Market WHC (confirms SNAP) | 48 | 0.85 |
+| usda-fmd:1008003 Scottsdale's Old Town Farmers' Market (Scottsdale) | usda-snap-retailers:1028930 Old Town Scottsdale Farmers Market (SNAP vendor at this site) | 55 | 0 |
 | usda-fmd:1005901 Montrose Farmers Market (Montrose) | usda-snap-retailers:1160412 Montrose Farmers Market (confirms SNAP) | 104 | 1 |
 | usda-fmd:1002055 Culver City Farmers Market (Culver City) | usda-snap-retailers:1248632 Culver City Farmers Market (confirms SNAP) | 122 | 1 |
 | usda-fmd:1002320 Downtown Buffalo Country Market (Buffalo) | usda-snap-retailers:1193949 Downtown Country Market (confirms SNAP) | 13 | 0.92 |
@@ -425,6 +458,7 @@ Review these for false merges.
 | usda-fmd:1004710 Kingsley Market (Kingsley) | usda-snap-retailers:1649016 Kingsley Farmers Market (confirms SNAP) | 53 | 1 |
 | usda-fmd:1005872 Montclair Farmers' Market (Oakland) | usda-snap-retailers:1571309 Montclair Farmers' Market (confirms SNAP) | 32 | 1 |
 | usda-fmd:1004649 Kennebunk Farmers' Market (Kennebunk) | usda-snap-retailers:1601712 Kennebunk Farmers Market Association (confirms SNAP) | 70 | 1 |
+| usda-fmd:1002217 Detroit Eastern Market Tuesdays (Detroit) | usda-snap-retailers:1277911 Keep Growing Detroit (SNAP vendor at this site) | 32 | 0 |
 | usda-fmd:1006406 Northfield Farmers Market (Northfield) | usda-snap-retailers:1196125 Northfield Farmers Market Inc (confirms SNAP) | 130 | 1 |
 | usda-fmd:1008325 South Haven Farmers Market (South) | usda-snap-retailers:1278238 South Haven Farm Market (confirms SNAP) | 40 | 0.94 |
 | usda-fmd:1005049 Lexington Farmers' Market (Lexington) | usda-snap-retailers:1278282 Lexington Farmers Market (confirms SNAP) | 58 | 1 |
@@ -439,14 +473,18 @@ Review these for false merges.
 | usda-fmd:1004715 Kingston Farmers' Market (Kingston) | usda-snap-retailers:1318731 Kingston Farmers Market Foundation Inc. (confirms SNAP) | 50 | 0.9 |
 | usda-fmd:1002006 Crested Butte Farmers Market (Crested Butte) | usda-snap-retailers:1315508 Crested Butte Farmers Market (confirms SNAP) | 133 | 1 |
 | usda-fmd:1001825 Community Farmers Market Bowling Green (Bowling Green) | usda-snap-retailers:1317978 Community Farmers Market Inc (confirms SNAP) | 27 | 0.9 |
+| usda-fmd:1008870 The All Natural & Organic Edibles (Harlingen) | usda-snap-retailers:1231346 Hope Farmers Market 1 (SNAP vendor at this site) | 45 | 0 |
 | usda-fmd:1009259 Tosa Farmer's Market (Wauwatosa) | usda-snap-retailers:1654124 Tosa Farmers Market (confirms SNAP) | 66 | 1 |
+| usda-fmd:1003126 Flint Farmers' Market (Flint) | usda-snap-retailers:1281354 Winterfresh Greenhouse (SNAP vendor at this site) | 48 | 0 |
 | massgis-dph:92 Chelmsford (Chelmsford) | usda-snap-retailers:1524684 Chelmsford Market On The Common NAFMNP (confirms SNAP) | 30 | 0.9 |
 | usda-fmd:1009426 Upper East Side Farmers Market at Legion Park (Miami) | usda-snap-retailers:978921 Legion Park Farmers Market (confirms SNAP) | 17 | 0.9 |
 | usda-fmd:1010147 Williamsburg Farmers Market (Williamsburg) | usda-snap-retailers:979794 Williamsburg Farmers Market (confirms SNAP) | 73 | 1 |
+| usda-fmd:1002463 Downtown Waterloo Farmers Market (Waterloo) | usda-snap-retailers:1320350 Waterloo Urban Farmers Market (SNAP vendor at this site) | 40 | 0 |
 | usda-fmd:1004712 kingsport farmers market (kingsport tn.) | usda-snap-retailers:1320364 City Of Kingsport Tennessee (confirms SNAP) | 58 | 0.9 |
 | usda-fmd:1004579 Kaiser Permanente Fresno Farmers Market (Fresno) | usda-snap-retailers:1318920 Kaiser Permanente Fresno Farmers' Market (confirms SNAP) | 117 | 1 |
 | usda-fmd:1001931 Cotati Farmers' Market (Cotati) | usda-snap-retailers:1180482 Cotati Community Farmers Market (confirms SNAP) | 45 | 0.9 |
 | usda-fmd:1007438 Riverside Arts Market (Jacksonville) | usda-snap-retailers:1320910 Riverside Arts Market 1 (confirms SNAP) | 21 | 0.98 |
+| usda-fmd:1001230 Carbondale Community Farmers Market (Carbondale) | usda-snap-retailers:1180899 Food Works Winter Farmers Market (SNAP vendor at this site) | 17 | 0 |
 | usda-fmd:1003485 Giles County Farmers Market (Pulaski) | usda-snap-retailers:1577803 Giles County Farmers Market (confirms SNAP) | 118 | 1 |
 | usda-fmd:1001720 Cloverdale Certified Farmers Market (Cloverdale) | usda-snap-retailers:1526018 Cloverdale Certified Farmers Market (confirms SNAP) | 58 | 1 |
 | usda-fmd:1007109 Portales Farmers Market (Portales NM) | usda-snap-retailers:1206329 Portales Farmers' Market (confirms SNAP) | 9 | 1 |
@@ -460,11 +498,13 @@ Review these for false merges.
 | usda-fmd:1007400 Rincon Valley Farmers Market (Tucson) | usda-snap-retailers:1347855 Rincon Valley Farmers And Artisans Market (confirms SNAP) | 68 | 0.9 |
 | usda-fmd:1003701 Green Valley Farmers Market (Green Valley) | usda-snap-retailers:1321782 Green Valley Village Farmers' Market (confirms SNAP) | 133 | 0.92 |
 | usda-fmd:1001223 Capitol Market (Charleston) | usda-snap-retailers:1375480 Capitol Market (confirms SNAP) | 69 | 1 |
+| usda-fmd:1005360 Main Street Statesboro Farmers Market (Statesboro) | usda-snap-retailers:1375910 Statesboro Main Street Farmers Market (SNAP vendor at this site) | 23 | 0 |
 | usda-fmd:1001923 Cortez Farmers Market (Cortez) | usda-snap-retailers:1349126 Onward A Legacy Foundation Dba Cortez Farmer's Mar (confirms SNAP) | 81 | 0.9 |
 | usda-fmd:1002641 Eau Claire Downtown Farmers Market (Eau Claire) | usda-snap-retailers:1060382 Eau Claire Downtown Farmer's Market (confirms SNAP) | 83 | 1 |
 | usda-fmd:1009282 Townshend Farmers Market (West Townshend) | usda-snap-retailers:1186390 West Townshend Farmer's Market (confirms SNAP) | 18 | 0.9 |
 | usda-fmd:1006675 Orting Valley Farmers Market (Orting) | usda-snap-retailers:1186561 ORTING VALLEY FARMERS MARKET (confirms SNAP) | 51 | 1 |
 | usda-fmd:1007346 Renton Farmers Market (Renton) | usda-snap-retailers:1185736 Renton Farmers Market (confirms SNAP) | 41 | 1 |
+| massgis-dph:65 Lynn (Lynn) | usda-snap-retailers:1588680 Taste Health 01 (SNAP vendor at this site) | 26 | 0 |
 | usda-fmd:1009321 Trumansburg Farmers Market (Trumansburg) | usda-snap-retailers:1366540 Trumansburg Farmers Market (confirms SNAP) | 26 | 1 |
 | usda-fmd:1007294 Red Hook Farmers Market (Brooklyn) | usda-snap-retailers:1366617 Red Hook Farm Stand (confirms SNAP) | 44 | 0.9 |
 | usda-fmd:1009286 Transylvania Tailgate Association (Brevard) | usda-snap-retailers:1393129 Transylvania Farmers Market (confirms SNAP) | 63 | 0.91 |
@@ -473,6 +513,7 @@ Review these for false merges.
 | usda-fmd:1009804 Watertown Farm & Craft Market (Watertown) | usda-snap-retailers:1325069 Watertown Farm & Craft Market (confirms SNAP) | 20 | 1 |
 | usda-fmd:1002412 Downtown Petoskey Farmers Market (Petoskey) | usda-snap-retailers:1323605 Downtown Petoskey Farmers Market (confirms SNAP) | 79 | 1 |
 | usda-fmd:1006762 Painesville Farmers Market (Painesville) | usda-snap-retailers:1643087 Painesville Farmer's Market (confirms SNAP) | 36 | 1 |
+| usda-fmd:1006326 North End Commons Farmers Market (Rockford) | usda-snap-retailers:1187291 Rockford City Market (SNAP vendor at this site) | 10 | 0 |
 | massgis-dph:190 Easthampton (Easthampton) | usda-snap-retailers:1394650 Easthampton Farmers (confirms SNAP) | 7 | 1 |
 | usda-fmd:1001118 Camas Farmer's Market (camas) | usda-snap-retailers:1368351 Camas Farmer's Market (confirms SNAP) | 32 | 1 |
 | usda-fmd:1002442 Downtown Syracuse Farmers Market (Syracuse) | usda-snap-retailers:851148 Downtown Syracuse Farmers Market (confirms SNAP) | 39 | 1 |
@@ -487,17 +528,26 @@ Review these for false merges.
 | usda-fmd:1003199 Fort Mason Center Certified Farmers' Market (San Francisco) | usda-snap-retailers:1326494 Fort Mason Farmers Market (confirms SNAP) | 83 | 0.9 |
 | usda-fmd:1010069 Westside Farmers Market (Rochester) | usda-snap-retailers:1199181 Westside Farmers Market (confirms SNAP) | 33 | 1 |
 | usda-fmd:1006304 North Bend Farmers Market (North Bend) | usda-snap-retailers:1397115 North Bend Farmers Market (confirms SNAP) | 28 | 1 |
+| usda-fmd:1004666 Kenosha Farmers Market - Lincoln Park (Kenosha) | usda-snap-retailers:1641458 Harbormarket At Lincoln Park Live (SNAP vendor at this site) | 41 | 0 |
 | massgis-dph:210 New Bedford Indoor (New Bedford) | usda-snap-retailers:1396881 New Bedford Farmers Market - Downtown (confirms SNAP) | 30 | 0.91 |
 | usda-fmd:1006184 New Bedford/Clasky Common (New Bedford) | usda-snap-retailers:1396893 New Bedford Farmers Market - Clasky Common Park (confirms SNAP) | 107 | 0.97 |
 | usda-fmd:1004546 Jonesborough Farmers Market (Jonesborough) | usda-snap-retailers:989246 Jonesborough Farmers Market (confirms SNAP) | 31 | 1 |
 | usda-fmd:1002749 Elmwood Bidwell Farmers' Market (Buffalo) | usda-snap-retailers:990439 Elmwood Bidwell Farmers Market (confirms SNAP) | 52 | 1 |
 | usda-fmd:1002120 Danville Farmers' Market (Danville) | usda-snap-retailers:989609 Danville Farmers Market (confirms SNAP) | 89 | 1 |
+| usda-fmd:1008987 The La Porte Farmers Market (LaPorte) | usda-snap-retailers:1588159 Farmed & Forged (SNAP vendor at this site) | 51 | 0 |
 | usda-fmd:1004210 Holt Farmers Market (Holt) | usda-snap-retailers:988686 Holt Farmers Market (confirms SNAP) | 8 | 1 |
+| usda-fmd:1000683 Blacksburg Farmers Market (Blacksburg) | usda-snap-retailers:988833 Friends Of The Farmers Market Inc. (SNAP vendor at this site) | 32 | 0 |
 | usda-fmd:1006672 Orono Farmers Market (Orono) | usda-snap-retailers:1594908 Orono Farmers Market (confirms SNAP) | 79 | 1 |
+| usda-fmd:1004156 Historic Brookland Farmers Market (Washington, DC) | usda-snap-retailers:1397287 FRESHFARM Monroe Farmers Market (SNAP vendor at this site) | 16 | 0 |
+| usda-fmd:1001796 Columbia Heights Community Marketplace (Washington) | usda-snap-retailers:1397476 FRESHFARM Columbia Heights Farm Share (SNAP vendor at this site) | 32 | 0 |
 | massgis-dph:51 Mattapan (Mattapan) | usda-snap-retailers:1253947 Mattapan Square Farmers' Market (confirms SNAP) | 43 | 0.91 |
 | usda-fmd:1010020 Westchester Farmers Market (Westchester) | usda-snap-retailers:1252864 Sundays - Westchester Farmers' Market (confirms SNAP) | 33 | 0.9 |
+| usda-fmd:1005954 Mosaic Central Farm Market (Fairfax) | usda-snap-retailers:1359655 Freshfarm Mosaic Market (SNAP vendor at this site) | 44 | 0 |
+| usda-fmd:1010153 Williamston Farmers' Market (Williamston) | usda-snap-retailers:1323294 Sowing Growth Inc 1 (SNAP vendor at this site) | 22 | 0 |
 | usda-fmd:1002356 Downtown Farmers Market at Riverside (Riverside) | usda-snap-retailers:1350190 Downtown Farmers Market Riverside (confirms SNAP) | 58 | 0.97 |
+| usda-fmd:1007501 Rocky Mount Farmers Market (Rocky Mount) | usda-snap-retailers:1359975 Nash County Farmers Market (SNAP vendor at this site) | 41 | 0 |
 | usda-fmd:1009760 Warwick Valley Farmers Market (Warwick) | usda-snap-retailers:1360199 Warwick Valley Farmers Market (confirms SNAP) | 33 | 1 |
+| usda-fmd:1008117 Shelby County Farmers Market (Shelbyville) | usda-snap-retailers:1045720 Mainstreet Shelbyville (SNAP vendor at this site) | 59 | 0 |
 | massgis-dph:73 Pittsfield/Downtown (Pittsfield) | usda-snap-retailers:1378336 Pittsfield Farmers Market (confirms SNAP) | 36 | 0.91 |
 | massgis-dph:131 Brighton (Brighton) | usda-snap-retailers:1377561 Brighton Farmers Market (confirms SNAP) | 64 | 1 |
 | usda-fmd:1001119 Cambria Farmers Market (Cambria) | usda-snap-retailers:1254928 Cambria Farmers Market (confirms SNAP) | 60 | 1 |
@@ -530,6 +580,7 @@ Review these for false merges.
 | massgis-dph:202 Lee (Lee) | usda-snap-retailers:1270733 Lee Farmers Market (confirms SNAP) | 110 | 1 |
 | usda-fmd:1000274 Arlington Farmers Market (Arlington) | usda-snap-retailers:1390489 FRESHFARM Arlington Farmers Market n/a (confirms SNAP) | 116 | 0.9 |
 | usda-fmd:1002313 Downtown Bloomington Association Farmers Market (Bloomington) | usda-snap-retailers:1428766 Downtown Bloomington Farmers' Market (confirms SNAP) | 47 | 1 |
+| usda-fmd:1008394 Southcentral Wisconsin Regional Harvest (Janesville) | usda-snap-retailers:1356080 Basics Cooperative (SNAP vendor at this site) | 45 | 0 |
 | usda-fmd:1007649 Salem Saturday Market - Monday Hospital Market (Salem) | usda-snap-retailers:1381702 Monday Hospital Market (confirms SNAP) | 84 | 0.9 |
 | usda-fmd:1001991 Crawfordsville Farmers Market (Crawfordsville) | usda-snap-retailers:1377492 Crawfordsville Farmers Market (confirms SNAP) | 28 | 1 |
 | massgis-dph:231 South Dartmouth/Round the Bend Farm (South Dartmouth) | usda-snap-retailers:1417702 Round The Bend Farm  (confirms SNAP) | 130 | 0.9 |
@@ -545,10 +596,12 @@ Review these for false merges.
 | usda-fmd:1006864 Pearl Farmers Market (San Antonio) | usda-snap-retailers:1449740 Pearl Farmers Market (confirms SNAP) | 68 | 1 |
 | usda-fmd:1000417 Bainbridge Island Farmers' Market (Bainbridge Island) | usda-snap-retailers:1420630 Bainbridge Island Farmers Market (confirms SNAP) | 100 | 1 |
 | usda-fmd:1009686 Waitsfield Farmers Market (Waitsfield) | usda-snap-retailers:1420795 Waitsfield Farmers Market (confirms SNAP) | 147 | 1 |
+| massgis-dph:220 Springfield/Brightwood (Springfield) | usda-snap-retailers:1421058 Brightwood All Farmers (SNAP vendor at this site) | 13 | 0 |
 | usda-fmd:1007515 Rolette Farmer's Market (Rolette) | usda-snap-retailers:1449471 Rolette Farmers Market (confirms SNAP) | 128 | 1 |
 | usda-fmd:1007533 Rose District Farmers Market on Main (Broken Arrow) | usda-snap-retailers:1420900 Rose District Farmers' Market (confirms SNAP) | 32 | 0.92 |
 | usda-fmd:1000267 Arkansas Local Food Network Online Farmers Market (Little Rock) | usda-snap-retailers:1434363 Arkansas Local Food Network (alfn) (confirms SNAP) | 51 | 0.96 |
 | usda-fmd:1007088 Port Angeles Farmers Market (Port Angeles) | usda-snap-retailers:1435167 Port Angeles Farmers Market (confirms SNAP) | 31 | 1 |
+| usda-fmd:1009495 Valley of the Moon Certified Farmers' Market (Sonoma) | usda-snap-retailers:1401876 Sonoma's Tuesday Night Market (SNAP vendor at this site) | 37 | 0 |
 | usda-fmd:1007532 Rose city farmers market (Rose city) | usda-snap-retailers:1402009 Rose City Farmer's Market (confirms SNAP) | 20 | 1 |
 | usda-fmd:1006504 Occidental Bohemian Farmers Market (Occidental) | usda-snap-retailers:1402162 The Occidental Community Farmers Market (confirms SNAP) | 65 | 0.89 |
 | usda-fmd:1007207 Putney Farmers' Market - Outdoor (Putney) | usda-snap-retailers:1432151 Putney Farmers' Market (confirms SNAP) | 33 | 1 |
@@ -568,8 +621,10 @@ Review these for false merges.
 | usda-fmd:1005409 Manitowoc Farmers' Market (Manitowoc) | usda-snap-retailers:1409531 City of Manitowoc Farmer's Market (confirms SNAP) | 48 | 0.9 |
 | usda-fmd:1006751 Pacific Beach Certified Farmers' Market (San Diego) | usda-snap-retailers:1436276 Pacific Beach Tuesday Farmers Market  (confirms SNAP) | 93 | 0.9 |
 | usda-fmd:1004399 Ionia Farmers' Market (Ionia) | usda-snap-retailers:1453761 Ionia Harvest Marketplace Inc. N/A (confirms SNAP) | 122 | 0.9 |
+| usda-fmd:1002451 Downtown Troy Farmers Market (Troy) | usda-snap-retailers:1453768 Cherry Street Local Farmers Market (SNAP vendor at this site) | 56 | 0 |
 | usda-fmd:1004314 Huntersville Growers' Market (Huntersville) | usda-snap-retailers:1453891 Huntersville Growers' Market (confirms SNAP) | 93 | 1 |
 | usda-fmd:1002089 Dale City Farmers Market (Dale City) | usda-snap-retailers:1453427 Dale City Farmers Market (confirms SNAP) | 50 | 1 |
+| usda-fmd:1009762 Wasatch Front Farmers Market (Murray) | usda-snap-retailers:1452649 Wheeler Sunday Market (SNAP vendor at this site) | 47 | 0 |
 | usda-fmd:1004092 Highland Farmers' Market (Monterey) | usda-snap-retailers:1403562 Highland County Farmers Market (confirms SNAP) | 85 | 0.91 |
 | usda-fmd:1007592 Rutherford County Farmers Market (Forest City) | usda-snap-retailers:1577866 Rutherford County Farmers Market 8012 (confirms SNAP) | 35 | 0.95 |
 | usda-fmd:1006167 Neosho Farmers' Market (Neosho) | usda-snap-retailers:1477124 Neosho Farmers Market (confirms SNAP) | 81 | 1 |
@@ -577,6 +632,8 @@ Review these for false merges.
 | usda-fmd:1001970 Covina CFM (Covina) | usda-snap-retailers:1411729 Covina Farmers Market 4 (confirms SNAP) | 13 | 0.92 |
 | usda-fmd:1002372 Downtown Hays Market (Hays) | usda-snap-retailers:1404518 Downtown Hays Market (confirms SNAP) | 95 | 1 |
 | usda-fmd:1009849 Wayland Winter Farmers' Market (Wayland) | usda-snap-retailers:1424846 Wayland Farmers' Market (confirms SNAP) | 18 | 1 |
+| usda-fmd:1003056 Fayetteville Farmers Market (Fayetteville) | usda-snap-retailers:1466299 Gathering Cafe (SNAP vendor at this site) | 47 | 0 |
+| massgis-dph:61 Worcester/Beaver Brook Park (Worcester) | usda-snap-retailers:1412200 Juahkumbah Farm (SNAP vendor at this site) | 28 | 0 |
 | usda-fmd:1007065 Point Reyes Farmers Market (Point Reyes Station) | usda-snap-retailers:1455025 Pt Reyes Farmers Market (confirms SNAP) | 25 | 0.92 |
 | usda-fmd:1007568 Royal Oak Farmers Market (Royal Oak) | usda-snap-retailers:1454685 Royal Oak Farmers Market NAFMNP (confirms SNAP) | 37 | 1 |
 | usda-fmd:1007328 Redwood Valley CFM (Redwood Valley) | usda-snap-retailers:1454740 Redwood Valley Certified Farmers Market (confirms SNAP) | 81 | 0.93 |
@@ -594,6 +651,7 @@ Review these for false merges.
 | usda-fmd:1004428 Ithaca Farmers Market - Steamboat Landing (Ithaca) | usda-snap-retailers:1413841 Ithaca Farmers Market (confirms SNAP) | 49 | 0.9 |
 | massgis-dph:192 Needham (Needham) | usda-snap-retailers:1513832 Needham Farmers Market (confirms SNAP) | 55 | 1 |
 | usda-fmd:1000042 61st Street Farmers Market (Chicago) | usda-snap-retailers:852103 61st Street Farmers Market (confirms SNAP) | 47 | 1 |
+| massgis-dph:44 Brockton (Brockton) | usda-snap-retailers:1456814 Mai Asia Vegetables 31 (SNAP vendor at this site) | 19 | 0 |
 | usda-fmd:1008920 The Farmers Market Association of Taylor County, Inc (Campbellsville) | usda-snap-retailers:1456832 Farmers' Market Association Inc. Of Taylor County (confirms SNAP) | 88 | 1 |
 | usda-fmd:1005891 Montgomery Farmers' Market (Montgomery) | usda-snap-retailers:1457051 Montgomery Farmers' Market (confirms SNAP) | 122 | 1 |
 | usda-fmd:1000080 Ada Farmers' Market (Ada) | usda-snap-retailers:1642262 Ada Farmers Market (confirms SNAP) | 40 | 1 |
@@ -610,12 +668,18 @@ Review these for false merges.
 | usda-fmd:1000582 Bemidji Area Farmers Market (Bemidji) | usda-snap-retailers:1514813 Bemidji's Natural Choice Farmers Market (confirms SNAP) | 68 | 0.88 |
 | usda-fmd:1009706 Walker Square Farmers' Market (Milwaukee) | usda-snap-retailers:1652281 Walker Square Farmers Market 391285099 (confirms SNAP) | 38 | 0.91 |
 | usda-fmd:1008203 Simi Valley Certified Farmers' Market (Simi Valley) | usda-snap-retailers:1490688 Simi Valley City Hall Certified Farmers Market (confirms SNAP) | 17 | 0.91 |
+| usda-fmd:1001330 Cedar Valley Farmers Market (Murphy) | usda-snap-retailers:1491779 Heartland Inc 1 (SNAP vendor at this site) | 41 | 0 |
 | usda-fmd:1009980 West Milford Farmers' Market (West Milford) | usda-snap-retailers:1647430 The West Milford Farmers Market (confirms SNAP) | 47 | 1 |
 | usda-fmd:1005264 Lyons Falls Farmers' Market (Lyons Falls) | usda-snap-retailers:1457326 Lyons Falls Alive Farmers Market NAFMNP (confirms SNAP) | 58 | 0.93 |
+| usda-fmd:1003692 Green Market at Piedmont Park (Atlanta) | usda-snap-retailers:1483257 Piedmont Park Green Market (SNAP vendor at this site) | 44 | 0 |
+| usda-fmd:1002785 Eno River Farmers Market in Downtown Hillsborough (Hillsborough) | usda-snap-retailers:1497590 Eno River Farmer's Market Inc. 0605857 (SNAP vendor at this site) | 36 | 0 |
+| usda-fmd:1008265 SOL Community Farmers' Market (Placerville) | usda-snap-retailers:1416672 Placerville Community Farmers' Market (SNAP vendor at this site) | 9 | 0 |
+| usda-fmd:1005461 Market & Penn Streets Farmers' Market (York) | usda-snap-retailers:1497348 Charles Ilyes Family Inc (SNAP vendor at this site) | 26 | 0 |
 | usda-fmd:1003812 Gunnison Farmers Market (Gunnison) | usda-snap-retailers:1497370 Gunnison Farmers Market (confirms SNAP) | 113 | 1 |
 | usda-fmd:1005955 Moscow Farmers Market (Moscow) | usda-snap-retailers:1640738 Moscow Farmers Market (confirms SNAP) | 10 | 1 |
 | usda-fmd:1001904 Corning Farmers Market (Corning) | usda-snap-retailers:1497749 Corning Farmers Market (confirms SNAP) | 143 | 1 |
 | usda-fmd:1006918 Perry Farmers Market (Perry) | usda-snap-retailers:1416107 Perry Farmers' Market (confirms SNAP) | 70 | 1 |
+| usda-fmd:1007694 San Diego Little Italy Mercato (San Diego) | usda-snap-retailers:1578968 Little Italy Mercato Certified Farmers Market (SNAP vendor at this site) | 10 | 0 |
 | usda-fmd:1000292 Asbury Fresh (Asbury Park) | usda-snap-retailers:1481289 Asbury Fresh (confirms SNAP) | 143 | 1 |
 | usda-fmd:1008056 Seminole Heights Sunday Morning Market (Tampa) | usda-snap-retailers:1574480 Seminole Heights Sunday Morning Market NAFMNP (confirms SNAP) | 122 | 1 |
 | usda-fmd:1000219 Annandale Farmers Market (Annandale) | usda-snap-retailers:1640439 Annandale Farmers Market (confirms SNAP) | 1 | 1 |
@@ -636,6 +700,7 @@ Review these for false merges.
 | usda-fmd:1002436 Downtown South Boston Farmers' Market (South Boston) | usda-snap-retailers:1440401 Downtown South Boston Farmers Market (confirms SNAP) | 8 | 1 |
 | usda-fmd:1008371 South Side Farmers Market (Fort Wayne) | usda-snap-retailers:1408478 South Side Farmers Market (confirms SNAP) | 2 | 1 |
 | usda-fmd:1001074 C Street Market (Springfield) | usda-snap-retailers:1499646 C Street City Market (confirms SNAP) | 51 | 0.92 |
+| usda-fmd:1007428 River Valley Farmers' Market (Elgin) | usda-snap-retailers:1505077 Elgin Farmers' Market (SNAP vendor at this site) | 12 | 0 |
 | usda-fmd:1006425 Northwest Farmers Market, Inc. (St. Albans) | usda-snap-retailers:1500757 Northwest Farmers Market (confirms SNAP) | 51 | 1 |
 | massgis-dph:118 Winchester (Winchester) | usda-snap-retailers:1500433 Winchester Farmers Market  (confirms SNAP) | 8 | 1 |
 | usda-fmd:1002379 Downtown Johnstown Farmer's Market (Johnstown) | usda-snap-retailers:1500609 Johnstown Farmers' Market (confirms SNAP) | 122 | 0.9 |
@@ -655,16 +720,21 @@ Review these for false merges.
 | usda-fmd:1005241 Ludlow Farmers Market Inc. (Ludlow) | usda-snap-retailers:1501891 Ludlow Farmers Market Inc 80-0385000 (confirms SNAP) | 90 | 0.9 |
 | usda-fmd:1005011 Lemhi County Farmers' Market (Salmon) | usda-snap-retailers:1537211 Lemhi County Farmers Market (confirms SNAP) | 78 | 1 |
 | usda-fmd:1010321 WSE's Livingston Farmers Market (Livingston) | usda-snap-retailers:1501935 Livingston Farmers Market  (confirms SNAP) | 92 | 0.9 |
+| usda-fmd:1007753 Santa Barbara Farmers Market (Goleta) | usda-snap-retailers:1536651 Goleta Farmers Market (SNAP vendor at this site) | 39 | 0 |
 | usda-fmd:1001257 Carpenteria CFM (Carpenteria) | usda-snap-retailers:1536657 Carpinteria (confirms SNAP) | 11 | 0.89 |
+| usda-fmd:1000750 Boone County Farmers Market (Harrison) | usda-snap-retailers:1536767 Farmers And Artisans Market Of Harrison (SNAP vendor at this site) | 12 | 0 |
 | usda-fmd:1001458 Chelsea Farmers' Market (Chelsea) | usda-snap-retailers:1469838 Chelsea Farmers Market NAFMNP (confirms SNAP) | 39 | 1 |
 | usda-fmd:1007340 Reno County Farmers Market (Hutchinson) | usda-snap-retailers:1586888 Reno County Farmers Market (confirms SNAP) | 20 | 1 |
 | massgis-dph:128 Williamstown (Williamstown) | usda-snap-retailers:1505860 Williamstown Farmers Market (confirms SNAP) | 11 | 1 |
+| usda-fmd:1003868 Hannibal Farmers' Market (Hannibal) | usda-snap-retailers:1506604 Central Park Farmers Market NAFMNP (SNAP vendor at this site) | 45 | 0 |
+| usda-fmd:1009630 Visalia Farmers Market- Downtown Thursday (Visalia) | usda-snap-retailers:1469736 Downtown Visalia Certified Farmers Market 5400296 (SNAP vendor at this site) | 40 | 0 |
 | usda-fmd:1002732 Ellenville Farmers Market (Ellenville) | usda-snap-retailers:1486373 Ellenville Market On Market (confirms SNAP) | 25 | 0.95 |
 | usda-fmd:1002377 Downtown Jackson Grand River Farmers Market (Jackson) | usda-snap-retailers:1519599 Grand River Farmers Market (confirms SNAP) | 113 | 0.9 |
 | usda-fmd:1008706 Sun Prairie Farmers Market (Sun Prairie) | usda-snap-retailers:1494957 Sun Prairie Farmers Market (confirms SNAP) | 72 | 1 |
 | usda-fmd:1005403 Manhattan Farmers Market (Manhattan) | usda-snap-retailers:1502473 Manhattan Farmers Market (confirms SNAP) | 35 | 1 |
 | usda-fmd:1000093 Adrian Farmers Market (Adrian) | usda-snap-retailers:1495443 Adrian City Market (confirms SNAP) | 52 | 0.91 |
 | usda-fmd:1003040 Farmington Farmers Market (Farmington) | usda-snap-retailers:1495941 Farmington Farmers Market Association #nafmnp (confirms SNAP) | 17 | 1 |
+| usda-fmd:1003902 HARTFORD - OLD STATE HOUSE FARMERS’ MARKET (Hartford) | usda-snap-retailers:1502677 Connecticut Old State House Farmers Market (SNAP vendor at this site) | 50 | 0 |
 | usda-fmd:1007146 PRAIRIE ST FARMERS MARKET (PAIRIE DU CHIEN) | usda-snap-retailers:1502771 Prairie Du Chien Thursday Night Farmers Market  (confirms SNAP) | 34 | 0.84 |
 | massgis-dph:77 Lawrence/Saturday (Lawrence) | usda-snap-retailers:1687786 Groundwork Lawrence Saturday Farmers Market (confirms SNAP) | 52 | 0.9 |
 | massgis-dph:94 Acton-Boxborough (Acton) | usda-snap-retailers:1502387 Acton Boxborough Farmers Market (confirms SNAP) | 82 | 1 |
@@ -684,6 +754,7 @@ Review these for false merges.
 | usda-fmd:1004739 Knoxville Farmers Market - Ebenezer (Knoxville) | usda-snap-retailers:1487762 Ebenezer Farmers Market (confirms SNAP) | 102 | 0.9 |
 | usda-fmd:1006477 Oak Ridge Farmers Market (Oak Ridge) | usda-snap-retailers:1487771 Historic Oak Ridge Farmers Market Oak Ridge (confirms SNAP) | 76 | 0.9 |
 | usda-fmd:1008855 Telluride Farmers' Market (Telluride) | usda-snap-retailers:1055055 Telluride Farmers Market (confirms SNAP) | 48 | 1 |
+| usda-fmd:1000885 Bridgeport Farmers Market I (Bridgeport) | usda-snap-retailers:1503596 Alliance Farmers Market (SNAP vendor at this site) | 28 | 0 |
 | usda-fmd:1000532 Belchertown Farmers Market (Belchertown) | usda-snap-retailers:1504109 Belchertown Farmers And Artisans Market 46-5562936 (confirms SNAP) | 35 | 0.9 |
 | usda-fmd:1006021 Mountain Fresh Oakland Farmers Market (Oakland) | usda-snap-retailers:1496811 Mountain Fresh Farmers Market (confirms SNAP) | 14 | 0.93 |
 | usda-fmd:1007835 Saxony Market (Fishers) | usda-snap-retailers:1504615 Fishers Farmers Market At Saxony (confirms SNAP) | 32 | 0.9 |
@@ -699,7 +770,9 @@ Review these for false merges.
 | usda-fmd:1006808 Park Ridge Farmers Market (Park Ridge) | usda-snap-retailers:1497192 Park Ridge Farmers Market (confirms SNAP) | 29 | 1 |
 | usda-fmd:1004905 Larchmont Village Farmers Market (Tarzana) | usda-snap-retailers:1544864 Larchmont Village Farmers Market - Wednesday's (confirms SNAP) | 8 | 0.92 |
 | usda-fmd:1010133 Wilburton Farmers Market (Wilburton) | usda-snap-retailers:1543982 Wilburton Main Street Farmer's Market (confirms SNAP) | 35 | 0.9 |
+| usda-fmd:1001555 City Centre Market (Decatur) | usda-snap-retailers:1545173 Good Samaritan Inn's Mercy Market (SNAP vendor at this site) | 14 | 0 |
 | usda-fmd:1007200 Purple Porch Cooperative, Inc. (South Bend) | usda-snap-retailers:1545777 Purple Porch Cooperative Inc (confirms SNAP) | 55 | 1 |
+| massgis-dph:81 Methuen (Methuen) | usda-snap-retailers:1687796 Groundwork Lawrence Friday Market (SNAP vendor at this site) | 26 | 0 |
 | usda-fmd:1004673 Kent Farmers Market (Kent) | usda-snap-retailers:1544693 Kent East Hill Farmers Market 0204 (confirms SNAP) | 148 | 0.9 |
 | usda-fmd:1000099 Aiken County Farmers Market (Aiken) | usda-snap-retailers:1544513 Aiken County Farmers Market (confirms SNAP) | 61 | 1 |
 | usda-fmd:1000362 Auburn Farmers Co-op Market Inc. (Auburn) | usda-snap-retailers:816892 Auburn Farmers Market of Cayuga County (confirms SNAP) | 17 | 0.85 |
@@ -713,10 +786,14 @@ Review these for false merges.
 | usda-fmd:1006187 New Bern/Craven County Area Farmers Market (New Bern) | usda-snap-retailers:1489545 New Bern Craven County Area Farmers Market Inc. (confirms SNAP) | 10 | 1 |
 | usda-fmd:1007751 Santa  Rosa Original Certified Farmers Market (Santa Rosa) | usda-snap-retailers:1510111 Santa Rosa Wednesday Night Market (confirms SNAP) | 94 | 0.85 |
 | usda-fmd:1004604 Kamm's Corners Farmers Market (Cleveland) | usda-snap-retailers:1539809 Kamm's Corners Farmers Market (confirms SNAP) | 19 | 1 |
+| usda-fmd:1000800 Bowdoin Geneva Farmers' Market (Dorchester) | usda-snap-retailers:1488467 Farmers Collaborative Urban Garden NAFMNP (SNAP vendor at this site) | 43 | 0 |
+| usda-fmd:1005770 Milledgeville Marketplace Farmers' Market (Milledgeville) | usda-snap-retailers:1540329 The Milly Market (SNAP vendor at this site) | 18 | 0 |
+| usda-fmd:1005288 Madison County Farmers Market (Huntsville) | usda-snap-retailers:1540345 Ayers Farm Farmers Market (SNAP vendor at this site) | 33 | 0 |
 | usda-fmd:1010106 Whitefish Downtown Farmers Market (Whitefish) | usda-snap-retailers:1641973 Whitefish Farmers Market FFAB (confirms SNAP) | 54 | 0.85 |
 | usda-fmd:1005499 Market Square (Reidsville) | usda-snap-retailers:1705793 Market Square Farmers' Market (confirms SNAP) | 16 | 1 |
 | usda-fmd:1000604 Bentonville Farmers Market (Bentonville) | usda-snap-retailers:964345 Bentonville Farmers Market (confirms SNAP) | 91 | 1 |
 | usda-fmd:1000205 Anderson County Farmers Market (Lawrenceburg) | usda-snap-retailers:1540831 Anderson County Farmers Market (confirms SNAP) | 87 | 1 |
+| usda-fmd:1003478 Gig Harbor Farmers Market at Skansie Park (Gig Harbor) | usda-snap-retailers:1547701 Waterfront Farmers Market 1 (SNAP vendor at this site) | 9 | 0 |
 | usda-fmd:1004433 Ivanhoe Farmers' Market (Kansas City) | usda-snap-retailers:1547703 Ivanhoe Farmers Market (confirms SNAP) | 13 | 1 |
 | usda-fmd:1000229 Anoka County Growers/ St. Timothy Church Blaine (Blaine) | usda-snap-retailers:1490596 Blaine Farmers Market (confirms SNAP) | 72 | 0.9 |
 | usda-fmd:1000309 Ashland Area Farmers Market (Ashland) | usda-snap-retailers:1697290 Ashland Area Farmer's Market (confirms SNAP) | 101 | 1 |
@@ -730,6 +807,7 @@ Review these for false merges.
 | usda-fmd:1001997 Crenshaw Farmers' Market (Los Angeles) | usda-snap-retailers:1541747 Crenshaw Hills Farmers Market (confirms SNAP) | 139 | 0.91 |
 | usda-fmd:1008219 Skowhegan Farmers Market (Skowhegan) | usda-snap-retailers:1541911 Skowhegan Farmers Market (confirms SNAP) | 5 | 1 |
 | usda-fmd:1007165 Princeton Farmers Market (Princeton) | usda-snap-retailers:1541594 Princeton Farmers Market Inc (confirms SNAP) | 21 | 1 |
+| usda-fmd:1001374 Certified Farmers Market Palm Springs (Palm Springs) | usda-snap-retailers:1541670 Palm Springs Certified Farmers' Market (SNAP vendor at this site) | 28 | 0 |
 | usda-fmd:1005847 Monona Farmers Market (Monona) | usda-snap-retailers:1541249 Monona Farmers Market Inc. (confirms SNAP) | 140 | 1 |
 | usda-fmd:1003357 Fulton Farmers Market (Fulton) | usda-snap-retailers:1549608 Fulton Farmer's Market (confirms SNAP) | 78 | 1 |
 | usda-fmd:1010081 Wetzel County Farmers Market (New Martinsville) | usda-snap-retailers:1549695 Wetzel County Farmers Market (confirms SNAP) | 64 | 1 |
@@ -755,6 +833,7 @@ Review these for false merges.
 | usda-fmd:1002773 Encino Farmers Market (Van Nuys) | usda-snap-retailers:1203331 Onegeneration Encino CFM (confirms SNAP) | 4 | 0.9 |
 | usda-fmd:1009616 Vineyard Farmers Market (Fresno) | usda-snap-retailers:1271292 Vineyard Farmers Market (confirms SNAP) | 146 | 1 |
 | usda-fmd:1010307 Woonsocket Farmers Market (Woonsocket) | usda-snap-retailers:1279042 Woonsocket Year Round Market (confirms SNAP) | 32 | 0.9 |
+| massgis-dph:50 Dorchester/Dot House Health (Dorchester) | usda-snap-retailers:1280576 Oriental Farm (SNAP vendor at this site) | 4 | 0 |
 | usda-fmd:1002480 Druid Hill Farmers' Market (Baltimore) | usda-snap-retailers:1059589 Druid Hill Farmers Market (confirms SNAP) | 137 | 1 |
 | usda-fmd:1007379 Richmond Farmers Market (Richmond) | usda-snap-retailers:1233404 Richmond Farmers Market (confirms SNAP) | 66 | 1 |
 | usda-fmd:1004389 International City Farmers' Market (Warner Robins) | usda-snap-retailers:1560884 International City Farmers Market LLC (confirms SNAP) | 66 | 1 |
@@ -767,6 +846,7 @@ Review these for false merges.
 | usda-fmd:1003634 Grantsville Farmers Market (Grantsville) | usda-snap-retailers:1552942 Grantsville Farmers Market (confirms SNAP) | 67 | 1 |
 | usda-fmd:1003058 Fayetteville Farmers' Market (Fayetteville) | usda-snap-retailers:992176 Fayetteville Farmers Market (confirms SNAP) | 50 | 1 |
 | usda-fmd:1008264 Sodus Farmers' Market (Sodus) | usda-snap-retailers:998357 Sodus Farmers Market (confirms SNAP) | 30 | 1 |
+| usda-fmd:1004993 Lebanon Valley Farmers Market (New Lebanon) | usda-snap-retailers:1246125 New Lebanon Farmers Market (SNAP vendor at this site) | 31 | 0 |
 | usda-fmd:1010276 Wolfeboro Area Farmers' Market (Wolfeboro) | usda-snap-retailers:1099026 Wolfeboro Area Farmers Market (confirms SNAP) | 23 | 1 |
 | usda-fmd:1003564 Goshen Farmer's Market (Goshen) | usda-snap-retailers:990118 Goshen Farmer's Market (confirms SNAP) | 55 | 1 |
 | usda-fmd:1004332 Hutchinson Farmers' Market (Hutchinson) | usda-snap-retailers:1095160 Hutchinson Farmers Mkt - Hutchinson Downtown Assn (confirms SNAP) | 57 | 0.9 |
@@ -774,12 +854,14 @@ Review these for false merges.
 | usda-fmd:1009767 Washington Borough Farmers Market (Washington Borough) | usda-snap-retailers:1682282 Washington Borough Farmer's Market (confirms SNAP) | 28 | 1 |
 | usda-fmd:1002199 Denton Community Market (Denton) | usda-snap-retailers:1210786 Denton Community Market (confirms SNAP) | 59 | 1 |
 | usda-fmd:1001140 Cameron Park Farmers Market (La Crosse) | usda-snap-retailers:1244174 Cameron Park Farmers Market (confirms SNAP) | 53 | 1 |
+| usda-fmd:1002431 Downtown Seymour Farmers Market (Seymour) | usda-snap-retailers:1243328 Seymour Area Farmers Market (SNAP vendor at this site) | 55 | 0 |
 | usda-fmd:1001883 Cooperstown Farmers' Market (Cooperstown) | usda-snap-retailers:1003488 Cooperstown Farmers Market (confirms SNAP) | 23 | 1 |
 | usda-fmd:1001326 Cedar Mill Sunset Farmers' Market (Portland) | usda-snap-retailers:1363721 Cedar Mill Farmers Market (confirms SNAP) | 95 | 0.92 |
 | usda-fmd:1001139 Camellia City Farmers Market (Olde Towne Slidell) | usda-snap-retailers:1264303 Camellia City Market Inc. (confirms SNAP) | 20 | 1 |
 | usda-fmd:1010228 Winona Farmers Market (Winona) | usda-snap-retailers:1191104 Winona Farmers Market (confirms SNAP) | 2 | 1 |
 | usda-fmd:1003702 Greenbelt Farmers Market (Greenbelt) | usda-snap-retailers:1277874 Greenbelt Farmers Market (confirms SNAP) | 44 | 1 |
 | usda-fmd:1005834 Momma's Organic Market - Peoria Farmers Market at Park West (Peoria) | usda-snap-retailers:1554627 Park West Market  (confirms SNAP) | 10 | 0.9 |
+| usda-fmd:1001046 Bushwick Farmers' Market II/Maria Hernandez Park (Brooklyn) | usda-snap-retailers:1660412 Riseboro Farmers Markets At Maria Hernandez (SNAP vendor at this site) | 27 | 0 |
 | usda-fmd:1001324 Cedar Falls Farmers Market (Cedar Falls) | usda-snap-retailers:1663676 Cedar Falls Farmers Market (confirms SNAP) | 13 | 1 |
 | usda-fmd:1001517 Chillicothe Farmers' Market Association (Chillicothe) | usda-snap-retailers:1354040 Chillicothe Farmers Market (confirms SNAP) | 57 | 1 |
 | usda-fmd:1008345 South Memphis Farmers Market (Memphis) | usda-snap-retailers:994152 SOUTH MEMPHIS FARMERS MARKET (confirms SNAP) | 28 | 1 |
@@ -801,11 +883,14 @@ Review these for false merges.
 | massgis-dph:263 Roxbury/Nubian Square (Roxbury) | usda-snap-retailers:1555496 Nubian Square Farmers Market (confirms SNAP) | 70 | 0.9 |
 | massgis-dph:1 Holbrook (Holbrook) | usda-snap-retailers:1557485 Holbrook Farmers Market NAFMNP (confirms SNAP) | 21 | 1 |
 | usda-fmd:1007318 Red Wing Farmers Market (Red Wing) | usda-snap-retailers:1090534 Red Wing Farmers Market Association (confirms SNAP) | 44 | 1 |
+| massgis-dph:257 Roxbury/Dudley Winter Market (Boston) | usda-snap-retailers:1670492 The Food Project - Boston Urban Farm (SNAP vendor at this site) | 29 | 0 |
 | usda-fmd:1007043 Pleasantville Farmers Market - Summer (Pleasantville) | usda-snap-retailers:1163250 Pleasantville Farmers Market  (confirms SNAP) | 60 | 1 |
 | usda-fmd:1010011 West Warwick Farmers Market (West Warwick) | usda-snap-retailers:1075098 Thundermist West Warwick Farmers Mkt/Farm Fresh RI (confirms SNAP) | 36 | 0.9 |
 | usda-fmd:1008110 Sheboygan Farmers Market (Sheboygan) | usda-snap-retailers:950983 Sheboygan County Interfaith Organization (confirms SNAP) | 95 | 0.9 |
 | usda-fmd:1005424 Maple Grove Farmers Market (Maple Grove) | usda-snap-retailers:1089279 Maple Grove Farmers Market (confirms SNAP) | 96 | 1 |
 | usda-fmd:1004728 Kittery Community Market (Kittery) | usda-snap-retailers:1245815 Kittery Community Farmers' Market (confirms SNAP) | 39 | 1 |
+| usda-fmd:1003667 Greater Lewis County Community Farmers Market (Chehalis) | usda-snap-retailers:781199 Community Farmers Market of Chehalis (SNAP vendor at this site) | 18 | 0 |
+| usda-fmd:1004251 Hood River Saturday Market (Hood River) | usda-snap-retailers:821782 Gorge Grown Farmers Market (SNAP vendor at this site) | 49 | 0 |
 | usda-fmd:1004030 Helena Farmers Market (Helena) | usda-snap-retailers:829326 Helena Farmers Market (confirms SNAP) | 146 | 1 |
 | usda-fmd:1000131 Alexandria Farmers' Market (Alexandria) | usda-snap-retailers:998901 Alexandria Farmers Market (confirms SNAP) | 115 | 1 |
 | massgis-dph:130 Taunton/Church Green (Taunton) | usda-snap-retailers:1289721 Church Green Farmers Market (confirms SNAP) | 39 | 0.9 |
@@ -830,6 +915,7 @@ Review these for false merges.
 | usda-fmd:1004855 Lakeside Farmers' Market (henrico) | usda-snap-retailers:991054 Lakeside Farmers Market (confirms SNAP) | 39 | 1 |
 | usda-fmd:1007182 Providence/Broad St. Farmers' Market (Providence) | usda-snap-retailers:1277195 Broad St Farmers Market (confirms SNAP) | 5 | 0.9 |
 | usda-fmd:1003697 Green Scene Walker Community Farmer's Market (Walker) | usda-snap-retailers:1110281 Green Scene Organic Market (confirms SNAP) | 14 | 0.89 |
+| usda-fmd:1006800 Paris/Bourbon County Farmers Market II (Paris) | usda-snap-retailers:1231792 The Farmers Market of Paris and Bourbon County Inc (SNAP vendor at this site) | 4 | 0 |
 | usda-fmd:1005741 Midtown Farmers Market (Minneapolis) | usda-snap-retailers:1658866 Midtown Farmers Market (confirms SNAP) | 64 | 1 |
 | usda-fmd:1002580 East Los Angeles Farmers Market (Los Angeles) | usda-snap-retailers:1531038 East La Farmers Market (confirms SNAP) | 10 | 0.89 |
 | usda-fmd:1004101 Highlands Ranch Farmers' Market (Highlands Ranch) | usda-snap-retailers:1305881 Highlands Ranch Farmers' Market (confirms SNAP) | 59 | 1 |
@@ -838,10 +924,12 @@ Review these for false merges.
 | usda-fmd:1007433 Riverdale Park Farmers Market (Riverdale Park) | usda-snap-retailers:1099336 Riverdale Park Farmers Market (confirms SNAP) | 94 | 1 |
 | usda-fmd:1002281 Dover Farmers' Market (Dover) | usda-snap-retailers:1278132 Dover Farmers' Market (confirms SNAP) | 25 | 1 |
 | usda-fmd:1004749 Kootenai County Farmers Market I (Hayden) | usda-snap-retailers:941409 Kootenai County Farmers' Market (confirms SNAP) | 23 | 0.98 |
+| usda-fmd:1009922 Wentworth Greenhouse Farmers' Market (Rollinsford) | usda-snap-retailers:1278135 Rollinsford Winter Market (SNAP vendor at this site) | 32 | 0 |
 | usda-fmd:1009516 Venice CFM (Venice) | usda-snap-retailers:1269265 Venice Farmers' Market (confirms SNAP) | 6 | 0.92 |
 | usda-fmd:1001369 Cerritos Farmers Market (Cerritos) | usda-snap-retailers:1119514 Cerritos Farmers Market (confirms SNAP) | 31 | 1 |
 | usda-fmd:1000676 Black Mountain Tailgate Market (Black Mountain) | usda-snap-retailers:1532758 Black Mountain Tailgate Market NAFMNP (confirms SNAP) | 59 | 1 |
 | usda-fmd:1006827 PASADENA-VILLA PARKE (TUES) (PASADENA) | usda-snap-retailers:1532617 Pasadena Certified Farmers Market (confirms SNAP) | 128 | 0.85 |
+| massgis-dph:29 Lowell/The Farm Market (Lowell) | usda-snap-retailers:1276084 The Farm Market At Mill No. 5 (SNAP vendor at this site) | 49 | 0 |
 | usda-fmd:1003733 Greensboro Farmers Curb Market (Greensboro) | usda-snap-retailers:1068751 Greensboro Farmers Curb Market (confirms SNAP) | 53 | 1 |
 | usda-fmd:1005771 Miller Beach Farmers Market (Gary) | usda-snap-retailers:1093589 Miller Beach Farmers Market (confirms SNAP) | 43 | 1 |
 | usda-fmd:1003091 Findlay Market (Cincinnati) | usda-snap-retailers:794297 FINDLAY MARKET (confirms SNAP) | 11 | 1 |
@@ -849,12 +937,14 @@ Review these for false merges.
 | usda-fmd:1004989 Lebanon Farmers Market (Lebanon) | usda-snap-retailers:1585074 Lebanon Farmers Market NAFMNP (confirms SNAP) | 50 | 1 |
 | usda-fmd:1006108 Nacogdoches Farmers' Market (Nacogdoches) | usda-snap-retailers:1244106 Nacogdoches Farmers Market (confirms SNAP) | 7 | 1 |
 | usda-fmd:1010320 Wrightwood Certified Farmers Market (Wrightwood) | usda-snap-retailers:1275201 Wrightwood Certified Farmers Market (confirms SNAP) | 6 | 1 |
+| usda-fmd:1008292 Soulard Farmers Market (St Louis) | usda-snap-retailers:979217 Its Your Health (SNAP vendor at this site) | 5 | 0 |
 | usda-fmd:1001869 Cook Area Farmers Market (Cook) | usda-snap-retailers:1299418 Cook Area Farmers Market (confirms SNAP) | 67 | 1 |
 | massgis-dph:223 North Easton Winter/Langwater Farm (North Easton) | usda-snap-retailers:1134715 Langwater Farm (confirms SNAP) | 90 | 0.9 |
 | usda-fmd:1005167 Logan County Farmers Market (Bellefontaine) | usda-snap-retailers:1648429 Logan County Farmers Market (confirms SNAP) | 57 | 1 |
 | usda-fmd:1008858 Temple City CFM (Temple City) | usda-snap-retailers:1534241 Temple City Farmers Market (confirms SNAP) | 11 | 0.95 |
 | usda-fmd:1001857 Conover Farmers Market, Inc (Conover) | usda-snap-retailers:1534404 Conover Farmers Market NAFMNP (confirms SNAP) | 1 | 1 |
 | usda-fmd:1007498 Rockville Farmers' Market (Rockville) | usda-snap-retailers:1035967 Rockville Farmers Market (confirms SNAP) | 63 | 1 |
+| usda-fmd:1003740 Greensburg/Decatur County Farmers' Market () | usda-snap-retailers:1533905 Main Street Greensburg Farmers Market (SNAP vendor at this site) | 43 | 0 |
 | usda-fmd:1008082 Seymour Farmers Market (Seymour) | usda-snap-retailers:1578985 Seymour Farmers Market (confirms SNAP) | 9 | 1 |
 | usda-fmd:1009463 USDA Farmers Market - Outdoor (Washington) | usda-snap-retailers:1103564 USDA Farmers Market (confirms SNAP) | 33 | 1 |
 | usda-fmd:1005896 Monticello Farmers' Market (Monticello) | usda-snap-retailers:1124440 Monticello Farmers Market (confirms SNAP) | 26 | 1 |
@@ -870,12 +960,14 @@ Review these for false merges.
 | usda-fmd:1007842 Schenectady Greenmarket (Schenectady) | usda-snap-retailers:870946 Schenectady Greenmarket (confirms SNAP) | 9 | 1 |
 | usda-fmd:1000541 Belfast Farmers' Market (Belfast) | usda-snap-retailers:1590146 Belfast Farmers Market (confirms SNAP) | 34 | 1 |
 | usda-fmd:1004223 Home Grown Farm Market (Lexington Park) | usda-snap-retailers:1070812 Home Grown Farm Market (confirms SNAP) | 62 | 1 |
+| usda-fmd:1000693 Bland County Farmers Market (Bland) | usda-snap-retailers:1646713 County Of Bland Farmer's Market (SNAP vendor at this site) | 22 | 0 |
 | usda-fmd:1010233 Winston Salem Retail Farmers Market (Winston-Salem) | usda-snap-retailers:1272579 Winston-Salem Fairgrounds Farmers Market (confirms SNAP) | 142 | 0.89 |
 | usda-fmd:1004982 Leavenworth Farmers Market (Leavenworth) | usda-snap-retailers:893393 Leavenworth Farmers Market Inc (confirms SNAP) | 87 | 1 |
 | usda-fmd:1001282 Cascades Farmers Market (Sterling) | usda-snap-retailers:1198706 Cascades Farmers Market (confirms SNAP) | 80 | 1 |
 | usda-fmd:1004302 Hudson Farmers Market (Hudson) | usda-snap-retailers:1650379 Hudson Farmers' Market (confirms SNAP) | 39 | 1 |
 | usda-fmd:1007297 Red Lodge Farmers Market (Red Lodge) | usda-snap-retailers:1053498 Red Lodge Farmers' Market (confirms SNAP) | 102 | 1 |
 | usda-fmd:1006392 Northbrook Farmers Market (Northbrook) | usda-snap-retailers:1066524 Northbrook Farmers Market (confirms SNAP) | 5 | 1 |
+| usda-fmd:1000029 32nd Street/Waverly Farmers Market (Baltimore) | usda-snap-retailers:1296246 Farm Alliance Of Baltimore (SNAP vendor at this site) | 3 | 0 |
 | usda-fmd:1000482 Bath County Farmers' Market (Owingsville) | usda-snap-retailers:1657223 Bath County Farmers Market (confirms SNAP) | 89 | 1 |
 | usda-fmd:1006604 Oneida County Public Market (Utica) | usda-snap-retailers:1096529 ONEIDA COUNTY PUBLIC MARKET FM (confirms SNAP) | 45 | 1 |
 | usda-fmd:1007123 Portsmouth Farmers' Market (Portsmouth) | usda-snap-retailers:1278138 Portsmouth Farmers' Market (confirms SNAP) | 132 | 1 |
@@ -884,6 +976,7 @@ Review these for false merges.
 | usda-fmd:1004408 Irondequoit Farmers Market (Rochester) | usda-snap-retailers:818400 Irondequoit Farmers Market (confirms SNAP) | 25 | 1 |
 | massgis-dph:28 Great Barrington Winter (Housatonic) | usda-snap-retailers:1171341 Berkshire Grown Holiday FM-Great Barrington (confirms SNAP) | 22 | 0.9 |
 | usda-fmd:1009633 Vista Farmers Market (Vista) | usda-snap-retailers:1054951 Vista Farmers Market (confirms SNAP) | 144 | 1 |
+| usda-fmd:1001568 City Heights Certified Farmers Market (San Diego) | usda-snap-retailers:1600755 Ascendkemet Collective Certified Farmer's Market (SNAP vendor at this site) | 22 | 0 |
 | usda-fmd:1006671 Orofino Farmers Market (Orofino) | usda-snap-retailers:1689756 Orofino Farmers Market Inc. (confirms SNAP) | 133 | 1 |
 | usda-fmd:1008036 Second Street Farmer's Market (Amherst) | usda-snap-retailers:1277436 Second Street Farmers' Market (confirms SNAP) | 54 | 1 |
 | usda-fmd:1008355 South Pasadena Farmers Market (South Pasadena) | usda-snap-retailers:985394 South Pasadena Farmers' Market (confirms SNAP) | 42 | 1 |
@@ -899,6 +992,7 @@ Review these for false merges.
 | massgis-dph:215 Lawrence Winter (Lawrence) | usda-snap-retailers:1687801 Groundwork Lawrence Winter Market (confirms SNAP) | 62 | 0.9 |
 | usda-fmd:1006399 northeast michigan regional farm market (Oscoda) | usda-snap-retailers:1687553 Northeast Michigan Regional Farm Market 2 (confirms SNAP) | 63 | 0.99 |
 | usda-fmd:1007009 Pittston City Farmers Market (Pittston) | usda-snap-retailers:1644930 Pittston City Farmers Market FFAB (confirms SNAP) | 128 | 0.94 |
+| usda-fmd:1006830 Paso Robles (Paso Robles) | usda-snap-retailers:1568368 Country Farm And Craft Market (SNAP vendor at this site) | 28 | 0 |
 | usda-fmd:1009978 West Los Angeles CFM (Los Angeles) | usda-snap-retailers:1567218 West La Farmers Market (confirms SNAP) | 84 | 0.87 |
 | usda-fmd:1000132 alfred farmers market (alfred) | usda-snap-retailers:1576969 Alfred Farmers Market (confirms SNAP) | 23 | 1 |
 | usda-fmd:1008419 Sparks Methodist Church Market (Sparks) | usda-snap-retailers:1585921 Sparks UMC Farmers' Market (confirms SNAP) | 26 | 0.86 |
@@ -907,16 +1001,20 @@ Review these for false merges.
 | usda-fmd:1004170 Historic Marion Tailgate Market (Marion) | usda-snap-retailers:1576474 Historic Marion Tailgate Market (confirms SNAP) | 55 | 1 |
 | usda-fmd:1009534 Vestal Farmers Market (Vestal) | usda-snap-retailers:1597313 Vestal Farmers Market (confirms SNAP) | 71 | 1 |
 | usda-fmd:1010172 Willowland Farm (Dundas) | usda-snap-retailers:1130512 Willowland Farm (confirms SNAP) | 134 | 1 |
+| usda-fmd:1009164 The Villa Rica Farmers Market @ The Mill (Villa Rica) | usda-snap-retailers:1584851 The Community Market Of Villa Rica  (SNAP vendor at this site) | 55 | 0 |
 | usda-fmd:1006919 Perry Farmers Market (Perry) | usda-snap-retailers:1594847 Perry Farmers' Market (confirms SNAP) | 20 | 1 |
 | usda-fmd:1002547 East Atlanta Village Farmers Market (Atlanta) | usda-snap-retailers:1664222 East Atlanta Village Farmers Market 0135438 (confirms SNAP) | 77 | 0.94 |
 | usda-fmd:1000376 Augusta Farmers' Market at Mill Park (Augusta) | usda-snap-retailers:1588281 Augusta Farmers Market (confirms SNAP) | 37 | 0.9 |
 | usda-fmd:1000906 Bristol Farmers' Market (Bristol) | usda-snap-retailers:1601116 Bristol Farmers Market (confirms SNAP) | 70 | 1 |
 | usda-fmd:1006591 Olney Farmers and Artists Market (Olney) | usda-snap-retailers:1596606 Olney Farmers Market NAFMNP (confirms SNAP) | 63 | 0.9 |
+| usda-fmd:1005704 Michigan City Farmers Market (Michigan City) | usda-snap-retailers:1643452 Farmed & Forged (SNAP vendor at this site) | 3 | 0 |
+| usda-fmd:1000615 Berlin Community Farmers Market (Berlin) | usda-snap-retailers:1605044 Berlin Farmers And Artists Market Incorporated (SNAP vendor at this site) | 42 | 0 |
 | usda-fmd:1008794 Tacoma Farmers Markets - South Tacoma (Tacoma) | usda-snap-retailers:371311 Tacoma Farmers Market (confirms SNAP) | 139 | 0.9 |
 | usda-fmd:1000185 Amenia Farmers Market () | usda-snap-retailers:1605353 Amenia Farmer's Market (confirms SNAP) | 30 | 1 |
 | usda-fmd:1006254 Newport Farmer's Market (Newport) | usda-snap-retailers:794094 Newport Farmers Market (confirms SNAP) | 36 | 1 |
 | usda-fmd:1008614 Stoneham Farm Hill Farmers Market (Stoneham) | usda-snap-retailers:1605128 Stoneham Farmers Market 285 (confirms SNAP) | 111 | 0.85 |
 | usda-fmd:1007524 Roosevelt Farmers Market (Roosevelt) | usda-snap-retailers:1697169 Roosevelt Farmers Market (confirms SNAP) | 88 | 1 |
+| usda-fmd:1006395 Northeast Georgia. Locally Grown.net - Hall County site (Gainesville) | usda-snap-retailers:1610114 Hall Co Locally Grown  (SNAP vendor at this site) | 42 | 0 |
 | usda-fmd:1006073 Mukwonago Area Farmers Market (Mukwonago, WI) | usda-snap-retailers:1614576 Mukwonago Farmers Market NAFMNP (confirms SNAP) | 83 | 0.93 |
 | usda-fmd:1002886 Fallbrook Certified Farmers Market (Fallbrook) | usda-snap-retailers:1616131 Fallbrook S. Main Ave Certified Farmers Market 0304 (confirms SNAP) | 55 | 0.88 |
 | usda-fmd:1001733 Coastside Farmers' Market of Pacifica - Rockaway Beach (Pacifica) | usda-snap-retailers:1341784 Coastside Farmers' Markets Inc. #2 (confirms SNAP) | 126 | 0.84 |
@@ -924,6 +1022,7 @@ Review these for false merges.
 | massgis-dph:123 Orleans (Orleans) | usda-snap-retailers:1025155 Orleans Farmers Market (confirms SNAP) | 13 | 1 |
 | usda-fmd:1000029 32nd Street/Waverly Farmers Market (Baltimore) | usda-snap-retailers:945528 32nd Street Farmers Market (confirms SNAP) | 3 | 0.92 |
 | usda-fmd:1007787 Saratoga Farmers' Market - Outdoor Market (May-October) (Saratoga Springs) | usda-snap-retailers:544268 Saratoga Farmers Market (confirms SNAP) | 141 | 0.9 |
+| usda-fmd:1009445 Uptown Whittier CFM (Whittier) | usda-snap-retailers:266522 Whittier Uptown Association Farmers Market (SNAP vendor at this site) | 58 | 0 |
 | usda-fmd:1006278 Noe Valley Farmers' Market (San Francisco) | usda-snap-retailers:885017 Noe Valley Farmers' Market (confirms SNAP) | 20 | 1 |
 | usda-fmd:1003845 Hamilton Farmers Market Cooperative (Hamilton) | usda-snap-retailers:1647529 Hamilton Farmers Market Cooperative (confirms SNAP) | 135 | 1 |
 | usda-fmd:1007208 Puyallup Farmers' Market (Puyallup) | usda-snap-retailers:1173967 Puyallup Farmers Market (confirms SNAP) | 22 | 1 |
@@ -943,17 +1042,21 @@ Review these for false merges.
 | usda-fmd:1004275 Houlton Community Market (Houlton) | usda-snap-retailers:1635490 Houlton Community Market (confirms SNAP) | 33 | 1 |
 | usda-fmd:1000608 Berkeley Springs Farmers Market (Berkeley Springs) | usda-snap-retailers:1399557 Berkeley Springs Farmers Market (confirms SNAP) | 36 | 1 |
 | usda-fmd:1001457 Chelsea Farmers Market (Chelsea) | usda-snap-retailers:1329886 Chelsea Farmers Market (confirms SNAP) | 128 | 1 |
+| usda-fmd:1007764 Santa Cruz River Farmers' Market (Tucson) | usda-snap-retailers:1379250 Community Food Bank Inc (SNAP vendor at this site) | 45 | 0 |
 | massgis-dph:199 Boston Public Market (Boston) | usda-snap-retailers:1678778 Boston Public Market (confirms SNAP) | 42 | 1 |
 | usda-fmd:1001318 CCFA Salida Farmers Market (Salida) | usda-snap-retailers:852710 Salida Farmers Market (confirms SNAP) | 114 | 0.9 |
 | usda-fmd:1004896 Lansdowne Farmers Market (Lansdowne) | usda-snap-retailers:1673679 Lansdowne Farmers Market (confirms SNAP) | 13 | 1 |
+| usda-fmd:1005949 Morro Bay Bay Fisherman's Wharf CFM (Morro Bay) | usda-snap-retailers:1683380 Morro Bay Saturday Farmers Market 40FM2502 (SNAP vendor at this site) | 31 | 0 |
 | usda-fmd:1009725 Waltham Farmers' Market (Waltham) | usda-snap-retailers:1680991 Waltham Farmers' Market (confirms SNAP) | 74 | 1 |
 | usda-fmd:1002996 Farmers Market on the Westford Common (Westford) | usda-snap-retailers:1684267 Westford Farmers Market (confirms SNAP) | 29 | 0.9 |
 | usda-fmd:1002044 Crystal Lake Farmers Market (Crystal Lake) | usda-snap-retailers:1687171 Downtown Crystal Lake Farmers Market (confirms SNAP) | 33 | 0.9 |
 | usda-fmd:1008992 The Lexington Farmers' Market (Lexington, KY) | usda-snap-retailers:898236 LEXINGTON FARMERS MARKET CHEAPSIDE PARK (confirms SNAP) | 64 | 0.9 |
 | usda-fmd:1000502 Bayview Farmers Market (Langley) | usda-snap-retailers:1704342 Bayview Farmers Market (confirms SNAP) | 59 | 1 |
+| usda-fmd:1002141 DC Farmers Market (Washington) | usda-snap-retailers:1697448 Freshfarm Union Market Farmers Market (SNAP vendor at this site) | 24 | 0 |
 | usda-fmd:1007007 Pittsfield Township Farmers Market (Ann Arbor) | usda-snap-retailers:1692853 Pittsfield Charter Township Farmers Market (confirms SNAP) | 102 | 0.91 |
 | usda-fmd:1008701 Sumter County Farmers Market (Webster) | usda-snap-retailers:1113574 Sumter County Farmers Market (confirms SNAP) | 74 | 1 |
 | usda-fmd:1005617 Meadville Farmers Market (Meadville) | usda-snap-retailers:1701256 Farmers Market At The Meadville Market House FFAB (confirms SNAP) | 46 | 0.9 |
+| usda-fmd:1003865 Hancock Farmers Market (Hancock) | usda-snap-retailers:1689453 Keweenaw Market Association (SNAP vendor at this site) | 43 | 0 |
 | massgis-dph:119 Salem (Salem) | usda-snap-retailers:940935 Salem Farmers Market (confirms SNAP) | 13 | 1 |
 | usda-fmd:1001490 Chesterfield County Farmers Market (Chesterfield) | usda-snap-retailers:1695252 Chesterfield County Farmers Market (confirms SNAP) | 11 | 1 |
 | usda-fmd:1004096 Highland Park Farmers Market (Hastings) | usda-snap-retailers:1691158 Highland Park Farmers Market (confirms SNAP) | 70 | 1 |

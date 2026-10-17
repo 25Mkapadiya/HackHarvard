@@ -1,7 +1,7 @@
 {
-  "builtAt": "2026-10-17T13:39:33.041Z",
+  "builtAt": "2026-10-17T14:02:50.466Z",
   "region": "Contiguous United States (Greater Boston focus)",
-  "marketCount": 8162,
+  "marketCount": 14241,
   "sources": [
     {
       "id": "massgis-dph",
@@ -51,11 +51,11 @@
     },
     {
       "id": "ers-fara-2025",
-      "name": "USDA ERS Food Access Research Atlas 2025 (low-income / low-access tracts, MA)",
+      "name": "USDA ERS Food Access Research Atlas 2025 (low-income / low-access tracts)",
       "url": "https://www.ers.usda.gov/data-products/food-access-research-atlas/",
       "license": "U.S. Government work (public domain)",
       "fetchedAt": "2026-10-17",
-      "records": 1613,
+      "records": 45141,
       "status": "ok"
     },
     {
@@ -89,11 +89,11 @@
     },
     {
       "id": "manual-crops",
-      "name": "Hand-transcribed approximation of the MassGrown (MDAR) crop availability chart",
-      "url": "https://www.mass.gov/massgrown",
-      "license": "Compiled from MDAR MassGrown",
+      "name": "Hand-compiled approximation of state and USDA seasonal produce guides (Northeast row from the MassGrown crop availability chart)",
+      "url": "https://snaped.fns.usda.gov/resources/nutrition-education-materials/seasonal-produce-guide",
+      "license": "Compiled from USDA SNAP-Ed, state guides and MDAR MassGrown",
       "fetchedAt": null,
-      "records": 47,
+      "records": 55,
       "status": "manual"
     },
     {

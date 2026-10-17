@@ -9,14 +9,16 @@ export function Calendar({
   closures,
   closureNotes,
   now,
+  tz,
 }: {
   schedules: MarketSchedule[];
   closures: string[];
   closureNotes: Record<string, string>;
   now: Date;
+  tz?: string;
 }) {
   const { t, i18n } = useTranslation();
-  const today = localNow(now);
+  const today = localNow(now, tz);
   const start = addDays(today, -weekdayOf(today));
   const days = Array.from({ length: 28 }, (_, i) => addDays(start, i));
   const headers = days.slice(0, 7).map((d) => dayName(d, i18n.language).slice(0, 3));

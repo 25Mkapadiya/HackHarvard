@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import zlib from 'node:zlib';
 
 export const ROOT = path.resolve(import.meta.dirname, '../..');
 export const RAW_DIR = path.join(ROOT, 'data/raw');
@@ -29,7 +30,8 @@ export function saveRaw(source: string, ext: string, body: string): string {
   fs.mkdirSync(dir, { recursive: true });
   for (const f of fs.readdirSync(dir)) fs.rmSync(path.join(dir, f));
   const file = path.join(dir, `${today()}.${ext}`);
-  fs.writeFileSync(file, body);
+  // Large snapshots are stored gzipped (ext ending in .gz).
+  fs.writeFileSync(file, ext.endsWith('.gz') ? zlib.gzipSync(body, { level: 9 }) : body);
   return file;
 }
 
@@ -43,5 +45,9 @@ export function latestRaw(source: string): { body: string; date: string } | null
     .sort();
   const last = files.at(-1);
   if (!last) return null;
-  return { body: fs.readFileSync(path.join(dir, last), 'utf8'), date: last.slice(0, 10) };
+  const buf = fs.readFileSync(path.join(dir, last));
+  return {
+    body: (last.endsWith('.gz') ? zlib.gunzipSync(buf) : buf).toString('utf8'),
+    date: last.slice(0, 10),
+  };
 }

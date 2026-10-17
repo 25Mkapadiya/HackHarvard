@@ -1,6 +1,6 @@
 # Market Day Boston
 
-Find farmers markets across the contiguous US — with the deepest coverage in Greater Boston — that are **open now**, see **what's in season**, and learn **where SNAP, HIP and WIC
+Find farmers markets and farm stands across the contiguous US that are **open now**, see **what's in season**, and learn **where SNAP, HIP and WIC
 coupons are accepted** — in English and Spanish, on a phone, at an outdoor market with weak signal. Vendors get a
 transparent sustainability score and tools to post prices and end-of-day surplus; shoppers earn rewards for visiting.
 
@@ -11,7 +11,7 @@ transparent sustainability score and tools to post prices and end-of-day surplus
 | ![Home: markets open now as stall-sign cards](docs/screenshots/home.jpg) | ![Map with clustered markets and filters](docs/screenshots/explore.jpg) | ![Market page with schedule calendar and benefits](docs/screenshots/market.jpg) | ![Phone map view](docs/screenshots/mobile-map.jpg) |
 
 > **Sample data.** Market locations, schedules and food-benefit participation are real public data (USDA,
-> MassGIS/MDAR). **Vendors, products and prices shown for Greater Boston markets, vendor applications, and anything
+> MassGIS/MDAR). **Vendors, products and prices shown for Greater Boston markets (the demo's sample vendors), vendor applications, and anything
 > you save are invented sample data** for the demo, and the app labels them "Sample data" everywhere they appear.
 > **Schedules may be out of date:** outside Massachusetts they come from USDA's National Farmers Market Directory,
 > whose last public export is from 2014; Massachusetts uses the state's 2023-season list. Every market is flagged
@@ -19,19 +19,24 @@ transparent sustainability score and tools to post prices and end-of-day surplus
 
 ## Features
 
-- **8,162 markets in the 48 contiguous states and DC** — USDA's national directory, with the state's newer list
-  replacing it in Massachusetts and USDA's current SNAP retailer list confirming SNAP acceptance. Schedules are parsed
-  into iCal RRULEs (97% of Massachusetts listings, 91% of USDA listings that give hours); the rest show the source's
-  raw text and are left out of "open now" rather than guessed. Time zone is
-  America/New_York, DST-safe, with season boundaries, "no market on 7/4" exceptions and manager-posted closures.
+- **14,241 places to buy local food across the 48 contiguous states and DC** — 10,682 farmers markets and 3,559 farm
+  stands and direct-selling farmers. Sources: USDA's national farmers market directory; the state's newer list in
+  Massachusetts; and USDA's current SNAP retailer list, which confirms SNAP at listed markets and adds about 6,000
+  SNAP-authorized markets and farms the directory misses. 8,581 locations take SNAP.
+- **Open now, in each market's own time zone** — Eastern, Central, Mountain, Pacific and Arizona (no DST), including
+  split states. Schedules are parsed into iCal RRULEs (97% of Massachusetts listings, 91% of USDA listings that give
+  hours); the rest show the source's raw text and are left out of "open now" rather than guessed. DST-safe, with season
+  boundaries, "no market on 7/4" exceptions and manager-posted closures.
 - **Map + list** — clustered map (OpenStreetMap) with a "Whole US" button, keyboard-accessible list, filters for open
-  now / today / this week / a weekday, state, distance, food benefits, products, payment, winter and indoor markets,
+  now / today / this week / a weekday, market type, state, distance, food benefits, products, payment, winter and indoor markets,
   and sustainability. Filters live
-  in the URL so views are shareable. An optional layer shades USDA low-income / low-access census tracts (Massachusetts only so far).
+  in the URL so views are shareable. An optional layer shades USDA low-income / low-access census tracts nationwide
+  (45,141 tracts, loaded state by state as you pan).
 - **Market pages** — schedule and a 4-week calendar, how to use SNAP/HIP/WIC there, the market's location (address
   and site), National Weather Service forecast for the next market day, vendors, sources with fetch dates, "Suggest a correction" (opens a GitHub issue), and a QR code for rewards check-in.
 - **Find food** — "strawberries" → markets carrying them that are open in the next 7 days, plus whether they're in season.
-- **In season** — month-by-month Massachusetts crop guide (47 crops, English and Spanish names).
+- **In season** — month-by-month crop guide for 9 growing regions covering the mainland (55 crops, English and
+  Spanish names), picked automatically from where you are.
 - **SNAP & HIP guide** — plain-language guide in English and Spanish and a HIP calculator (monthly cap by household
   size, refund for a purchase). Program amounts live in `data/manual/programs.json` with a "last checked" date.
   Household size is only remembered if you tick the box.
@@ -138,7 +143,8 @@ the MVP added a few:
 
 # Product requirements
 
-The original requirements for the platform. The MVP above covers the Greater Boston slice of these.
+The original requirements for the platform. The MVP above covers the consumer-facing parts nationwide, with demo
+vendor data in Greater Boston.
 
 ### 1. Problem and Goals
 

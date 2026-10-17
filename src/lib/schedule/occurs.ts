@@ -2,9 +2,10 @@ import { RRule } from 'rrule';
 import { toZonedTime } from 'date-fns-tz';
 import type { MarketSchedule } from '../../types';
 
-// All schedule math happens on "floating" calendar dates (UTC midnight of the local
-// America/New_York date), so DST shifts never move a market's opening time.
+// All schedule math happens on "floating" calendar dates (UTC midnight of the market's local
+// date, in the market's own time zone), so DST shifts never move a market's opening time.
 
+/** Default zone (Boston) for the app's own clock and for markets without a zone. */
 export const TZ = 'America/New_York';
 const DAY_MS = 86_400_000;
 /** Phase anchor for every-other-week rules on year-round markets (no season start to anchor to). */
@@ -13,8 +14,8 @@ const YEAR_ROUND_ANCHOR = Date.UTC(2024, 0, 1);
 export type LocalDay = { y: number; m: number; d: number };
 export type LocalNow = LocalDay & { minutes: number };
 
-export function localNow(now: Date): LocalNow {
-  const z = toZonedTime(now, TZ);
+export function localNow(now: Date, tz: string = TZ): LocalNow {
+  const z = toZonedTime(now, tz);
   return {
     y: z.getFullYear(),
     m: z.getMonth() + 1,
@@ -100,10 +101,11 @@ export function marketStatus(
   parsed: boolean,
   now: Date,
   closures: string[] = [],
+  tz: string = TZ,
   horizonDays = 120,
 ): Status {
   if (!parsed || schedules.length === 0) return { state: 'unknown' };
-  const ln = localNow(now);
+  const ln = localNow(now, tz);
   const today = occurrencesOn(schedules, ln, closures);
   const current = today.find(
     (o) => toMinutes(o.openTime) <= ln.minutes && ln.minutes < toMinutes(o.closeTime),
@@ -115,7 +117,7 @@ export function marketStatus(
   // horizonDays = 0 skips the look-ahead (the expensive part) when only the state is needed.
   return {
     state: 'closed',
-    next: horizonDays > 0 ? nextOpening(schedules, now, closures, horizonDays) : undefined,
+    next: horizonDays > 0 ? nextOpening(schedules, now, closures, horizonDays, tz) : undefined,
   };
 }
 
@@ -125,15 +127,17 @@ export const marketState = (
   parsed: boolean,
   now: Date,
   closures: string[] = [],
-) => marketStatus(schedules, parsed, now, closures, 0).state;
+  tz: string = TZ,
+) => marketStatus(schedules, parsed, now, closures, tz, 0).state;
 
 export function nextOpening(
   schedules: MarketSchedule[],
   now: Date,
   closures: string[] = [],
   horizonDays = 120,
+  tz: string = TZ,
 ) {
-  const ln = localNow(now);
+  const ln = localNow(now, tz);
   for (let i = 0; i <= horizonDays; i++) {
     const day = addDays(ln, i);
     const occ = occurrencesOn(schedules, day, closures).find(
@@ -150,8 +154,9 @@ export function opensWithin(
   now: Date,
   days: number,
   closures: string[] = [],
+  tz: string = TZ,
 ): boolean {
-  const ln = localNow(now);
+  const ln = localNow(now, tz);
   for (let i = 0; i < days; i++) if (occurrencesOn(schedules, addDays(ln, i), closures).length) return true;
   return false;
 }
@@ -161,8 +166,9 @@ export function upcoming(
   now: Date,
   days: number,
   closures: string[] = [],
+  tz: string = TZ,
 ): Occurrence[] {
-  const ln = localNow(now);
+  const ln = localNow(now, tz);
   const out: Occurrence[] = [];
   for (let i = 0; i < days; i++) out.push(...occurrencesOn(schedules, addDays(ln, i), closures));
   return out;

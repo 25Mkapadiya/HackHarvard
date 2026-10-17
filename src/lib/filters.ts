@@ -1,4 +1,4 @@
-import type { MarketSummary, PaymentMethodId, ProductCategoryId, ProgramId } from '../types';
+import type { MarketSummary, MarketType, PaymentMethodId, ProductCategoryId, ProgramId } from '../types';
 import { distanceKm, type LatLng } from './geo';
 import { marketStatus, occurrencesOn, opensWithin, localNow, addDays, weekdayOf } from './schedule/occurs';
 
@@ -10,6 +10,7 @@ export type Filters = {
   maxKm?: number;
   /** Two-letter state code. */
   state?: string;
+  type?: MarketType;
   products: ProductCategoryId[];
   pay: PaymentMethodId[];
   programs: ProgramId[];
@@ -30,6 +31,7 @@ export function parseFilters(sp: URLSearchParams): Filters {
     when: /^(any|now|today|week|day[0-6])$/.test(when) ? when : 'any',
     maxKm: sp.get('km') ? Number(sp.get('km')) : undefined,
     state: /^[A-Z]{2}$/.test(sp.get('st') ?? '') ? sp.get('st')! : undefined,
+    type: (['farmers_market', 'farm_stand'] as const).find((x) => x === sp.get('type')),
     products: list(sp.get('p')),
     pay: list(sp.get('pay')),
     programs: list(sp.get('prog')),
@@ -47,6 +49,7 @@ export function filtersToParams(f: Filters, base = new URLSearchParams()): URLSe
   set('when', f.when === 'any' ? undefined : f.when);
   set('km', f.maxKm ? String(f.maxKm) : undefined);
   set('st', f.state);
+  set('type', f.type);
   set('p', f.products.join(','));
   set('pay', f.pay.join(','));
   set('prog', f.programs.join(','));
@@ -62,6 +65,7 @@ export const activeFilterCount = (f: Filters) =>
   (f.when !== 'any' ? 1 : 0) +
   (f.maxKm ? 1 : 0) +
   (f.state ? 1 : 0) +
+  (f.type ? 1 : 0) +
   f.products.length +
   f.pay.length +
   f.programs.length +
@@ -76,14 +80,14 @@ export function matchesWhen(m: MarketView, when: When, now: Date): boolean {
   if (when === 'any') return true;
   if (!m.scheduleParsed) return false;
   if (when === 'now') {
-    const s = marketStatus(m.schedules, true, now, m.closures).state;
+    const s = marketStatus(m.schedules, true, now, m.closures, m.tz, 0).state;
     return s === 'open' || s === 'closing_soon';
   }
-  if (when === 'today') return occurrencesOn(m.schedules, localNow(now), m.closures).length > 0;
-  if (when === 'week') return opensWithin(m.schedules, now, 7, m.closures);
+  if (when === 'today') return occurrencesOn(m.schedules, localNow(now, m.tz), m.closures).length > 0;
+  if (when === 'week') return opensWithin(m.schedules, now, 7, m.closures, m.tz);
   // A specific weekday: the next date with that weekday.
   const wd = Number(when.slice(3));
-  const today = localNow(now);
+  const today = localNow(now, m.tz);
   for (let i = 0; i < 7; i++) {
     const day = addDays(today, i);
     if (weekdayOf(day) === wd) return occurrencesOn(m.schedules, day, m.closures).length > 0;
@@ -97,6 +101,7 @@ export function applyFilters(markets: MarketView[], f: Filters, now: Date, origi
     if (!matchesWhen(m, f.when, now)) return false;
     if (f.maxKm && origin && distanceKm(origin, m.geo) > f.maxKm) return false;
     if (f.state && m.state !== f.state) return false;
+    if (f.type && m.type !== f.type) return false;
     if (f.products.length && !f.products.every((p) => m.products.includes(p))) return false;
     if (f.pay.length && !f.pay.every((p) => m.paymentMethods.includes(p))) return false;
     if (f.programs.length && !f.programs.every((p) => m.programs.includes(p))) return false;

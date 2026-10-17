@@ -79,8 +79,9 @@
     "loosen": "Try removing a filter",
     "needLocation": "Set your location on the home page to filter by distance.",
     "lilaLayer": "Show low-income / low-access areas",
-    "lilaLegend": "Shaded: census tracts the USDA lists as low income and low access to food stores (1 mile urban / 10 miles rural). Massachusetts only for now.",
-    "mapLabel": "Map of markets. The list shows the same markets and works with a keyboard and screen reader."
+    "lilaLegend": "Shaded: census tracts the USDA lists as low income and low access to food stores (1 mile urban / 10 miles rural).",
+    "mapLabel": "Map of markets. The list shows the same markets and works with a keyboard and screen reader.",
+    "zoomForTracts": "Zoom in to see low-income / low-access areas"
   },
   "filters": {
     "when": "When",
@@ -102,7 +103,9 @@
     "search": "Market name or town",
     "sampleNote": "Products and payment methods are from sample vendor data.",
     "state": "State",
-    "anyState": "All states"
+    "anyState": "All states",
+    "type": "Type",
+    "anyType": "Markets and farm stands"
   },
   "market": {
     "back": "Back to map",
@@ -136,7 +139,8 @@
     "lowAccess": "low access to food stores",
     "both": "low income and low access to food stores",
     "biweekly": "Every-other-week dates are estimated. Confirm with the market.",
-    "location": "Location"
+    "location": "Location",
+    "timeZone": "Times are local to the market ({{zone}})."
   },
   "vendor": {
     "sample": "Sample data",
@@ -164,21 +168,23 @@
     "go": "Search",
     "examples": "Try:",
     "resultsFor": "Markets with {{what}} open in the next 7 days",
-    "inSeason": "{{crop}} are in season in Massachusetts now.",
-    "outOfSeason": "{{crop}} are usually in season in {{months}}. Markets may still have stored or greenhouse crops.",
+    "inSeason": "{{crop}} are in season in the {{region}} now.",
+    "outOfSeason": "In the {{region}}, {{crop}} are usually in season in {{months}}. Markets may still have stored or greenhouse crops.",
     "noMatch": "No markets with {{what}} are open in the next 7 days.",
     "tryMap": "See all markets on the map",
     "vendorsCarrying": "Vendors carrying it",
     "nothing": "We didn't find anything for “{{q}}”. Try a simpler word, like “apples”.",
     "vendorsHit": "Vendors",
-    "marketsHit": "Markets"
+    "marketsHit": "Markets",
+    "notGrown": "{{crop}} aren't commonly grown in the {{region}}, but some markets may carry them."
   },
   "seasonal": {
     "title": "What's in season",
-    "lede": "Massachusetts-grown crops by month. Tap a crop to find markets that sell it.",
+    "lede": "Locally grown crops by month for your region. Tap a crop to find markets that sell it.",
     "month": "Month",
-    "source": "Based on the MassGrown crop availability chart. Weather shifts things by a week or two.",
-    "none": "Not much is harvested this month — storage crops and greenhouse greens carry the markets."
+    "source": "Approximate months compiled from USDA SNAP-Ed and state seasonal guides (Northeast from MassGrown). Weather and elevation shift things by a few weeks.",
+    "none": "Not much is harvested this month — storage crops and greenhouse greens carry the markets.",
+    "region": "Region"
   },
   "benefits": {
     "title": "Using SNAP, HIP and WIC at farmers markets",
@@ -365,5 +371,12 @@
   "map": {
     "details": "Details",
     "wholeUs": "Whole US"
+  },
+  "types": {
+    "farmers_market": "Farmers market",
+    "farm_stand": "Farm stand or direct seller",
+    "csa": "CSA",
+    "food_hub": "Food hub",
+    "on_farm": "On-farm market"
   }
 }

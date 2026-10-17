@@ -78,4 +78,20 @@ describe('dedupe', () => {
     expect(clusters).toHaveLength(1);
     expect(mergeCluster(clusters[0]).programs).toEqual(['snap']);
   });
+  it('treats a differently named SNAP retailer at the same site as a vendor there', () => {
+    const { clusters, unmatched } = dedupe([
+      rec({}),
+      rec({ source: 'snap', name: 'Nubia Farms', lat: 42.3653, programs: ['snap'], confirmOnly: true }),
+      rec({
+        source: 'snap',
+        sourceId: '4',
+        name: 'Hilltop Farm',
+        lat: 42.37,
+        programs: ['snap'],
+        confirmOnly: true,
+      }),
+    ]);
+    expect(mergeCluster(clusters[0]).programs).toEqual(['snap']);
+    expect(unmatched.map((u) => u.name)).toEqual(['Hilltop Farm']);
+  });
 });

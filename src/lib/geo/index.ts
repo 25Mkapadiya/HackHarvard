@@ -28,7 +28,7 @@ export async function geocodeAddress(query: string): Promise<(LatLng & { label: 
     format: 'jsonv2',
     limit: '1',
     countrycodes: 'us',
-    viewbox: '-73.6,42.9,-69.8,41.2',
+    viewbox: '-124.8,49.4,-66.9,24.5', // contiguous US
     bounded: '1',
     email: 'marketday-boston@users.noreply.github.com',
   });

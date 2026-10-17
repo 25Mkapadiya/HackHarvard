@@ -118,6 +118,8 @@ export const Market = z.object({
     zip: z.string().optional(),
   }),
   geo: z.object({ lat: z.number(), lng: z.number() }),
+  /** IANA time zone the schedule's times are in. */
+  tz: z.string(),
   locationType: z
     .enum(['park', 'parking_lot', 'church', 'school', 'farm', 'indoor_hall', 'other'])
     .optional(),
@@ -152,6 +154,7 @@ export const MarketSummary = Market.pick({
   id: true,
   name: true,
   type: true,
+  tz: true,
   schedules: true,
   scheduleParsed: true,
   scheduleRaw: true,
@@ -257,21 +260,24 @@ export const Program = z.object({
 });
 export type Program = z.infer<typeof Program>;
 
+const Month = z.number().int().min(1).max(12);
+
 export const Crop = z.object({
   id: z.string(),
   name: z.string(),
   nameEs: z.string(),
   category: ProductCategoryId,
-  months: z.array(z.number().int().min(1).max(12)),
+  /** Months in season, by growing region id. A region that's missing doesn't commonly grow it. */
+  months: z.record(z.string(), z.array(Month)),
   tip: z.string().optional(),
 });
 export type Crop = z.infer<typeof Crop>;
 
 export const CropCalendar = z.object({
-  region: z.string(),
   source: z.string(),
   sourceUrl: z.string(),
   note: z.string(),
+  regions: z.record(z.string(), z.object({ name: z.string(), states: z.array(z.string()) })),
   crops: z.array(Crop),
 });
 export type CropCalendar = z.infer<typeof CropCalendar>;

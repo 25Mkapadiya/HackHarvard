@@ -79,8 +79,9 @@
     "loosen": "Prueba quitar un filtro",
     "needLocation": "Indica tu ubicación en la página de inicio para filtrar por distancia.",
     "lilaLayer": "Mostrar zonas de bajos ingresos / poco acceso",
-    "lilaLegend": "Sombreado: zonas censales que el USDA considera de bajos ingresos y poco acceso a tiendas de comida (1 milla urbana / 10 millas rural). Por ahora solo en Massachusetts.",
-    "mapLabel": "Mapa de mercados. La lista muestra los mismos mercados y funciona con teclado y lector de pantalla."
+    "lilaLegend": "Sombreado: zonas censales que el USDA considera de bajos ingresos y poco acceso a tiendas de comida (1 milla urbana / 10 millas rural).",
+    "mapLabel": "Mapa de mercados. La lista muestra los mismos mercados y funciona con teclado y lector de pantalla.",
+    "zoomForTracts": "Acerca el mapa para ver zonas de bajos ingresos / poco acceso"
   },
   "filters": {
     "when": "Cuándo",
@@ -102,7 +103,9 @@
     "search": "Nombre del mercado o ciudad",
     "sampleNote": "Los productos y formas de pago vienen de datos de muestra.",
     "state": "Estado",
-    "anyState": "Todos los estados"
+    "anyState": "Todos los estados",
+    "type": "Tipo",
+    "anyType": "Mercados y puestos de granja"
   },
   "market": {
     "back": "Volver al mapa",
@@ -136,7 +139,8 @@
     "lowAccess": "poco acceso a tiendas de comida",
     "both": "bajos ingresos y poco acceso a tiendas de comida",
     "biweekly": "Las fechas cada dos semanas son aproximadas. Confirma con el mercado.",
-    "location": "Lugar"
+    "location": "Lugar",
+    "timeZone": "Las horas son locales del mercado ({{zone}})."
   },
   "vendor": {
     "sample": "Datos de muestra",
@@ -164,21 +168,23 @@
     "go": "Buscar",
     "examples": "Prueba:",
     "resultsFor": "Mercados con {{what}} abiertos en los próximos 7 días",
-    "inSeason": "{{crop}}: de temporada en Massachusetts ahora.",
-    "outOfSeason": "{{crop}}: normalmente de temporada en {{months}}. Puede haber cosecha guardada o de invernadero.",
+    "inSeason": "{{crop}}: de temporada ahora en la región {{region}}.",
+    "outOfSeason": "En la región {{region}}, {{crop}} suele estar de temporada en {{months}}. Puede haber cosecha guardada o de invernadero.",
     "noMatch": "No hay mercados con {{what}} abiertos en los próximos 7 días.",
     "tryMap": "Ver todos los mercados en el mapa",
     "vendorsCarrying": "Vendedores que lo tienen",
     "nothing": "No encontramos nada para “{{q}}”. Prueba una palabra más simple, como “manzanas”.",
     "vendorsHit": "Vendedores",
-    "marketsHit": "Mercados"
+    "marketsHit": "Mercados",
+    "notGrown": "{{crop}} no se cultiva mucho en la región {{region}}, pero algunos mercados pueden tenerlo."
   },
   "seasonal": {
     "title": "Qué hay de temporada",
-    "lede": "Cultivos de Massachusetts por mes. Toca uno para encontrar mercados que lo venden.",
+    "lede": "Cultivos locales por mes para tu región. Toca uno para encontrar mercados que lo venden.",
     "month": "Mes",
-    "source": "Basado en la tabla de disponibilidad de cultivos de MassGrown. El clima puede adelantar o atrasar una o dos semanas.",
-    "none": "Se cosecha poco este mes: los mercados tienen cultivos guardados y verduras de invernadero."
+    "source": "Meses aproximados según las guías de temporada de USDA SNAP-Ed y de los estados (Noreste según MassGrown). El clima y la altitud pueden mover las fechas unas semanas.",
+    "none": "Se cosecha poco este mes: los mercados tienen cultivos guardados y verduras de invernadero.",
+    "region": "Región"
   },
   "benefits": {
     "title": "Cómo usar SNAP, HIP y WIC en los mercados",
@@ -365,5 +371,12 @@
   "map": {
     "details": "Detalles",
     "wholeUs": "Todo EE. UU."
+  },
+  "types": {
+    "farmers_market": "Mercado de agricultores",
+    "farm_stand": "Puesto de granja o venta directa",
+    "csa": "CSA",
+    "food_hub": "Centro de alimentos",
+    "on_farm": "Mercado en la granja"
   }
 }

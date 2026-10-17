@@ -6,7 +6,6 @@ import { useStoreState } from '../app/context';
 import { store, type VendorPatch } from '../lib/store';
 import { scoreBreakdown, PRACTICE_LABELS } from '../lib/score';
 import { CATEGORY_LABELS } from '../lib/labels';
-import { inGreaterBostonView } from '../lib/region';
 import { Loading, SampleBadge } from '../components/Badges';
 import { ScoreBreakdown } from '../features/vendor/ScoreBreakdown';
 import type { PracticeId, Unit } from '../types';
@@ -46,9 +45,23 @@ export default function VendorPortal() {
   const [saved, setSaved] = useState(false);
 
   const v = vendors.data?.find((x) => x.id === vendorId);
-  const bostonMarkets = useMemo(
-    () => (markets.data ?? []).filter(inGreaterBostonView).sort((a, b) => a.name.localeCompare(b.name)),
+  const [attState, setAttState] = useState('MA');
+  const states = useMemo(() => [...new Set((markets.data ?? []).map((m) => m.state))].sort(), [markets.data]);
+  const names = useMemo(
+    () => new Map((markets.data ?? []).map((m) => [m.id, `${m.name} (${m.state})`])),
     [markets.data],
+  );
+  // Markets in the chosen state, with the ones this vendor already attends listed first.
+  const attendable = useMemo(
+    () =>
+      (markets.data ?? [])
+        .filter((m) => m.state === attState || v?.marketIds.includes(m.id))
+        .sort(
+          (a, b) =>
+            Number(!!v?.marketIds.includes(b.id)) - Number(!!v?.marketIds.includes(a.id)) ||
+            a.name.localeCompare(b.name),
+        ),
+    [markets.data, attState, v?.marketIds],
   );
   if (!vendors.data || !v) return <Loading />;
 
@@ -117,8 +130,18 @@ export default function VendorPortal() {
         {tab === 'markets' && (
           <fieldset className="space-y-2">
             <legend className="label">{t('portal.attendance')}</legend>
+            <label className="block max-w-xs">
+              <span className="label">{t('filters.state')}</span>
+              <select className="field" value={attState} onChange={(e) => setAttState(e.target.value)}>
+                {states.map((s) => (
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
+                ))}
+              </select>
+            </label>
             <ul className="max-h-[28rem] space-y-1 overflow-auto">
-              {bostonMarkets.map((m) => (
+              {attendable.map((m) => (
                 <li key={m.id}>
                   <label className="flex min-h-11 items-center gap-2">
                     <input
@@ -188,13 +211,7 @@ export default function VendorPortal() {
             </ul>
           </div>
         )}
-        {tab === 'surplus' && (
-          <SurplusTab
-            vendorId={v.id}
-            marketIds={v.marketIds}
-            names={new Map(bostonMarkets.map((m) => [m.id, m.name]))}
-          />
-        )}
+        {tab === 'surplus' && <SurplusTab vendorId={v.id} marketIds={v.marketIds} names={names} />}
       </div>
     </div>
   );

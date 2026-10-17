@@ -13,6 +13,7 @@ const STYLE: Record<Status['state'], { cls: string; icon: string }> = {
 
 /** `short` shows just "Closed" when the next opening is already shown nearby. */
 export function StatusBadge({
+  tz,
   status,
   now,
   onDark = false,
@@ -22,6 +23,8 @@ export function StatusBadge({
   now: Date;
   onDark?: boolean;
   short?: boolean;
+  /** The market's time zone, so "today" / "tomorrow" are the market's days. */
+  tz?: string;
 }) {
   const { t, i18n } = useTranslation();
   const s = STYLE[status.state];
@@ -33,7 +36,9 @@ export function StatusBadge({
       ) : (
         <Icon name={s.icon} size={16} />
       )}
-      {short && status.state === 'closed' ? t('status.closed') : statusText(status, now, t, i18n.language)}
+      {short && status.state === 'closed'
+        ? t('status.closed')
+        : statusText(status, now, t, i18n.language, tz)}
     </span>
   );
 }

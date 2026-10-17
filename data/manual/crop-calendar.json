@@ -1,0 +1,3459 @@
+{
+ "source": "Hand-compiled approximation of state and USDA seasonal produce guides (Northeast row from the MassGrown crop availability chart)",
+ "sourceUrl": "https://snaped.fns.usda.gov/resources/nutrition-education-materials/seasonal-produce-guide",
+ "note": "Approximate months for locally grown crops in each region. Weather, elevation and microclimates shift them; storage crops (apples, roots, squash) extend later. A crop missing from a region isn't commonly grown there.",
+ "regions": {
+  "NE": {
+   "name": "Northeast",
+   "states": [
+    "ME",
+    "NH",
+    "VT",
+    "MA",
+    "RI",
+    "CT",
+    "NY",
+    "NJ",
+    "PA"
+   ]
+  },
+  "MA": {
+   "name": "Mid-Atlantic and Upper South",
+   "states": [
+    "DE",
+    "MD",
+    "DC",
+    "VA",
+    "WV",
+    "KY",
+    "TN",
+    "NC"
+   ]
+  },
+  "SE": {
+   "name": "Southeast",
+   "states": [
+    "SC",
+    "GA",
+    "FL",
+    "AL",
+    "MS"
+   ]
+  },
+  "SC": {
+   "name": "South Central",
+   "states": [
+    "TX",
+    "OK",
+    "LA",
+    "AR"
+   ]
+  },
+  "MW": {
+   "name": "Midwest",
+   "states": [
+    "OH",
+    "IN",
+    "IL",
+    "MI",
+    "WI",
+    "MN",
+    "IA",
+    "MO"
+   ]
+  },
+  "PL": {
+   "name": "Plains and Mountain West",
+   "states": [
+    "ND",
+    "SD",
+    "NE",
+    "KS",
+    "CO",
+    "WY",
+    "MT",
+    "ID",
+    "UT",
+    "NV"
+   ]
+  },
+  "SW": {
+   "name": "Desert Southwest",
+   "states": [
+    "AZ",
+    "NM"
+   ]
+  },
+  "CA": {
+   "name": "California",
+   "states": [
+    "CA"
+   ]
+  },
+  "NW": {
+   "name": "Pacific Northwest",
+   "states": [
+    "OR",
+    "WA"
+   ]
+  }
+ },
+ "crops": [
+  {
+   "id": "asparagus",
+   "name": "Asparagus",
+   "nameEs": "Espárragos",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     5,
+     6
+    ],
+    "MA": [
+     4,
+     5
+    ],
+    "SE": [
+     3,
+     4
+    ],
+    "SC": [
+     3,
+     4
+    ],
+    "MW": [
+     5,
+     6
+    ],
+    "PL": [
+     5,
+     6
+    ],
+    "SW": [
+     3,
+     4
+    ],
+    "CA": [
+     2,
+     3,
+     4,
+     5
+    ],
+    "NW": [
+     4,
+     5,
+     6
+    ]
+   },
+   "tip": "Snap off the woody ends; cook within two days."
+  },
+  {
+   "id": "rhubarb",
+   "name": "Rhubarb",
+   "nameEs": "Ruibarbo",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     5,
+     6
+    ],
+    "MA": [
+     4,
+     5,
+     6
+    ],
+    "MW": [
+     5,
+     6
+    ],
+    "PL": [
+     5,
+     6,
+     7
+    ],
+    "CA": [
+     3,
+     4,
+     5,
+     6
+    ],
+    "NW": [
+     4,
+     5,
+     6,
+     7
+    ]
+   },
+   "tip": "Eat the stalks only — the leaves are not edible."
+  },
+  {
+   "id": "strawberries",
+   "name": "Strawberries",
+   "nameEs": "Fresas",
+   "category": "fruits",
+   "months": {
+    "NE": [
+     6,
+     7
+    ],
+    "MA": [
+     5,
+     6
+    ],
+    "SE": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     12
+    ],
+    "SC": [
+     3,
+     4,
+     5
+    ],
+    "MW": [
+     6,
+     7
+    ],
+    "PL": [
+     6,
+     7
+    ],
+    "SW": [
+     3,
+     4,
+     5
+    ],
+    "CA": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "NW": [
+     6,
+     7
+    ]
+   },
+   "tip": "Don't wash until just before eating."
+  },
+  {
+   "id": "peas",
+   "name": "Peas",
+   "nameEs": "Guisantes",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     6,
+     7
+    ],
+    "MA": [
+     5,
+     6
+    ],
+    "SE": [
+     3,
+     4,
+     5
+    ],
+    "SC": [
+     3,
+     4,
+     5
+    ],
+    "MW": [
+     6,
+     7
+    ],
+    "PL": [
+     6,
+     7
+    ],
+    "SW": [
+     2,
+     3,
+     4,
+     11,
+     12
+    ],
+    "CA": [
+     2,
+     3,
+     4,
+     5,
+     6
+    ],
+    "NW": [
+     5,
+     6,
+     7
+    ]
+   }
+  },
+  {
+   "id": "lettuce",
+   "name": "Lettuce",
+   "nameEs": "Lechuga",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "MA": [
+     4,
+     5,
+     6,
+     9,
+     10,
+     11
+    ],
+    "SE": [
+     1,
+     2,
+     3,
+     4,
+     10,
+     11,
+     12
+    ],
+    "SC": [
+     2,
+     3,
+     4,
+     5,
+     10,
+     11,
+     12
+    ],
+    "MW": [
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "PL": [
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "SW": [
+     1,
+     2,
+     3,
+     4,
+     10,
+     11,
+     12
+    ],
+    "CA": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "NW": [
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   }
+  },
+  {
+   "id": "spinach",
+   "name": "Spinach",
+   "nameEs": "Espinaca",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     5,
+     6,
+     9,
+     10,
+     11
+    ],
+    "MA": [
+     3,
+     4,
+     5,
+     9,
+     10,
+     11
+    ],
+    "SE": [
+     1,
+     2,
+     3,
+     4,
+     11,
+     12
+    ],
+    "SC": [
+     1,
+     2,
+     3,
+     4,
+     10,
+     11,
+     12
+    ],
+    "MW": [
+     5,
+     6,
+     9,
+     10
+    ],
+    "PL": [
+     5,
+     6,
+     9,
+     10
+    ],
+    "SW": [
+     1,
+     2,
+     3,
+     11,
+     12
+    ],
+    "CA": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     9,
+     10,
+     11,
+     12
+    ],
+    "NW": [
+     4,
+     5,
+     6,
+     9,
+     10,
+     11
+    ]
+   }
+  },
+  {
+   "id": "kale",
+   "name": "Kale",
+   "nameEs": "Col rizada",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "MA": [
+     3,
+     4,
+     5,
+     6,
+     9,
+     10,
+     11,
+     12
+    ],
+    "SE": [
+     1,
+     2,
+     3,
+     4,
+     10,
+     11,
+     12
+    ],
+    "SC": [
+     1,
+     2,
+     3,
+     4,
+     10,
+     11,
+     12
+    ],
+    "MW": [
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "PL": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "SW": [
+     1,
+     2,
+     3,
+     4,
+     10,
+     11,
+     12
+    ],
+    "CA": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "NW": [
+     1,
+     2,
+     3,
+     4,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ]
+   },
+   "tip": "Sweeter after the first frost."
+  },
+  {
+   "id": "chard",
+   "name": "Swiss chard",
+   "nameEs": "Acelga",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "MA": [
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "SE": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     10,
+     11,
+     12
+    ],
+    "SC": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     10,
+     11,
+     12
+    ],
+    "MW": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "PL": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "SW": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     10,
+     11,
+     12
+    ],
+    "CA": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "NW": [
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ]
+   }
+  },
+  {
+   "id": "radishes",
+   "name": "Radishes",
+   "nameEs": "Rábanos",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     5,
+     6,
+     9,
+     10
+    ],
+    "MA": [
+     4,
+     5,
+     9,
+     10,
+     11
+    ],
+    "SE": [
+     1,
+     2,
+     3,
+     4,
+     10,
+     11,
+     12
+    ],
+    "SC": [
+     2,
+     3,
+     4,
+     10,
+     11,
+     12
+    ],
+    "MW": [
+     5,
+     6,
+     9,
+     10
+    ],
+    "PL": [
+     5,
+     6,
+     9
+    ],
+    "SW": [
+     1,
+     2,
+     3,
+     4,
+     10,
+     11,
+     12
+    ],
+    "CA": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "NW": [
+     4,
+     5,
+     6,
+     9,
+     10
+    ]
+   }
+  },
+  {
+   "id": "scallions",
+   "name": "Scallions",
+   "nameEs": "Cebollín",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "MA": [
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "SE": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     10,
+     11,
+     12
+    ],
+    "SC": [
+     2,
+     3,
+     4,
+     5,
+     6,
+     10,
+     11,
+     12
+    ],
+    "MW": [
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "PL": [
+     6,
+     7,
+     8,
+     9
+    ],
+    "SW": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     10,
+     11,
+     12
+    ],
+    "CA": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "NW": [
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   }
+  },
+  {
+   "id": "garlic",
+   "name": "Garlic",
+   "nameEs": "Ajo",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "MA": [
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "SE": [
+     5,
+     6,
+     7,
+     8
+    ],
+    "SC": [
+     5,
+     6,
+     7,
+     8
+    ],
+    "MW": [
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "PL": [
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "SW": [
+     5,
+     6,
+     7,
+     8
+    ],
+    "CA": [
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "NW": [
+     7,
+     8,
+     9,
+     10,
+     11
+    ]
+   }
+  },
+  {
+   "id": "beets",
+   "name": "Beets",
+   "nameEs": "Remolacha",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "MA": [
+     5,
+     6,
+     7,
+     9,
+     10,
+     11
+    ],
+    "SE": [
+     3,
+     4,
+     5,
+     10,
+     11,
+     12
+    ],
+    "SC": [
+     3,
+     4,
+     5,
+     6,
+     10,
+     11,
+     12
+    ],
+    "MW": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "PL": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "SW": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     10,
+     11,
+     12
+    ],
+    "CA": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "NW": [
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ]
+   },
+   "tip": "The greens cook like chard."
+  },
+  {
+   "id": "carrots",
+   "name": "Carrots",
+   "nameEs": "Zanahorias",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     1,
+     2,
+     3,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "MA": [
+     5,
+     6,
+     7,
+     9,
+     10,
+     11,
+     12
+    ],
+    "SE": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     11,
+     12
+    ],
+    "SC": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     10,
+     11,
+     12
+    ],
+    "MW": [
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "PL": [
+     7,
+     8,
+     9,
+     10
+    ],
+    "SW": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     11,
+     12
+    ],
+    "CA": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "NW": [
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ]
+   },
+   "tip": "Winter carrots come from storage."
+  },
+  {
+   "id": "broccoli",
+   "name": "Broccoli",
+   "nameEs": "Brócoli",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     6,
+     7,
+     9,
+     10,
+     11
+    ],
+    "MA": [
+     5,
+     6,
+     10,
+     11
+    ],
+    "SE": [
+     1,
+     2,
+     3,
+     4,
+     11,
+     12
+    ],
+    "SC": [
+     1,
+     2,
+     3,
+     4,
+     10,
+     11,
+     12
+    ],
+    "MW": [
+     6,
+     7,
+     9,
+     10
+    ],
+    "PL": [
+     6,
+     7,
+     9,
+     10
+    ],
+    "SW": [
+     1,
+     2,
+     3,
+     4,
+     11,
+     12
+    ],
+    "CA": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "NW": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   }
+  },
+  {
+   "id": "cabbage",
+   "name": "Cabbage",
+   "nameEs": "Repollo",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     1,
+     2,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "MA": [
+     5,
+     6,
+     7,
+     10,
+     11,
+     12
+    ],
+    "SE": [
+     1,
+     2,
+     3,
+     4,
+     11,
+     12
+    ],
+    "SC": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     11,
+     12
+    ],
+    "MW": [
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "PL": [
+     7,
+     8,
+     9,
+     10
+    ],
+    "SW": [
+     1,
+     2,
+     3,
+     4,
+     11,
+     12
+    ],
+    "CA": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "NW": [
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ]
+   }
+  },
+  {
+   "id": "cauliflower",
+   "name": "Cauliflower",
+   "nameEs": "Coliflor",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     8,
+     9,
+     10
+    ],
+    "MA": [
+     5,
+     6,
+     10,
+     11
+    ],
+    "SE": [
+     1,
+     2,
+     3,
+     11,
+     12
+    ],
+    "SC": [
+     1,
+     2,
+     3,
+     11,
+     12
+    ],
+    "MW": [
+     8,
+     9,
+     10
+    ],
+    "PL": [
+     8,
+     9
+    ],
+    "SW": [
+     1,
+     2,
+     3,
+     11,
+     12
+    ],
+    "CA": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "NW": [
+     7,
+     8,
+     9,
+     10
+    ]
+   }
+  },
+  {
+   "id": "cucumbers",
+   "name": "Cucumbers",
+   "nameEs": "Pepinos",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     7,
+     8,
+     9
+    ],
+    "MA": [
+     6,
+     7,
+     8,
+     9
+    ],
+    "SE": [
+     5,
+     6,
+     7,
+     10
+    ],
+    "SC": [
+     5,
+     6,
+     7
+    ],
+    "MW": [
+     7,
+     8,
+     9
+    ],
+    "PL": [
+     7,
+     8,
+     9
+    ],
+    "SW": [
+     4,
+     5,
+     6,
+     9,
+     10
+    ],
+    "CA": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "NW": [
+     7,
+     8,
+     9
+    ]
+   }
+  },
+  {
+   "id": "summer_squash",
+   "name": "Zucchini and summer squash",
+   "nameEs": "Calabacín",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     7,
+     8,
+     9
+    ],
+    "MA": [
+     6,
+     7,
+     8,
+     9
+    ],
+    "SE": [
+     4,
+     5,
+     6,
+     7,
+     10
+    ],
+    "SC": [
+     5,
+     6,
+     7,
+     8
+    ],
+    "MW": [
+     7,
+     8,
+     9
+    ],
+    "PL": [
+     7,
+     8,
+     9
+    ],
+    "SW": [
+     4,
+     5,
+     6,
+     9,
+     10
+    ],
+    "CA": [
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "NW": [
+     7,
+     8,
+     9
+    ]
+   }
+  },
+  {
+   "id": "green_beans",
+   "name": "Green beans",
+   "nameEs": "Ejotes",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     7,
+     8,
+     9
+    ],
+    "MA": [
+     6,
+     7,
+     8,
+     9
+    ],
+    "SE": [
+     5,
+     6,
+     7,
+     10
+    ],
+    "SC": [
+     5,
+     6,
+     7
+    ],
+    "MW": [
+     7,
+     8,
+     9
+    ],
+    "PL": [
+     7,
+     8,
+     9
+    ],
+    "SW": [
+     4,
+     5,
+     6,
+     9,
+     10
+    ],
+    "CA": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "NW": [
+     7,
+     8,
+     9
+    ]
+   }
+  },
+  {
+   "id": "tomatoes",
+   "name": "Tomatoes",
+   "nameEs": "Tomates",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     7,
+     8,
+     9,
+     10
+    ],
+    "MA": [
+     7,
+     8,
+     9,
+     10
+    ],
+    "SE": [
+     5,
+     6,
+     7,
+     10,
+     11
+    ],
+    "SC": [
+     5,
+     6,
+     7
+    ],
+    "MW": [
+     7,
+     8,
+     9
+    ],
+    "PL": [
+     7,
+     8,
+     9
+    ],
+    "SW": [
+     5,
+     6,
+     7,
+     9,
+     10
+    ],
+    "CA": [
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "NW": [
+     7,
+     8,
+     9,
+     10
+    ]
+   },
+   "tip": "Store at room temperature, not in the fridge."
+  },
+  {
+   "id": "peppers",
+   "name": "Peppers",
+   "nameEs": "Pimientos",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     8,
+     9,
+     10
+    ],
+    "MA": [
+     7,
+     8,
+     9,
+     10
+    ],
+    "SE": [
+     5,
+     6,
+     7,
+     10,
+     11
+    ],
+    "SC": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "MW": [
+     8,
+     9
+    ],
+    "PL": [
+     8,
+     9
+    ],
+    "SW": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "CA": [
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "NW": [
+     8,
+     9,
+     10
+    ]
+   }
+  },
+  {
+   "id": "eggplant",
+   "name": "Eggplant",
+   "nameEs": "Berenjena",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     8,
+     9
+    ],
+    "MA": [
+     7,
+     8,
+     9
+    ],
+    "SE": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "SC": [
+     6,
+     7,
+     8,
+     9
+    ],
+    "MW": [
+     8,
+     9
+    ],
+    "PL": [
+     8,
+     9
+    ],
+    "SW": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "CA": [
+     7,
+     8,
+     9,
+     10
+    ],
+    "NW": [
+     8,
+     9
+    ]
+   }
+  },
+  {
+   "id": "sweet_corn",
+   "name": "Sweet corn",
+   "nameEs": "Elote",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     7,
+     8,
+     9
+    ],
+    "MA": [
+     7,
+     8
+    ],
+    "SE": [
+     5,
+     6,
+     7
+    ],
+    "SC": [
+     5,
+     6,
+     7
+    ],
+    "MW": [
+     7,
+     8,
+     9
+    ],
+    "PL": [
+     7,
+     8,
+     9
+    ],
+    "SW": [
+     5,
+     6,
+     7
+    ],
+    "CA": [
+     6,
+     7,
+     8,
+     9
+    ],
+    "NW": [
+     7,
+     8,
+     9
+    ]
+   },
+   "tip": "Best eaten the day you buy it."
+  },
+  {
+   "id": "potatoes",
+   "name": "Potatoes",
+   "nameEs": "Papas",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     1,
+     2,
+     3,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "MA": [
+     6,
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "SE": [
+     4,
+     5,
+     6
+    ],
+    "SC": [
+     5,
+     6,
+     7
+    ],
+    "MW": [
+     8,
+     9,
+     10,
+     11
+    ],
+    "PL": [
+     8,
+     9,
+     10,
+     11
+    ],
+    "SW": [
+     5,
+     6,
+     7
+    ],
+    "CA": [
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "NW": [
+     7,
+     8,
+     9,
+     10,
+     11
+    ]
+   }
+  },
+  {
+   "id": "onions",
+   "name": "Onions",
+   "nameEs": "Cebollas",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     1,
+     2,
+     3,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "MA": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "SE": [
+     4,
+     5,
+     6
+    ],
+    "SC": [
+     4,
+     5,
+     6
+    ],
+    "MW": [
+     8,
+     9,
+     10,
+     11
+    ],
+    "PL": [
+     8,
+     9,
+     10
+    ],
+    "SW": [
+     5,
+     6,
+     7
+    ],
+    "CA": [
+     4,
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "NW": [
+     8,
+     9,
+     10,
+     11
+    ]
+   }
+  },
+  {
+   "id": "winter_squash",
+   "name": "Winter squash",
+   "nameEs": "Calabaza de invierno",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     1,
+     2,
+     3,
+     9,
+     10,
+     11,
+     12
+    ],
+    "MA": [
+     9,
+     10,
+     11,
+     12
+    ],
+    "SE": [
+     9,
+     10,
+     11,
+     12
+    ],
+    "SC": [
+     9,
+     10,
+     11
+    ],
+    "MW": [
+     9,
+     10,
+     11,
+     12
+    ],
+    "PL": [
+     9,
+     10,
+     11
+    ],
+    "SW": [
+     9,
+     10,
+     11,
+     12
+    ],
+    "CA": [
+     9,
+     10,
+     11,
+     12
+    ],
+    "NW": [
+     9,
+     10,
+     11,
+     12
+    ]
+   },
+   "tip": "Keeps for months in a cool, dry place."
+  },
+  {
+   "id": "pumpkins",
+   "name": "Pumpkins",
+   "nameEs": "Calabazas",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     9,
+     10
+    ],
+    "MA": [
+     9,
+     10
+    ],
+    "SE": [
+     9,
+     10
+    ],
+    "SC": [
+     9,
+     10
+    ],
+    "MW": [
+     9,
+     10
+    ],
+    "PL": [
+     9,
+     10
+    ],
+    "SW": [
+     9,
+     10
+    ],
+    "CA": [
+     9,
+     10
+    ],
+    "NW": [
+     9,
+     10
+    ]
+   }
+  },
+  {
+   "id": "sweet_potatoes",
+   "name": "Sweet potatoes",
+   "nameEs": "Batatas",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     9,
+     10,
+     11,
+     12
+    ],
+    "MA": [
+     9,
+     10,
+     11,
+     12
+    ],
+    "SE": [
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "SC": [
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "MW": [
+     9,
+     10,
+     11
+    ],
+    "PL": [
+     9,
+     10
+    ],
+    "SW": [
+     9,
+     10,
+     11
+    ],
+    "CA": [
+     9,
+     10,
+     11,
+     12
+    ]
+   }
+  },
+  {
+   "id": "brussels_sprouts",
+   "name": "Brussels sprouts",
+   "nameEs": "Coles de Bruselas",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     9,
+     10,
+     11,
+     12
+    ],
+    "MA": [
+     10,
+     11,
+     12
+    ],
+    "SE": [
+     1,
+     2,
+     11,
+     12
+    ],
+    "SC": [
+     1,
+     2,
+     11,
+     12
+    ],
+    "MW": [
+     9,
+     10,
+     11
+    ],
+    "PL": [
+     9,
+     10
+    ],
+    "SW": [
+     1,
+     2,
+     11,
+     12
+    ],
+    "CA": [
+     1,
+     2,
+     3,
+     9,
+     10,
+     11,
+     12
+    ],
+    "NW": [
+     9,
+     10,
+     11,
+     12
+    ]
+   }
+  },
+  {
+   "id": "leeks",
+   "name": "Leeks",
+   "nameEs": "Puerros",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     9,
+     10,
+     11
+    ],
+    "MA": [
+     9,
+     10,
+     11,
+     12
+    ],
+    "SE": [
+     1,
+     2,
+     3,
+     11,
+     12
+    ],
+    "SC": [
+     1,
+     2,
+     3,
+     11,
+     12
+    ],
+    "MW": [
+     9,
+     10,
+     11
+    ],
+    "PL": [
+     9,
+     10
+    ],
+    "SW": [
+     1,
+     2,
+     3,
+     11,
+     12
+    ],
+    "CA": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     9,
+     10,
+     11,
+     12
+    ],
+    "NW": [
+     8,
+     9,
+     10,
+     11,
+     12
+    ]
+   }
+  },
+  {
+   "id": "parsnips",
+   "name": "Parsnips",
+   "nameEs": "Chirivías",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     3,
+     4,
+     10,
+     11,
+     12
+    ],
+    "MA": [
+     1,
+     2,
+     3,
+     10,
+     11,
+     12
+    ],
+    "MW": [
+     3,
+     4,
+     10,
+     11,
+     12
+    ],
+    "PL": [
+     10,
+     11
+    ],
+    "CA": [
+     1,
+     2,
+     3,
+     11,
+     12
+    ],
+    "NW": [
+     1,
+     2,
+     3,
+     10,
+     11,
+     12
+    ]
+   }
+  },
+  {
+   "id": "turnips",
+   "name": "Turnips",
+   "nameEs": "Nabos",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     1,
+     2,
+     9,
+     10,
+     11,
+     12
+    ],
+    "MA": [
+     4,
+     5,
+     10,
+     11,
+     12
+    ],
+    "SE": [
+     1,
+     2,
+     3,
+     4,
+     10,
+     11,
+     12
+    ],
+    "SC": [
+     1,
+     2,
+     3,
+     4,
+     10,
+     11,
+     12
+    ],
+    "MW": [
+     9,
+     10,
+     11
+    ],
+    "PL": [
+     9,
+     10
+    ],
+    "SW": [
+     1,
+     2,
+     3,
+     11,
+     12
+    ],
+    "CA": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     10,
+     11,
+     12
+    ],
+    "NW": [
+     9,
+     10,
+     11
+    ]
+   }
+  },
+  {
+   "id": "blueberries",
+   "name": "Blueberries",
+   "nameEs": "Arándanos",
+   "category": "fruits",
+   "months": {
+    "NE": [
+     7,
+     8
+    ],
+    "MA": [
+     6,
+     7
+    ],
+    "SE": [
+     4,
+     5,
+     6
+    ],
+    "SC": [
+     5,
+     6,
+     7
+    ],
+    "MW": [
+     7,
+     8
+    ],
+    "CA": [
+     4,
+     5,
+     6,
+     7
+    ],
+    "NW": [
+     7,
+     8,
+     9
+    ]
+   }
+  },
+  {
+   "id": "raspberries",
+   "name": "Raspberries",
+   "nameEs": "Frambuesas",
+   "category": "fruits",
+   "months": {
+    "NE": [
+     7,
+     8,
+     9
+    ],
+    "MA": [
+     6,
+     7,
+     8,
+     9
+    ],
+    "MW": [
+     7,
+     8,
+     9
+    ],
+    "PL": [
+     7,
+     8,
+     9
+    ],
+    "CA": [
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "NW": [
+     6,
+     7,
+     8,
+     9
+    ]
+   }
+  },
+  {
+   "id": "peaches",
+   "name": "Peaches",
+   "nameEs": "Duraznos",
+   "category": "fruits",
+   "months": {
+    "NE": [
+     7,
+     8,
+     9
+    ],
+    "MA": [
+     6,
+     7,
+     8,
+     9
+    ],
+    "SE": [
+     5,
+     6,
+     7,
+     8
+    ],
+    "SC": [
+     5,
+     6,
+     7,
+     8
+    ],
+    "MW": [
+     7,
+     8,
+     9
+    ],
+    "PL": [
+     7,
+     8
+    ],
+    "SW": [
+     6,
+     7,
+     8
+    ],
+    "CA": [
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "NW": [
+     7,
+     8,
+     9
+    ]
+   }
+  },
+  {
+   "id": "plums",
+   "name": "Plums",
+   "nameEs": "Ciruelas",
+   "category": "fruits",
+   "months": {
+    "NE": [
+     8,
+     9
+    ],
+    "MA": [
+     7,
+     8,
+     9
+    ],
+    "SE": [
+     5,
+     6,
+     7
+    ],
+    "SC": [
+     6,
+     7
+    ],
+    "MW": [
+     8,
+     9
+    ],
+    "PL": [
+     8,
+     9
+    ],
+    "SW": [
+     6,
+     7
+    ],
+    "CA": [
+     5,
+     6,
+     7,
+     8,
+     9
+    ],
+    "NW": [
+     8,
+     9
+    ]
+   }
+  },
+  {
+   "id": "melons",
+   "name": "Melons",
+   "nameEs": "Melones",
+   "category": "fruits",
+   "months": {
+    "NE": [
+     8,
+     9
+    ],
+    "MA": [
+     7,
+     8,
+     9
+    ],
+    "SE": [
+     6,
+     7,
+     8
+    ],
+    "SC": [
+     6,
+     7,
+     8
+    ],
+    "MW": [
+     8,
+     9
+    ],
+    "PL": [
+     8,
+     9
+    ],
+    "SW": [
+     6,
+     7,
+     8,
+     9
+    ],
+    "CA": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "NW": [
+     8,
+     9
+    ]
+   }
+  },
+  {
+   "id": "watermelon",
+   "name": "Watermelon",
+   "nameEs": "Sandía",
+   "category": "fruits",
+   "months": {
+    "NE": [
+     8,
+     9
+    ],
+    "MA": [
+     7,
+     8,
+     9
+    ],
+    "SE": [
+     6,
+     7,
+     8
+    ],
+    "SC": [
+     6,
+     7,
+     8
+    ],
+    "MW": [
+     8,
+     9
+    ],
+    "PL": [
+     8,
+     9
+    ],
+    "SW": [
+     6,
+     7,
+     8,
+     9
+    ],
+    "CA": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "NW": [
+     8,
+     9
+    ]
+   }
+  },
+  {
+   "id": "apples",
+   "name": "Apples",
+   "nameEs": "Manzanas",
+   "category": "fruits",
+   "months": {
+    "NE": [
+     1,
+     2,
+     3,
+     4,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "MA": [
+     8,
+     9,
+     10,
+     11
+    ],
+    "SE": [
+     8,
+     9,
+     10
+    ],
+    "SC": [
+     8,
+     9,
+     10
+    ],
+    "MW": [
+     8,
+     9,
+     10,
+     11
+    ],
+    "PL": [
+     8,
+     9,
+     10
+    ],
+    "SW": [
+     8,
+     9,
+     10
+    ],
+    "CA": [
+     8,
+     9,
+     10,
+     11
+    ],
+    "NW": [
+     8,
+     9,
+     10,
+     11,
+     12
+    ]
+   },
+   "tip": "Late-winter apples come from cold storage."
+  },
+  {
+   "id": "pears",
+   "name": "Pears",
+   "nameEs": "Peras",
+   "category": "fruits",
+   "months": {
+    "NE": [
+     8,
+     9,
+     10
+    ],
+    "MA": [
+     8,
+     9,
+     10
+    ],
+    "SE": [
+     7,
+     8,
+     9
+    ],
+    "SC": [
+     7,
+     8,
+     9
+    ],
+    "MW": [
+     8,
+     9,
+     10
+    ],
+    "PL": [
+     8,
+     9
+    ],
+    "SW": [
+     8,
+     9
+    ],
+    "CA": [
+     7,
+     8,
+     9,
+     10
+    ],
+    "NW": [
+     8,
+     9,
+     10,
+     11
+    ]
+   }
+  },
+  {
+   "id": "grapes",
+   "name": "Grapes",
+   "nameEs": "Uvas",
+   "category": "fruits",
+   "months": {
+    "NE": [
+     9,
+     10
+    ],
+    "MA": [
+     8,
+     9,
+     10
+    ],
+    "SE": [
+     8,
+     9
+    ],
+    "SC": [
+     7,
+     8,
+     9
+    ],
+    "MW": [
+     9,
+     10
+    ],
+    "PL": [
+     8,
+     9
+    ],
+    "SW": [
+     7,
+     8,
+     9
+    ],
+    "CA": [
+     7,
+     8,
+     9,
+     10,
+     11
+    ],
+    "NW": [
+     9,
+     10
+    ]
+   }
+  },
+  {
+   "id": "cranberries",
+   "name": "Cranberries",
+   "nameEs": "Arándanos rojos",
+   "category": "fruits",
+   "months": {
+    "NE": [
+     9,
+     10,
+     11
+    ],
+    "MA": [
+     9,
+     10,
+     11
+    ],
+    "MW": [
+     9,
+     10,
+     11
+    ],
+    "NW": [
+     9,
+     10,
+     11
+    ]
+   },
+   "tip": "Massachusetts is one of the biggest cranberry growers in the US."
+  },
+  {
+   "id": "basil",
+   "name": "Basil",
+   "nameEs": "Albahaca",
+   "category": "herbs",
+   "months": {
+    "NE": [
+     7,
+     8,
+     9
+    ],
+    "MA": [
+     6,
+     7,
+     8,
+     9
+    ],
+    "SE": [
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "SC": [
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "MW": [
+     7,
+     8,
+     9
+    ],
+    "PL": [
+     7,
+     8,
+     9
+    ],
+    "SW": [
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "CA": [
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "NW": [
+     7,
+     8,
+     9
+    ]
+   }
+  },
+  {
+   "id": "cilantro",
+   "name": "Cilantro",
+   "nameEs": "Cilantro",
+   "category": "herbs",
+   "months": {
+    "NE": [
+     6,
+     7,
+     9,
+     10
+    ],
+    "MA": [
+     4,
+     5,
+     6,
+     9,
+     10,
+     11
+    ],
+    "SE": [
+     1,
+     2,
+     3,
+     4,
+     10,
+     11,
+     12
+    ],
+    "SC": [
+     1,
+     2,
+     3,
+     4,
+     10,
+     11,
+     12
+    ],
+    "MW": [
+     6,
+     7,
+     9
+    ],
+    "PL": [
+     6,
+     7
+    ],
+    "SW": [
+     1,
+     2,
+     3,
+     4,
+     10,
+     11,
+     12
+    ],
+    "CA": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "NW": [
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ]
+   }
+  },
+  {
+   "id": "mushrooms",
+   "name": "Mushrooms",
+   "nameEs": "Hongos",
+   "category": "mushrooms",
+   "months": {
+    "NE": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "MA": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "SE": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "SC": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "MW": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "PL": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "SW": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "CA": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "NW": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ]
+   },
+   "tip": "Grown indoors, so available all year."
+  },
+  {
+   "id": "microgreens",
+   "name": "Microgreens",
+   "nameEs": "Microvegetales",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "MA": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "SE": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "SC": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "MW": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "PL": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "SW": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "CA": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ],
+    "NW": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10,
+     11,
+     12
+    ]
+   },
+   "tip": "Grown indoors, so available all year."
+  },
+  {
+   "id": "maple_syrup",
+   "name": "Maple syrup (new season)",
+   "nameEs": "Jarabe de arce",
+   "category": "maple_syrup",
+   "months": {
+    "NE": [
+     2,
+     3,
+     4
+    ],
+    "MA": [
+     2,
+     3
+    ],
+    "MW": [
+     2,
+     3,
+     4
+    ]
+   },
+   "tip": "Sold all year; this is when sugaring happens."
+  },
+  {
+   "id": "citrus",
+   "name": "Citrus",
+   "nameEs": "Cítricos",
+   "category": "fruits",
+   "months": {
+    "SE": [
+     1,
+     2,
+     3,
+     4,
+     11,
+     12
+    ],
+    "SC": [
+     1,
+     2,
+     3,
+     11,
+     12
+    ],
+    "SW": [
+     1,
+     2,
+     3,
+     12
+    ],
+    "CA": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     11,
+     12
+    ]
+   },
+   "tip": "Florida, Texas, Arizona and California citrus peaks in winter."
+  },
+  {
+   "id": "avocados",
+   "name": "Avocados",
+   "nameEs": "Aguacates",
+   "category": "fruits",
+   "months": {
+    "CA": [
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9
+    ]
+   }
+  },
+  {
+   "id": "okra",
+   "name": "Okra",
+   "nameEs": "Quimbombó",
+   "category": "vegetables",
+   "months": {
+    "NE": [
+     8,
+     9
+    ],
+    "MA": [
+     7,
+     8,
+     9
+    ],
+    "SE": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "SC": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "SW": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "CA": [
+     7,
+     8,
+     9
+    ]
+   }
+  },
+  {
+   "id": "collards",
+   "name": "Collard greens",
+   "nameEs": "Berza",
+   "category": "vegetables",
+   "months": {
+    "MA": [
+     3,
+     4,
+     5,
+     9,
+     10,
+     11,
+     12
+    ],
+    "SE": [
+     1,
+     2,
+     3,
+     4,
+     10,
+     11,
+     12
+    ],
+    "SC": [
+     1,
+     2,
+     3,
+     4,
+     10,
+     11,
+     12
+    ],
+    "SW": [
+     1,
+     2,
+     3,
+     11,
+     12
+    ],
+    "CA": [
+     1,
+     2,
+     3,
+     4,
+     10,
+     11,
+     12
+    ]
+   },
+   "tip": "Sweeter after a frost."
+  },
+  {
+   "id": "pecans",
+   "name": "Pecans",
+   "nameEs": "Nueces pecanas",
+   "category": "nuts",
+   "months": {
+    "SE": [
+     10,
+     11,
+     12
+    ],
+    "SC": [
+     10,
+     11,
+     12
+    ],
+    "SW": [
+     10,
+     11,
+     12
+    ],
+    "CA": [
+     10,
+     11,
+     12
+    ]
+   }
+  },
+  {
+   "id": "figs",
+   "name": "Figs",
+   "nameEs": "Higos",
+   "category": "fruits",
+   "months": {
+    "SE": [
+     7,
+     8
+    ],
+    "SC": [
+     6,
+     7,
+     8
+    ],
+    "CA": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "SW": [
+     6,
+     7,
+     8
+    ]
+   }
+  },
+  {
+   "id": "cherries",
+   "name": "Cherries",
+   "nameEs": "Cerezas",
+   "category": "fruits",
+   "months": {
+    "NE": [
+     7
+    ],
+    "MW": [
+     7
+    ],
+    "PL": [
+     7
+    ],
+    "CA": [
+     5,
+     6
+    ],
+    "NW": [
+     6,
+     7
+    ]
+   }
+  },
+  {
+   "id": "green_chile",
+   "name": "Green chile",
+   "nameEs": "Chile verde",
+   "category": "vegetables",
+   "months": {
+    "SW": [
+     8,
+     9,
+     10
+    ],
+    "PL": [
+     8,
+     9
+    ],
+    "SC": [
+     8,
+     9
+    ]
+   },
+   "tip": "New Mexico's roasting season runs late summer into fall."
+  }
+ ]
+}

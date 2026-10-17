@@ -8,6 +8,8 @@ import type { SourceMarket } from './lib/types';
 
 export const MAX_METERS = 150;
 export const MIN_SIMILARITY = 0.8;
+/** A SNAP retailer registered this close to a market, under another name, is a vendor or operator at that site. */
+export const CO_LOCATED_METERS = 60;
 
 export function jaroWinkler(a: string, b: string): number {
   if (a === b) return 1;
@@ -89,7 +91,7 @@ function* nearby(grid: Map<string, number[]>, m: { lat: number; lng: number }): 
 export function dedupe(all: SourceMarket[]): {
   clusters: Cluster[];
   log: MergeLog;
-  unmatchedConfirmations: number;
+  unmatched: SourceMarket[];
 } {
   const primary = all.filter((m) => !m.confirmOnly && hasGeo(m));
   const confirms = all.filter((m) => m.confirmOnly && hasGeo(m));
@@ -145,16 +147,20 @@ export function dedupe(all: SourceMarket[]): {
   // Attach each confirm-only record to its single best-matching market.
   const flat = clusters.flatMap((cl) => cl.records.map((r) => ({ cl, r, lat: r.lat!, lng: r.lng! })));
   const recordGrid = buildGrid(flat);
-  let unmatchedConfirmations = 0;
+  const unmatched: SourceMarket[] = [];
   for (const c of confirms) {
     let best: { cluster: Cluster; meters: number; sim: number } | null = null;
+    let site: { cluster: Cluster; meters: number } | null = null;
     for (const idx of nearby(recordGrid, c as never)) {
       const { cl, r } = flat[idx];
       {
         const meters = metersBetween(c as never, r as never);
         if (meters > MAX_METERS) continue;
         const sim = similarity(c, r);
-        if (sim < MIN_SIMILARITY) continue;
+        if (sim < MIN_SIMILARITY) {
+          if (meters <= CO_LOCATED_METERS && (!site || meters < site.meters)) site = { cluster: cl, meters };
+          continue;
+        }
         if (!best || meters < best.meters || (meters === best.meters && sim > best.sim))
           best = { cluster: cl, meters, sim };
       }
@@ -167,9 +173,17 @@ export function dedupe(all: SourceMarket[]): {
         meters: Math.round(best.meters),
         similarity: Math.round(best.sim * 100) / 100,
       });
-    } else unmatchedConfirmations++;
+    } else if (site) {
+      site.cluster.confirmations.push(c);
+      log.push({
+        kept: `${site.cluster.records[0].source}:${site.cluster.records[0].sourceId} ${site.cluster.records[0].name} (${site.cluster.records[0].city})`,
+        merged: [`${c.source}:${c.sourceId} ${c.name} (SNAP vendor at this site)`],
+        meters: Math.round(site.meters),
+        similarity: 0,
+      });
+    } else unmatched.push(c);
   }
-  return { clusters, log, unmatchedConfirmations };
+  return { clusters, log, unmatched };
 }
 
 const yearOrDate = (s: string) => (/^\d{4}$/.test(s) ? `${s}-01-01` : s);

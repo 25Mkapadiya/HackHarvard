@@ -101,3 +101,28 @@ describe('monthly and biweekly rules', () => {
     expect(occursOn(r, { y: 2026, m: 12, d: 17 })).toBe(false);
   });
 });
+
+describe('market time zones', () => {
+  const la: MarketSchedule = { rrule: 'FREQ=WEEKLY;BYDAY=SA', openTime: '09:00', closeTime: '13:00' };
+  it('evaluates a Los Angeles market in Pacific time', () => {
+    // Sat 2026-07-11 10:00 PDT = 17:00Z (1 pm in Boston).
+    expect(marketStatus([la], true, new Date('2026-07-11T17:00:00Z'), [], 'America/Los_Angeles').state).toBe(
+      'open',
+    );
+    // 9:30 Boston time is 6:30 in Los Angeles: not open yet, although it would be in Eastern time.
+    expect(marketStatus([la], true, new Date('2026-07-11T13:30:00Z'), [], 'America/Los_Angeles').state).toBe(
+      'closed',
+    );
+    expect(marketStatus([la], true, new Date('2026-07-11T13:30:00Z')).state).toBe('open');
+  });
+  it('Arizona does not observe daylight saving time', () => {
+    // Sat 2026-07-11 10:00 MST = 17:00Z; Denver would be 11:00.
+    const az: MarketSchedule = { ...la, openTime: '10:00', closeTime: '10:30' };
+    expect(marketStatus([az], true, new Date('2026-07-11T17:10:00Z'), [], 'America/Phoenix').state).not.toBe(
+      'closed',
+    );
+    expect(marketStatus([az], true, new Date('2026-07-11T17:10:00Z'), [], 'America/Denver').state).toBe(
+      'closed',
+    );
+  });
+});

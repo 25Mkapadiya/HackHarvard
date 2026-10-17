@@ -6,6 +6,7 @@ const base: MarketView = {
   type: 'farmers_market',
   city: 'Boston',
   state: 'MA',
+  tz: 'America/New_York',
   schedules: [
     {
       rrule: 'FREQ=WEEKLY;BYDAY=TU,FR',
@@ -60,6 +61,7 @@ describe('filters', () => {
       programs: ['snap' as const, 'hip' as const],
       maxKm: 5,
       state: 'MA',
+      type: 'farmers_market' as const,
       winter: true,
     };
     expect(parseFilters(filtersToParams(f))).toEqual(f);
@@ -83,6 +85,12 @@ describe('filters', () => {
     expect(applyFilters(all, { ...DEFAULT_FILTERS, maxKm: 2 }, tueNoon, origin).map((m) => m.id)).toEqual([
       'a',
     ]);
+  });
+  it('market type', () => {
+    const farm = { ...base, id: 'f', type: 'farm_stand' as const };
+    expect(
+      applyFilters([...all, farm], { ...DEFAULT_FILTERS, type: 'farm_stand' }, tueNoon).map((m) => m.id),
+    ).toEqual(['f']);
   });
   it('state', () => {
     const ny = { ...base, id: 'c', state: 'NY' };

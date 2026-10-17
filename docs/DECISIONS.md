@@ -70,10 +70,31 @@ Choices made where `docs/BUILD_PLAN.md` was silent or reality differed from it.
 28. **The map stays fast with 8,000 pins** by coloring pins with a state-only check (no look-ahead for the next
     opening), building popup text on demand, chunked marker loading, and refreshing the map every 5 minutes instead of
     every minute. `markets.geojson` carries raw schedule text only for unparsed markets: 4.9 MB, about 470 KB gzipped.
-29. **Tract shading and sample vendors stay Greater Boston / Massachusetts.** National low-income /
-    low-access tracts would be tens of MB; per-state tract files are a follow-up.
+29. **Sample vendors stay in Greater Boston.** They're invented demo data; spreading invented vendors across the
+    country would put fake data everywhere. Real USDA product and payment data covers the rest of the map.
 30. **OpenStreetMap was not used for markets.** A nationwide Overpass query timed out through the build proxy, and
     the public Overpass server isn't meant for that load; a regional extract would be the way to add it.
 31. **Location only, no routing.** Market pages show where the market is (address, site description, map pin) but
     no directions links or transit/walking estimates, by request. The MBTA stop lookup was removed from the
     pipeline with them.
+32. **Unmatched SNAP retailers become locations.** USDA's current SNAP list has ~6,100 mainland "Farmers and Markets"
+    retailers that match no directory market. They're real places to buy food with SNAP, so each becomes a location:
+    a farmers market when the name says so, otherwise a "farm stand or direct seller". A retailer registered within
+    60 m of a known market under another name is treated as a vendor at that market (it confirms SNAP there) instead
+    of a second pin. These records are current, so they aren't flagged stale, but they have no hours.
+33. **Every market has its own time zone** (`tz`), assigned by state with longitude/latitude cut-offs for split
+    states (FL panhandle, west TX, TN/KY/IN, MI's western UP, the western Dakotas/NE/KS, ID panhandle, Malheur County OR);
+    Arizona uses America/Phoenix (no DST). "Open now" and "today" are evaluated in the market's zone; the app's own
+    clock (check-in days, the simulated `?now=`) stays Eastern. The Navajo Nation's DST and a few border counties
+    are approximations.
+34. **Tracts load state by state.** All 45,141 low-income or low-access tracts are fetched (simplified ~150 m) and
+    written one file per state with an index of state bounding boxes; the map fetches a state the first time it
+    scrolls into view at zoom 7+. The raw snapshot is stored gzipped.
+35. **Regional crop calendars.** Nine growing regions cover the 49 mainland jurisdictions. Months are hand-compiled
+    approximations (the Northeast row is the original MassGrown chart), and region-specific crops (citrus, avocados,
+    okra, collards, pecans, figs, cherries, green chile) were added. The region follows the nearest market's state,
+    and the seasonal page lets people pick another.
+36. **Address search covers the mainland.** Nominatim is bounded to the contiguous US (it had been limited to
+    Massachusetts).
+37. **Boston coupons aren't a filter.** No source lists participating markets, so the filter matched nothing; the
+    program stays in the benefits guide.

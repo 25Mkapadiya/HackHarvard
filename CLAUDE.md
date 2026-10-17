@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Market Day Boston — a static web app for finding farmers markets across the contiguous US (deepest in Greater Boston), what they sell,
+Market Day Boston — a static web app for finding farmers markets and farm stands across the contiguous US, what they sell,
 when they're open, and which food-access benefits (SNAP, HIP, WIC FMNP, SFMNP, Boston coupons) they take.
 The full brief is `docs/BUILD_PLAN.md`; decisions not covered there go in `docs/DECISIONS.md`.
 

@@ -57,7 +57,29 @@ export function useJson<T>(path: string | null): Async<T> {
   };
 }
 
-type MarketsGeo = { features: { geometry: { coordinates: [number, number] }; properties: MarketSummary }[] };
+type MarketsGeo = {
+  features: { geometry: { coordinates: [number, number] }; properties: Partial<MarketSummary> }[];
+};
+
+/** markets.geojson omits default values to stay small (see compactSummary in the pipeline). */
+export function withSummaryDefaults(p: Partial<MarketSummary>): MarketSummary {
+  return {
+    type: 'farmers_market',
+    tz: 'America/New_York',
+    schedules: [],
+    scheduleParsed: false,
+    products: [],
+    productsAreSample: false,
+    paymentMethods: [],
+    paymentsAreSample: false,
+    programs: [],
+    winter: false,
+    stale: false,
+    vendorIds: [],
+    sustainabilityMax: 0,
+    ...p,
+  } as MarketSummary;
+}
 
 export function applyMarketOverride<T extends Pick<MarketSummary, 'schedules' | 'id'>>(m: T, s: StoreState) {
   const o = s.marketOverrides[m.id];
@@ -71,7 +93,10 @@ export function useMarkets(): Async<MarketView[]> {
     () =>
       res.data?.features.map((f) =>
         applyMarketOverride(
-          { ...f.properties, geo: { lat: f.geometry.coordinates[1], lng: f.geometry.coordinates[0] } },
+          {
+            ...withSummaryDefaults(f.properties),
+            geo: { lat: f.geometry.coordinates[1], lng: f.geometry.coordinates[0] },
+          },
           store,
         ),
       ),

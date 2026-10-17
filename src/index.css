@@ -118,6 +118,13 @@
   font: inherit;
 }
 
+.map-hint {
+  background: #fff;
+  padding: 6px 10px;
+  font-weight: 700;
+  font-size: 13px;
+}
+
 .map-us-button {
   background: #fff;
   color: var(--color-kale);
@@ -149,6 +156,12 @@
   display: grid;
   place-items: center;
 }
+.marker-pin.marker-farm {
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+}
+
 .marker-pin span {
   transform: rotate(45deg);
   color: #fff;

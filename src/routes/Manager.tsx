@@ -6,7 +6,6 @@ import { useNow, useStoreState } from '../app/context';
 import { store } from '../lib/store';
 import { isoDay, localNow, marketStatus } from '../lib/schedule/occurs';
 import { describeRule } from '../lib/schedule/describe';
-import { inGreaterBostonView } from '../lib/region';
 import { Loading, SampleBadge } from '../components/Badges';
 import { StatusBadge } from '../components/StatusBadge';
 import type { MarketSchedule } from '../types';
@@ -18,12 +17,15 @@ export default function Manager() {
   const state = useStoreState();
   const [marketId, setMarketId] = useState('copley-square-boston-ma');
   const market = useMarket(marketId);
+  const [st, setSt] = useState('MA');
+  const states = useMemo(() => [...new Set((markets.data ?? []).map((m) => m.state))].sort(), [markets.data]);
+  // Markets with a readable schedule, in the chosen state.
   const options = useMemo(
     () =>
       (markets.data ?? [])
-        .filter((m) => inGreaterBostonView(m) && m.scheduleParsed)
+        .filter((m) => m.state === st && m.scheduleParsed)
         .sort((a, b) => a.name.localeCompare(b.name)),
-    [markets.data],
+    [markets.data, st],
   );
   const [date, setDate] = useState(isoDay(localNow(now)));
   const [note, setNote] = useState('');
@@ -34,7 +36,7 @@ export default function Manager() {
   const override = state.marketOverrides[m.id] ?? {};
   const closures = override.closures ?? [];
   const schedules = draft ?? m.schedules;
-  const status = marketStatus(m.schedules, m.scheduleParsed, now, m.closures);
+  const status = marketStatus(m.schedules, m.scheduleParsed, now, m.closures, m.tz);
   const apps = state.applications.filter((a) => a.marketId === m.id);
 
   const postClosure = async (e: FormEvent) => {
@@ -56,6 +58,30 @@ export default function Manager() {
       <h1 className="text-3xl font-extrabold">{t('manager.title')}</h1>
       <p>{t('manager.lede')}</p>
       <label className="block">
+        <span className="label">{t('filters.state')}</span>
+        <select
+          className="field"
+          value={st}
+          onChange={(e) => {
+            const next = e.target.value;
+            setSt(next);
+            const first = (markets.data ?? [])
+              .filter((x) => x.state === next && x.scheduleParsed)
+              .sort((a, b) => a.name.localeCompare(b.name))[0];
+            if (first) {
+              setMarketId(first.id);
+              setDraft(null);
+            }
+          }}
+        >
+          {states.map((s) => (
+            <option key={s} value={s}>
+              {s}
+            </option>
+          ))}
+        </select>
+      </label>
+      <label className="block">
         <span className="label">{t('manager.pick')}</span>
         <select
           className="field"
@@ -70,7 +96,7 @@ export default function Manager() {
         </select>
       </label>
       <p className="flex flex-wrap items-center gap-2" role="status" aria-live="polite">
-        <StatusBadge status={status} now={now} />
+        <StatusBadge status={status} now={now} tz={m.tz} />
         <Link to={`/market/${m.id}`}>{m.name} →</Link>
       </p>
 

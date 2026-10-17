@@ -1,5 +1,5 @@
-import { useEffect, useMemo } from 'react';
-import { MapContainer, TileLayer, GeoJSON, useMap } from 'react-leaflet';
+import { useEffect } from 'react';
+import { MapContainer, TileLayer, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet.markercluster';
@@ -10,7 +10,7 @@ import type { MarketView } from '../../lib/filters';
 import { marketState, marketStatus } from '../../lib/schedule/occurs';
 import { statusText } from '../../lib/format';
 import { TILE_ATTRIBUTION, TILE_URL } from '../../app/config';
-import { useJson } from '../../app/data';
+import { loadJson, useJson } from '../../app/data';
 import type { LatLng } from '../../lib/geo';
 
 const COLORS = { open: '#24513F', closing_soon: '#B07A10', closed: '#6B7370', unknown: '#8C2D4F' } as const;
@@ -55,19 +55,20 @@ function Markers({ markets, now }: { markets: MarketView[]; now: Date }) {
     });
     const markers = markets.map((m) => {
       // Cheap state for the pin color; the full "Opens Saturday 9:00 AM" text is built when a popup opens.
-      const state = marketState(m.schedules, m.scheduleParsed, now, m.closures);
-      const label = `${m.name}, ${m.city}, ${m.state}: ${t(STATE_KEY[state])}`;
+      const state = marketState(m.schedules, m.scheduleParsed, now, m.closures, m.tz);
+      const label = `${m.name} (${t(`types.${m.type}`)}), ${m.city}, ${m.state}: ${t(STATE_KEY[state])}`;
       const icon = L.divIcon({
         className: '',
-        html: `<div class="marker-pin" style="background:${COLORS[state]}"><span aria-hidden="true">${GLYPH[state]}</span></div>`,
+        // Farm stands and direct sellers get a round pin so they read differently from markets.
+        html: `<div class="marker-pin${m.type === 'farm_stand' ? ' marker-farm' : ''}" style="background:${COLORS[state]}"><span aria-hidden="true">${GLYPH[state]}</span></div>`,
         iconSize: [30, 30],
         iconAnchor: [15, 30],
         popupAnchor: [0, -28],
       });
       const marker = L.marker([m.geo.lat, m.geo.lng], { icon, title: label, alt: label, keyboard: true });
       marker.bindPopup(() => {
-        const s = marketStatus(m.schedules, m.scheduleParsed, now, m.closures);
-        return `<strong>${escapeHtml(m.name)}</strong><br>${escapeHtml(`${m.city}, ${m.state}`)}<br>${escapeHtml(statusText(s, now, t, i18n.language))}<br><a href="#/market/${m.id}">${escapeHtml(t('map.details'))} →</a>`;
+        const s = marketStatus(m.schedules, m.scheduleParsed, now, m.closures, m.tz);
+        return `<strong>${escapeHtml(m.name)}</strong><br>${escapeHtml(`${m.city}, ${m.state}`)}<br>${escapeHtml(statusText(s, now, t, i18n.language, m.tz))}<br><a href="#/market/${m.id}">${escapeHtml(t('map.details'))} →</a>`;
       });
       marker.on('keypress', (e) => {
         if ((e.originalEvent as KeyboardEvent).key === 'Enter') navigate(`/market/${m.id}`);
@@ -115,18 +116,65 @@ function FitTo({ origin }: { origin: LatLng }) {
   return null;
 }
 
+const TRACT_MIN_ZOOM = 7;
+const tractStyle = (f?: GeoJSON.Feature) => {
+  const p = (f?.properties ?? {}) as { lowIncome: boolean; lowAccess: boolean; lila: boolean };
+  const both = p.lila || (p.lowIncome && p.lowAccess);
+  return { color: '#8C2D4F', weight: 0.5, fillColor: '#8C2D4F', fillOpacity: both ? 0.35 : 0.12 };
+};
+
+/**
+ * Low-income / low-access tracts for the states in view. Each state's file loads the first time
+ * it scrolls into view (zoom 7+); below that a note asks people to zoom in.
+ */
 function TractLayer() {
-  const tracts = useJson<GeoJSON.FeatureCollection>('tracts-lila.geojson');
-  const style = useMemo(
-    () => (f?: GeoJSON.Feature) => {
-      const p = (f?.properties ?? {}) as { lowIncome: boolean; lowAccess: boolean; lila: boolean };
-      const both = p.lila || (p.lowIncome && p.lowAccess);
-      return { color: '#8C2D4F', weight: 0.5, fillColor: '#8C2D4F', fillOpacity: both ? 0.35 : 0.12 };
-    },
-    [],
-  );
-  if (!tracts.data) return null;
-  return <GeoJSON data={tracts.data} style={style} interactive={false} />;
+  const map = useMap();
+  const { t } = useTranslation();
+  const index = useJson<Record<string, [number, number, number, number]>>('tracts/index.json');
+  useEffect(() => {
+    if (!index.data) return;
+    const bboxes = index.data;
+    const group = L.layerGroup().addTo(map);
+    const requested = new Set<string>();
+    const Hint = L.Control.extend({
+      onAdd() {
+        const div = L.DomUtil.create('div', 'leaflet-bar map-hint');
+        div.textContent = t('explore.zoomForTracts');
+        return div;
+      },
+    });
+    const hint = new Hint({ position: 'bottomleft' });
+    let disposed = false;
+    const update = () => {
+      const zoomedIn = map.getZoom() >= TRACT_MIN_ZOOM;
+      if (zoomedIn) hint.remove();
+      else if (!hint.getContainer()?.parentNode) hint.addTo(map);
+      if (!zoomedIn) return;
+      const v = map.getBounds();
+      for (const [st, [w, sth, e, n]] of Object.entries(bboxes)) {
+        if (requested.has(st) || e < v.getWest() || w > v.getEast() || n < v.getSouth() || sth > v.getNorth())
+          continue;
+        requested.add(st);
+        loadJson<GeoJSON.FeatureCollection>(`tracts/${st}.geojson`).then(
+          (fc) => {
+            if (disposed) return;
+            const layer = L.geoJSON(fc, { style: tractStyle, interactive: false });
+            group.addLayer(layer);
+          },
+          () => requested.delete(st),
+        );
+      }
+    };
+    update();
+    map.on('moveend zoomend', update);
+    return () => {
+      disposed = true;
+      map.off('moveend zoomend', update);
+      hint.remove();
+      group.remove();
+    };
+  }, [map, index.data, t]);
+  return null;
 }
 
 export default function MarketMap({

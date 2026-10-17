@@ -2,7 +2,8 @@ import { useEffect, useMemo, useState, type FormEvent } from 'react';
 import { Link, useSearchParams } from 'react-router';
 import { useTranslation } from 'react-i18next';
 import type MiniSearch from 'minisearch';
-import { loadJson, useCrops, useMarkets, useVendors } from '../app/data';
+import { loadJson, useMarkets, useVendors } from '../app/data';
+import { useRegion } from '../app/useRegion';
 import { useLocationState, useNow } from '../app/context';
 import { SEARCH_OPTIONS, type SearchDoc } from '../lib/search/options';
 import { localNow, nextOpening, marketStatus, opensWithin } from '../lib/schedule/occurs';
@@ -71,7 +72,8 @@ export default function Search() {
   const { origin } = useLocationState();
   const markets = useMarkets();
   const vendors = useVendors();
-  const crops = useCrops();
+  const region = useRegion();
+  const crops = { data: region.calendar };
 
   useEffect(() => {
     if (!q) return;
@@ -93,9 +95,9 @@ export default function Search() {
     // Crop or category: find markets selling it that open in the next 7 days.
     // Open now sorts first, then by the next opening.
     const soonest = (m: MarketView) => {
-      const s = marketStatus(m.schedules, true, now, m.closures);
+      const s = marketStatus(m.schedules, true, now, m.closures, m.tz, 0);
       if (s.state === 'open' || s.state === 'closing_soon') return 0;
-      const n = nextOpening(m.schedules, now, m.closures, 7);
+      const n = nextOpening(m.schedules, now, m.closures, 7, m.tz);
       return n
         ? n.day.y * 1e8 + n.day.m * 1e6 + n.day.d * 1e4 + Number(n.openTime.replace(':', ''))
         : Infinity;
@@ -108,7 +110,7 @@ export default function Search() {
     const sellerMarkets = new Set(sellers.flatMap((v) => v.marketIds));
     const list = markets.data
       .filter((m) => (crop ? sellerMarkets.has(m.id) : m.products.includes(category)))
-      .filter((m) => m.scheduleParsed && opensWithin(m.schedules, now, 7, m.closures))
+      .filter((m) => m.scheduleParsed && opensWithin(m.schedules, now, 7, m.closures, m.tz))
       .map((m) => ({ m, when: soonest(m) }))
       .sort((a, b) => a.when - b.when || distanceKm(origin, a.m.geo) - distanceKm(origin, b.m.geo))
       .map((x) => x.m);
@@ -116,6 +118,7 @@ export default function Search() {
   }, [hits, markets.data, vendors.data, crops.data, now, origin]);
 
   const month = localNow(now).m;
+  const inSeasonHere = result?.kind === 'food' && !!result.crop?.months[region.id]?.includes(month);
   const es = i18n.language.startsWith('es');
 
   return (
@@ -163,16 +166,23 @@ export default function Search() {
       {result?.kind === 'food' && (
         <section className="space-y-4" aria-live="polite">
           {result.crop && (
-            <p
-              className={`rounded-lg p-3 ${result.crop.months.includes(month) ? 'bg-kale-light' : 'bg-squash-light'}`}
-            >
+            <p className={`rounded-lg p-3 ${inSeasonHere ? 'bg-kale-light' : 'bg-squash-light'}`}>
               <Icon name="leaf" className="mr-1 inline" />
-              {result.crop.months.includes(month)
-                ? t('search.inSeason', { crop: es ? result.crop.nameEs : result.crop.name })
-                : t('search.outOfSeason', {
+              {inSeasonHere
+                ? t('search.inSeason', {
                     crop: es ? result.crop.nameEs : result.crop.name,
-                    months: monthsText(result.crop.months, i18n.language),
-                  })}
+                    region: region.name,
+                  })
+                : result.crop.months[region.id]?.length
+                  ? t('search.outOfSeason', {
+                      crop: es ? result.crop.nameEs : result.crop.name,
+                      months: monthsText(result.crop.months[region.id], i18n.language),
+                      region: region.name,
+                    })
+                  : t('search.notGrown', {
+                      crop: es ? result.crop.nameEs : result.crop.name,
+                      region: region.name,
+                    })}
             </p>
           )}
           <h2 className="section-title">

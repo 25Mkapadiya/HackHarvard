@@ -15,6 +15,7 @@ import {
   type SourceRef,
 } from '../src/types';
 import { parseSchedule, parseUsdaSchedule } from '../src/lib/schedule/parse';
+import { timeZoneFor } from '../src/lib/schedule/tz';
 import { SEARCH_OPTIONS, type SearchDoc } from '../src/lib/search/options';
 import { CATEGORY_LABELS } from '../src/lib/labels';
 import { fetchMassgis } from './fetch/massgis';
@@ -26,7 +27,8 @@ import { fetchErsTracts } from './fetch/ers-tracts';
 import { fetchMars, fetchNass } from './fetch/keyed';
 import { geocodeMissing } from './geocode';
 import { dedupe, mergeCluster } from './dedupe';
-import { addTracts, assignSampleVendors, type SeedVendor } from './enrich';
+import { snapOnlyClusters } from './snap-only';
+import { addTracts, assignSampleVendors, bboxOf, type BBox, type SeedVendor } from './enrich';
 import {
   displayName,
   inferLocationType,
@@ -68,8 +70,9 @@ function toMarket(m: SourceMarket & { all: SourceMarket[] }): Omit<Market, 'id'>
   }
   const loc = inferLocationType(m.locationNote, m.street);
   return {
-    name: displayName(m.name, m.winter),
-    type: 'farmers_market',
+    // SNAP-only names are already cleaned; "Farmers Market" isn't appended to a farm's name.
+    name: m.source === 'usda-snap-retailers' ? m.name : displayName(m.name, m.winter),
+    type: m.type ?? 'farmers_market',
     address: {
       street: normalizeStreet(m.street),
       city: titleCase(m.city),
@@ -78,6 +81,7 @@ function toMarket(m: SourceMarket & { all: SourceMarket[] }): Omit<Market, 'id'>
       zip: normalizeZip(m.zip),
     },
     geo: { lat: Math.round(m.lat! * 1e5) / 1e5, lng: Math.round(m.lng! * 1e5) / 1e5 },
+    tz: timeZoneFor(m.state, m.lat!, m.lng!),
     ...loc,
     locationNote: m.locationNote,
     winter: m.winter ?? false,
@@ -96,6 +100,24 @@ function toMarket(m: SourceMarket & { all: SourceMarket[] }): Omit<Market, 'id'>
     lastUpdated: m.lastUpdated,
     stale: isStale(m.lastUpdated),
   };
+}
+
+/**
+ * Drops default values (empty lists, false flags, farmers_market type) from a map summary to keep
+ * markets.geojson small; the app restores them with withSummaryDefaults().
+ */
+function compactSummary(s: Record<string, unknown>): Record<string, unknown> {
+  return Object.fromEntries(
+    Object.entries(s).filter(
+      ([k, v]) =>
+        v !== undefined &&
+        v !== false &&
+        !(Array.isArray(v) && v.length === 0) &&
+        !(k === 'type' && v === 'farmers_market') &&
+        !(k === 'tz' && v === 'America/New_York') &&
+        !(k === 'sustainabilityMax' && v === 0),
+    ),
+  );
 }
 
 function assignIds(markets: Omit<Market, 'id'>[]): Market[] {
@@ -205,8 +227,9 @@ async function main() {
   const geo = await geocodeMissing(records);
 
   log('pipeline', 'deduping');
-  const { clusters, log: mergeLog, unmatchedConfirmations } = dedupe(records);
-  const markets = assignIds(clusters.map(mergeCluster).map(toMarket));
+  const { clusters, log: mergeLog, unmatched } = dedupe(records);
+  const snapOnly = snapOnlyClusters(unmatched);
+  const markets = assignIds([...clusters, ...snapOnly].map(mergeCluster).map(toMarket));
 
   log('pipeline', 'enriching');
   const tractHits = addTracts(markets, ers.tracts);
@@ -214,7 +237,7 @@ async function main() {
   const vendors = assignSampleVendors(markets, seeds);
   const prices = readJson<{ prices: Price[] }>('data/seed/prices.json').prices;
   const programs = readJson<Program[]>('data/manual/programs.json');
-  const crops = readJson<CropCalendar>('data/manual/crop-calendar-ma.json');
+  const crops = readJson<CropCalendar>('data/manual/crop-calendar.json');
 
   const manualMeta: SourceMeta[] = [
     {
@@ -230,7 +253,7 @@ async function main() {
       id: 'manual-crops',
       name: crops.source,
       url: crops.sourceUrl,
-      license: 'Compiled from MDAR MassGrown',
+      license: 'Compiled from USDA SNAP-Ed, state guides and MDAR MassGrown',
       fetchedAt: null,
       records: crops.crops.length,
       status: 'manual',
@@ -277,6 +300,7 @@ async function main() {
     id: m.id,
     name: m.name,
     type: m.type,
+    tz: m.tz,
     city: m.address.city,
     state: m.address.state,
     schedules: m.schedules,
@@ -319,7 +343,7 @@ async function main() {
     features: markets.map((m, i) => ({
       type: 'Feature',
       geometry: { type: 'Point', coordinates: [m.geo.lng, m.geo.lat] },
-      properties: summaries[i],
+      properties: compactSummary(summaries[i]),
     })),
   });
   for (const m of markets) writeJson(`${OUT}/markets/${m.id}.json`, m);
@@ -332,15 +356,31 @@ async function main() {
   writeJson(`${OUT}/programs.json`, programs);
   writeJson(`${OUT}/crop-calendar.json`, crops);
   writeJson(`${OUT}/emission-factors.json`, readJson('data/manual/emission-factors.json'));
+  // Low-income / low-access tracts, one file per state, plus each state's bounding box so the
+  // map loads only the states in view.
+  fs.rmSync(path.join(ROOT, OUT, 'tracts'), { recursive: true, force: true });
+  fs.rmSync(path.join(ROOT, OUT, 'tracts-lila.geojson'), { force: true });
   if (ers.tracts) {
-    // Keep only tracts that are low income or low access: that's all the map layer draws.
-    writeJson(`${OUT}/tracts-lila.geojson`, {
-      type: 'FeatureCollection',
-      features: ers.tracts.features.filter((f) => {
-        const p = f.properties as { lowIncome: boolean; lowAccess: boolean };
-        return p.lowIncome || p.lowAccess;
-      }),
-    });
+    const byState = new Map<string, typeof ers.tracts.features>();
+    for (const f of ers.tracts.features) {
+      const st = (f.properties as { state: string }).state;
+      byState.set(st, [
+        ...(byState.get(st) ?? []),
+        { ...f, properties: { ...f.properties, state: undefined } },
+      ]);
+    }
+    const index: Record<string, BBox> = {};
+    for (const [st, features] of byState) {
+      writeJson(`${OUT}/tracts/${st}.geojson`, { type: 'FeatureCollection', features });
+      const boxes = features.map((f) => bboxOf(f.geometry));
+      index[st] = [
+        Math.min(...boxes.map((b) => b[0])),
+        Math.min(...boxes.map((b) => b[1])),
+        Math.max(...boxes.map((b) => b[2])),
+        Math.max(...boxes.map((b) => b[3])),
+      ].map((n) => Math.round(n * 1000) / 1000) as BBox;
+    }
+    writeJson(`${OUT}/tracts/index.json`, index);
   }
   writeJson(`${OUT}/search-index.json`, JSON.parse(buildSearch(markets, vendors, crops)));
   writeJson(`${OUT}/meta.json`, meta, true);
@@ -357,7 +397,7 @@ Review these for false merges.
 - Input records: ${records.length} (${records.filter((r) => r.confirmOnly).length} confirm-only SNAP retailer records)
 - Markets after dedupe: ${markets.length}
 - Merges: ${mergeLog.length}
-- SNAP retailer records that matched no market (not added): ${unmatchedConfirmations}
+- SNAP retailer records that matched no market, added as their own locations: ${unmatched.length} (${snapOnly.length} after collapsing duplicates)
 - Geocoded: ${geo.geocoded}, geocoding failed: ${geo.failed}
 
 | Kept | Merged in | Distance (m) | Name similarity |

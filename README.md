@@ -4,7 +4,7 @@ Find Greater Boston farmers markets that are **open now**, see **what's in seaso
 coupons are accepted** — in English and Spanish, on a phone, at an outdoor market with weak signal. Vendors get a
 transparent sustainability score and tools to post prices and end-of-day surplus; shoppers earn rewards for visiting.
 
-**Live site:** https://25mkapadiya.github.io/HackHarvard/ (published by GitHub Actions once Pages is enabled — see [Deploying](#deploying))
+**Live site:** https://25mkapadiya.github.io/HackHarvard/ (deployed by GitHub Actions on every push to `main` — see [Deploying](#deploying))
 
 | Home                                                                     | Map                                                                     | Market page                                                                     | Phone                                              |
 | ------------------------------------------------------------------------ | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------- | -------------------------------------------------- |

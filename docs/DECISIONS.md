@@ -38,3 +38,22 @@ Choices made where `docs/BUILD_PLAN.md` was silent or reality differed from it.
     so `refresh-data.yml` runs `gh workflow run deploy.yml` after committing new data.
 15. **lockfile is generated with npm 11** (the runner's `lts/*` Node ships npm 11, which rejects npm 10 lockfiles
     missing optional platform packages).
+16. **`?now=` simulates time.** Any URL accepts `?now=YYYY-MM-DDTHH:MM` (Boston wall-clock) so demos and the
+    Playwright test don't depend on the real date — in October most summer markets are closed. A banner says when
+    time is simulated.
+17. **Location stays in the session.** "Use my location" / address search is kept in `sessionStorage` only; the
+    default origin is downtown Boston. Address search calls Nominatim on submit only, at most once per second.
+18. **Benefit details are opt-in.** The HIP calculator's household size is saved only if the user ticks
+    "Remember", and "Clear my data" in the footer wipes all demo storage.
+19. **QR check-in tokens are a speed bump, not security.** Demo tokens are a hash of market + date with a salt
+    that ships in the bundle. Real anti-fraud needs server-signed tokens (a Supabase edge function).
+20. **SupabaseStore is a stub.** No Supabase project was provided, so Phase 6 stops at the shared `Store` interface;
+    `VITE_BACKEND=supabase` logs a warning and falls back to demo mode. No migrations were written.
+21. **Score category labels and "how to improve" hints are English only** (they come from `src/lib/score/`); the
+    rest of the UI chrome and the benefits guide are translated.
+22. **Duplicate-looking summer/winter listings are kept.** MDAR lists some markets (e.g. Boston Public Market) once
+    as a summer and once as a winter market at the same address; they are separate source records with their own
+    schedules, so both appear.
+23. **Markets outside Greater Boston have no vendors**, so their products/payment show "—" rather than invented data.
+24. **Lighthouse wasn't run in this environment.** The initial JS is about 140 KB gzipped (budget 250 KB); the map,
+    MiniSearch, QR code and portal/manager routes are lazy-loaded.

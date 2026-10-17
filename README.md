@@ -1,10 +1,140 @@
-# Local Food Market Platform
+# Market Day Boston
 
-A platform that collects data on local food markets (farmers markets, farm stands, CSAs, food hubs, and on-farm markets), makes it easy for consumers to shop locally and sustainably, and rewards vendors who adopt sustainable practices.
+Find Greater Boston farmers markets that are **open now**, see **what's in season**, and learn **where SNAP, HIP and WIC
+coupons are accepted** — in English and Spanish, on a phone, at an outdoor market with weak signal. Vendors get a
+transparent sustainability score and tools to post prices and end-of-day surplus; shoppers earn rewards for visiting.
+
+**Live site:** https://25mkapadiya.github.io/HackHarvard/ (published by GitHub Actions once Pages is enabled — see [Deploying](#deploying))
+
+| Home                                                                     | Map                                                                     | Market page                                                                     | Phone                                              |
+| ------------------------------------------------------------------------ | ----------------------------------------------------------------------- | ------------------------------------------------------------------------------- | -------------------------------------------------- |
+| ![Home: markets open now as stall-sign cards](docs/screenshots/home.jpg) | ![Map with clustered markets and filters](docs/screenshots/explore.jpg) | ![Market page with schedule calendar and benefits](docs/screenshots/market.jpg) | ![Phone map view](docs/screenshots/mobile-map.jpg) |
+
+> **Sample data.** Market locations, schedules and food-benefit participation are real public data (MassGIS/MDAR,
+> USDA). **Vendors, products, prices, vendor applications, and anything you save are invented sample data** for the
+> demo, and the app labels them "Sample data" everywhere they appear. Market schedules come from the state's
+> 2023-season listings, so every market is flagged as possibly out of date.
+
+## Features
+
+- **Open now near you** — 264 Massachusetts markets; schedules parsed from free text into iCal RRULEs (97% parse;
+  the rest show the source's raw text and are left out of "open now" rather than guessed). Time zone is
+  America/New_York, DST-safe, with season boundaries, "no market on 7/4" exceptions and manager-posted closures.
+- **Map + list** — clustered map (OpenStreetMap), keyboard-accessible list, filters for open now / today / this week /
+  a weekday, distance, food benefits, products, payment, winter and indoor markets, and sustainability. Filters live
+  in the URL so views are shareable. An optional layer shades USDA low-income / low-access census tracts.
+- **Market pages** — schedule and a 4-week calendar, how to use SNAP/HIP/WIC there, nearest MBTA stop and walking time,
+  Google/Apple Maps directions, National Weather Service forecast for the next market day, vendors, sources with
+  fetch dates, "Suggest a correction" (opens a GitHub issue), and a QR code for rewards check-in.
+- **Find food** — "strawberries" → markets carrying them that are open in the next 7 days, plus whether they're in season.
+- **In season** — month-by-month Massachusetts crop guide (47 crops, English and Spanish names).
+- **SNAP & HIP guide** — plain-language guide in English and Spanish and a HIP calculator (monthly cap by household
+  size, refund for a purchase). Program amounts live in `data/manual/programs.json` with a "last checked" date.
+  Household size is only remembered if you tick the box.
+- **Vendor portal** (`#/vendor`), **manager view** (`#/manager`), **rewards** (`#/rewards`) — demo mode: edit products,
+  prices, stock and market attendance; post surplus; fill out the sustainability self-assessment and watch the score
+  change; post a rain closure and see "open now" update; approve vendor applications; check in by QR for points and
+  see estimated local dollars, food miles and CO₂e avoided (with the method spelled out).
+- **Transparent sustainability score** — six categories, 100 points, rendered from the same code that computes it
+  (`#/how-scores-work`, `src/lib/score/`). Self-reported items are marked until verified.
+- **Works offline-ish** — installable PWA; app shell, data files and recently viewed map tiles are cached.
+
+Tip: add `?now=2026-07-11T10:30` to any URL (e.g. `#/?now=2026-07-11T10:30`) to simulate a summer Saturday in Boston.
+
+## How it works
+
+GitHub Pages only serves static files, so there is no server or database at runtime. A **build-time pipeline**
+collects public data, checks it, and commits static JSON that the browser loads; filtering, search, distance and
+"open now" all run client-side.
+
+```
+ MassGIS / MDAR markets ─┐
+ USDA FNS SNAP retailers ┤
+ USDA ERS food access    ┤   npm run data (Node, weekly in GitHub Actions)
+ MBTA stops              ├─▶ fetch ─▶ normalize ─▶ geocode ─▶ dedupe ─▶ enrich ─▶ validate ─▶ write
+ USDA LFP / MARS / NASS* ┤      │        │                       │         │          │          │
+ data/manual, data/seed ─┘   raw/ snapshot  RRULEs, names,      150 m + name  tracts, transit, zod     public/data/*.json
+                             fallback       units, ZIPs         similarity   sample vendors           → GitHub Pages
+ * optional, need API keys
+```
+
+- Every fetch saves a raw snapshot in `data/raw/` and falls back to the latest snapshot if the source is down.
+- `data/SOURCES.md` lists every source, license, fetch date and record count; `data/reports/dedupe.md` lists every
+  merge for review; `data/reports/quality.md` lists schedules that couldn't be parsed.
+- Writes (vendor portal, rewards, manager tools) go through a `Store` interface (`src/lib/store/`). The default
+  `DemoStore` keeps everything in your browser's localStorage. A `SupabaseStore` is stubbed for later.
+- Decisions not covered by the build plan are logged in `docs/DECISIONS.md`.
+
+## Run it locally
+
+```bash
+npm ci
+npm run dev            # http://localhost:5173/HackHarvard/
+npm test -- --run      # unit tests (schedule parsing, open-now incl. DST, dedupe, units, score, HIP, filters, store)
+npm run build && npm run test:e2e   # production build + Playwright smoke test
+npm run lint
+```
+
+## Refresh the data
+
+```bash
+npm run data           # behind a proxy on Node ≥ 22.21: NODE_USE_ENV_PROXY=1 npm run data
+```
+
+Optional keys (copy `.env.example`; in CI, add them as repository secrets): `USDA_LFP_API_KEY` (USDA Local Food
+Portal — also covers CSAs, on-farm markets and food hubs), `MARS_API_KEY` (USDA price benchmarks), `NASS_API_KEY`,
+`CENSUS_API_KEY`, `MBTA_API_KEY`. Without them those sources are recorded as `skipped`.
+`.github/workflows/refresh-data.yml` runs the pipeline every Monday (and on demand), commits changed data to `main`,
+and triggers a deploy.
+
+## Deploying
+
+`.github/workflows/deploy.yml` tests, builds with `VITE_BASE=/<repo>/`, and publishes `dist/` to GitHub Pages on every
+push to `main`. One-time setup by a repo admin: **Settings → Pages → Source: GitHub Actions**, and
+**Settings → General → Default branch: `main`**.
+
+## Supabase mode (optional, not built yet)
+
+Build with `VITE_BACKEND=supabase VITE_SUPABASE_URL=… VITE_SUPABASE_ANON_KEY=…` once `SupabaseStore`
+(`src/lib/store/supabase.ts`) is implemented and `supabase/migrations/` define tables with Row Level Security on
+every table (vendors edit only their rows; users see only their rewards; sales private). The anon key is safe to
+ship only with RLS on. Never commit a service-role key. Until then the build falls back to demo mode.
+
+## Project layout
+
+```
+scripts/        data pipeline (fetch/, normalize/, dedupe.ts, enrich.ts, validate.ts, pipeline.ts)
+data/           raw/ snapshots · cache/ geocodes · manual/ curated JSON · seed/ SAMPLE vendors & prices · reports/
+public/data/    generated static data served to the browser
+src/            app/ routes/ components/ features/ lib/{schedule,geo,score,search,store} i18n/ types/
+e2e/            Playwright smoke test
+docs/           BUILD_PLAN.md · DECISIONS.md · screenshots/
+```
+
+## License
+
+Code: MIT. Data: each source's own terms apply (see `data/SOURCES.md`) — MassGIS data with attribution to
+MassGIS/MDAR, USDA data is public domain, MBTA data under the MassDOT developers license, map tiles © OpenStreetMap
+contributors (ODbL). Sample data in `data/seed/` is invented.
+
+## Open questions
+
+The product questions from the original spec still stand (see [Open Questions](#13-open-questions) below). Building
+the MVP added a few:
+
+- **Fresher schedules.** The state's market layer was last updated for the 2023 season. A USDA Local Food Portal key,
+  or a direct feed from MDAR / Mass Farmers Markets, would replace it.
+- **Real vendor data.** No public source lists who sells at which market or at what price; that has to come from
+  market managers and vendors.
+- **Boston coupon program.** No machine-readable list of participating markets was available, so none are tagged.
 
 ---
 
-## 1. Problem and Goals
+# Product requirements
+
+The original requirements for the platform. The MVP above covers the Greater Boston slice of these.
+
+### 1. Problem and Goals
 
 Information about local food markets is spread across city websites, social media pages, paper flyers, and government directories that are often out of date. Because of this, consumers fall back on supermarkets, even when a nearby market sells fresher, lower-impact food and accepts their payment method or food-assistance benefits.
 
@@ -19,11 +149,11 @@ Information about local food markets is spread across city websites, social medi
 
 ---
 
-## 2. Core Data Domains
+### 2. Core Data Domains
 
 The platform is built around the data categories below. Each section lists the key fields and what they're used for.
 
-### 2.1 Geographic Distribution
+#### 2.1 Geographic Distribution
 
 Where markets and vendors are located, and who they serve.
 
@@ -31,7 +161,7 @@ Where markets and vendors are located, and who they serve.
 - **Derived data:** distance from user, travel time by walking/transit/bike/car, service radius, overlap with USDA food-desert / low-income low-access tracts, population density.
 - **Features:** interactive map, "near me" search, clustering, heatmaps of market density vs. need, and route suggestions that cut down on driving.
 
-### 2.2 Operating Schedules
+#### 2.2 Operating Schedules
 
 When markets are open, including changes by season.
 
@@ -39,7 +169,7 @@ When markets are open, including changes by season.
 - **Features:** "open now" filter, calendar view, reminders/notifications, live status updates from managers (e.g., "closed due to rain"), and time zone handling.
 - **Data concerns:** recurring rules (e.g., "every 2nd and 4th Saturday") should be stored in a standard format (iCal RRULE) rather than free text.
 
-### 2.3 Products
+#### 2.3 Products
 
 What is sold, and in which season.
 
@@ -48,7 +178,7 @@ What is sold, and in which season.
 - **Seasonality:** a crop calendar by region so users can see what's in season and plan meals around it.
 - **Features:** product search ("where can I find local strawberries this week?"), shopping lists matched to vendors, and seasonal recipe suggestions.
 
-### 2.4 Vendors
+#### 2.4 Vendors
 
 The farmers, producers, and artisans who sell at markets.
 
@@ -56,14 +186,14 @@ The farmers, producers, and artisans who sell at markets.
 - **Sustainability profile:** growing practices, water use, packaging (plastic-free, compostable, reusable containers), renewable energy, waste practices, labor practices, and demographic badges such as small, beginning, BIPOC-owned, women-owned, or veteran-owned farm.
 - **Features:** vendor pages, follow/favorite, reviews, verified badges, and "meet your farmer" stories.
 
-### 2.5 Payment Methods
+#### 2.5 Payment Methods
 
 How customers can pay.
 
 - **Fields:** cash, credit/debit, mobile pay (Apple Pay, Google Pay, Venmo, Cash App), checks, market tokens/scrip, gift cards, and food-assistance benefits (see 2.6). Tracked **at both market and vendor level**, because individual vendors often differ from their market.
 - **Features:** filter by payment method, an "accepts my benefits" filter, and optional in-app pre-orders and payments.
 
-### 2.6 Food-Access Programs
+#### 2.6 Food-Access Programs
 
 Federal, state, and local programs that make fresh food affordable.
 
@@ -72,7 +202,7 @@ Federal, state, and local programs that make fresh food affordable.
 - **Features:** a benefits calculator ("$20 SNAP becomes $40 with Double Up"), plain-language guides, multilingual support, and a map of benefit-accepting markets.
 - **Privacy:** never store a user's benefit status unless they choose to; filtering should work without an account.
 
-### 2.7 Vendor Logistics
+#### 2.7 Vendor Logistics
 
 How goods get from farm to market to consumer.
 
@@ -83,7 +213,7 @@ How goods get from farm to market to consumer.
   - Surplus and unsold-inventory listings (end-of-day discounts, donations to food banks, gleaning)
   - Market manager tools: vendor applications, stall maps, fee collection, attendance tracking
 
-### 2.8 Prices
+#### 2.8 Prices
 
 What things cost, and how that changes over time.
 
@@ -91,7 +221,7 @@ What things cost, and how that changes over time.
 - **Features:** price comparison across vendors and against supermarket averages, price trends over the season, budget planning, and "best value this week" highlights.
 - **Data concerns:** units must be normalized for fair comparison, and stale prices should be flagged.
 
-### 2.9 Sales
+#### 2.9 Sales
 
 Transaction data used for analytics and incentives (aggregated and access-controlled).
 
@@ -104,7 +234,7 @@ Transaction data used for analytics and incentives (aggregated and access-contro
 
 ---
 
-## 3. Additional Data Domains (Expansion)
+### 3. Additional Data Domains (Expansion)
 
 | Domain                       | Description                                                                                                          |
 | ---------------------------- | -------------------------------------------------------------------------------------------------------------------- |
@@ -118,18 +248,18 @@ Transaction data used for analytics and incentives (aggregated and access-contro
 
 ---
 
-## 4. Sustainability & Incentive System
+### 4. Sustainability & Incentive System
 
 This is what makes the platform more than a directory: it rewards both consumers and sellers for sustainable behavior.
 
-### 4.1 For Consumers
+#### 4.1 For Consumers
 
 - **Impact tracking:** a personal dashboard showing local dollars spent, estimated food miles and CO₂e saved, and plastic avoided.
 - **Rewards / points:** earn points for shopping locally, bringing reusable bags/containers, buying in-season or "ugly" produce, buying end-of-day surplus, and walking/biking/taking transit to the market.
 - **Redemption:** points can be redeemed for market tokens, vendor discounts, or donations to food-access programs.
 - **Gamification:** streaks, seasonal challenges ("try 10 new local vegetables this summer"), badges, and community goals.
 
-### 4.2 For Vendors / Sellers
+#### 4.2 For Vendors / Sellers
 
 - **Sustainability score:** a clear score built from verified practices (certifications, packaging, food miles, waste diversion, benefit-program acceptance).
 - **Visibility boosts:** higher-scoring vendors rank higher in search and earn "Sustainable Seller" badges.
@@ -138,7 +268,7 @@ This is what makes the platform more than a directory: it rewards both consumers
 - **Surplus channel:** a built-in way to sell or donate leftovers instead of throwing them away.
 - **Grants & resources:** links to relevant grants (USDA FMPP, LFPP, GusNIP, EQIP) and technical assistance.
 
-### 4.3 Integrity
+#### 4.3 Integrity
 
 - Verification for self-reported claims (certificate upload, manager approval, periodic audits).
 - Anti-fraud controls on rewards (rate limits, transaction verification, receipt/QR scanning).
@@ -146,7 +276,7 @@ This is what makes the platform more than a directory: it rewards both consumers
 
 ---
 
-## 5. Users & Roles
+### 5. Users & Roles
 
 | Role                                | Capabilities                                                                                                               |
 | ----------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
@@ -159,9 +289,9 @@ This is what makes the platform more than a directory: it rewards both consumers
 
 ---
 
-## 6. Functional Requirements
+### 6. Functional Requirements
 
-### Consumers
+#### Consumers
 
 - [ ] Map and list views of markets with search and filters (location, open now, products, payment methods, food-access programs, sustainability attributes)
 - [ ] Market detail pages (schedule, vendors, products, amenities, programs, directions)
@@ -173,7 +303,7 @@ This is what makes the platform more than a directory: it rewards both consumers
 - [ ] Rewards and personal impact dashboard
 - [ ] Benefits guide and calculator
 
-### Vendors
+#### Vendors
 
 - [ ] Onboarding and profile management
 - [ ] Product catalog, pricing, and inventory updates (fast, mobile-friendly, ideally usable at the stall)
@@ -183,7 +313,7 @@ This is what makes the platform more than a directory: it rewards both consumers
 - [ ] Sustainability self-assessment and verification uploads
 - [ ] Surplus/donation listings
 
-### Market Managers
+#### Market Managers
 
 - [ ] Market profile and schedule management (including one-off closures)
 - [ ] Vendor application and approval workflow
@@ -191,7 +321,7 @@ This is what makes the platform more than a directory: it rewards both consumers
 - [ ] Program participation (SNAP, WIC, incentives) and redemption reporting
 - [ ] Announcements and event posting
 
-### Data & Admin
+#### Data & Admin
 
 - [ ] Bulk import from public data sources (see Section 8)
 - [ ] De-duplication and data quality checks (geocoding validation, stale-record flags)
@@ -200,7 +330,7 @@ This is what makes the platform more than a directory: it rewards both consumers
 
 ---
 
-## 7. Non-Functional Requirements
+### 7. Non-Functional Requirements
 
 - **Mobile-first:** most consumers and vendors will use the platform on phones, often outdoors with weak signal; support offline caching / PWA.
 - **Accessibility:** WCAG 2.1 AA compliance, screen-reader support, high-contrast mode.
@@ -214,7 +344,7 @@ This is what makes the platform more than a directory: it rewards both consumers
 
 ---
 
-## 8. Data Sources & Collection
+### 8. Data Sources & Collection
 
 | Source                                                                                                      | Data Provided                                                    |
 | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
@@ -233,7 +363,7 @@ This is what makes the platform more than a directory: it rewards both consumers
 
 ---
 
-## 9. Proposed Data Model (High Level)
+### 9. Proposed Data Model (High Level)
 
 ```
 Market ─┬─< MarketSchedule
@@ -265,7 +395,9 @@ Sale (aggregated) ── Vendor, Market, Product, PaymentMethod, Date
 
 ---
 
-## 10. Suggested Tech Stack (Flexible)
+### 10. Suggested Tech Stack (Flexible)
+
+> The MVP replaced the server/database rows below with a static build-time pipeline — see [How it works](#how-it-works).
 
 | Layer          | Options                                                      |
 | -------------- | ------------------------------------------------------------ |
@@ -282,7 +414,7 @@ Sale (aggregated) ── Vendor, Market, Product, PaymentMethod, Date
 
 ---
 
-## 11. Hackathon MVP Scope
+### 11. Hackathon MVP Scope
 
 A realistic first version to build quickly:
 
@@ -297,7 +429,7 @@ A realistic first version to build quickly:
 
 ---
 
-## 12. Success Metrics
+### 12. Success Metrics
 
 - Number of markets and vendors listed, and how fresh their data is
 - Monthly active consumers and repeat visits
@@ -309,7 +441,7 @@ A realistic first version to build quickly:
 
 ---
 
-## 13. Open Questions
+### 13. Open Questions
 
 - How will vendor-reported sustainability claims be verified at scale?
 - Who funds the rewards (markets, grants, sponsors, vendor fees)?
@@ -317,14 +449,8 @@ A realistic first version to build quickly:
 - How do we keep data fresh when many small vendors have limited time or tech access?
 - What data-sharing agreements are needed with markets and program administrators?
 
----
+## Contributing
 
-## 14. Contributing
-
-1. Fork the repo and create a feature branch.
-2. Follow the data model and naming conventions above.
-3. Open a pull request with a clear description of the change.
-
-## License
-
-TBD (e.g., MIT for code; open data licenses such as ODbL for contributed datasets).
+1. Create a feature branch.
+2. Run `npm test -- --run` and `npm run lint` before opening a pull request.
+3. Data changes: edit `data/manual/` or the pipeline, run `npm run data`, and commit the regenerated files.

@@ -1,0 +1,116 @@
+[
+  {
+    "id": "snap",
+    "name": "SNAP (EBT)",
+    "shortName": "SNAP",
+    "description": "Use your EBT card to buy food at markets that are SNAP-authorized. Most markets swipe your card at an information table and give you tokens to spend at stalls.",
+    "howToRedeem": "Go to the market information table first. Tell them how much you want to spend; they swipe your EBT card and give you tokens. Tokens don't expire at most markets.",
+    "eligibility": "Households enrolled in SNAP. Apply through the Department of Transitional Assistance (DTA).",
+    "url": "https://www.mass.gov/snap-benefits-formerly-food-stamps",
+    "sourceUrl": "https://www.fns.usda.gov/snap/retailer-locator",
+    "lastVerified": "2026-10-17",
+    "verificationNote": "Market SNAP status comes from the USDA FNS retailer list and the MDAR market layer at build time.",
+    "regions": [
+      "US"
+    ]
+  },
+  {
+    "id": "hip",
+    "name": "Healthy Incentives Program (HIP)",
+    "shortName": "HIP",
+    "matchRate": 1,
+    "monthlyCap": {
+      "1-2": 40,
+      "3-5": 60,
+      "6+": 80
+    },
+    "description": "When you use SNAP to buy fruits and vegetables from a HIP vendor, the same amount goes back on your EBT card, up to a monthly limit based on household size.",
+    "howToRedeem": "Pay with your EBT card at a HIP vendor (or the market table at HIP markets) for eligible fruits and vegetables. The refund appears on your receipt and your card right away.",
+    "eligibility": "All Massachusetts SNAP households. No sign-up needed.",
+    "url": "https://www.mass.gov/hip",
+    "sourceUrl": "https://www.mass.gov/info-details/learn-about-the-healthy-incentives-program-hip",
+    "lastVerified": "2025-01-01",
+    "verificationNote": "Monthly limits ($40 / $60 / $80 by household size) are the figures DTA has published since 2021. mass.gov was unreachable from the build environment on 2026-10-17, so recheck before relying on them.",
+    "regions": [
+      "MA"
+    ]
+  },
+  {
+    "id": "wic_fmnp",
+    "name": "WIC Farmers' Market Nutrition Program",
+    "shortName": "WIC FMNP",
+    "description": "WIC participants receive farmers' market coupons each summer to spend on fresh, locally grown fruits, vegetables and herbs.",
+    "howToRedeem": "Look for a sign saying the farmer accepts WIC farmers' market coupons. Hand the coupons to the farmer; no change is given.",
+    "eligibility": "WIC participants. Coupons are handed out through local WIC offices, usually starting in June.",
+    "url": "https://www.mass.gov/info-details/farmers-market-coupon-program",
+    "sourceUrl": "https://www.mass.gov/info-details/massgis-data-farmers-markets",
+    "lastVerified": "2025-01-01",
+    "verificationNote": "Coupon amounts change each year, so we don't show a dollar figure.",
+    "regions": [
+      "MA",
+      "US"
+    ]
+  },
+  {
+    "id": "sfmnp",
+    "name": "Senior Farmers' Market Nutrition Program",
+    "shortName": "Senior FMNP",
+    "description": "Income-eligible older adults receive coupons to spend on fresh, locally grown produce at participating farmers.",
+    "howToRedeem": "Give coupons to farmers displaying the program sign. Coupons are for fruits, vegetables and herbs only.",
+    "eligibility": "Adults 60+ who meet income guidelines. Coupons are distributed through local councils on aging and elder services.",
+    "url": "https://www.mass.gov/info-details/farmers-market-coupon-program",
+    "sourceUrl": "https://www.mass.gov/info-details/massgis-data-farmers-markets",
+    "lastVerified": "2025-01-01",
+    "verificationNote": "Coupon amounts change each year, so we don't show a dollar figure.",
+    "regions": [
+      "MA",
+      "US"
+    ]
+  },
+  {
+    "id": "wic_cvb",
+    "name": "WIC Cash Value Benefit",
+    "shortName": "WIC CVB",
+    "description": "Some markets report accepting the WIC fruit and vegetable cash-value benefit. We show this exactly as the source lists it.",
+    "howToRedeem": "Ask the market manager before shopping. MassGIS documentation notes that WIC cash value vouchers generally aren't redeemable at Massachusetts farmers markets.",
+    "eligibility": "WIC participants.",
+    "url": "https://www.mass.gov/wic",
+    "sourceUrl": "https://www.mass.gov/info-details/massgis-data-farmers-markets",
+    "lastVerified": "2025-01-01",
+    "verificationNote": "Shown as the source states it; call ahead.",
+    "regions": [
+      "MA",
+      "US"
+    ]
+  },
+  {
+    "id": "double_up",
+    "name": "Double Up Food Bucks",
+    "shortName": "Double Up",
+    "matchRate": 1,
+    "description": "A national SNAP match run by Fair Food Network and partners: spend SNAP on fruits and vegetables and get the same amount free. Massachusetts uses HIP instead.",
+    "howToRedeem": "At participating markets outside Massachusetts, visit the market table with your EBT card.",
+    "eligibility": "SNAP households in participating states.",
+    "url": "https://www.doubleupfoodbucks.org",
+    "sourceUrl": "https://fairfoodnetwork.org",
+    "lastVerified": "2025-01-01",
+    "regions": [
+      "US"
+    ]
+  },
+  {
+    "id": "city_coupon",
+    "name": "Boston Farmers Market Coupon Program",
+    "shortName": "Boston coupons",
+    "description": "The City of Boston's Office of Food Justice has distributed farmers' market coupons through community partners. Participation varies by year.",
+    "howToRedeem": "Coupons are handed out through community partners; check boston.gov for the current year's list of participating markets.",
+    "eligibility": "Set each year by the City of Boston.",
+    "url": "https://www.boston.gov/departments/food-justice",
+    "sourceUrl": "https://www.boston.gov/departments/food-justice",
+    "lastVerified": "2025-01-01",
+    "verificationNote": "No machine-readable list of participating markets was available at build time, so no market is tagged with this program yet.",
+    "regions": [
+      "Boston"
+    ]
+  }
+]

@@ -2,3 +2,4 @@ dist
 public/data
 data
 docs
+package-lock.json

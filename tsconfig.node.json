@@ -9,7 +9,7 @@
     "noEmit": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "types": ["node"]
+    "types": ["node", "vitest/globals"]
   },
   "include": ["vite.config.ts", "scripts", "playwright.config.ts", "e2e"]
 }

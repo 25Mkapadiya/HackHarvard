@@ -1,0 +1,119 @@
+{
+  "builtAt": "2026-10-17T12:29:31.871Z",
+  "region": "Massachusetts (Greater Boston focus)",
+  "marketCount": 264,
+  "sources": [
+    {
+      "id": "massgis-dph",
+      "name": "MassGIS / MDAR Farmers' Markets (statewide)",
+      "url": "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/DPH/DPH_Farmers_Markets/MapServer/0",
+      "license": "MassGIS data: free to use with attribution (MassGIS / MDAR)",
+      "fetchedAt": "2026-10-17",
+      "records": 264,
+      "status": "ok"
+    },
+    {
+      "id": "massgis-additional",
+      "name": "MassGIS Additional Resources — Farmers' Markets export",
+      "url": "https://services1.arcgis.com/ceiitspzDAHrdGO1/ArcGIS/rest/services/Additional_Resources/FeatureServer/35",
+      "license": "MassGIS data: free to use with attribution (MassGIS / MDAR)",
+      "fetchedAt": "2026-10-17",
+      "records": 34,
+      "status": "ok"
+    },
+    {
+      "id": "usda-snap-retailers",
+      "name": "USDA FNS SNAP Retailer Locator (Farmers and Markets, MA)",
+      "url": "https://services1.arcgis.com/RLQu0rK7h4kbsBq5/arcgis/rest/services/snap_retailer_location_data/FeatureServer/0",
+      "license": "U.S. Government work (public domain)",
+      "fetchedAt": "2026-10-17",
+      "records": 475,
+      "status": "ok"
+    },
+    {
+      "id": "usda-lfp",
+      "name": "USDA AMS Local Food Directories",
+      "url": "https://www.usdalocalfoodportal.com",
+      "license": "U.S. Government work (public domain)",
+      "fetchedAt": null,
+      "records": 0,
+      "status": "skipped",
+      "note": "USDA_LFP_API_KEY not set"
+    },
+    {
+      "id": "ers-fara-2025",
+      "name": "USDA ERS Food Access Research Atlas 2025 (low-income / low-access tracts, MA)",
+      "url": "https://www.ers.usda.gov/data-products/food-access-research-atlas/",
+      "license": "U.S. Government work (public domain)",
+      "fetchedAt": "2026-10-17",
+      "records": 1613,
+      "status": "ok"
+    },
+    {
+      "id": "mbta-stops",
+      "name": "MBTA V3 API — stops",
+      "url": "https://api-v3.mbta.com",
+      "license": "MassDOT Developers License Agreement",
+      "fetchedAt": "2026-10-17",
+      "records": 7149,
+      "status": "ok"
+    },
+    {
+      "id": "usda-mars",
+      "name": "USDA AMS My Market News (MARS API) — retail price benchmarks",
+      "url": "https://mymarketnews.ams.usda.gov",
+      "license": "Public domain",
+      "fetchedAt": null,
+      "records": 0,
+      "status": "skipped",
+      "note": "MARS_API_KEY not set; price comparisons show sample data only"
+    },
+    {
+      "id": "usda-nass",
+      "name": "USDA NASS Quick Stats — MA county farm counts",
+      "url": "https://quickstats.nass.usda.gov/api",
+      "license": "Public domain",
+      "fetchedAt": null,
+      "records": 0,
+      "status": "skipped",
+      "note": "NASS_API_KEY not set"
+    },
+    {
+      "id": "manual-programs",
+      "name": "Food-access program rules (hand-curated)",
+      "url": "data/manual/programs.json",
+      "license": "Compiled from mass.gov, FNS and Fair Food Network pages",
+      "fetchedAt": null,
+      "records": 7,
+      "status": "manual"
+    },
+    {
+      "id": "manual-crops",
+      "name": "Hand-transcribed approximation of the MassGrown (MDAR) crop availability chart",
+      "url": "https://www.mass.gov/massgrown",
+      "license": "Compiled from MDAR MassGrown",
+      "fetchedAt": null,
+      "records": 47,
+      "status": "manual"
+    },
+    {
+      "id": "manual-emissions",
+      "name": "EPA GHG Emission Factors Hub (truck ton-mile factor)",
+      "url": "https://www.epa.gov/climateleadership/ghg-emission-factors-hub",
+      "license": "Public domain",
+      "fetchedAt": null,
+      "records": 1,
+      "status": "manual"
+    },
+    {
+      "id": "seed",
+      "name": "SAMPLE vendors, products and prices (invented)",
+      "url": "data/seed/",
+      "license": "Sample data — not real",
+      "fetchedAt": null,
+      "records": 24,
+      "status": "manual",
+      "note": "84 sample prices"
+    }
+  ]
+}

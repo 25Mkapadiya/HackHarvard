@@ -17,7 +17,8 @@ export default defineConfig({
       manifest: {
         name: 'Market Day Boston',
         short_name: 'Market Day',
-        description: 'Find Greater Boston farmers markets open now, and where SNAP, HIP and WIC are accepted.',
+        description:
+          'Find Greater Boston farmers markets open now, and where SNAP, HIP and WIC are accepted.',
         theme_color: '#24513F',
         background_color: '#FBFBF8',
         display: 'standalone',

@@ -1,0 +1,13 @@
+{
+  "source": "EPA GHG Emission Factors Hub (Table 8: Scope 3 upstream transportation)",
+  "sourceUrl": "https://www.epa.gov/climateleadership/ghg-emission-factors-hub",
+  "sourceYear": 2024,
+  "truckKgCO2ePerTonMile": 0.17,
+  "note": "Medium- and heavy-duty truck factor, rounded; CO2 dominates CH4/N2O for this mode. Check the current Hub release before reusing.",
+  "conventionalProduceMiles": 1500,
+  "conventionalProduceMilesSource": "Leopold Center for Sustainable Agriculture (2001), 'Food, Fuel, and Freeways' \u2014 a widely cited estimate for conventional produce in the US. Treat as a rough benchmark.",
+  "conventionalProduceMilesUrl": "https://dr.lib.iastate.edu/handle/20.500.12876/63283",
+  "basketLbsPerVisit": 10,
+  "basketDollarsPerVisit": 30,
+  "basketAssumptionNote": "Assumed typical market basket per visit, used only for the impact dashboard estimates."
+}

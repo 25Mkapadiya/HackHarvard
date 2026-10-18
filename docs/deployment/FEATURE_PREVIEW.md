@@ -11,7 +11,7 @@ hosting account, paid tier, domain purchase, backend or credential is introduced
 Site project ID: appgprj_6ad4619ae79881919a9288b9f923b2eb.
 Site slug: hackharvard-seasonal-feature-preview.
 Audience: public, explicitly requested for this development preview.
-The final verified URL and saved version are recorded after deployment below.
+The verified URL and saved version are recorded below.
 
 ## Build isolation
 
@@ -61,3 +61,29 @@ root asset/data requests, both hash search routes, manual purchase entry/review,
 visit count/spending, missing-evidence states and historical-scenario opt-in.
 The full existing 14 browser workflows run against the public preview URL.
 Regular Pages build/browser verification separately checks the unchanged subpath.
+
+## Published snapshot — verified 2026-10-18
+
+Public URL: https://hackharvard-seasonal-feature-preview.airyriver10.chatgpt.site/
+
+- GitHub application source: `5b2c967ead8d086054c24919312c471df6c36083`.
+- Sites artifact source: `c591a23478845af46e0bf3bb0a2fad47f6d433cb`.
+- Saved version: 1, `appgprj_6ad4619ae79881919a9288b9f923b2eb~appgver_cebe274887508191b9401981bd8d2f06`.
+- Deployment: `appgdep_6ad463229fa48191a21f8e5fa51296b9`, succeeded.
+- Anonymous HTTP returned 200. Public `/preview-source.json` matched the
+  feature commit and the demo/root-path/development flags.
+- All 14 existing browser workflows passed against the public URL, including
+  nationwide seasonal search, manual purchase entry/review, spending totals,
+  sustainability evidence and scenario states, and clearing purchases on reload.
+- A fresh anonymous browser verified the visible development banner, hash URL,
+  17 successful root asset/data requests, and zero service-worker registrations.
+- Local root preview: 14 browser checks passed. Existing Pages subpath build
+  and its 14 browser checks also passed. Unit/component checks: 291 passed;
+  TypeScript passed; lint retained four existing warnings and no errors.
+
+Public routing briefly returned the host's 404 page after the deployment reported
+success, then became accessible. First-load search took about 11 seconds in one
+measurement; public browser assertions allow 20 seconds while local waits retain
+their previous five seconds. No application behavior was changed for that wait.
+Subsequent verification/documentation commits do not change the published app
+snapshot above. This URL is a development preview with temporary tab-memory data.

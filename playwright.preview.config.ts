@@ -3,7 +3,9 @@ const publicUrl = process.env.PUBLIC_PREVIEW_URL;
 /** Runs the existing flows against a root-hosted build or an anonymous public deployment. */
 export default defineConfig({
   testDir: 'e2e',
-  timeout: 30_000,
+  timeout: publicUrl ? 60_000 : 30_000,
+  // Public hosting may serve cold chunks/data more slowly than the local server.
+  expect: { timeout: publicUrl ? 20_000 : 5_000 },
   workers: 1,
   use: {
     baseURL: publicUrl ?? 'http://localhost:4174/',

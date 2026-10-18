@@ -20,6 +20,6 @@ export function parseQuantity(value: string): number | undefined {
 }
 export function quantityHelp(unit: PurchaseItem['unit']): string {
   return ['kg', 'g', 'lb', 'oz'].includes(unit)
-    ? 'Enter measured weight. A photo cannot establish weight, price or production origin.'
+    ? 'Enter the measured weight of this product.'
     : 'Count or volume is kept as entered. No verified product-specific weight conversion is installed; environmental mass remains unknown.';
 }

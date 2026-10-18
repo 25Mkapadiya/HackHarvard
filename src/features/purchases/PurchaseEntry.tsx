@@ -1,8 +1,5 @@
 import { ZodError } from 'zod';
 import { parseQuantity } from './quantity';
-import { PurchaseAssistance } from './PurchaseAssistance';
-import type { ProductRecognitionProvider } from './recognition';
-import type { ReceiptExtractionProvider } from './receipt';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { dollarsToCents, todayLocal, validateVisit, type VisitInput } from './model';
 import type { PurchaseRepository } from './repository';
@@ -13,17 +10,12 @@ export function PurchaseEntry({
   markets,
   repository,
   onRecorded,
-  recognition,
-  receipt,
 }: {
   markets: PurchaseMarket[];
   repository: PurchaseRepository;
   onRecorded: () => void;
-  recognition?: ProductRecognitionProvider;
-  receipt?: ReceiptExtractionProvider;
 }) {
   const [step, setStep] = useState<'market' | 'items' | 'confirm' | 'done'>('market');
-  const [method, setMethod] = useState<'manual' | 'photo' | 'receipt'>('manual');
   const [filter, setFilter] = useState('');
   const [marketId, setMarketId] = useState('');
   const [date, setDate] = useState(todayLocal);
@@ -53,8 +45,6 @@ export function PurchaseEntry({
     setError('');
     try {
       if (!market) throw new Error('Select a market from the directory');
-      if (items.some((i) => i.needsReview))
-        throw new Error('Check each suggested product before confirming the visit.');
       setConfirmed(
         validateVisit({
           submissionId,
@@ -103,7 +93,6 @@ export function PurchaseEntry({
     }
   }
   function reset() {
-    setMethod('manual');
     setSubmissionId(crypto.randomUUID());
     setItems([newItem()]);
     setTotal('');
@@ -174,48 +163,6 @@ export function PurchaseEntry({
               onChange={(e) => setDate(e.target.value)}
             />
           </label>
-          <fieldset className="space-y-2">
-            <legend className="font-bold">How would you like to enter purchases?</legend>
-            <div className="grid gap-2 sm:grid-cols-3">
-              {(
-                [
-                  ['photo', 'Take or upload a purchase photo'],
-                  ['receipt', 'Upload a receipt'],
-                  ['manual', 'Enter purchases manually'],
-                ] as const
-              ).map(([value, label]) => (
-                <label key={value} className="flex cursor-pointer items-start gap-2 rounded border p-3">
-                  <input
-                    type="radio"
-                    name="purchase-method"
-                    value={value}
-                    checked={method === value}
-                    onChange={() => setMethod(value)}
-                  />
-                  {label}
-                </label>
-              ))}
-            </div>
-          </fieldset>
-          {method !== 'manual' && (
-            <PurchaseAssistance
-              key={method}
-              kind={method}
-              recognition={recognition}
-              receipt={receipt}
-              onTotal={setTotal}
-              onAdd={(item) => {
-                if (items.length >= 100) return false;
-                setItems((previous) => {
-                  const meaningful = previous.filter(
-                    (i) => i.product.trim() || i.quantity.trim() || i.price.trim() || i.suggestion,
-                  );
-                  return meaningful.length < 100 ? [...meaningful, item] : previous;
-                });
-                return true;
-              }}
-            />
-          )}
           <PurchaseReview items={items} onItems={setItems} total={total} onTotal={setTotal} />
           <div className="flex flex-wrap gap-3">
             <button type="button" className="btn-secondary" onClick={() => setStep('market')}>

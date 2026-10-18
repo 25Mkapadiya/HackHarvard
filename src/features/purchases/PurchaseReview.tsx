@@ -1,6 +1,5 @@
 import { useId } from 'react';
 import { QUANTITY_UNITS, quantityHelp } from './quantity';
-import { canonicalProductId, canonicalProductName } from './recognition';
 import { newItem, type DraftItem } from './draft';
 export function PurchaseReview({
   items,
@@ -23,11 +22,6 @@ export function PurchaseReview({
       {items.map((item, index) => (
         <fieldset key={item.id} className="min-w-0 space-y-2 rounded border p-3">
           <legend>Product {index + 1}</legend>
-          {item.suggestion && (
-            <p className="text-sm">
-              {item.needsReview ? 'Unconfirmed suggestion.' : 'Suggestion checked by you.'} {item.suggestion}
-            </p>
-          )}
           <label>
             Product name
             <input
@@ -38,18 +32,10 @@ export function PurchaseReview({
               onChange={(e) =>
                 patch(item.id, {
                   product: e.target.value,
-                  candidateProductId: canonicalProductId(e.target.value),
-                  ...(item.suggestion ? { needsReview: true } : {}),
                 })
               }
             />
           </label>
-          {!canonicalProductId(item.product) && item.candidateProductId && (
-            <p className="text-sm">
-              Suggested food match: {canonicalProductName(item.candidateProductId)}. Check that it matches
-              your purchase.
-            </p>
-          )}
           <div className="grid gap-3 sm:grid-cols-3">
             <label>
               Quantity (optional)
@@ -64,7 +50,6 @@ export function PurchaseReview({
                 onChange={(e) =>
                   patch(item.id, {
                     quantity: e.target.value,
-                    ...(item.suggestion ? { needsReview: true } : {}),
                   })
                 }
               />
@@ -78,7 +63,6 @@ export function PurchaseReview({
                 onChange={(e) =>
                   patch(item.id, {
                     unit: e.target.value as DraftItem['unit'],
-                    ...(item.suggestion ? { needsReview: true } : {}),
                   })
                 }
               >
@@ -96,25 +80,13 @@ export function PurchaseReview({
                 type="text"
                 inputMode="decimal"
                 value={item.price}
-                onChange={(e) =>
-                  patch(item.id, { price: e.target.value, ...(item.suggestion ? { needsReview: true } : {}) })
-                }
+                onChange={(e) => patch(item.id, { price: e.target.value })}
               />
             </label>
           </div>
           <p id={`${helpId}-${item.id}`} className="text-sm">
             {quantityHelp(item.unit)}
           </p>
-          {item.suggestion && (
-            <label className="flex items-start gap-2">
-              <input
-                type="checkbox"
-                checked={!item.needsReview}
-                onChange={(e) => patch(item.id, { needsReview: !e.target.checked })}
-              />
-              I checked product {index + 1}, its quantity, unit and price.
-            </label>
-          )}
           <button
             type="button"
             className="btn-quiet"

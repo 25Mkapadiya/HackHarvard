@@ -75,3 +75,50 @@ Validation: 212 tests passed, TypeScript passed, lint zero errors/four existing
 warnings; full production/PWA build passed in the temporary copy. Environmental
 values remain unavailable without real evidence. Account persistence is still
 blocked; visible demo records are memory-only and disappear on reload.
+
+## Phase 6 — integration and final validation
+
+`d8a1ada4 fix: clarify availability evidence and accessible purchase controls`
+adds explicit select names, limits ranking availability to 80 km, groups real
+non-sample food-category reports without inventing specific product listings,
+clarifies source-record dates/schedule text, and keeps empty estimates unavailable.
+`b137beab test: add end-to-end seasonal purchase and sustainability coverage`
+adds browser coverage across both existing URLs, region/month changes, multi-item
+review/edit/submit, one-trip counts, exact trip spending, unavailable environmental
+results, navigation retention, clear, and intentional loss of memory data on reload.
+
+Final validation on 2026-10-18:
+
+- 212 tests in 24 Vitest files passed.
+- TypeScript project build passed.
+- ESLint: zero errors; four existing Fast Refresh warnings in shared context and MarketCard (untouched).
+- Full production/PWA build passed in an identical temporary copy without an apostrophe in its path.
+- Six Playwright tests passed in isolated headless Chrome, including all three existing smoke tests (home, market details, manager closure).
+- Desktop/mobile search and purchase screenshots inspected at 1280 px and 390 px; document scroll widths equal viewport widths, with no horizontal overflow.
+- `git diff --check` passed; all changed tracked paths match the feature allowlist. No auth/account/profile/social, rewards, check-in, shared routing/store/types, dependency, workflow, main or generated-data changes.
+
+INTEGRATION.md documents interfaces, security requirements, deployment and data
+refresh. No production deploy or main merge was attempted. All feature work is
+scoped for review; browser validation is local, not proof of production deployment.
+
+## Commit map
+
+- Phase 1: `2021006e` — architecture.
+- Phase 2: `c282dfd9` — unified search and ranking.
+- Phase 3: `1dc9cb75` — validated multi-item purchase workflow/repository.
+- Phase 4: `19fff6f2`, `f72f55f9`, `1e59700b`, `d91121ca`, `904d2dab` — calculations, tests, source methodology and import correction.
+- Phase 5: `d7553bd7` — standalone connected dashboard.
+- Phase 6: `d8a1ada4`, `b137beab`, followed by the integration/handoff documentation commit.
+
+## Definition-of-done status and remaining work
+
+Independent feature code, tests, builds and branch commits are complete. Full
+account-level product completion is **blocked**, not claimed:
+
+- Purchases are tab-memory demo records, not secured durable user-account records. Auth/backend owners must provide the session-bound repository and server-side authorization/idempotency.
+- Verified state calendar coverage is limited to the documented Massachusetts harvest windows. Existing broader regional guides remain explicitly approximate.
+- No real origin, conventional comparison, local-attribution, regional-price or paired LCA adapter exists. Environmental metrics therefore honestly remain unavailable for normal recorded purchases.
+- Popularity and agricultural relevance lack measured inputs; weights are redistributed. Directory categories do not prove product stock.
+- Photo/receipt extraction is deferred; no suitable provider was available.
+- New feature labels are English; the existing translated shell is unchanged. Additional feature localization remains a follow-up.
+- Team review and normal deployment are still required; main is untouched.

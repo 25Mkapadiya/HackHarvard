@@ -1,3 +1,4 @@
+import { MarketProductReporting } from '../marketReports/MarketProductReporting';
 import { PurchaseWorkspace } from '../purchases/PurchaseWorkspace';
 import { useSearchParams, Link } from 'react-router';
 import { useCrops, useMarkets } from '../../app/data';
@@ -109,15 +110,20 @@ export default function InSeasonSearch() {
         Discover seasonal food and reported market offerings. Directory categories are not live inventory;
         contact markets before travelling.
       </p>
-      <div className="flex gap-3">
+      <div className="flex flex-wrap gap-3">
         <button className="btn-secondary" onClick={() => param('view', 'search')}>
           Seasonal search
         </button>
         <button className="btn-secondary" onClick={() => param('view', 'purchases')}>
           Purchases & sustainability
         </button>
+        <button className="btn-secondary" onClick={() => param('view', 'reports')}>
+          Report observed products · local demo
+        </button>
       </div>
-      {sp.get('view') === 'purchases' ? (
+      {sp.get('view') === 'reports' ? (
+        <MarketProductReporting markets={markets.data} />
+      ) : sp.get('view') === 'purchases' ? (
         <PurchaseWorkspace markets={markets.data} />
       ) : (
         <>

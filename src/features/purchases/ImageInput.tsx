@@ -53,6 +53,7 @@ export function ImageInput({
   async function select(file: File | undefined) {
     if (!file) return;
     const token = ++serial.current;
+    onImage(null);
     if (pending.current) {
       pending.current.onload = null;
       pending.current.onerror = null;
@@ -91,8 +92,10 @@ export function ImageInput({
       onImage(file);
     } catch (err) {
       if (url && urls.current.has(url)) release(url);
-      if (token === serial.current)
+      if (token === serial.current) {
         setError(err instanceof Error ? err.message : 'Could not open this image.');
+        onImage(selected.current?.file ?? null);
+      }
     } finally {
       if (token === serial.current) setLoading(false);
     }

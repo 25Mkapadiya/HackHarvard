@@ -32,6 +32,7 @@ export async function extractReceipt(
   request: ImageRequest,
 ): Promise<ReceiptExtractionResult> {
   if (!provider.available) return { status: 'unavailable' };
+  if (request.signal.aborted) throw new Error('Processing cancelled');
   const result = ReceiptExtractionResult.parse(await provider.extract(request));
   if (request.signal.aborted) throw new Error('Processing cancelled');
   return result;

@@ -57,6 +57,7 @@ export async function recognizeProducts(
   request: ImageRequest,
 ): Promise<ProductRecognitionResult> {
   if (!provider.available) return { status: 'unavailable' };
+  if (request.signal.aborted) throw new Error('Processing cancelled');
   const result = ProductRecognitionResult.parse(await provider.recognize(request));
   if (request.signal.aborted) throw new Error('Processing cancelled');
   return result;

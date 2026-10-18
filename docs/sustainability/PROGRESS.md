@@ -38,3 +38,26 @@ failed submission, immutable storage, duplicate and invalid-input cases),
 TypeScript passed, ESLint zero errors/four existing warnings; temporary-copy
 production/PWA build passed. Account persistence and photo/receipt extraction
 remain explicitly unimplemented integrations; no private records are uploaded.
+
+## Phase 4 — calculation engine
+
+Independent pure modules implement visits/unique markets, trip spending versus
+sourced local attribution, kg·mile and weighted-mile comparisons, EPA multimodal
+freight CO2e, and compatible stage-resolved life-cycle differences. Optional
+purpose-allocated consumer trips are included once per trip. Negative results,
+partial coverage, provenance, source units, assumptions and missing states are
+retained. Price-derived mass requires matching product/region/date evidence.
+See METHODOLOGY.md for verified sources and rejected unsupported shortcuts.
+
+Commits: `19fff6f2` visit/local spending; `f72f55f9` food miles;
+`1e59700b` transport; `d91121ca` unused-import correction; lifecycle/methodology
+commit follows. The transport commit initially contained an unused type import;
+the correction was validated before proceeding and before pushing this phase.
+
+Real origin/routes, local attribution, paired LCA and regional-price adapters
+remain missing. No synthetic test evidence is shipped as environmental data.
+
+Phase 4 validation: 209 unit/component tests passed, TypeScript passed, lint has
+zero errors/four pre-existing warnings, full production/PWA build passed in the
+temporary copy. Engine-only focused tests: 13 passed, including unit conversions,
+multimodal freight, signed results, boundary/product mismatches and partial data.

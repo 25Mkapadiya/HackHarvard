@@ -1,3 +1,8 @@
+import { ZodError } from 'zod';
+import { parseQuantity } from './quantity';
+import { PurchaseAssistance } from './PurchaseAssistance';
+import type { ProductRecognitionProvider } from './recognition';
+import type { ReceiptExtractionProvider } from './receipt';
 import { useRef, useState, type FormEvent } from 'react';
 import { dollarsToCents, todayLocal, validateVisit, type VisitInput } from './model';
 import type { PurchaseRepository } from './repository';
@@ -8,10 +13,14 @@ export function PurchaseEntry({
   markets,
   repository,
   onRecorded,
+  recognition,
+  receipt,
 }: {
   markets: PurchaseMarket[];
   repository: PurchaseRepository;
   onRecorded: () => void;
+  recognition?: ProductRecognitionProvider;
+  receipt?: ReceiptExtractionProvider;
 }) {
   const [step, setStep] = useState<'market' | 'items' | 'confirm' | 'done'>('market');
   const [method, setMethod] = useState<'manual' | 'photo' | 'receipt'>('manual');
@@ -47,7 +56,7 @@ export function PurchaseEntry({
           items: items.map((i) => ({
             id: i.id,
             product: i.product,
-            quantity: i.quantity.trim() ? Number(i.quantity) : undefined,
+            quantity: parseQuantity(i.quantity),
             unit: i.unit,
             spendingCents: i.price.trim() ? dollarsToCents(i.price) : undefined,
           })),
@@ -55,7 +64,13 @@ export function PurchaseEntry({
       );
       setStep('confirm');
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Check purchase information');
+      setError(
+        err instanceof ZodError
+          ? err.issues.map((issue) => issue.message).join(' · ')
+          : err instanceof Error
+            ? err.message
+            : 'Check purchase information',
+      );
     }
   }
   async function submit() {
@@ -171,10 +186,23 @@ export function PurchaseEntry({
             </div>
           </fieldset>
           {method !== 'manual' && (
-            <p>
-              Automatic {method === 'photo' ? 'product recognition' : 'receipt extraction'} is not yet
-              enabled. Enter or check your products below; your entries are kept when switching methods.
-            </p>
+            <PurchaseAssistance
+              key={method}
+              kind={method}
+              recognition={recognition}
+              receipt={receipt}
+              onTotal={setTotal}
+              onAdd={(item) => {
+                if (items.length >= 100) return false;
+                setItems((previous) => {
+                  const meaningful = previous.filter(
+                    (i) => i.product.trim() || i.quantity.trim() || i.price.trim() || i.suggestion,
+                  );
+                  return meaningful.length < 100 ? [...meaningful, item] : previous;
+                });
+                return true;
+              }}
+            />
           )}
           <PurchaseReview items={items} onItems={setItems} total={total} onTotal={setTotal} />
           <div className="flex gap-3">

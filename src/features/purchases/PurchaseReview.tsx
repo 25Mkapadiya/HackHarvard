@@ -1,3 +1,5 @@
+import { useId } from 'react';
+import { QUANTITY_UNITS, quantityHelp } from './quantity';
 import { canonicalProductId } from './recognition';
 import { newItem, type DraftItem } from './draft';
 export function PurchaseReview({
@@ -11,6 +13,7 @@ export function PurchaseReview({
   total: string;
   onTotal: (total: string) => void;
 }) {
+  const helpId = useId();
   function patch(id: string, change: Partial<DraftItem>) {
     onItems(items.map((i) => (i.id === id ? { ...i, ...change } : i)));
   }
@@ -53,6 +56,7 @@ export function PurchaseReview({
                 min="0.000001"
                 max="10000000"
                 step="any"
+                aria-describedby={`${helpId}-${item.id}`}
                 value={item.quantity}
                 onChange={(e) =>
                   patch(item.id, {
@@ -75,8 +79,10 @@ export function PurchaseReview({
                   })
                 }
               >
-                {['kg', 'g', 'lb', 'oz', 'each', 'bunch', 'dozen', 'pint', 'quart', 'loaf'].map((u) => (
-                  <option key={u}>{u}</option>
+                {QUANTITY_UNITS.map((u) => (
+                  <option key={u.value} value={u.value}>
+                    {u.label}
+                  </option>
                 ))}
               </select>
             </label>
@@ -93,6 +99,9 @@ export function PurchaseReview({
               />
             </label>
           </div>
+          <p id={`${helpId}-${item.id}`} className="text-sm">
+            {quantityHelp(item.unit)}
+          </p>
           {item.suggestion && (
             <label className="flex items-start gap-2">
               <input

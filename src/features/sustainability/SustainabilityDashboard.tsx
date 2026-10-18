@@ -130,10 +130,10 @@ export function SustainabilityDashboard({
         />
       </div>
       <p>
-        Environmental comparisons need sourced origins, comparable conventional supply chains, and compatible
-        life-cycle data. Manual product names and market locations cannot supply these facts. Consumer travel
-        is excluded unless an allocated comparison is supplied. Transportation is already a component of
-        life-cycle emissions; do not add those cards together.
+        Actual-purchase comparisons require documented origins and conventional alternatives. Historical
+        scenarios use study endpoints with your recorded mass only. Life-cycle results additionally require
+        compatible stage data. Consumer travel is excluded unless an allocated comparison is supplied.
+        Transportation is already a component of life-cycle emissions; do not add those cards together.
       </p>
       <section className="space-y-3">
         <h3 className="font-bold">Recorded purchase history</h3>

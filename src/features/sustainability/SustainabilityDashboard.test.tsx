@@ -25,7 +25,7 @@ it('shows recorded totals separately from unavailable estimates and purchase det
   ).toBeInTheDocument();
   expect(screen.getAllByText('Unavailable')).toHaveLength(5);
   expect(screen.getByText(/2026-10-17 · Test Market/)).toBeInTheDocument();
-  expect(screen.queryByText(/points/i)).not.toBeInTheDocument();
+  expect(screen.queryByText(/\bpoints\b/i)).not.toBeInTheDocument();
 });
 it('preserves negative food-mile results and aggregates trips instead of item count', () => {
   const provenance = {

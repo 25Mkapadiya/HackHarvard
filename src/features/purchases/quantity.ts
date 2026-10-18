@@ -11,11 +11,11 @@ export const QUANTITY_UNITS: { value: PurchaseItem['unit']; label: string }[] = 
   { value: 'quart', label: 'quart (volume)' },
   { value: 'loaf', label: 'loaf' },
 ];
-export function parseQuantity(value: string): number | undefined {
-  if (!value.trim()) return undefined;
+export function parseQuantity(value: string): number {
+  if (!value.trim()) throw new Error('Enter a quantity for every product.');
   const quantity = Number(value);
   if (!Number.isFinite(quantity) || quantity <= 0 || quantity > 1e7)
-    throw new Error('Enter a quantity greater than zero and no more than 10,000,000, or leave it blank.');
+    throw new Error('Enter a quantity greater than zero and no more than 10,000,000.');
   return quantity;
 }
 export function quantityHelp(unit: PurchaseItem['unit']): string {

@@ -5,6 +5,8 @@ export type DraftItem = {
   quantity: string;
   unit: VisitInput['items'][number]['unit'];
   price: string;
+  vendor: string;
+  origin: string;
 };
 export const newItem = (): DraftItem => ({
   id: crypto.randomUUID(),
@@ -12,4 +14,6 @@ export const newItem = (): DraftItem => ({
   quantity: '',
   unit: 'kg',
   price: '',
+  vendor: '',
+  origin: '',
 });

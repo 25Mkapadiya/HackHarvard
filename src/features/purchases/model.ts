@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { canonicalProductId, purchaseProducts } from './products';
 const cents = z.number().int().nonnegative().max(Number.MAX_SAFE_INTEGER);
 export const PurchaseItem = z.object({
   id: z.string().trim().min(1).max(100),
@@ -6,6 +7,9 @@ export const PurchaseItem = z.object({
   quantity: z.number().positive().finite().max(1e7).optional(),
   unit: z.enum(['kg', 'g', 'lb', 'oz', 'each', 'bunch', 'dozen', 'pint', 'quart', 'loaf']),
   spendingCents: cents.optional(),
+  productId: z.enum(purchaseProducts.map((p) => p.id) as [string, ...string[]]).optional(),
+  vendor: z.string().trim().min(1).max(200).optional(),
+  origin: z.string().trim().min(1).max(200).optional(),
 });
 export type PurchaseItem = z.infer<typeof PurchaseItem>;
 export const VisitInput = z
@@ -26,6 +30,10 @@ export const VisitInput = z
     const subtotal = v.items.reduce((sum, i) => sum + (i.spendingCents ?? 0), 0);
     if (!Number.isSafeInteger(subtotal) || subtotal > v.totalCents)
       ctx.addIssue({ code: 'custom', message: 'Item prices cannot exceed the trip total' });
+    for (const item of v.items) {
+      if (item.productId && canonicalProductId(item.product) !== item.productId)
+        ctx.addIssue({ code: 'custom', message: 'Product identifier must match the entered product name' });
+    }
     if (new Set(v.items.map((i) => i.id)).size !== v.items.length)
       ctx.addIssue({ code: 'custom', message: 'Item IDs must be unique' });
   });
@@ -57,4 +65,18 @@ export function visitFingerprint(visit: VisitInput): string {
       .map((i) => [i.product.toLowerCase(), i.quantity ?? null, i.unit, i.spendingCents ?? null])
       .sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b))),
   ]);
+}
+
+/** New writes require quantities; legacy reads retain unknown-quantity compatibility. */
+export const NewVisitInput = VisitInput.safeExtend({
+  items: z
+    .array(PurchaseItem.extend({ quantity: PurchaseItem.shape.quantity.unwrap() }))
+    .min(1)
+    .max(100),
+});
+export type NewVisitInput = z.infer<typeof NewVisitInput>;
+export function validateNewVisit(input: unknown, now = new Date()): NewVisitInput {
+  const parsed = NewVisitInput.parse(input);
+  validateVisit(parsed, now);
+  return parsed;
 }

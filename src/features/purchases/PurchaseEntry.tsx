@@ -1,7 +1,8 @@
 import { ZodError } from 'zod';
+import { canonicalProductId } from './products';
 import { parseQuantity } from './quantity';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { dollarsToCents, todayLocal, validateVisit, type VisitInput } from './model';
+import { dollarsToCents, todayLocal, validateNewVisit, type VisitInput } from './model';
 import type { PurchaseRepository } from './repository';
 import { newItem, type DraftItem } from './draft';
 import { PurchaseReview } from './PurchaseReview';
@@ -45,8 +46,10 @@ export function PurchaseEntry({
     setError('');
     try {
       if (!market) throw new Error('Select a market from the directory');
+      if (!items.length) throw new Error('Add at least one purchased product.');
+      if (items.some((i) => !i.product.trim())) throw new Error('Enter a name for every product.');
       setConfirmed(
-        validateVisit({
+        validateNewVisit({
           submissionId,
           marketId,
           date,
@@ -54,6 +57,9 @@ export function PurchaseEntry({
           items: items.map((i) => ({
             id: i.id,
             product: i.product,
+            productId: canonicalProductId(i.product),
+            vendor: i.vendor.trim() || undefined,
+            origin: i.origin.trim() || undefined,
             quantity: parseQuantity(i.quantity),
             unit: i.unit,
             spendingCents: i.price.trim() ? dollarsToCents(i.price) : undefined,

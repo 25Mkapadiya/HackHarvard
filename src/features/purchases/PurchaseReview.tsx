@@ -1,4 +1,5 @@
 import { useId } from 'react';
+import { purchaseProducts } from './products';
 import { QUANTITY_UNITS, quantityHelp } from './quantity';
 import { newItem, type DraftItem } from './draft';
 export function PurchaseReview({
@@ -19,6 +20,11 @@ export function PurchaseReview({
   return (
     <div className="space-y-4">
       <h3 className="font-bold">Check your products and spending</h3>
+      <datalist id={`${helpId}-products`}>
+        {purchaseProducts.map((p) => (
+          <option key={p.id} value={p.name} />
+        ))}
+      </datalist>
       {items.map((item, index) => (
         <fieldset key={item.id} className="min-w-0 space-y-2 rounded border p-3">
           <legend>Product {index + 1}</legend>
@@ -28,6 +34,7 @@ export function PurchaseReview({
               className="field"
               required
               maxLength={120}
+              list={`${helpId}-products`}
               value={item.product}
               onChange={(e) =>
                 patch(item.id, {
@@ -38,10 +45,11 @@ export function PurchaseReview({
           </label>
           <div className="grid gap-3 sm:grid-cols-3">
             <label>
-              Quantity (optional)
+              Quantity
               <input
                 className="field"
                 type="number"
+                required
                 min="0.000001"
                 max="10000000"
                 step="any"
@@ -59,6 +67,7 @@ export function PurchaseReview({
               <select
                 className="field"
                 aria-label="Unit"
+                required
                 value={item.unit}
                 onChange={(e) =>
                   patch(item.id, {
@@ -87,6 +96,34 @@ export function PurchaseReview({
           <p id={`${helpId}-${item.id}`} className="text-sm">
             {quantityHelp(item.unit)}
           </p>
+          <details>
+            <summary>Vendor or origin (optional)</summary>
+            <div className="grid gap-3 py-2 sm:grid-cols-2">
+              <label>
+                Vendor / farm name (optional)
+                <input
+                  className="field"
+                  maxLength={200}
+                  value={item.vendor}
+                  onChange={(e) => patch(item.id, { vendor: e.target.value })}
+                />
+              </label>
+              <label>
+                Product origin (optional)
+                <input
+                  className="field"
+                  maxLength={200}
+                  value={item.origin}
+                  onChange={(e) => patch(item.id, { origin: e.target.value })}
+                  placeholder="If known: town, state or country"
+                />
+              </label>
+            </div>
+            <p className="text-sm">
+              These are details you provide. They do not verify local production or establish environmental
+              benefits.
+            </p>
+          </details>
           <button
             type="button"
             className="btn-quiet"
@@ -107,7 +144,8 @@ export function PurchaseReview({
       </button>
       <p>
         Enter weighed quantities when possible. Each, bunch and volume units cannot be converted to kilograms
-        without product-specific evidence. Missing quantities leave impacts unavailable.
+        without product-specific evidence. Counts remain counts; unsupported environmental estimates stay
+        unavailable.
       </p>
       <label>
         Total spent USD

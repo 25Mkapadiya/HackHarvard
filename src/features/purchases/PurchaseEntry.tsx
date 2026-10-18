@@ -26,6 +26,7 @@ export function PurchaseEntry({
   onRecorded: () => void;
 }) {
   const [step, setStep] = useState<'market' | 'items' | 'confirm' | 'done'>('market');
+  const [method, setMethod] = useState<'manual' | 'photo' | 'receipt'>('manual');
   const [filter, setFilter] = useState('');
   const [marketId, setMarketId] = useState('');
   const [date, setDate] = useState(todayLocal);
@@ -92,6 +93,7 @@ export function PurchaseEntry({
     }
   }
   function reset() {
+    setMethod('manual');
     setSubmissionId(crypto.randomUUID());
     setItems([newItem()]);
     setTotal('');
@@ -158,6 +160,35 @@ export function PurchaseEntry({
               onChange={(e) => setDate(e.target.value)}
             />
           </label>
+          <fieldset className="space-y-2">
+            <legend className="font-bold">How would you like to enter purchases?</legend>
+            <div className="grid gap-2 sm:grid-cols-3">
+              {(
+                [
+                  ['photo', 'Take or upload a purchase photo'],
+                  ['receipt', 'Upload a receipt'],
+                  ['manual', 'Enter purchases manually'],
+                ] as const
+              ).map(([value, label]) => (
+                <label key={value} className="flex cursor-pointer items-start gap-2 rounded border p-3">
+                  <input
+                    type="radio"
+                    name="purchase-method"
+                    value={value}
+                    checked={method === value}
+                    onChange={() => setMethod(value)}
+                  />
+                  {label}
+                </label>
+              ))}
+            </div>
+          </fieldset>
+          {method !== 'manual' && (
+            <p>
+              Automatic {method === 'photo' ? 'product recognition' : 'receipt extraction'} is not yet
+              enabled. Enter or check your products below; your entries are kept when switching methods.
+            </p>
+          )}
           {items.map((item, index) => (
             <fieldset key={item.id} className="space-y-2 rounded border p-3">
               <legend>Product {index + 1}</legend>

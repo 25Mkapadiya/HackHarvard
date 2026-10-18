@@ -11,9 +11,7 @@
     "test": "vitest",
     "test:e2e": "playwright test",
     "lint": "eslint .",
-    "format": "prettier --write .",
-    "seasonal:validate": "node --import tsx scripts/seasonal-report.ts",
-    "build:preview": "node scripts/build-preview.mjs"
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.118.0",

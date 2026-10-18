@@ -1,3 +1,4 @@
+import { PurchaseWorkspace } from '../purchases/PurchaseWorkspace';
 import { useSearchParams, Link } from 'react-router';
 import { useCrops, useMarkets } from '../../app/data';
 import { useLocationState, useNow } from '../../app/context';
@@ -70,128 +71,144 @@ export default function InSeasonSearch() {
         Discover seasonal food and reported market offerings. Directory categories are not live inventory;
         contact markets before travelling.
       </p>
-      <LocationPicker />
-      <div className="grid gap-3 sm:grid-cols-3">
-        <label>
-          Growing region
-          <select className="field" value={region} onChange={(e) => param('region', e.target.value)}>
-            {Object.entries(regions).map(([id, r]) => (
-              <option key={id} value={id}>
-                {r.name}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Month
-          <select className="field" value={month} onChange={(e) => param('month', e.target.value)}>
-            {Array.from({ length: 12 }, (_, i) => (
-              <option key={i} value={i + 1}>
-                {monthName(i + 1, 'en')}
-              </option>
-            ))}
-          </select>
-        </label>
-        <label>
-          Food or market search
-          <input
-            className="field"
-            type="search"
-            value={sp.get('q') ?? ''}
-            onChange={(e) => param('q', e.target.value)}
-            placeholder="Apples, eggs, market name…"
-          />
-        </label>
+      <div className="flex gap-3">
+        <button className="btn-secondary" onClick={() => param('view', 'search')}>
+          Seasonal search
+        </button>
+        <button className="btn-secondary" onClick={() => param('view', 'purchases')}>
+          Purchases & sustainability
+        </button>
       </div>
-      <label className="toggle">
-        <input
-          type="checkbox"
-          checked={maxKm !== undefined}
-          onChange={(e) => param('near', e.target.checked ? '1' : '0')}
-        />
-        Within 80 km of selected location, in this region
-      </label>
-      <section className="card space-y-2 p-4">
-        <h2 className="section-title">
-          {monthName(month, 'en')} · {selected.name}
-        </h2>
-        <p className="text-sm">
-          {region === 'verified-ma' ? VERIFIED_MA.note : `Approximate regional guide: ${crops.data.note}`}
-        </p>
-        <a
-          href={region === 'verified-ma' ? VERIFIED_MA.url : crops.data.sourceUrl}
-          target="_blank"
-          rel="noreferrer"
-        >
-          {region === 'verified-ma' ? VERIFIED_MA.source : crops.data.source}
-        </a>
-        <ul className="flex flex-wrap gap-2">
-          {seasonal.map(({ crop }) => (
-            <li key={crop.id}>
-              <button className="chip" onClick={() => param('q', crop.name)}>
-                {crop.name}
-              </button>
-            </li>
-          ))}
-        </ul>
-        {!seasonal.length && (
-          <p>No matching seasonal entries in this guide. Missing entries do not prove unavailability.</p>
-        )}
-      </section>
-      <section className="space-y-3">
-        <h2 className="section-title">Commonly reported food categories</h2>
-        <p>
-          Popularity and agricultural relevance measurements are unavailable. Ranking uses seasonal guidance
-          and non-sample directory category reports, redistributing missing weights.
-        </p>
-        <ul className="grid gap-3 sm:grid-cols-3">
-          {foods
-            .filter((f) => f.reported.length)
-            .slice(0, 12)
-            .map(({ crop, reported, score }) => (
-              <li key={crop.id} className="card p-3">
-                <button className="font-bold underline" onClick={() => param('q', crop.name)}>
-                  {crop.name}
-                </button>
-                <p>
-                  {reported.length} markets report {crop.category}; exact product unconfirmed.
-                </p>
-                <p>Recommendation: {score?.toFixed(2)} / 1</p>
-              </li>
-            ))}
-        </ul>
-      </section>
-      <section className="space-y-3">
-        <h2 className="section-title">
-          Markets in {selected.name} ({results.length})
-        </h2>
-        <p>
-          Ordered by distance to your selected location. Schedules may be unknown. A recent download does not
-          mean recent reporting: some USDA records originate in 2014. Seasonal results update with the month;
-          market data follows the existing weekly publication schedule. Reload to retrieve published updates.
-        </p>
-        {!results.length && (
-          <p>
-            No matching reported offerings. Try a food category, change region, or widen the distance filter.
-          </p>
-        )}
-        <ul className="grid gap-4 sm:grid-cols-2">
-          {results.slice(0, 20).map((m) => (
-            <li key={m.id}>
-              <MarketCard m={m} now={now} origin={origin} compact />
-              <p className="text-sm">
-                {m.scheduleRaw || 'Operating information unavailable — confirm with market.'} · Dataset
-                update: {m.lastUpdated || 'unknown'}
+      {sp.get('view') === 'purchases' ? (
+        <PurchaseWorkspace markets={markets.data} />
+      ) : (
+        <>
+          <LocationPicker />
+          <div className="grid gap-3 sm:grid-cols-3">
+            <label>
+              Growing region
+              <select className="field" value={region} onChange={(e) => param('region', e.target.value)}>
+                {Object.entries(regions).map(([id, r]) => (
+                  <option key={id} value={id}>
+                    {r.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Month
+              <select className="field" value={month} onChange={(e) => param('month', e.target.value)}>
+                {Array.from({ length: 12 }, (_, i) => (
+                  <option key={i} value={i + 1}>
+                    {monthName(i + 1, 'en')}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label>
+              Food or market search
+              <input
+                className="field"
+                type="search"
+                value={sp.get('q') ?? ''}
+                onChange={(e) => param('q', e.target.value)}
+                placeholder="Apples, eggs, market name…"
+              />
+            </label>
+          </div>
+          <label className="toggle">
+            <input
+              type="checkbox"
+              checked={maxKm !== undefined}
+              onChange={(e) => param('near', e.target.checked ? '1' : '0')}
+            />
+            Within 80 km of selected location, in this region
+          </label>
+          <section className="card space-y-2 p-4">
+            <h2 className="section-title">
+              {monthName(month, 'en')} · {selected.name}
+            </h2>
+            <p className="text-sm">
+              {region === 'verified-ma' ? VERIFIED_MA.note : `Approximate regional guide: ${crops.data.note}`}
+            </p>
+            <a
+              href={region === 'verified-ma' ? VERIFIED_MA.url : crops.data.sourceUrl}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {region === 'verified-ma' ? VERIFIED_MA.source : crops.data.source}
+            </a>
+            <ul className="flex flex-wrap gap-2">
+              {seasonal.map(({ crop }) => (
+                <li key={crop.id}>
+                  <button className="chip" onClick={() => param('q', crop.name)}>
+                    {crop.name}
+                  </button>
+                </li>
+              ))}
+            </ul>
+            {!seasonal.length && (
+              <p>No matching seasonal entries in this guide. Missing entries do not prove unavailability.</p>
+            )}
+          </section>
+          <section className="space-y-3">
+            <h2 className="section-title">Commonly reported food categories</h2>
+            <p>
+              Popularity and agricultural relevance measurements are unavailable. Ranking uses seasonal
+              guidance and non-sample directory category reports, redistributing missing weights.
+            </p>
+            <ul className="grid gap-3 sm:grid-cols-3">
+              {foods
+                .filter((f) => f.reported.length)
+                .slice(0, 12)
+                .map(({ crop, reported, score }) => (
+                  <li key={crop.id} className="card p-3">
+                    <button className="font-bold underline" onClick={() => param('q', crop.name)}>
+                      {crop.name}
+                    </button>
+                    <p>
+                      {reported.length} markets report {crop.category}; exact product unconfirmed.
+                    </p>
+                    <p>Recommendation: {score?.toFixed(2)} / 1</p>
+                  </li>
+                ))}
+            </ul>
+          </section>
+          <section className="space-y-3">
+            <h2 className="section-title">
+              Markets in {selected.name} ({results.length})
+            </h2>
+            <p>
+              Ordered by distance to your selected location. Schedules may be unknown. A recent download does
+              not mean recent reporting: some USDA records originate in 2014. Seasonal results update with the
+              month; market data follows the existing weekly publication schedule. Reload to retrieve
+              published updates.
+            </p>
+            {!results.length && (
+              <p>
+                No matching reported offerings. Try a food category, change region, or widen the distance
+                filter.
               </p>
-            </li>
-          ))}
-        </ul>
-        {results.length > 20 && (
-          <p>
-            Showing the nearest 20. Refine your search or <Link to="/explore">use the map</Link>.
-          </p>
-        )}
-      </section>
+            )}
+            <ul className="grid gap-4 sm:grid-cols-2">
+              {results.slice(0, 20).map((m) => (
+                <li key={m.id}>
+                  <MarketCard m={m} now={now} origin={origin} compact />
+                  <p className="text-sm">
+                    {m.scheduleRaw || 'Operating information unavailable — confirm with market.'} · Dataset
+                    update: {m.lastUpdated || 'unknown'}
+                  </p>
+                </li>
+              ))}
+            </ul>
+            {results.length > 20 && (
+              <p>
+                Showing the nearest 20. Refine your search or <Link to="/explore">use the map</Link>.
+              </p>
+            )}
+          </section>
+        </>
+      )}
     </div>
   );
 }

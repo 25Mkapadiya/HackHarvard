@@ -23,3 +23,18 @@ Workbox fails in a checkout path containing an apostrophe (generated import
 strings are not escaped). Use an identical temporary validation copy under
 `/private/tmp/hackharvard-sustainability-validation` for full production builds;
 no build configuration/dependency edits are needed.
+
+## Phase 3 — purchase recording
+
+Independent validated visit/item schemas, integer-cent currency parsing and an
+async repository contract. Manual workflow selects a real directory market,
+accepts multiple products, reviews editable information, then submits one trip.
+Retries, concurrent clicks, reused submission IDs and identical trip fingerprints
+are checked. Repository failures keep the confirmed draft. Memory records are
+isolated from all existing demo/account stores and can be cleared.
+
+Validation: 196 tests passed (including multi-item UI workflow, edit/review,
+failed submission, immutable storage, duplicate and invalid-input cases),
+TypeScript passed, ESLint zero errors/four existing warnings; temporary-copy
+production/PWA build passed. Account persistence and photo/receipt extraction
+remain explicitly unimplemented integrations; no private records are uploaded.

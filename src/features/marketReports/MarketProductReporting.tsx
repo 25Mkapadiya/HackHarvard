@@ -1,3 +1,4 @@
+import { useFeatureTranslation } from '../../i18n/featureText';
 import { useState } from 'react';
 import { productMatches, seasonalCatalog } from '../seasonal/catalog/catalog';
 import {
@@ -10,6 +11,7 @@ import {
 
 /** Independent, memory-only demo. No transport, account store or search-data mutation. */
 export function MarketProductReporting({ markets }: { markets: readonly DirectoryMarket[] }) {
+  const { text } = useFeatureTranslation();
   const [marketQuery, setMarketQuery] = useState('');
   const [marketId, setMarketId] = useState('');
   const [observedAt, setObservedAt] = useState(utcDay(new Date()));
@@ -69,28 +71,38 @@ export function MarketProductReporting({ markets }: { markets: readonly Director
   return (
     <section aria-labelledby="report-title" className="card space-y-4 p-4">
       <h2 id="report-title" className="text-2xl font-bold">
-        What did you find at this market?
+        {text('What did you find at this market?')}
       </h2>
       <p className="rounded border border-amber-400 bg-amber-50 p-3">
-        Local demonstration only · Unverified customer observations. Nothing is uploaded, published, or saved
-        to an account. Leaving this view or reloading discards the demo. Reports do not prove current stock.
-        Do not enter personal or sensitive information.
+        {text(
+          'Local demonstration only · Unverified customer observations. Nothing is uploaded, published, or saved to an account. Leaving this view or reloading discards the demo. Reports do not prove current stock. Do not enter personal or sensitive information.',
+        )}
       </p>
-      {error && <p role="alert">{error}</p>}
-      {status && <p role="status">{status}</p>}
+      {error && <p role="alert">{text(error)}</p>}
+      {status && <p role="status">{text(status)}</p>}
       {review ? (
         <div className="space-y-3">
-          <h3 className="text-xl font-bold">Review product report</h3>
+          <h3 className="text-xl font-bold">{text('Review product report')}</h3>
           <p>
-            {market?.name} · Observed on {observedAt}
+            {market?.name}
+            {text(' · Observed on ')}
+            {observedAt}
           </p>
           <ul>
             {review.map((r) => (
-              <li key={r.id}>{r.productName} · observed · unverified customer</li>
+              <li key={r.id}>
+                {text(r.productName)}
+                {text(' · observed · unverified customer')}
+              </li>
             ))}
           </ul>
-          {notes && <p className="break-words">Notes: {notes}</p>}
-          <p>This says what you saw on that date; it does not claim ongoing availability.</p>
+          {notes && (
+            <p className="break-words">
+              {text('Notes: ')}
+              {notes}
+            </p>
+          )}
+          <p>{text('This says what you saw on that date; it does not claim ongoing availability.')}</p>
           <div className="flex flex-wrap gap-3">
             <button
               className="btn-secondary"
@@ -99,23 +111,23 @@ export function MarketProductReporting({ markets }: { markets: readonly Director
                 setError('');
               }}
             >
-              Edit report
+              {text('Edit report')}
             </button>
             <button className="btn-primary" onClick={saveDemo}>
-              Add to local demo
+              {text('Add to local demo')}
             </button>
           </div>
         </div>
       ) : (
         <form onSubmit={prepare} className="space-y-4">
           <label className="block">
-            Find a reporting market
+            {text('Find a reporting market')}
             <input className="field" value={marketQuery} onChange={(e) => setMarketQuery(e.target.value)} />
           </label>
           <label className="block">
-            Market for product report
+            {text('Market for product report')}
             <select className="field" value={marketId} required onChange={(e) => setMarketId(e.target.value)}>
-              <option value="">Choose a market</option>
+              <option value="">{text('Choose a market')}</option>
               {market && !visibleMarkets.some((m) => m.id === market.id) && (
                 <option value={market.id}>{market.name}</option>
               )}
@@ -127,10 +139,10 @@ export function MarketProductReporting({ markets }: { markets: readonly Director
             </select>
           </label>
           <p className="text-sm">
-            Showing up to 50 matching directory markets. Refine the market name, city, or state.
+            {text('Showing up to 50 matching directory markets. Refine the market name, city, or state.')}
           </p>
           <label className="block">
-            Date observed
+            {text('Date observed')}
             <input
               className="field"
               type="date"
@@ -141,17 +153,17 @@ export function MarketProductReporting({ markets }: { markets: readonly Director
             />
           </label>
           <label className="block">
-            Search observed products
+            {text('Search observed products')}
             <input
               className="field"
               type="search"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Apple, snap bean, carrots…"
+              placeholder={text('Apple, snap bean, carrots…')}
             />
           </label>
           <fieldset className="space-y-2">
-            <legend className="font-bold">Catalog products observed (up to 30)</legend>
+            <legend className="font-bold">{text('Catalog products observed (up to 30)')}</legend>
             <div className="grid gap-2 sm:grid-cols-2">
               {seasonalCatalog.products
                 .filter((p) => productMatches(p, query))
@@ -167,33 +179,37 @@ export function MarketProductReporting({ markets }: { markets: readonly Director
                         )
                       }
                     />
-                    {p.name}
+                    {text(p.name)}
                   </label>
                 ))}
             </div>
             {!seasonalCatalog.products.some((p) => productMatches(p, query)) && (
-              <p>No matching catalog product. Try another name.</p>
+              <p>{text('No matching catalog product. Try another name.')}</p>
             )}
           </fieldset>
-          <div aria-label="Selected products">
-            <h3 className="font-bold">Selected products ({selected.length})</h3>
+          <div aria-label={text('Selected products')}>
+            <h3 className="font-bold">
+              {text('Selected products (')}
+              {selected.length})
+            </h3>
             <ul>
               {selected.map((p) => (
                 <li key={p.id} className="flex items-center justify-between gap-2">
-                  {p.name}
+                  {text(p.name)}
                   <button
                     type="button"
                     className="btn-quiet"
                     onClick={() => setProductIds((ids) => ids.filter((id) => id !== p.id))}
                   >
-                    Remove {p.name}
+                    {text('Remove ')}
+                    {text(p.name)}
                   </button>
                 </li>
               ))}
             </ul>
           </div>
           <label className="block">
-            Report notes (optional)
+            {text('Report notes (optional)')}
             <textarea
               className="field"
               maxLength={500}
@@ -202,21 +218,28 @@ export function MarketProductReporting({ markets }: { markets: readonly Director
             />
           </label>
           <button className="btn-secondary" type="submit">
-            Review report
+            {text('Review report')}
           </button>
         </form>
       )}
       <div className="space-y-2 border-t border-line pt-3">
         <button className="btn-secondary" disabled>
-          Public submission unavailable
+          {text('Public submission unavailable')}
         </button>
-        <p>A trusted authorized backend is required for shared submissions and official market updates.</p>
-        <h3 className="font-bold">Temporary demo observations ({records.length})</h3>
+        <p>
+          {text(
+            'A trusted authorized backend is required for shared submissions and official market updates.',
+          )}
+        </p>
+        <h3 className="font-bold">
+          {text('Temporary demo observations (')}
+          {records.length})
+        </h3>
         <ul>
           {records.map((r) => (
             <li key={r.id}>
-              {r.productName} · {markets.find((m) => m.id === r.marketId)?.name} · {r.observedAt} · local demo
-              / unverified
+              {text(r.productName)} · {markets.find((m) => m.id === r.marketId)?.name} · {r.observedAt}
+              {text(' · local demo / unverified')}
             </li>
           ))}
         </ul>
@@ -228,7 +251,7 @@ export function MarketProductReporting({ markets }: { markets: readonly Director
               setStatus('Local demo observations cleared.');
             }}
           >
-            Clear local reports
+            {text('Clear local reports')}
           </button>
         )}
       </div>

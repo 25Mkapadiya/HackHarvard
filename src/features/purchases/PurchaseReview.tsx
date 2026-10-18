@@ -1,3 +1,4 @@
+import { useFeatureTranslation } from '../../i18n/featureText';
 import { useId } from 'react';
 import { purchaseProducts } from './products';
 import { QUANTITY_UNITS, quantityHelp } from './quantity';
@@ -13,23 +14,27 @@ export function PurchaseReview({
   total: string;
   onTotal: (total: string) => void;
 }) {
+  const { text } = useFeatureTranslation();
   const helpId = useId();
   function patch(id: string, change: Partial<DraftItem>) {
     onItems(items.map((i) => (i.id === id ? { ...i, ...change } : i)));
   }
   return (
     <div className="space-y-4">
-      <h3 className="font-bold">Check your products and spending</h3>
+      <h3 className="font-bold">{text('Check your products and spending')}</h3>
       <datalist id={`${helpId}-products`}>
         {purchaseProducts.map((p) => (
-          <option key={p.id} value={p.name} />
+          <option key={p.id} value={text(p.name)} />
         ))}
       </datalist>
       {items.map((item, index) => (
         <fieldset key={item.id} className="min-w-0 space-y-2 rounded border p-3">
-          <legend>Product {index + 1}</legend>
+          <legend>
+            {text('Product ')}
+            {index + 1}
+          </legend>
           <label>
-            Product name
+            {text('Product name')}
             <input
               className="field"
               required
@@ -45,7 +50,7 @@ export function PurchaseReview({
           </label>
           <div className="grid gap-3 sm:grid-cols-3">
             <label>
-              Quantity
+              {text('Quantity')}
               <input
                 className="field"
                 type="number"
@@ -63,10 +68,10 @@ export function PurchaseReview({
               />
             </label>
             <label>
-              Unit
+              {text('Unit')}
               <select
                 className="field"
-                aria-label="Unit"
+                aria-label={text('Unit')}
                 required
                 value={item.unit}
                 onChange={(e) =>
@@ -77,13 +82,13 @@ export function PurchaseReview({
               >
                 {QUANTITY_UNITS.map((u) => (
                   <option key={u.value} value={u.value}>
-                    {u.label}
+                    {text(u.label)}
                   </option>
                 ))}
               </select>
             </label>
             <label>
-              Item price USD (optional)
+              {text('Item price USD (optional)')}
               <input
                 className="field"
                 type="text"
@@ -94,13 +99,13 @@ export function PurchaseReview({
             </label>
           </div>
           <p id={`${helpId}-${item.id}`} className="text-sm">
-            {quantityHelp(item.unit)}
+            {text(quantityHelp(item.unit))}
           </p>
           <details>
-            <summary>Vendor or origin (optional)</summary>
+            <summary>{text('Vendor or origin (optional)')}</summary>
             <div className="grid gap-3 py-2 sm:grid-cols-2">
               <label>
-                Vendor / farm name (optional)
+                {text('Vendor / farm name (optional)')}
                 <input
                   className="field"
                   maxLength={200}
@@ -109,19 +114,20 @@ export function PurchaseReview({
                 />
               </label>
               <label>
-                Product origin (optional)
+                {text('Product origin (optional)')}
                 <input
                   className="field"
                   maxLength={200}
                   value={item.origin}
                   onChange={(e) => patch(item.id, { origin: e.target.value })}
-                  placeholder="If known: town, state or country"
+                  placeholder={text('If known: town, state or country')}
                 />
               </label>
             </div>
             <p className="text-sm">
-              These are details you provide. They do not verify local production or establish environmental
-              benefits.
+              {text(
+                'These are details you provide. They do not verify local production or establish environmental benefits.',
+              )}
             </p>
           </details>
           <button
@@ -129,26 +135,27 @@ export function PurchaseReview({
             className="btn-quiet"
             onClick={() => onItems(items.filter((i) => i.id !== item.id))}
           >
-            Remove product {index + 1}
+            {text('Remove product ')}
+            {index + 1}
           </button>
         </fieldset>
       ))}
-      {!items.length && <p>Add at least one product before reviewing your visit.</p>}
+      {!items.length && <p>{text('Add at least one product before reviewing your visit.')}</p>}
       <button
         type="button"
         className="btn-secondary"
         disabled={items.length >= 100}
         onClick={() => onItems([...items, newItem()])}
       >
-        Add product
+        {text('Add product')}
       </button>
       <p>
-        Enter weighed quantities when possible. Each, bunch and volume units cannot be converted to kilograms
-        without product-specific evidence. Counts remain counts; unsupported environmental estimates stay
-        unavailable.
+        {text(
+          'Enter weighed quantities when possible. Each, bunch and volume units cannot be converted to kilograms without product-specific evidence. Counts remain counts; unsupported environmental estimates stay unavailable.',
+        )}
       </p>
       <label>
-        Total spent USD
+        {text('Total spent USD')}
         <input
           className="field"
           required

@@ -1,3 +1,4 @@
+import { useFeatureTranslation } from '../../i18n/featureText';
 import { ZodError } from 'zod';
 import { canonicalProductId } from './products';
 import { parseQuantity } from './quantity';
@@ -18,6 +19,7 @@ export function PurchaseEntry({
   onRecorded: () => void;
   onSessionExpired?: () => void;
 }) {
+  const { text, language } = useFeatureTranslation();
   const [step, setStep] = useState<'market' | 'items' | 'confirm' | 'done'>('market');
   const [filter, setFilter] = useState('');
   const [marketId, setMarketId] = useState('');
@@ -114,39 +116,41 @@ export function PurchaseEntry({
   return (
     <section className="card space-y-4 p-5" aria-labelledby="purchase-heading">
       <h2 id="purchase-heading" className="section-title" tabIndex={-1} ref={heading}>
-        Record a market visit
+        {text('Record a market visit')}
       </h2>
-      <p>Select Market → Enter Purchases → Confirm Information → Submit Visit</p>
+      <p>{text('Select Market → Enter Purchases → Confirm Information → Submit Visit')}</p>
       <p>
         {repository.persistence === 'memory'
-          ? 'Tab-memory demo: records disappear on reload or closing the tab. Nothing is saved to your account.'
-          : 'Using your connected private purchase repository.'}
+          ? text(
+              'Tab-memory demo: records disappear on reload or closing the tab. Nothing is saved to your account.',
+            )
+          : text('Using your connected private purchase repository.')}
       </p>
       {error && (
         <p role="alert" tabIndex={-1} ref={alert}>
-          {error}
+          {text(error)}
         </p>
       )}
       {step === 'market' && (
         <div className="space-y-3">
           <label>
-            Find a market
+            {text('Find a market')}
             <input
               className="field"
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
-              placeholder="Market name, city or state"
+              placeholder={text('Market name, city or state')}
             />
           </label>
           <label>
-            Farmers market
+            {text('Farmers market')}
             <select
-              aria-label="Farmers market"
+              aria-label={text('Farmers market')}
               className="field"
               value={marketId}
               onChange={(e) => setMarketId(e.target.value)}
             >
-              <option value="">Select a market</option>
+              <option value="">{text('Select a market')}</option>
               {choices.map((m) => (
                 <option key={m.id} value={m.id}>
                   {m.name} · {m.city}, {m.state}
@@ -154,9 +158,9 @@ export function PurchaseEntry({
               ))}
             </select>
           </label>
-          <p>Showing up to 50 directory matches. Search to narrow the list.</p>
+          <p>{text('Showing up to 50 directory matches. Search to narrow the list.')}</p>
           <button className="btn-primary" disabled={!market} onClick={() => setStep('items')}>
-            Enter purchases
+            {text('Enter purchases')}
           </button>
         </div>
       )}
@@ -164,7 +168,7 @@ export function PurchaseEntry({
         <form onSubmit={review} className="space-y-4">
           <p className="font-bold">{market?.name}</p>
           <label>
-            Visit date
+            {text('Visit date')}
             <input
               className="field"
               type="date"
@@ -177,27 +181,27 @@ export function PurchaseEntry({
           <PurchaseReview items={items} onItems={setItems} total={total} onTotal={setTotal} />
           <div className="flex flex-wrap gap-3">
             <button type="button" className="btn-secondary" onClick={() => setStep('market')}>
-              Back to market
+              {text('Back to market')}
             </button>
             <button type="submit" className="btn-primary">
-              Confirm information
+              {text('Confirm information')}
             </button>
           </div>
         </form>
       )}
       {step === 'confirm' && confirmed && (
         <div className="space-y-3">
-          <h3 className="font-bold">Review your trip</h3>
+          <h3 className="font-bold">{text('Review your trip')}</h3>
           <dl className="space-y-2">
             <div>
-              <dt className="font-semibold">Farmers market</dt>
+              <dt className="font-semibold">{text('Farmers market')}</dt>
               <dd>{market?.name}</dd>
             </div>
             <div>
-              <dt className="font-semibold">Visit date</dt>
+              <dt className="font-semibold">{text('Visit date')}</dt>
               <dd>
                 <time dateTime={confirmed.date}>
-                  {new Date(`${confirmed.date}T12:00:00`).toLocaleDateString('en-US', {
+                  {new Date(`${confirmed.date}T12:00:00`).toLocaleDateString(language, {
                     year: 'numeric',
                     month: 'long',
                     day: 'numeric',
@@ -209,39 +213,55 @@ export function PurchaseEntry({
           <ul>
             {confirmed.items.map((i) => (
               <li key={i.id}>
-                {i.product}: {i.quantity} {i.unit}
+                {i.product}: {i.quantity.toLocaleString(language)} {text(i.unit)}
                 {i.spendingCents !== undefined
                   ? ` · $${(i.spendingCents / 100).toFixed(2)}`
-                  : ' · Item price unknown'}
-                {i.vendor && <p>Vendor / farm (self-reported): {i.vendor}</p>}
-                {i.origin && <p>Origin (self-reported): {i.origin}</p>}
+                  : text(' · Item price unknown')}
+                {i.vendor && (
+                  <p>
+                    {text('Vendor / farm (self-reported): ')}
+                    {i.vendor}
+                  </p>
+                )}
+                {i.origin && (
+                  <p>
+                    {text('Origin (self-reported): ')}
+                    {i.origin}
+                  </p>
+                )}
               </li>
             ))}
           </ul>
-          <p>Total spent: ${(confirmed.totalCents / 100).toFixed(2)} USD · Counts as one visit.</p>
+          <p>
+            {text('Total spent: $')}
+            {(confirmed.totalCents / 100).toFixed(2)}
+            {text(' USD · Counts as one visit.')}
+          </p>
           <p className="text-sm">
-            Recorded spending is not proof of locally grown food. Environmental estimates require separate
-            evidence.
+            {text(
+              'Recorded spending is not proof of locally grown food. Environmental estimates require separate evidence.',
+            )}
           </p>
           <button className="btn-secondary" disabled={busy} onClick={() => setStep('items')}>
-            Edit information
+            {text('Edit information')}
           </button>{' '}
           <button className="btn-primary" disabled={busy} onClick={submit}>
-            {busy ? 'Submitting…' : 'Submit visit'}
+            {busy ? text('Submitting…') : text('Submit visit')}
           </button>
         </div>
       )}
       {step === 'done' && (
         <div className="space-y-3">
-          <p role="status">{status}</p>
+          <p role="status">{text(status)}</p>
           {repository.persistence === 'memory' && (
             <p>
-              This visit is recorded only in this tab. Reloading or closing the tab removes this history; it
-              is not saved to an account.
+              {text(
+                'This visit is recorded only in this tab. Reloading or closing the tab removes this history; it is not saved to an account.',
+              )}
             </p>
           )}
           <button className="btn-primary" onClick={reset}>
-            Record another visit
+            {text('Record another visit')}
           </button>
         </div>
       )}

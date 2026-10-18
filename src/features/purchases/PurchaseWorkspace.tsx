@@ -1,3 +1,4 @@
+import { useFeatureTranslation } from '../../i18n/featureText';
 import { resolveVisitEvidence } from '../sustainability/adapters/visits';
 import { EvidenceDetails } from '../sustainability/EvidenceDetails';
 import { SustainabilityDashboard } from '../sustainability/SustainabilityDashboard';
@@ -15,11 +16,13 @@ export function PurchaseWorkspace({
   markets: PurchaseMarket[];
   repository?: PurchaseRepository | null;
 }) {
+  const { text } = useFeatureTranslation();
   if (repository === null)
     return (
       <p role="status">
-        Purchase history is unavailable without an active connection. No private purchase information is
-        displayed.
+        {text(
+          'Purchase history is unavailable without an active connection. No private purchase information is displayed.',
+        )}
       </p>
     );
   if (!repositoryKeys.has(repository)) repositoryKeys.set(repository, ++nextRepositoryKey);
@@ -34,6 +37,7 @@ function RepositoryWorkspace({
   markets: PurchaseMarket[];
   repository: PurchaseRepository;
 }) {
+  const { text } = useFeatureTranslation();
   const [loaded, setLoaded] = useState<{ repository: PurchaseRepository; visits: Visit[] } | null>(null);
   const [error, setError] = useState('');
   const [revision, setRevision] = useState(0);
@@ -75,8 +79,9 @@ function RepositoryWorkspace({
   if (expired)
     return (
       <p role="alert">
-        Your purchase session expired. Private history, draft and scenario selection were cleared from this
-        view. Reconnect through the account system to continue.
+        {text(
+          'Your purchase session expired. Private history, draft and scenario selection were cleared from this view. Reconnect through the account system to continue.',
+        )}
       </p>
     );
   return (
@@ -89,7 +94,7 @@ function RepositoryWorkspace({
       />
       {error && (
         <div>
-          <p role="alert">{error}</p>
+          <p role="alert">{text(error)}</p>
           <button
             className="btn-secondary"
             onClick={() => {
@@ -98,7 +103,7 @@ function RepositoryWorkspace({
               setRevision((r) => r + 1);
             }}
           >
-            Retry loading history
+            {text('Retry loading history')}
           </button>
         </div>
       )}
@@ -113,7 +118,7 @@ function RepositoryWorkspace({
           />
         </>
       ) : (
-        !error && <p role="status">Loading purchase records…</p>
+        !error && <p role="status">{text('Loading purchase records…')}</p>
       )}
       <button
         className="btn-secondary"
@@ -131,7 +136,7 @@ function RepositoryWorkspace({
           }
         }}
       >
-        Clear purchase records
+        {text('Clear purchase records')}
       </button>
     </div>
   );

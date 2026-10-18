@@ -1,3 +1,4 @@
+import { useFeatureTranslation } from '../../i18n/featureText';
 import { MarketProductReporting } from '../marketReports/MarketProductReporting';
 import { PurchaseWorkspace } from '../purchases/PurchaseWorkspace';
 import { useSearchParams, Link } from 'react-router';
@@ -14,6 +15,7 @@ import { seasonalCatalog, productMatches } from './catalog/catalog';
 import { STATE_ABBR } from './catalog/states';
 
 export default function InSeasonSearch() {
+  const { text, language } = useFeatureTranslation();
   const [sp, setSp] = useSearchParams();
   const crops = useCrops();
   const markets = useMarkets();
@@ -105,20 +107,21 @@ export default function InSeasonSearch() {
   const reportedCategories = [...categoryCounts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
   return (
     <div className="mx-auto max-w-5xl space-y-6 px-4 py-6">
-      <h1 className="text-3xl font-extrabold">In Season Search</h1>
+      <h1 className="text-3xl font-extrabold">{text('In Season Search')}</h1>
       <p>
-        Discover seasonal food and reported market offerings. Directory categories are not live inventory;
-        contact markets before travelling.
+        {text(
+          'Discover seasonal food and reported market offerings. Directory categories are not live inventory; contact markets before travelling.',
+        )}
       </p>
       <div className="flex flex-wrap gap-3">
         <button className="btn-secondary" onClick={() => param('view', 'search')}>
-          Seasonal search
+          {text('Seasonal search')}
         </button>
         <button className="btn-secondary" onClick={() => param('view', 'purchases')}>
-          Purchases & sustainability
+          {text('Purchases & sustainability')}
         </button>
         <button className="btn-secondary" onClick={() => param('view', 'reports')}>
-          Report observed products · local demo
+          {text('Report observed products · local demo')}
         </button>
       </div>
       {sp.get('view') === 'reports' ? (
@@ -129,9 +132,9 @@ export default function InSeasonSearch() {
         <>
           <LocationPicker />
           <label className="block">
-            State for seasonal guidance
+            {text('State for seasonal guidance')}
             <select
-              aria-label="State for seasonal guidance"
+              aria-label={text('State for seasonal guidance')}
               className="field"
               value={
                 stateParam ?? (requestedRegion === 'verified-ma' ? 'MA' : requestedRegion ? 'region' : 'auto')
@@ -143,27 +146,31 @@ export default function InSeasonSearch() {
                 setSp(next, { replace: true });
               }}
             >
-              <option value="auto">Use location hint</option>
-              <option value="region">Browse a growing region</option>
+              <option value="auto">{text('Use location hint')}</option>
+              <option value="region">{text('Browse a growing region')}</option>
               {Object.entries(STATE_ABBR).map(([name, code]) => (
                 <option key={code} value={code}>
-                  {name}
+                  {text(name)}
                 </option>
               ))}
             </select>
           </label>
           <p className="text-sm">
             {state && (!stateParam || stateParam === 'auto') && !requestedRegion
-              ? `Location hint: ${selected.name}, based on a nearby market. Confirm the state, especially near borders.`
-              : `Seasonal guidance for ${selected.name}.`}{' '}
-            State selection changes the calendar and market area; location sets distance. Use the location
-            picker to change the distance origin.
+              ? text(
+                  'Location hint: {{v0}}, based on a nearby market. Confirm the state, especially near borders.',
+                  { v0: text(selected.name) },
+                )
+              : text('Seasonal guidance for {{v0}}.', { v0: text(selected.name) })}{' '}
+            {text(
+              'State selection changes the calendar and market area; location sets distance. Use the location picker to change the distance origin.',
+            )}
           </p>
           <div className="grid gap-3 sm:grid-cols-3">
             <label>
-              Growing region
+              {text('Growing region')}
               <select
-                aria-label="Growing region"
+                aria-label={text('Growing region')}
                 className="field"
                 value={region ?? ''}
                 onChange={(e) => {
@@ -174,38 +181,38 @@ export default function InSeasonSearch() {
                 }}
               >
                 <option value="" disabled>
-                  Choose a growing region
+                  {text('Choose a growing region')}
                 </option>
                 {Object.entries(regions).map(([id, r]) => (
                   <option key={id} value={id}>
-                    {r.name}
+                    {text(r.name)}
                   </option>
                 ))}
               </select>
             </label>
             <label>
-              Month
+              {text('Month')}
               <select
-                aria-label="Month"
+                aria-label={text('Month')}
                 className="field"
                 value={month}
                 onChange={(e) => param('month', e.target.value)}
               >
                 {Array.from({ length: 12 }, (_, i) => (
                   <option key={i} value={i + 1}>
-                    {monthName(i + 1, 'en')}
+                    {monthName(i + 1, language)}
                   </option>
                 ))}
               </select>
             </label>
             <label>
-              Food or market search
+              {text('Food or market search')}
               <input
                 className="field"
                 type="search"
                 value={sp.get('q') ?? ''}
                 onChange={(e) => param('q', e.target.value)}
-                placeholder="Apples, eggs, market name…"
+                placeholder={text('Apples, eggs, market name…')}
               />
             </label>
           </div>
@@ -215,41 +222,47 @@ export default function InSeasonSearch() {
               checked={maxKm !== undefined}
               onChange={(e) => param('near', e.target.checked ? '1' : '0')}
             />
-            Within 80 km of selected location, in this region
+            {text('Within 80 km of selected location, in this region')}
           </label>
           <section className="card space-y-2 p-4">
             <h2 className="section-title">
-              {monthName(month, 'en')} · {selected.name}
+              {monthName(month, language)} · {text(selected.name)}
             </h2>
             <p className="text-sm">
-              Source-backed calendars describe typical seasons, not a guarantee for this year or farm. Each
-              food is labelled separately. Missing state records fall back to a clearly marked approximate
-              region, or unknown. Dataset {seasonalCatalog.version}, reviewed {seasonalCatalog.reviewed}.
+              {text(
+                'Source-backed calendars describe typical seasons, not a guarantee for this year or farm. Each food is labelled separately. Missing state records fall back to a clearly marked approximate region, or unknown. Dataset ',
+              )}
+              {seasonalCatalog.version}
+              {text(', reviewed ')}
+              {seasonalCatalog.reviewed}.
             </p>
             <ul className="grid gap-3 sm:grid-cols-2">
               {[...seasonal, ...(q ? foods.filter((f) => f.signals.A !== 1) : [])].map(
                 ({ crop, score, season }) => (
                   <li key={crop.id} className="rounded-lg border border-slate-200 p-3">
                     <button
-                      title={`Recommendation score ${score?.toFixed(2) ?? 'unknown'} / 1; market signal uses category reports only`}
+                      title={text(
+                        'Recommendation score {{v0}} / 1; market signal uses category reports only',
+                        { v0: score?.toFixed(2) ?? text('unknown') },
+                      )}
                       className="chip"
                       onClick={() => param('q', crop.name)}
                     >
-                      {crop.name}
+                      {language.startsWith('es') ? crop.nameEs : crop.name}
                     </button>
-                    <p className="font-semibold text-sm">{season.status}</p>
+                    <p className="font-semibold text-sm">{text(season.status)}</p>
                     <p className="text-sm">
                       {season.level === 'verified-state'
-                        ? 'Source-backed state calendar'
+                        ? text('Source-backed state calendar')
                         : season.level === 'verified-region'
-                          ? 'Source-backed broader region'
+                          ? text('Source-backed broader region')
                           : season.level === 'approximate'
-                            ? 'Approximate regional calendar'
-                            : 'No applicable calendar'}
+                            ? text('Approximate regional calendar')
+                            : text('No applicable calendar')}
                     </p>
                     <details className="text-sm">
-                      <summary>Calendar evidence</summary>
-                      <p>{season.note}</p>
+                      <summary>{text('Calendar evidence')}</summary>
+                      <p>{text(season.note)}</p>
                       {season.sourceIds.map((id) => {
                         const source = seasonalCatalog.sources.find((s) => s.id === id)!;
                         return (
@@ -258,20 +271,23 @@ export default function InSeasonSearch() {
                               {source.organization}
                             </a>
                             <p>
-                              Published: {source.published ?? 'unstated'} · Reviewed: {source.lastReviewed}
+                              {text('Published: ')}
+                              {text(source.published ?? 'unstated')}
+                              {text(' · Reviewed: ')}
+                              {source.lastReviewed}
                             </p>
-                            <p>{source.limitations}</p>
+                            <p>{text(source.limitations)}</p>
                           </div>
                         );
                       })}
                       {season.level === 'approximate' && (
                         <>
                           <a href={cropData.sourceUrl}>{cropData.source}</a>
-                          <p>{cropData.note}</p>
+                          <p>{text(cropData.note)}</p>
                         </>
                       )}
                       {season.level === 'unknown' && (
-                        <p>No meaningful coverage; this does not prove the food is unavailable.</p>
+                        <p>{text('No meaningful coverage; this does not prove the food is unavailable.')}</p>
                       )}
                     </details>
                   </li>
@@ -279,15 +295,19 @@ export default function InSeasonSearch() {
               )}
             </ul>
             {!seasonal.length && (
-              <p>No matching seasonal entries in this guide. Missing entries do not prove unavailability.</p>
+              <p>
+                {text(
+                  'No matching seasonal entries in this guide. Missing entries do not prove unavailability.',
+                )}
+              </p>
             )}
           </section>
           <section className="space-y-3">
-            <h2 className="section-title">Reported at market · food categories within 80 km</h2>
+            <h2 className="section-title">{text('Reported at market · food categories within 80 km')}</h2>
             <p>
-              These historical directory reports do not confirm exact products or current stock. Popularity
-              and agricultural relevance measurements are unavailable. Ranking uses seasonal guidance and
-              non-sample directory category reports, redistributing missing weights.
+              {text(
+                'These historical directory reports do not confirm exact products or current stock. Popularity and agricultural relevance measurements are unavailable. Ranking uses seasonal guidance and non-sample directory category reports, redistributing missing weights.',
+              )}
             </p>
             <ul className="grid gap-3 sm:grid-cols-3">
               {reportedCategories.slice(0, 12).map(([category, count]) => (
@@ -296,30 +316,36 @@ export default function InSeasonSearch() {
                     className="font-bold underline"
                     onClick={() => param('q', category.replaceAll('_', ' '))}
                   >
-                    {category.replaceAll('_', ' ')}
+                    {text(category.replaceAll('_', ' '))}
                   </button>
                   <p>
-                    {count} markets report {category.replaceAll('_', ' ')}; exact products unconfirmed.
+                    {count}
+                    {text(' markets report ')}
+                    {text(category.replaceAll('_', ' '))}
+                    {text('; exact products unconfirmed.')}
                   </p>
                 </li>
               ))}
             </ul>
-            {!reportedCategories.length && <p>No matching non-sample category reports within 80 km.</p>}
+            {!reportedCategories.length && (
+              <p>{text('No matching non-sample category reports within 80 km.')}</p>
+            )}
           </section>
           <section className="space-y-3">
             <h2 className="section-title">
-              Markets in {selected.name} ({results.length})
+              {text('Markets in ')}
+              {text(selected.name)} ({results.length})
             </h2>
             <p>
-              Ordered by distance to your selected location. Schedules may be unknown. A recent download does
-              not mean recent reporting: some USDA records originate in 2014. Seasonal results update with the
-              month; market data follows the existing weekly publication schedule. Reload to retrieve
-              published updates.
+              {text(
+                'Ordered by distance to your selected location. Schedules may be unknown. A recent download does not mean recent reporting: some USDA records originate in 2014. Seasonal results update with the month; market data follows the existing weekly publication schedule. Reload to retrieve published updates.',
+              )}
             </p>
             {!results.length && (
               <p>
-                No matching reported offerings. Try a food category, change region, or widen the distance
-                filter.
+                {text(
+                  'No matching reported offerings. Try a food category, change region, or widen the distance filter.',
+                )}
               </p>
             )}
             <ul className="grid gap-4 sm:grid-cols-2">
@@ -329,16 +355,18 @@ export default function InSeasonSearch() {
                   <p className="text-sm">
                     {m.scheduleRaw ||
                       (m.scheduleParsed && m.schedules.length
-                        ? 'See schedule above; confirm with market.'
-                        : 'Operating information unavailable — confirm with market.')}{' '}
-                    · Source record update: {m.lastUpdated || 'unknown'}
+                        ? text('See schedule above; confirm with market.')
+                        : text('Operating information unavailable — confirm with market.'))}{' '}
+                    {text('· Source record update: ')}
+                    {text(m.lastUpdated || 'unknown')}
                   </p>
                 </li>
               ))}
             </ul>
             {results.length > 20 && (
               <p>
-                Showing the nearest 20. Refine your search or <Link to="/explore">use the map</Link>.
+                {text('Showing the nearest 20. Refine your search or ')}
+                <Link to="/explore">{text('use the map')}</Link>.
               </p>
             )}
           </section>

@@ -1,3 +1,4 @@
+import { useFeatureTranslation } from '../../i18n/featureText';
 import { environmentalEvidence } from './adapters/catalog';
 import type { VisitEvidence } from './adapters/visits';
 export function EvidenceDetails({
@@ -9,84 +10,96 @@ export function EvidenceDetails({
   onScenarioChange: (id: string) => void;
   collection: VisitEvidence;
 }) {
+  const { text } = useFeatureTranslation();
   return (
     <section className="card space-y-3 p-4" aria-labelledby="environmental-evidence-title">
       <h2 id="environmental-evidence-title" className="section-title">
-        Environmental evidence
+        {text('Environmental evidence')}
       </h2>
       <p>
-        Recorded spending and quantities are separate from environmental comparisons. No actual
-        purchase-specific supply chains are documented by the bundled dataset.
+        {text(
+          'Recorded spending and quantities are separate from environmental comparisons. No actual purchase-specific supply chains are documented by the bundled dataset.',
+        )}
       </p>
       <label>
-        Environmental comparison
+        {text('Environmental comparison')}
         <select
-          aria-label="Environmental comparison"
+          aria-label={text('Environmental comparison')}
           className="field"
           value={scenarioId}
           onChange={(e) => onScenarioChange(e.target.value)}
         >
-          <option value="">Actual/observed evidence only — no historical scenario</option>
+          <option value="">{text('Actual/observed evidence only — no historical scenario')}</option>
           {environmentalEvidence.catalog.comparisons
             .filter((r) => r.basis === 'modeled-scenario')
             .map((r) => (
               <option key={r.id} value={r.id}>
-                {r.label}
+                {text(r.label)}
               </option>
             ))}
         </select>
       </label>
       {scenarioId ? (
         <div role="note" className="rounded border p-3">
-          <p className="font-bold">Modeled historical scenario — not your actual purchase impact.</p>
+          <p className="font-bold">
+            {text('Modeled historical scenario — not your actual purchase impact.')}
+          </p>
           <p>
-            Uses recorded fresh-apple mass only for markets listed in Syracuse, NY. Source case evidence is
-            circa 2008–2009, published 2010. Direct-market comparisons apply April–December (including stored
-            apples). Other products, places and unsupported dates remain unavailable.
+            {text(
+              'Uses recorded fresh-apple mass only for markets listed in Syracuse, NY. Source case evidence is circa 2008–2009, published 2010. Direct-market comparisons apply April–December (including stored apples). Other products, places and unsupported dates remain unavailable.',
+            )}
           </p>
           {scenarioId === 'syracuse-regional-retail-vs-wa' ? (
             <p>
-              This illustration compares two historical supermarket distribution chains. It does not estimate
-              a farmers-market supply route. Freight uses EPA average factors, not measured trip emissions.
+              {text(
+                'This illustration compares two historical supermarket distribution chains. It does not estimate a farmers-market supply route. Freight uses EPA average factors, not measured trip emissions.',
+              )}
             </p>
           ) : (
             <p>
-              The direct-market small van cannot use the heavy-truck factor; transportation CO₂e remains
-              unavailable for this scenario.
+              {text(
+                'The direct-market small van cannot use the heavy-truck factor; transportation CO₂e remains unavailable for this scenario.',
+              )}
             </p>
           )}
         </div>
       ) : (
         <p>
-          Actual/observed supply-chain status: unknown. A product name and market location do not establish
-          farm origin or a conventional alternative.
+          {text(
+            'Actual/observed supply-chain status: unknown. A product name and market location do not establish farm origin or a conventional alternative.',
+          )}
         </p>
       )}
       <p className="text-sm">
-        Catalog: {environmentalEvidence.catalog.version}. Scenario selection is optional, stays in this view,
-        and does not alter recorded purchases.
+        {text('Catalog: ')}
+        {environmentalEvidence.catalog.version}
+        {text('. Scenario selection is optional, stays in this view, and does not alter recorded purchases.')}
       </p>
       {collection.items.map(({ key, product, date, resolution }) => (
         <details key={key} className="rounded border p-3">
           <summary>
             {date} · {product} ·{' '}
             {resolution.basis === 'modeled-scenario'
-              ? 'Modeled scenario'
+              ? text('Modeled scenario')
               : resolution.basis === 'actual-observed'
-                ? 'Actual/observed evidence'
-                : 'Insufficient evidence'}
+                ? text('Actual/observed evidence')
+                : text('Insufficient evidence')}
           </summary>
           {resolution.record && (
             <>
-              <p>{resolution.record.label}</p>
+              <p>{text(resolution.record.label)}</p>
               <p>
-                Study local chain: {resolution.record.local.originLabel} →{' '}
-                {resolution.record.local.destinationLabel} ({resolution.record.local.distance.value} miles).
+                {text('Study local chain: ')}
+                {text(resolution.record.local.originLabel)} → {text(resolution.record.local.destinationLabel)}{' '}
+                ({resolution.record.local.distance.value}
+                {text(' miles).')}
               </p>
               <p>
-                Study conventional chain: {resolution.record.conventional.originLabel} →{' '}
-                {resolution.record.conventional.destinationLabel} (
-                {resolution.record.conventional.distance.value} miles).
+                {text('Study conventional chain: ')}
+                {text(resolution.record.conventional.originLabel)} →{' '}
+                {text(resolution.record.conventional.destinationLabel)} (
+                {resolution.record.conventional.distance.value}
+                {text(' miles).')}
               </p>
             </>
           )}
@@ -99,28 +112,38 @@ export function EvidenceDetails({
                 · {source.sourceLocator}
               </p>
               <p>
-                Published {source.publicationDate}. Observations: {source.observationPeriod}. Reviewed{' '}
-                {source.reviewedAt}.
+                {text('Published ')}
+                {source.publicationDate}
+                {text('. Observations: ')}
+                {text(source.observationPeriod)}
+                {text('. Reviewed')} {source.reviewedAt}.
               </p>
               <p>
-                Scope: {source.geography}. Products: {source.products.join(', ')}. Source units:{' '}
-                {source.sourceUnits.join(', ')}.
+                {text('Scope: ')}
+                {text(source.geography)}
+                {text('. Products: ')}
+                {source.products.map((product) => text(product)).join(', ')}
+                {text('. Source units:')} {source.sourceUnits.join(', ')}.
               </p>
-              <p>Method: {source.methodology}.</p>
               <p>
-                Use/redistribution: {source.license}.{' '}
+                {text('Method: ')}
+                {text(source.methodology)}.
+              </p>
+              <p>
+                {text('Use/redistribution: ')}
+                {text(source.license)}.{' '}
                 <a href={source.licenseUrl} target="_blank" rel="noreferrer">
-                  Reuse basis
+                  {text('Reuse basis')}
                 </a>
               </p>
             </div>
           ))}
           {!!resolution.missing.length && (
             <>
-              <h3 className="mt-2 font-bold">Unavailable inputs (not required by every metric)</h3>
+              <h3 className="mt-2 font-bold">{text('Unavailable inputs (not required by every metric)')}</h3>
               <ul className="list-disc pl-5">
                 {resolution.missing.map((m, i) => (
-                  <li key={i}>{m.reason}</li>
+                  <li key={i}>{text(m.reason)}</li>
                 ))}
               </ul>
             </>

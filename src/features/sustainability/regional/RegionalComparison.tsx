@@ -1,3 +1,4 @@
+import { useFeatureTranslation } from '../../../i18n/featureText';
 import { useState } from 'react';
 import type { Visit } from '../../purchases/model';
 import { resolveRegionalVisits, type RegionalMarket } from './food';
@@ -7,13 +8,6 @@ import { regionalCatalog } from './catalog';
 import { seasonalCatalog } from '../../seasonal/catalog/catalog';
 import { EPA_SOURCE } from '../transport';
 import type { Metric } from '../evidence';
-const number = (n: number) => n.toLocaleString(undefined, { maximumFractionDigits: 3 });
-function value(metric: Metric) {
-  if (metric.value !== null) return `${number(metric.value)} ${metric.unit}`;
-  return metric.knownSubtotal === null
-    ? 'Not available for the whole basket'
-    : `${number(metric.knownSubtotal)} ${metric.unit} · supported subset only; whole basket unavailable`;
-}
 export function RegionalComparison({
   visits,
   markets,
@@ -21,6 +15,18 @@ export function RegionalComparison({
   visits: Visit[];
   markets: readonly RegionalMarket[];
 }) {
+  const { text, language } = useFeatureTranslation();
+  const number = (n: number) => n.toLocaleString(language, { maximumFractionDigits: 3 });
+  function value(metric: Metric) {
+    if (metric.value !== null) return `${number(metric.value)} ${text(metric.unit)}`;
+    return metric.knownSubtotal === null
+      ? text('Not available for the whole basket')
+      : text('{{v0}} {{v1}} · supported subset only; whole basket unavailable', {
+          v0: number(metric.knownSubtotal),
+          v1: text(metric.unit),
+        });
+  }
+
   const [choices, setChoices] = useState<Record<string, string>>({});
   const resolution = resolveRegionalVisits(visits, markets, choices);
   const freight = regionalFreightSummary(resolution);
@@ -28,40 +34,52 @@ export function RegionalComparison({
   return (
     <section aria-labelledby="regional-title" className="space-y-4">
       <h3 id="regional-title" className="text-xl font-bold">
-        Illustrative regional scenario
+        {text('Illustrative regional scenario')}
       </h3>
       <p className="rounded border border-amber-400 bg-amber-50 p-3 font-semibold">
-        These estimates compare modeled regional and conventional supply chains. They do not measure the
-        actual origin or emissions of your purchase.
+        {text(
+          'These estimates compare modeled regional and conventional supply chains. They do not measure the actual origin or emissions of your purchase.',
+        )}
       </p>
       <p>
-        Coarse straight-line freight proxy · NOT road mileage or a road-route emissions estimate. Each origin
-        is a state geographic reference point, not a farm. Both branches conditionally assume consolidated
-        medium/heavy truck freight at EPA average efficiency, not a farmer van.
+        {text(
+          'Coarse straight-line freight proxy · NOT road mileage or a road-route emissions estimate. Each origin is a state geographic reference point, not a farm. Both branches conditionally assume consolidated medium/heavy truck freight at EPA average efficiency, not a farmer van.',
+        )}
       </p>
       <p>
-        Model {resolution.modelVersion} · reviewed {regionalCatalog.reviewedAt} · visit-date scope{' '}
-        {regionalCatalog.applicableFrom}–{regionalCatalog.applicableTo}.
+        {text('Model ')}
+        {resolution.modelVersion}
+        {text(' · reviewed ')}
+        {regionalCatalog.reviewedAt}
+        {text(' · visit-date scope')} {regionalCatalog.applicableFrom}–{regionalCatalog.applicableTo}.
       </p>
       <p>
-        Product coverage: {supported}/{resolution.items.length} recorded entries have regional alternatives;{' '}
-        {resolution.items.filter((r) => r.selected).length} have a selected illustration. Unsupported items
-        stay unknown. Alternatives are never added together or chosen to maximize savings.
+        {text('Product coverage: ')}
+        {supported}/{resolution.items.length}
+        {text(' recorded entries have regional alternatives;')}{' '}
+        {resolution.items.filter((r) => r.selected).length}
+        {text(
+          ' have a selected illustration. Unsupported items stay unknown. Alternatives are never added together or chosen to maximize savings.',
+        )}
       </p>
       {!supported && (
         <p>
-          Regional transportation estimates unavailable for these inputs. No reviewed
-          product/destination/season/mass match.
+          {text(
+            'Regional transportation estimates unavailable for these inputs. No reviewed product/destination/season/mass match.',
+          )}
         </p>
       )}
       {!!supported && (
         <dl className="grid gap-3 sm:grid-cols-2">
           {[
-            ['Estimated regional food miles · kg-mile difference', resolution.foodMiles.weightedDifference],
-            ['Average miles of difference per kilogram', resolution.foodMiles.averageDifference],
-            ['Estimated transportation CO₂e · regional proxy', freight.regional],
-            ['Estimated transportation CO₂e · conventional proxy', freight.conventional],
-            ['Regional vs conventional difference · transportation CO₂e', freight.difference],
+            [
+              text('Estimated regional food miles · kg-mile difference'),
+              resolution.foodMiles.weightedDifference,
+            ],
+            [text('Average miles of difference per kilogram'), resolution.foodMiles.averageDifference],
+            [text('Estimated transportation CO₂e · regional proxy'), freight.regional],
+            [text('Estimated transportation CO₂e · conventional proxy'), freight.conventional],
+            [text('Regional vs conventional difference · transportation CO₂e'), freight.difference],
           ].map(([title, m]) => (
             <div key={String(title)} className="card p-3">
               <dt>{String(title)}</dt>
@@ -72,17 +90,18 @@ export function RegionalComparison({
       )}
       {!!supported && (
         <p>
-          Selected food-distance coverage: {resolution.foodMiles.weightedDifference.covered}/
-          {resolution.foodMiles.weightedDifference.expected} entries ·{' '}
-          {number(resolution.foodMiles.coveredMassKg)} kg. Freight coverage: {freight.difference.covered}/
-          {freight.difference.expected} entries. A supported subset does not establish a whole-basket
-          estimate.
+          {text('Selected food-distance coverage: ')}
+          {resolution.foodMiles.weightedDifference.covered}/{resolution.foodMiles.weightedDifference.expected}
+          {text(' entries ·')} {number(resolution.foodMiles.coveredMassKg)}
+          {text(' kg. Freight coverage: ')}
+          {freight.difference.covered}/{freight.difference.expected}
+          {text(' entries. A supported subset does not establish a whole-basket estimate.')}
         </p>
       )}
       <p>
-        Difference = conventional minus regional. Negative means the regional scenario is higher. No verified
-        CO₂e avoided is claimed. Consumer travel, refrigeration energy, farm emissions and total life-cycle
-        emissions are excluded. Do not add this section to the historical or actual-evidence results.
+        {text(
+          'Difference = conventional minus regional. Negative means the regional scenario is higher. No verified CO₂e avoided is claimed. Consumer travel, refrigeration energy, farm emissions and total life-cycle emissions are excluded. Do not add this section to the historical or actual-evidence results.',
+        )}
       </p>
       {resolution.items.map((row, index) => {
         const sensitivity = originSensitivity(row);
@@ -90,24 +109,32 @@ export function RegionalComparison({
           <article
             key={row.key}
             className="card space-y-3 p-4"
-            aria-label={`${row.item.product} regional scenarios, entry ${index + 1}`}
+            aria-label={text('{{v0}} regional scenarios, entry {{v1}}', {
+              v0: row.item.product,
+              v1: index + 1,
+            })}
           >
             <h4 className="font-bold">
               {row.item.product} · {row.visit.date}
             </h4>
             {row.alternatives.length > 1 && (
               <label className="block">
-                Illustration for {row.item.product}, entry {index + 1}
+                {text('Illustration for ')}
+                {row.item.product}
+                {text(', entry ')}
+                {index + 1}
                 <select
                   className="field"
                   value={row.selected?.scenario.id ?? ''}
                   onChange={(e) => setChoices((c) => ({ ...c, [row.key]: e.target.value }))}
                 >
-                  <option value="">Choose an illustration; actual origin unknown</option>
+                  <option value="">{text('Choose an illustration; actual origin unknown')}</option>
                   {row.alternatives.map((a) => (
                     <option key={a.scenario.id} value={a.scenario.id}>
-                      {a.regionalOrigin} regional vs {a.conventionalOrigin} conventional · conditional bulk
-                      truck
+                      {a.regionalOrigin}
+                      {text(' regional vs ')}
+                      {a.conventionalOrigin}
+                      {text(' conventional · conditional bulk truck')}
                     </option>
                   ))}
                 </select>
@@ -115,31 +142,41 @@ export function RegionalComparison({
             )}
             {row.alternatives.length === 1 && (
               <p>
-                One reviewed illustration applies automatically. It does not identify this purchase's route.
+                {text(
+                  "One reviewed illustration applies automatically. It does not identify this purchase's route.",
+                )}
               </p>
             )}
             {row.missing.map((reason) => (
-              <p key={reason}>{reason}</p>
+              <p key={text(reason)}>{text(reason)}</p>
             ))}
             {sensitivity.alternatives.map((a) => (
               <details key={a.alternative.scenario.id}>
                 <summary>
-                  {a.alternative.regionalOrigin} regional vs {a.alternative.conventionalOrigin} conventional ·{' '}
-                  {number(a.alternative.distances.local.value)} vs{' '}
-                  {number(a.alternative.distances.conventional.value)} straight-line miles
+                  {a.alternative.regionalOrigin}
+                  {text(' regional vs ')}
+                  {a.alternative.conventionalOrigin}
+                  {text(' conventional ·')} {number(a.alternative.distances.local.value)}
+                  {text(' vs')} {number(a.alternative.distances.conventional.value)}
+                  {text(' straight-line miles')}
                 </summary>
                 <p>
-                  Boundary: {a.alternative.scenario.regionalBoundary}. Regional producer hypothesis{' '}
-                  {a.alternative.regionalOrigin}; conventional producer hypothesis{' '}
-                  {a.alternative.conventionalOrigin}. Neither is known to supply this purchase.
+                  {text('Boundary: ')}
+                  {text(a.alternative.scenario.regionalBoundary)}
+                  {text('. Regional producer hypothesis')} {a.alternative.regionalOrigin}
+                  {text('; conventional producer hypothesis')} {a.alternative.conventionalOrigin}
+                  {text('. Neither is known to supply this purchase.')}
                 </p>
                 <p>
-                  Recorded mass: {number(a.alternative.kg)} kg · kg-mile difference:{' '}
-                  {value(a.food.weightedDifference)} · freight CO₂e difference: {value(a.freight)}.
+                  {text('Recorded mass: ')}
+                  {number(a.alternative.kg)}
+                  {text(' kg · kg-mile difference:')} {value(a.food.weightedDifference)}
+                  {text(' · freight CO₂e difference: ')}
+                  {value(a.freight)}.
                 </p>
                 <p>
-                  {a.alternative.scenario.modeAssumption} Freight combustion only (tank-to-wheel), mass
-                  allocated.
+                  {text(a.alternative.scenario.modeAssumption)}
+                  {text(' Freight combustion only (tank-to-wheel), mass allocated.')}
                 </p>
                 {[a.alternative.distances.local, a.alternative.distances.conventional].map((d, i) => (
                   <div key={i}>
@@ -148,33 +185,39 @@ export function RegionalComparison({
                     </a>
                     <ul className="list-disc pl-5">
                       {d.provenance.assumptions.map((s) => (
-                        <li key={s}>{s}</li>
+                        <li key={s}>{text(s)}</li>
                       ))}
                     </ul>
                   </div>
                 ))}
                 <p>
-                  Data quality: coarse illustration. Missing actual origins, routes, load utilization,
-                  consolidation and final delivery legs.
+                  {text(
+                    'Data quality: coarse illustration. Missing actual origins, routes, load utilization, consolidation and final delivery legs.',
+                  )}
                 </p>
               </details>
             ))}
             {sensitivity.alternatives.length > 1 && (
               <p>
-                {sensitivity.note}{' '}
+                {text(sensitivity.note)}{' '}
                 {sensitivity.extrema &&
-                  `These cases range from ${number(sensitivity.extrema.min)} to ${number(sensitivity.extrema.max)} kg CO₂e difference.`}
+                  text('These cases range from {{v0}} to {{v1}} kg CO₂e difference.', {
+                    v0: number(sensitivity.extrema.min),
+                    v1: number(sensitivity.extrema.max),
+                  })}
               </p>
             )}
           </article>
         );
       })}
       <details>
-        <summary>Regional model sources and missing supply-chain evidence</summary>
+        <summary>{text('Regional model sources and missing supply-chain evidence')}</summary>
         <p>
-          Model quality: coarse regional illustration. Review by {regionalCatalog.applicableTo}; new purchase
-          dates beyond that cutoff require a reviewed catalog release. Geographic applicability and seasonal
-          coverage never establish actual purchase origins.
+          {text('Model quality: coarse regional illustration. Review by ')}
+          {regionalCatalog.applicableTo}
+          {text(
+            '; new purchase dates beyond that cutoff require a reviewed catalog release. Geographic applicability and seasonal coverage never establish actual purchase origins.',
+          )}
         </p>
         <ul className="list-disc pl-5">
           {regionalCatalog.sources.map((s) => (
@@ -182,39 +225,48 @@ export function RegionalComparison({
               <a href={s.url} target="_blank" rel="noreferrer">
                 {s.organization}
               </a>{' '}
-              · published {s.publishedAt}; crop observations {s.observedFrom}–{s.observedTo}.
+              {text('· published ')}
+              {s.publishedAt}
+              {text('; crop observations ')}
+              {s.observedFrom}–{s.observedTo}.
             </li>
           ))}
           <li>
-            <a href={regionalCatalog.pointSource.url}>Census state geographic references</a> ·{' '}
+            <a href={regionalCatalog.pointSource.url}>{text('Census state geographic references')}</a> ·{' '}
             {regionalCatalog.pointSource.publishedAt} ({regionalCatalog.pointSource.dateBasis}).
           </li>
           <li>
-            <a href={regionalCatalog.modeSource.url}>USDA AMS truck context</a> · published{' '}
-            {regionalCatalog.modeSource.publishedAt} (month precision); {regionalCatalog.modeSource.locator}.
+            <a href={regionalCatalog.modeSource.url}>{text('USDA AMS truck context')}</a>
+            {text(' · published')} {regionalCatalog.modeSource.publishedAt}
+            {text(' (month precision); ')}
+            {regionalCatalog.modeSource.locator}.
           </li>
           <li>
-            <a href={EPA_SOURCE.url}>EPA January 2025 freight factors</a> · same existing AR5/short-ton-mile
-            conversions.
+            <a href={EPA_SOURCE.url}>{text('EPA January 2025 freight factors')}</a>
+            {text(' · same existing AR5/short-ton-mile conversions.')}
           </li>
           <li>
-            Seasonal catalog {seasonalCatalog.version}. Calendar availability is not a routing observation.
+            {text('Seasonal catalog ')}
+            {seasonalCatalog.version}
+            {text('. Calendar availability is not a routing observation.')}
             <ul>
               {seasonalCatalog.sources
                 .filter((s) => regionalCatalog.production.some((p) => p.calendarSourceIds.includes(s.id)))
                 .map((s) => (
                   <li key={s.id}>
-                    <a href={s.url}>{s.organization}</a> · published {s.published ?? 'unstated'}, reviewed{' '}
-                    {s.lastReviewed}.
+                    <a href={s.url}>{s.organization}</a>
+                    {text(' · published ')}
+                    {text(s.published ?? 'unstated')}
+                    {text(', reviewed')} {s.lastReviewed}.
                   </li>
                 ))}
             </ul>
           </li>
         </ul>
         <p>
-          No origin probabilities, road multipliers, assumed item weights, load-efficiency distributions or
-          whole-life-cycle estimates. Production totals are context only. Public-source metadata is distinct
-          from actual-purchase evidence.
+          {text(
+            'No origin probabilities, road multipliers, assumed item weights, load-efficiency distributions or whole-life-cycle estimates. Production totals are context only. Public-source metadata is distinct from actual-purchase evidence.',
+          )}
         </p>
       </details>
     </section>

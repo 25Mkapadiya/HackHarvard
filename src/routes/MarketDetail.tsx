@@ -89,6 +89,9 @@ export default function MarketDetail() {
 
       <header className="stall-sign space-y-3 rounded-xl p-5 text-white">
         <h1 className="text-3xl font-extrabold text-white sm:text-4xl">{m.name}</h1>
+        <Link className="font-bold text-white underline" to={`/community/markets/${m.id}`}>
+          {t('community.feed')}
+        </Link>
         <p className="text-lg">
           {m.address.city}, {m.address.state}
           {m.winter ? ` · ${t('filters.winter')}` : ''} · {t(`types.${m.type}`)}

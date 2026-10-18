@@ -105,6 +105,13 @@ push to `main`. One-time setup by a repo admin: **Settings → Pages → Source:
 
 ## Supabase mode (optional, not built yet)
 
+**Account and community features** now use Supabase independently of the demo store.
+See [account/community setup](docs/ACCOUNT_COMMUNITY_SETUP.md) for migrations, email
+templates, redirect URLs, administrator bootstrap, security boundaries, and verification.
+New routes include `#/account`, `#/account/identities`, `#/feed`, and
+`#/community/markets`. Keep `VITE_BACKEND=demo`; the store mode described below
+still refers to the separate legacy vendor/manager/rewards data layer.
+
 Build with `VITE_BACKEND=supabase VITE_SUPABASE_URL=… VITE_SUPABASE_ANON_KEY=…` once `SupabaseStore`
 (`src/lib/store/supabase.ts`) is implemented and `supabase/migrations/` define tables with Row Level Security on
 every table (vendors edit only their rows; users see only their rewards; sales private). The anon key is safe to

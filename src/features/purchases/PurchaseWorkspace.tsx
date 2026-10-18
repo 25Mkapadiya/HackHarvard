@@ -1,3 +1,5 @@
+import { resolveVisitEvidence } from '../sustainability/adapters/visits';
+import { EvidenceDetails } from '../sustainability/EvidenceDetails';
 import { SustainabilityDashboard } from '../sustainability/SustainabilityDashboard';
 import { useEffect, useState } from 'react';
 import { PurchaseEntry, type PurchaseMarket } from './PurchaseEntry';
@@ -13,6 +15,9 @@ export function PurchaseWorkspace({
   const [loaded, setLoaded] = useState<{ repository: PurchaseRepository; visits: Visit[] } | null>(null);
   const [error, setError] = useState('');
   const [revision, setRevision] = useState(0);
+  const [scenarioId, setScenarioId] = useState('');
+  const currentVisits = loaded?.repository === repository ? loaded.visits : [];
+  const collection = resolveVisitEvidence(currentVisits, markets, scenarioId || undefined);
   useEffect(() => {
     let active = true;
     repository.list().then(
@@ -35,7 +40,15 @@ export function PurchaseWorkspace({
       <PurchaseEntry markets={markets} repository={repository} onRecorded={() => setRevision((r) => r + 1)} />
       {error && <p role="alert">{error}</p>}
       {!error && loaded?.repository === repository ? (
-        <SustainabilityDashboard visits={loaded.visits} markets={markets} />
+        <>
+          <EvidenceDetails scenarioId={scenarioId} onScenarioChange={setScenarioId} collection={collection} />
+          <SustainabilityDashboard
+            visits={loaded.visits}
+            markets={markets}
+            evidence={collection.impact}
+            comparisonBasis={scenarioId ? 'modeled-scenario' : 'actual-observed'}
+          />
+        </>
       ) : (
         !error && <p role="status">Loading purchase records…</p>
       )}

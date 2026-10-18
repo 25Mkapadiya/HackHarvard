@@ -2,7 +2,8 @@ import type { Visit } from '../purchases/model';
 import type { PurchaseMarket } from '../purchases/PurchaseEntry';
 import { impactSummary, type ImpactData } from './summary';
 import type { Metric } from './evidence';
-function MetricCard({ title, result }: { title: string; result: Metric }) {
+type ComparisonBasis = 'modeled-scenario' | 'actual-observed';
+function MetricCard({ title, result, basis }: { title: string; result: Metric; basis?: ComparisonBasis }) {
   const sources = [...new Map(result.sources.map((s) => [JSON.stringify(s), s])).values()];
   return (
     <section className="card space-y-2 p-4" aria-label={title}>
@@ -12,6 +13,13 @@ function MetricCard({ title, result }: { title: string; result: Metric }) {
           ? 'Unavailable'
           : `${result.value.toLocaleString(undefined, { maximumFractionDigits: 3 })} ${result.unit}`}
       </p>
+      {(result.value !== null || result.knownSubtotal !== null) && basis && (
+        <p className="font-bold">
+          {basis === 'modeled-scenario'
+            ? 'Modeled scenario — not observed purchase impact'
+            : 'Actual/observed supply-chain evidence'}
+        </p>
+      )}
       <p>
         Data quality: {result.quality} · Evidence coverage: {result.covered}/{result.expected} required
         entries
@@ -67,10 +75,12 @@ export function SustainabilityDashboard({
   visits,
   markets = [],
   evidence = {},
+  comparisonBasis,
 }: {
   visits: Visit[];
   markets?: PurchaseMarket[];
   evidence?: ImpactData;
+  comparisonBasis?: ComparisonBasis;
 }) {
   const summary = impactSummary(visits, evidence);
   const names = new Map(markets.map((m) => [m.id, m.name]));
@@ -101,13 +111,23 @@ export function SustainabilityDashboard({
         <MetricCard
           title="Food miles difference (mass-weighted sum)"
           result={summary.foodMiles.weightedDifference}
+          basis={comparisonBasis}
         />
         <MetricCard
           title="Average transportation-distance difference"
           result={summary.foodMiles.averageDifference}
+          basis={comparisonBasis}
         />
-        <MetricCard title="Transportation CO₂e difference" result={summary.transport} />
-        <MetricCard title="Total life-cycle CO₂e difference" result={summary.lifecycle} />
+        <MetricCard
+          title="Transportation CO₂e difference"
+          result={summary.transport}
+          basis={comparisonBasis}
+        />
+        <MetricCard
+          title="Total life-cycle CO₂e difference"
+          result={summary.lifecycle}
+          basis={comparisonBasis}
+        />
       </div>
       <p>
         Environmental comparisons need sourced origins, comparable conventional supply chains, and compatible

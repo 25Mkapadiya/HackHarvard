@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { dollarsToCents, validateVisit, type VisitInput } from './model';
+import { dollarsToCents, validateVisit, type NewVisitInput } from './model';
 import { MemoryPurchaseRepository } from './repository';
-export const visitFixture = (): VisitInput => ({
+export const visitFixture = (): NewVisitInput => ({
   submissionId: 'one',
   marketId: 'market',
   date: '2026-10-17',

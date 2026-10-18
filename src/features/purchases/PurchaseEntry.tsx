@@ -3,7 +3,7 @@ import { canonicalProductId } from './products';
 import { parseQuantity } from './quantity';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { dollarsToCents, todayLocal, validateNewVisit, type NewVisitInput } from './model';
-import type { PurchaseRepository } from './repository';
+import { isExpiredSession, type PurchaseRepository } from './repository';
 import { newItem, type DraftItem } from './draft';
 import { PurchaseReview } from './PurchaseReview';
 export type PurchaseMarket = { id: string; name: string; city: string; state: string };
@@ -11,10 +11,12 @@ export function PurchaseEntry({
   markets,
   repository,
   onRecorded,
+  onSessionExpired,
 }: {
   markets: PurchaseMarket[];
   repository: PurchaseRepository;
   onRecorded: () => void;
+  onSessionExpired?: () => void;
 }) {
   const [step, setStep] = useState<'market' | 'items' | 'confirm' | 'done'>('market');
   const [filter, setFilter] = useState('');
@@ -91,8 +93,11 @@ export function PurchaseEntry({
       );
       setStep('done');
       onRecorded();
-    } catch {
-      setError('Submission failed. Your information is still here; retry when ready.');
+    } catch (err) {
+      if (isExpiredSession(err)) {
+        onSessionExpired?.();
+        setError('Your purchase session expired. Reconnect through the account system to continue.');
+      } else setError('Submission failed. Your information is still here; retry when ready.');
     } finally {
       submitting.current = false;
       setBusy(false);

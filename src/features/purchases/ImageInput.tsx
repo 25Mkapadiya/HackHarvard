@@ -53,6 +53,13 @@ export function ImageInput({
   async function select(file: File | undefined) {
     if (!file) return;
     const token = ++serial.current;
+    if (pending.current) {
+      pending.current.onload = null;
+      pending.current.onerror = null;
+      pending.current.src = '';
+      pending.current = null;
+    }
+    for (const old of urls.current) if (old !== selected.current?.url) release(old);
     setError('');
     setLoading(true);
     let url: string | undefined;
@@ -93,7 +100,7 @@ export function ImageInput({
   return (
     <section
       aria-label={kind === 'photo' ? 'Purchase photo' : 'Receipt image'}
-      className="space-y-3 rounded border p-3"
+      className="min-w-0 space-y-3 rounded border p-3"
     >
       <p id={`${id}-help`}>
         Private preview only. JPEG, PNG or WebP, up to 8 MB. No image is uploaded or saved with your visit.
@@ -103,7 +110,7 @@ export function ImageInput({
         <label className="block">
           Take a purchase photo
           <input
-            className="field"
+            className="field min-w-0 max-w-full"
             type="file"
             accept={IMAGE_ACCEPT}
             capture="environment"
@@ -118,7 +125,7 @@ export function ImageInput({
       <label className="block">
         {kind === 'photo' ? 'Upload a purchase photo' : 'Upload a receipt image'}
         <input
-          className="field"
+          className="field min-w-0 max-w-full"
           type="file"
           accept={IMAGE_ACCEPT}
           aria-describedby={`${id}-help`}

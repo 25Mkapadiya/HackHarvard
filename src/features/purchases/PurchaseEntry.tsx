@@ -3,7 +3,7 @@ import { parseQuantity } from './quantity';
 import { PurchaseAssistance } from './PurchaseAssistance';
 import type { ProductRecognitionProvider } from './recognition';
 import type { ReceiptExtractionProvider } from './receipt';
-import { useRef, useState, type FormEvent } from 'react';
+import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { dollarsToCents, todayLocal, validateVisit, type VisitInput } from './model';
 import type { PurchaseRepository } from './repository';
 import { newItem, type DraftItem } from './draft';
@@ -35,6 +35,14 @@ export function PurchaseEntry({
   const [status, setStatus] = useState('');
   const [busy, setBusy] = useState(false);
   const submitting = useRef(false);
+  const heading = useRef<HTMLHeadingElement>(null);
+  const alert = useRef<HTMLParagraphElement>(null);
+  useEffect(() => {
+    heading.current?.focus();
+  }, [step]);
+  useEffect(() => {
+    if (error) alert.current?.focus();
+  }, [error]);
   const market = markets.find((m) => m.id === marketId);
   const choices = markets
     .filter((m) => `${m.name} ${m.city} ${m.state}`.toLowerCase().includes(filter.toLowerCase()))
@@ -105,7 +113,7 @@ export function PurchaseEntry({
   }
   return (
     <section className="card space-y-4 p-5" aria-labelledby="purchase-heading">
-      <h2 id="purchase-heading" className="section-title">
+      <h2 id="purchase-heading" className="section-title" tabIndex={-1} ref={heading}>
         Record a market visit
       </h2>
       <p>Select Market → Enter Purchases → Confirm Information → Submit Visit</p>
@@ -114,7 +122,11 @@ export function PurchaseEntry({
           ? 'Tab-memory demo: records disappear on reload or closing the tab. Nothing is saved to your account.'
           : 'Using your connected private purchase repository.'}
       </p>
-      {error && <p role="alert">{error}</p>}
+      {error && (
+        <p role="alert" tabIndex={-1} ref={alert}>
+          {error}
+        </p>
+      )}
       {step === 'market' && (
         <div className="space-y-3">
           <label>
@@ -205,7 +217,7 @@ export function PurchaseEntry({
             />
           )}
           <PurchaseReview items={items} onItems={setItems} total={total} onTotal={setTotal} />
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-3">
             <button type="button" className="btn-secondary" onClick={() => setStep('market')}>
               Back to market
             </button>

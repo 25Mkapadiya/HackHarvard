@@ -2,7 +2,7 @@ import { ZodError } from 'zod';
 import { canonicalProductId } from './products';
 import { parseQuantity } from './quantity';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
-import { dollarsToCents, todayLocal, validateNewVisit, type VisitInput } from './model';
+import { dollarsToCents, todayLocal, validateNewVisit, type NewVisitInput } from './model';
 import type { PurchaseRepository } from './repository';
 import { newItem, type DraftItem } from './draft';
 import { PurchaseReview } from './PurchaseReview';
@@ -22,7 +22,7 @@ export function PurchaseEntry({
   const [date, setDate] = useState(todayLocal);
   const [items, setItems] = useState<DraftItem[]>(() => [newItem()]);
   const [total, setTotal] = useState('');
-  const [confirmed, setConfirmed] = useState<VisitInput | null>(null);
+  const [confirmed, setConfirmed] = useState<NewVisitInput | null>(null);
   const [submissionId, setSubmissionId] = useState(() => crypto.randomUUID());
   const [error, setError] = useState('');
   const [status, setStatus] = useState('');
@@ -183,20 +183,41 @@ export function PurchaseEntry({
       {step === 'confirm' && confirmed && (
         <div className="space-y-3">
           <h3 className="font-bold">Review your trip</h3>
-          <p>
-            {market?.name} · {confirmed.date}
-          </p>
+          <dl className="space-y-2">
+            <div>
+              <dt className="font-semibold">Farmers market</dt>
+              <dd>{market?.name}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold">Visit date</dt>
+              <dd>
+                <time dateTime={confirmed.date}>
+                  {new Date(`${confirmed.date}T12:00:00`).toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </time>
+              </dd>
+            </div>
+          </dl>
           <ul>
             {confirmed.items.map((i) => (
               <li key={i.id}>
-                {i.product}: {i.quantity ?? 'Quantity unknown'} {i.unit}
+                {i.product}: {i.quantity} {i.unit}
                 {i.spendingCents !== undefined
                   ? ` · $${(i.spendingCents / 100).toFixed(2)}`
                   : ' · Item price unknown'}
+                {i.vendor && <p>Vendor / farm (self-reported): {i.vendor}</p>}
+                {i.origin && <p>Origin (self-reported): {i.origin}</p>}
               </li>
             ))}
           </ul>
           <p>Total spent: ${(confirmed.totalCents / 100).toFixed(2)} USD · Counts as one visit.</p>
+          <p className="text-sm">
+            Recorded spending is not proof of locally grown food. Environmental estimates require separate
+            evidence.
+          </p>
           <button className="btn-secondary" disabled={busy} onClick={() => setStep('items')}>
             Edit information
           </button>{' '}
@@ -208,6 +229,12 @@ export function PurchaseEntry({
       {step === 'done' && (
         <div className="space-y-3">
           <p role="status">{status}</p>
+          {repository.persistence === 'memory' && (
+            <p>
+              This visit is recorded only in this tab. Reloading or closing the tab removes this history; it
+              is not saved to an account.
+            </p>
+          )}
           <button className="btn-primary" onClick={reset}>
             Record another visit
           </button>

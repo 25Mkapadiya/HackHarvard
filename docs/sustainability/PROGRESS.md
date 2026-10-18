@@ -229,3 +229,25 @@ The original purchase and Phase 7 environmental scenario workflows remain
 unchanged. Validation: 270 unit/component tests, 12 browser tests, TypeScript,
 production build in the documented temporary copy, zero lint errors and the same
 four existing warnings. Only the requested feature branch is pushed.
+
+## Phase 9 — photo-assisted purchase entry (2026-10-18)
+
+Working: photo/camera and receipt-image selection, private local previews,
+replacement/removal/cleanup, three entry choices, shared editable product review,
+clear quantity units and manual fallback. Default automatic recognition and OCR
+remain unavailable; no provider, credential, upload or hosted database was added.
+
+Integration ready: strict product/receipt result contracts, cancellable providers,
+explicit processing/add/review actions, exact canonical aliases, and unconfirmed
+drafts. These seams are tested with synthetic fixtures, not a working AI service.
+Suggested mass never silently becomes recorded measured weight. Original counts
+remain counts, with no installed count-to-mass estimate. Persistence remains
+unchanged tab-memory, owned by the future authentication/backend integration.
+
+See [photo workflow and provider handoff](PHOTO_ENTRY.md) and the
+[audit/architecture plan](PHOTO_ENTRY_PLAN.md). Validation: 305 unit/component
+tests and 15 browser tests, preserving all prior 270/12; TypeScript and production
+build pass; lint has zero errors and only the four existing warnings. Existing
+seasonal search, visit deduplication/counting, spending, scenario opt-in rules,
+formulas, adapters and all protected systems remain unchanged. Push only the
+requested feature branch; no main merge or deployment.

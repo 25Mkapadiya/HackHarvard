@@ -160,3 +160,23 @@ Run `npm run seasonal:validate` after manual source review and
 [seasonal integration and maintenance](../seasonal/README.md) for schemas,
 state/region selection, inference limits, aliases, source scope and conflict
 handling. The existing market refresh pipeline does not refresh seasonal sources.
+
+## Phase 9 photo and receipt entry
+
+[PHOTO_ENTRY.md](PHOTO_ENTRY.md) describes working local inputs, provider contracts,
+manual fallback, runtime validation, cancellation, user confirmation, privacy and
+remaining integration requirements. Photo/receipt selection and manual purchase
+recording work today; automatic recognition/OCR is **unavailable** by default.
+The interfaces and editable suggestion flow are **integration ready**, without a
+connected provider. No images, provider responses or candidate metadata enter the
+existing PurchaseRepository; tab-memory persistence and auth ownership are unchanged.
+
+A future owner may inject ProductRecognitionProvider and ReceiptExtractionProvider
+into PurchaseEntry through the existing workspace boundary. It must first supply
+secure infrastructure/credentials, recipient/privacy disclosures, explicit user
+processing action, minimization/redaction, output audits and deletion/retention.
+Never expose secrets in a static build or automatically send selected images.
+Preserve separate product confirmations, final trip review and existing server-side
+validation/idempotency requirements. Reset/unmount all drafts and temporary images
+when the existing session changes. Counted-item mass estimation remains uninstalled;
+accepted estimates need distinct provenance/model support before affecting metrics.

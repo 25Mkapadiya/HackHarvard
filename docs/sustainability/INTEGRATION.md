@@ -211,3 +211,35 @@ durable storage, server validation/idempotency, privacy, abuse prevention and
 moderation requirements. Those are integration obligations, not implemented
 services. Existing purchases, account integration seams, calculation engines,
 evidence adapters, scenarios and deployment infrastructure are unchanged.
+
+## Phase 12 regional transportation adapter
+
+`src/features/sustainability/regional/` is independent of existing environmental
+adapters. `lookupRegionalScenarios` matches existing canonical purchase products,
+destination state/coordinate, date and mass to the validated versioned catalog.
+`resolveRegionalVisits` exposes alternatives, unresolved choices, coverage and
+existing food-mile results; `regionalFreightSummary` maps explicit conditional
+modes into the existing transport engine. No formula or factor file is rewritten.
+
+`RegionalComparison` appears as its own section inside SustainabilityDashboard.
+Only optional directory market-coordinate typing is added; purchase form,
+repository and session integration behavior are unchanged. Exactly one reviewed
+alternative can appear automatically with caveats. Multiple alternatives remain
+unselected until an illustrative choice. Regional data never enters existing
+actual-evidence maps, historical scenarios, spending, local attribution or LCA.
+Choices live in component memory and reset with the existing workspace/session
+remount. Missing destination coordinates, supported product/month/date or measured
+mass remain unavailable; no geocoding call, price-derived mass or origin inference.
+
+Source quality limits are essential: these are conditional Census-reference-point
+straight-line comparisons, not road routes or measured purchase emissions. Explicit
+bulk-truck assumptions do not identify real modes, loading or farmer vehicles.
+Before expanding to road-route or source-probability models, provide audited
+regional distribution endpoints, freight/network distances, mode/load evidence
+and credible destination flows. Do not substitute agricultural shares or seasonal
+calendars for those missing facts. No backend or new service was introduced.
+
+[Regional documentation](regional/README.md) includes source review, generated
+coverage, tests, model version, visit-date cutoff and manual refresh requirements.
+The existing production/PWA build and public preview/deployment infrastructure
+remain unchanged; this phase does not republish the preview or merge main.

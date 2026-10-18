@@ -154,3 +154,28 @@ calendar guidance is not evidence of a specific farm's current harvest, an exact
 market product, current inventory, purchase origin, or avoided emissions. See
 [seasonal provenance](../seasonal/README.md) for source-specific qualifications.
 No environmental calculation or scenario eligibility rule changes in this phase.
+
+## Phase 12 conditional regional transportation — regional-transport/1.0.0
+
+[Regional methodology](regional/README.md) defines the separate ten-case release.
+Production facts identify possible producer states, not destination sourcing
+probabilities. Sourced origin-season intersections constrain eligibility. A
+Census internal geographic reference and the selected market coordinate provide
+a great-circle proxy, explicitly not road mileage or a measured farm route.
+Actual origins, routes, mode/load and final delivery remain unknown.
+
+The existing mass conversions and food-mile engine calculate kg × signed distance
+difference and the covered-mass average. The existing freight engine uses explicit
+per-branch conditional medium/heavy truck modes and EPA January 2025 factors.
+Those outputs are coarse straight-line freight proxies, not road-route emissions
+estimates or measured reductions. One reviewed case can display automatically;
+multiple origin cases stay separate and require an illustrative choice for basket
+aggregation. No probabilities, optimized savings, road/payload multipliers or
+confidence intervals are invented. Missing inputs keep whole-basket output unknown.
+
+Consumer travel, refrigeration energy, farm processes (fertilizer, irrigation,
+soil carbon, heating, livestock) and total life-cycle effects are outside this
+transport-only model. They require different matched evidence and boundaries.
+Existing observed/historical evidence views and all six engines are unchanged;
+never add regional illustrations to their results. Full sources, limitations,
+version/applicability, coverage and refresh instructions are in the regional docs.

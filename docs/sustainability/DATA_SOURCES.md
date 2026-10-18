@@ -83,3 +83,22 @@ regional-retail scenario can also scale eligible truck freight. Local attributio
 regional price-derived mass and complete paired LCA remain unsupported by the
 reviewed data. Unknown origin plus no selected scenario produces unavailable
 comparisons. Consumer travel remains excluded, with no home address required.
+
+## Phase 12 regional proxy source review
+
+See [regional/RESEARCH.md](regional/RESEARCH.md) for the 2026-10-18 primary-source
+review and admission decisions, and [regional/README.md](regional/README.md) for
+model limitations. Added attributed facts from NASS Noncitrus Fruits and Nuts
+2025 Summary (2026-05-01; crop year 2025, pp.13/58), Census 2025 state internal
+geographic references and AMS Q1 2026 truck context (published May 2026, month
+precision). Existing sourced calendars constrain origin months; existing EPA
+January 2025 factors/conversions remain unchanged. Source locators, original
+units, observation/publication dates and NASS/Census digests accompany the catalog.
+
+NASS Vegetables 2025 Summary was investigated without admitting new vegetable
+routes. Production volume, truck rates and state geographic references do not
+supply actual market origin shares or road distances. No flows, road/payload
+multipliers, probabilities, actual modes, farm coordinates or LCA pairs are
+fabricated. The ten new records are conditional geometric/bulk-truck illustrations,
+separate from the original ERS historical Syracuse catalog. No study scope is
+silently broadened and no new factual claim of actual purchase impact is made.

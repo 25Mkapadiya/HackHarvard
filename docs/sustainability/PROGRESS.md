@@ -1,6 +1,8 @@
 # Implementation evidence
 
-Current status: **Phase 11 community product reporting foundation**. See
+Current status: **Phase 12 regional transportation illustrations**. See
+[regional methodology](regional/README.md) for the conditional model and limits.
+Phase 11 community reporting remains preserved; see
 [community reporting](../community/README.md) for the local-only demo and trusted
 backend boundary. Phase 10 manual-only purchases remain preserved; see
 [MANUAL_PURCHASES.md](MANUAL_PURCHASES.md) and
@@ -314,3 +316,31 @@ shared stores, purchase/calculation/evidence modules, seasonal datasets,
 dependencies, build/deployment configuration or main changes. Existing public
 preview is not republished by this phase. Push focused commits only to the feature
 branch; no merge or force push.
+
+## Phase 12 — regional transportation illustrations
+
+Started from fetched remote feature head `6e8d1586`; clean tree and no intervening
+remote work. Audited existing engines/adapters and primary USDA/Census/EPA sources.
+Ten conditional paired-origin cases cover apples in MA/NY/MI/WA and strawberries
+in CA/FL (March–April only). Other products, TX/GA and unsupported months/units
+remain unavailable. Origin eligibility uses producer facts and intersected source
+calendars, never production-share probabilities or inferred actual origins.
+
+The new independent adapter reuses unchanged mass, food-mile and freight engines.
+Distances are coarse Census-internal-point-to-market great-circle proxies, NOT
+road miles or observed routes. Explicit bulk-truck assumptions produce conditional
+freight proxies, NOT measured purchase emissions or validated road-route estimates.
+Multiple origin alternatives require an illustrative choice; a single reviewed
+case may display automatically with prominent caveats. No maximization, weighted
+mean or confidence interval. Signed differences and partial coverage are retained.
+
+The original dashboard cards, recorded spending/counts, purchase inputs/repository,
+historical Syracuse views, community reporting and seasonal search are preserved.
+No farm-specific or new life-cycle emissions, auth/account/profile/social changes,
+backend, dependency, paid service, deployment update or main merge.
+
+Validation: 368 unit/component tests, all 18 browser workflows, TypeScript,
+production/PWA build in the temporary copy, seasonal validation and deterministic
+regional coverage check passed. Lint has zero errors and the same four existing
+warnings. Source facts and synthetic behavior are tested separately. Full file
+inventory, coverage and refresh requirements: [regional/README.md](regional/README.md).

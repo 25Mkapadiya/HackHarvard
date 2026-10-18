@@ -211,3 +211,21 @@ LIFECYCLE_LIMITATIONS.md for the unmatched-stage blocker. Current runtime use is
 fully static and needs no source API key, new backend or paid service. Feature
 commits are pushed only to the requested branch after checking its upstream;
 team review/deployment and any main merge remain outside this work.
+
+## Phase 8 — nationwide seasonal guidance (2026-10-18)
+
+The shared In Season Search now selects state-specific evidence per food, with
+explicit approximate/unknown fallbacks, aliases, source details and a single
+selected month. Dataset `2026.10.18.1` contains 113 food/state records from eight
+official sources, covering 45 of 59 registered foods somewhere. MA, NY, CA, FL,
+TX, WA, MI and GA have partial source-backed coverage; general availability is
+kept separate from harvest. Nine approximate calendars remain; AK/HI/territories
+are unknown. No claim of nationwide verified coverage is made.
+
+See [seasonal data handoff](../seasonal/README.md) and the
+[state coverage table](../seasonal/COVERAGE.md) for product counts, sources,
+limitations, version history, offline validation and refresh instructions.
+The original purchase and Phase 7 environmental scenario workflows remain
+unchanged. Validation: 270 unit/component tests, 12 browser tests, TypeScript,
+production build in the documented temporary copy, zero lint errors and the same
+four existing warnings. Only the requested feature branch is pushed.

@@ -140,3 +140,17 @@ alone still cannot establish a conventional comparison. No such observed records
 are bundled. All calculation formulas and engine methodology version remain
 `market-impact/1.0.0`; catalog versioning is separate. Total LCA remains unavailable
 for the reasons in LIFECYCLE_LIMITATIONS.md.
+
+## Phase 8 agricultural calendar interpretation
+
+Seasonal food recommendations resolve each product using a cited state calendar,
+then an explicitly applicable verified region, then a labelled approximation,
+then unknown. A known state record outside its documented window does not fall
+through to approximate evidence. Seasonal ranking preserves the existing weight
+formula and absent-signal redistribution. No popularity measurements are invented.
+Storage, general/limited availability and extended production can contribute an
+active calendar signal but never receive a fresh-harvest label. Source-backed
+calendar guidance is not evidence of a specific farm's current harvest, an exact
+market product, current inventory, purchase origin, or avoided emissions. See
+[seasonal provenance](../seasonal/README.md) for source-specific qualifications.
+No environmental calculation or scenario eligibility rule changes in this phase.

@@ -149,3 +149,14 @@ A future verified-origin workflow must preserve this distinction.
 See DATA_SOURCES.md for candidate evaluations and LIFECYCLE_LIMITATIONS.md for the
 unresolved paired-stage requirement. Authentication-backed persistence remains
 outside this phase; records are still tab-memory and intentionally disappear on reload.
+
+## Phase 8 seasonal catalog boundary
+
+Seasonal search now consumes its own versioned, validated static catalog in
+`src/features/seasonal/catalog/`. It does not modify or supply evidence to the
+environmental adapters, purchase engine, account stores or lifecycle formulas.
+Run `npm run seasonal:validate` after manual source review and
+`npm run seasonal:validate -- --check` to verify committed coverage. See
+[seasonal integration and maintenance](../seasonal/README.md) for schemas,
+state/region selection, inference limits, aliases, source scope and conflict
+handling. The existing market refresh pipeline does not refresh seasonal sources.

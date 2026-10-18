@@ -3,6 +3,9 @@ dist
 dev-dist
 .env
 .env.local
+work/auth-test-email.txt
+work/auth-test-password.txt
+work/auth-test-attempted.local
 *.log
 test-results
 playwright-report

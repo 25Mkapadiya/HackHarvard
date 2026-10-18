@@ -2,22 +2,23 @@ import { PurchaseWorkspace } from '../purchases/PurchaseWorkspace';
 import { useSearchParams, Link } from 'react-router';
 import { useCrops, useMarkets } from '../../app/data';
 import { useLocationState, useNow } from '../../app/context';
-import { useRegion } from '../../app/useRegion';
 import { localNow } from '../../lib/schedule/occurs';
 import { monthName } from '../../lib/format';
 import { LocationPicker } from '../markets/LocationPicker';
 import { MarketCard } from '../markets/MarketCard';
 import { Loading, ErrorState } from '../../components/Badges';
-import { recommend, regionalMarkets, VERIFIED_MA } from './ranking';
+import { regionalMarkets, VERIFIED_MA } from './ranking';
+import { nearbyState, regionForState, recommendForPlace } from './recommendations';
+import { seasonalCatalog, productMatches } from './catalog/catalog';
+import { STATE_ABBR } from './catalog/states';
 
 export default function InSeasonSearch() {
   const [sp, setSp] = useSearchParams();
   const crops = useCrops();
   const markets = useMarkets();
-  const inferred = useRegion(sp.get('region'));
   const { origin } = useLocationState();
   const { now } = useNow();
-  const region = sp.get('region') === 'verified-ma' ? 'verified-ma' : inferred.id;
+
   const requestedMonth = Number(sp.get('month'));
   const month =
     requestedMonth >= 1 && requestedMonth <= 12 && Number.isInteger(requestedMonth)
@@ -40,22 +41,40 @@ export default function InSeasonSearch() {
       />
     );
   if (!crops.data || !markets.data) return <Loading />;
+  const cropData = crops.data;
   const regions: Record<string, { name: string; states: string[] }> = {
     ...crops.data.regions,
     'verified-ma': VERIFIED_MA,
   };
-  const selected = regions[region];
+  const stateNames = Object.fromEntries(Object.entries(STATE_ABBR).map(([name, code]) => [code, name]));
+  const stateParam = sp.get('state');
+  const requestedRegion = sp.get('region');
+  const state =
+    requestedRegion === 'verified-ma' && (!stateParam || stateParam === 'region')
+      ? 'MA'
+      : stateParam && stateParam in stateNames
+        ? stateParam
+        : !requestedRegion && (!stateParam || stateParam === 'auto')
+          ? nearbyState(markets.data, origin)
+          : undefined;
+  const region = state
+    ? regionForState(crops.data, state)
+    : requestedRegion && regions[requestedRegion]
+      ? requestedRegion
+      : undefined;
+  const selected = state
+    ? { name: stateNames[state], states: [state] }
+    : region
+      ? regions[region]
+      : { name: 'Unknown location — choose a state', states: [] };
   const nearby = regionalMarkets(markets.data, selected.states, origin, maxKm);
-  const calendar = crops.data.crops.map((c) => ({
-    ...c,
-    months: { ...c.months, ...(VERIFIED_MA.months[c.id] ? { 'verified-ma': VERIFIED_MA.months[c.id] } : {}) },
-  }));
+  const calendar = [...crops.data.crops];
+  for (const p of seasonalCatalog.products) {
+    if (!calendar.some((c) => c.id === p.id)) calendar.push({ ...p, months: {} });
+  }
   const nearbyForRanking = regionalMarkets(markets.data, selected.states, origin, 80);
-  const ranked = recommend(calendar, region, month, nearbyForRanking);
-  const foods = ranked.filter(
-    ({ crop }) =>
-      !q || `${crop.name} ${crop.nameEs} ${crop.category.replaceAll('_', ' ')}`.toLowerCase().includes(q),
-  );
+  const ranked = recommendForPlace(calendar, state, region, month, nearbyForRanking);
+  const foods = ranked.filter(({ crop }) => productMatches(crop, q));
   const queriedCategories = new Set(foods.map((f) => f.crop.category));
   const matches = q
     ? new Set(
@@ -103,15 +122,54 @@ export default function InSeasonSearch() {
       ) : (
         <>
           <LocationPicker />
+          <label className="block">
+            State for seasonal guidance
+            <select
+              aria-label="State for seasonal guidance"
+              className="field"
+              value={
+                stateParam ?? (requestedRegion === 'verified-ma' ? 'MA' : requestedRegion ? 'region' : 'auto')
+              }
+              onChange={(e) => {
+                const next = new URLSearchParams(sp);
+                next.set('state', e.target.value);
+                next.delete('region');
+                setSp(next, { replace: true });
+              }}
+            >
+              <option value="auto">Use location hint</option>
+              <option value="region">Browse a growing region</option>
+              {Object.entries(STATE_ABBR).map(([name, code]) => (
+                <option key={code} value={code}>
+                  {name}
+                </option>
+              ))}
+            </select>
+          </label>
+          <p className="text-sm">
+            {state && (!stateParam || stateParam === 'auto') && !requestedRegion
+              ? `Location hint: ${selected.name}, based on a nearby market. Confirm the state, especially near borders.`
+              : `Seasonal guidance for ${selected.name}.`}{' '}
+            State selection changes the calendar and market area; location sets distance. Use the location
+            picker to change the distance origin.
+          </p>
           <div className="grid gap-3 sm:grid-cols-3">
             <label>
               Growing region
               <select
                 aria-label="Growing region"
                 className="field"
-                value={region}
-                onChange={(e) => param('region', e.target.value)}
+                value={region ?? ''}
+                onChange={(e) => {
+                  const next = new URLSearchParams(sp);
+                  next.set('region', e.target.value);
+                  next.set('state', 'region');
+                  setSp(next, { replace: true });
+                }}
               >
+                <option value="" disabled>
+                  Choose a growing region
+                </option>
                 {Object.entries(regions).map(([id, r]) => (
                   <option key={id} value={id}>
                     {r.name}
@@ -158,37 +216,72 @@ export default function InSeasonSearch() {
               {monthName(month, 'en')} · {selected.name}
             </h2>
             <p className="text-sm">
-              {region === 'verified-ma' ? VERIFIED_MA.note : `Approximate regional guide: ${crops.data.note}`}
+              Source-backed calendars describe typical seasons, not a guarantee for this year or farm. Each
+              food is labelled separately. Missing state records fall back to a clearly marked approximate
+              region, or unknown. Dataset {seasonalCatalog.version}, reviewed {seasonalCatalog.reviewed}.
             </p>
-            <a
-              href={region === 'verified-ma' ? VERIFIED_MA.url : crops.data.sourceUrl}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {region === 'verified-ma' ? VERIFIED_MA.source : crops.data.source}
-            </a>
-            <ul className="flex flex-wrap gap-2">
-              {seasonal.map(({ crop, score }) => (
-                <li key={crop.id}>
-                  <button
-                    title={`Recommendation score ${score?.toFixed(2) ?? 'unknown'} / 1; availability signal uses category reports only`}
-                    className="chip"
-                    onClick={() => param('q', crop.name)}
-                  >
-                    {crop.name}
-                  </button>
-                </li>
-              ))}
+            <ul className="grid gap-3 sm:grid-cols-2">
+              {[...seasonal, ...(q ? foods.filter((f) => f.signals.A !== 1) : [])].map(
+                ({ crop, score, season }) => (
+                  <li key={crop.id} className="rounded-lg border border-slate-200 p-3">
+                    <button
+                      title={`Recommendation score ${score?.toFixed(2) ?? 'unknown'} / 1; market signal uses category reports only`}
+                      className="chip"
+                      onClick={() => param('q', crop.name)}
+                    >
+                      {crop.name}
+                    </button>
+                    <p className="font-semibold text-sm">{season.status}</p>
+                    <p className="text-sm">
+                      {season.level === 'verified-state'
+                        ? 'Source-backed state calendar'
+                        : season.level === 'verified-region'
+                          ? 'Source-backed broader region'
+                          : season.level === 'approximate'
+                            ? 'Approximate regional calendar'
+                            : 'No applicable calendar'}
+                    </p>
+                    <details className="text-sm">
+                      <summary>Calendar evidence</summary>
+                      <p>{season.note}</p>
+                      {season.sourceIds.map((id) => {
+                        const source = seasonalCatalog.sources.find((s) => s.id === id)!;
+                        return (
+                          <div key={id}>
+                            <a href={source.url} target="_blank" rel="noreferrer">
+                              {source.organization}
+                            </a>
+                            <p>
+                              Published: {source.published ?? 'unstated'} · Reviewed: {source.lastReviewed}
+                            </p>
+                            <p>{source.limitations}</p>
+                          </div>
+                        );
+                      })}
+                      {season.level === 'approximate' && (
+                        <>
+                          <a href={cropData.sourceUrl}>{cropData.source}</a>
+                          <p>{cropData.note}</p>
+                        </>
+                      )}
+                      {season.level === 'unknown' && (
+                        <p>No meaningful coverage; this does not prove the food is unavailable.</p>
+                      )}
+                    </details>
+                  </li>
+                ),
+              )}
             </ul>
             {!seasonal.length && (
               <p>No matching seasonal entries in this guide. Missing entries do not prove unavailability.</p>
             )}
           </section>
           <section className="space-y-3">
-            <h2 className="section-title">Reported food categories within 80 km</h2>
+            <h2 className="section-title">Reported at market · food categories within 80 km</h2>
             <p>
-              Popularity and agricultural relevance measurements are unavailable. Ranking uses seasonal
-              guidance and non-sample directory category reports, redistributing missing weights.
+              These historical directory reports do not confirm exact products or current stock. Popularity
+              and agricultural relevance measurements are unavailable. Ranking uses seasonal guidance and
+              non-sample directory category reports, redistributing missing weights.
             </p>
             <ul className="grid gap-3 sm:grid-cols-3">
               {reportedCategories.slice(0, 12).map(([category, count]) => (

@@ -1,6 +1,8 @@
 # Implementation evidence
 
-Current status: **Phase 10 manual-only purchase recording**. See
+Current status: **Phase 11 community product reporting foundation**. See
+[community reporting](../community/README.md) for the local-only demo and trusted
+backend boundary. Phase 10 manual-only purchases remain preserved; see
 [MANUAL_PURCHASES.md](MANUAL_PURCHASES.md) and
 [PURCHASE_STORAGE_CONTRACT.md](PURCHASE_STORAGE_CONTRACT.md). Earlier phases below
 are historical; Phase 9 photo/OCR functionality has been removed.
@@ -280,3 +282,35 @@ existing warnings. All 12 prior non-photo browser workflows, including Syracuse
 opt-in and Boston rejection, are retained. No calculation, adapter, seasonal/search,
 rewards, shared-store, route, authentication/profile/social or dependency changes.
 The full diff is reviewed; push only the feature branch, without force or main.
+
+## Phase 11 — community market product reporting foundation
+
+Started from fetched remote feature head `3bd3ea0f` (Phase 10 baseline `837bf8f0`).
+The tree was clean and no remote changes required integration. The stable shared
+navigation received only a redundant menu-entry removal and search-label update;
+both search routes and every other link remain. Navigation ownership/history was
+inspected first; no teammate modifications were overwritten.
+
+Working: standalone local-only product observations, canonical catalog aliases,
+validation, multi-product review/edit/removal, temporary duplicate handling,
+aggregation, configurable observation-date freshness, conflict preservation and
+a tested explicit trusted-report search adapter seam. Public submission is
+visibly disabled. Unverified demo reports never enter actual search results,
+claim representative status, upload records, or persist to browser/account stores.
+
+Not live: public submissions, authenticated report storage, representative
+verification/official updates, expected-availability updates, moderation, or
+community-derived production search. These remain backend/auth-owner work;
+[BACKEND_CONTRACT.md](../community/BACKEND_CONTRACT.md) is a contract only.
+
+Validation: 322 unit/component tests and all 16 browser tests passed, including
+all existing seasonal, purchase, sustainability and historical scenario checks.
+TypeScript, full temporary-copy production/PWA build and seasonal catalog checks
+passed. Lint has zero errors and the same four pre-existing warnings. New browser
+checks cover mobile layout, keyboard review, duplicate prevention, no network
+writes, memory reset and both routes. See [community documentation](../community/README.md)
+for exact rules and file inventory. No auth/account/profile/social, rewards,
+shared stores, purchase/calculation/evidence modules, seasonal datasets,
+dependencies, build/deployment configuration or main changes. Existing public
+preview is not republished by this phase. Push focused commits only to the feature
+branch; no merge or force push.

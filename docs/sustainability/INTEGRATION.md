@@ -4,8 +4,9 @@
 
 Existing `#/search` and `#/seasonal` are aliases for In Season Search.
 `#/search?view=purchases` opens manual purchase entry and the independent
-dashboard without changing shared routing or navigation. Existing menu labels
-remain owned by the team. All new modules live in the three feature directories.
+dashboard. Phase 11 consolidates the menu into one In Season Search entry while
+preserving both route declarations and all other links. Independent feature
+modules live under `src/features/`.
 My Rewards remains the original sample/check-in feature and is **not** this
 dashboard. Its legacy estimates are not reused or endorsed by this implementation.
 
@@ -185,3 +186,28 @@ not implement backend authorization or a competing authentication system.
 Server-owned identity, durable storage, ownership/RLS, validation, atomic
 owner-scoped deduplication, retry acknowledgements, retention/deletion and cache
 cleanup remain required. No account tables, auth SDK or hosted service are added.
+
+## Phase 11 community product reporting boundary
+
+`#/search?view=reports` and `#/seasonal?view=reports` render the independent
+`MarketProductReporting` demo. Its unverified observations are temporary component
+memory, discarded on leaving that view or reload. No report is sent to the
+purchase repository, shared store, public search feed, account or external service.
+Public submission remains disabled. No backend integration is claimed.
+
+The independent models/freshness/aggregation/search adapter live under
+`src/features/marketReports/`. Catalog identifiers/aliases come from the existing
+seasonal catalog; no separate food catalog is created. A separately obtained
+server assertion is required for trusted reports and official classifications.
+The actual seasonal page is not wired to those report inputs and keeps existing
+search/ranking behavior. Unverified local records are rejected by the explicit
+trusted-report search adapter.
+
+[Community reporting](../community/README.md) describes working behavior, tests,
+freshness policies, conflict handling and demo limitations.
+[The backend contract](../community/BACKEND_CONTRACT.md) specifies existing-session
+integration, market-specific authorization, expected-availability separation,
+durable storage, server validation/idempotency, privacy, abuse prevention and
+moderation requirements. Those are integration obligations, not implemented
+services. Existing purchases, account integration seams, calculation engines,
+evidence adapters, scenarios and deployment infrastructure are unchanged.

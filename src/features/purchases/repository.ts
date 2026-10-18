@@ -36,7 +36,7 @@ function payloadFingerprint(visit: VisitInput): string {
 export class MemoryPurchaseRepository implements PurchaseRepository {
   readonly persistence = 'memory' as const;
   private visits: Visit[] = [];
-  private submissions = new Map<string, { payload: string; visitId: string }>();
+  private submissions = new Map<string, { payload: string | null; visitId: string }>();
   constructor(private readonly clock = () => new Date()) {}
   async list(): Promise<Visit[]> {
     return structuredClone(
@@ -52,6 +52,8 @@ export class MemoryPurchaseRepository implements PurchaseRepository {
     const parsed = validateNewVisit(input, this.clock());
     const receipt = this.submissions.get(parsed.submissionId);
     if (receipt) {
+      if (receipt.payload === null)
+        throw new Error('This submission was deleted. Start a new visit to record it again.');
       if (receipt.payload !== payloadFingerprint(parsed))
         throw new Error('Submission key already used for different information');
       const saved = this.visits.find((v) => v.submissionId === receipt.visitId);
@@ -77,9 +79,12 @@ export class MemoryPurchaseRepository implements PurchaseRepository {
   async delete(submissionId: string): Promise<DeleteResult> {
     if (!this.visits.some((v) => v.submissionId === submissionId)) return { status: 'not-found' };
     this.visits = this.visits.filter((v) => v.submissionId !== submissionId);
+    for (const receipt of this.submissions.values())
+      if (receipt.visitId === submissionId) receipt.payload = null;
     return { status: 'deleted' };
   }
   async clear(): Promise<void> {
+    for (const receipt of this.submissions.values()) receipt.payload = null;
     this.visits = [];
   }
 }

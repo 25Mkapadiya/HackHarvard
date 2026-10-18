@@ -74,7 +74,8 @@ Keep these private annotations separate from audited environmental evidence.
 Deletion semantics include preventing retries of deleted submission IDs from
 restoring a removed record. Keep an appropriate server idempotency tombstone for
 its agreed retention window. A deliberate new submission key can record a new
-visit after deletion. Memory tombstones last for the repository object's lifetime.
+visit after deletion. Memory tombstones last for the repository object's lifetime; deleted payloads
+are discarded, retaining only retry keys and canonical visit addresses.
 Clearing history is not the same as signing out or switching repositories.
 
 `list/get/submit` return defensively isolated objects: caller mutation must not

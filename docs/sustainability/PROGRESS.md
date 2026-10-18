@@ -61,3 +61,17 @@ Phase 4 validation: 209 unit/component tests passed, TypeScript passed, lint has
 zero errors/four pre-existing warnings, full production/PWA build passed in the
 temporary copy. Engine-only focused tests: 13 passed, including unit conversions,
 multimodal freight, signed results, boundary/product mismatches and partial data.
+
+## Phase 5 — dashboard
+
+Standalone `SustainabilityDashboard` consumes visits and optional trusted evidence.
+It displays visits, distinct markets, trip spending, local spending, weighted
+food miles/average distance, freight and life-cycle CO2e, with source quality,
+assumptions, missing reasons and covered subsets. Purchase history is expandable.
+The purchases view wires the dashboard to the repository; a failed load never
+becomes a zero-visit result. No profile, rewards, account or auth file changed.
+
+Validation: 212 tests passed, TypeScript passed, lint zero errors/four existing
+warnings; full production/PWA build passed in the temporary copy. Environmental
+values remain unavailable without real evidence. Account persistence is still
+blocked; visible demo records are memory-only and disappear on reload.

@@ -1,3 +1,4 @@
+import { SustainabilityDashboard } from '../sustainability/SustainabilityDashboard';
 import { useEffect, useState } from 'react';
 import { PurchaseEntry, type PurchaseMarket } from './PurchaseEntry';
 import { demoPurchases, type PurchaseRepository } from './repository';
@@ -9,7 +10,7 @@ export function PurchaseWorkspace({
   markets: PurchaseMarket[];
   repository?: PurchaseRepository;
 }) {
-  const [visits, setVisits] = useState<Visit[]>([]);
+  const [loaded, setLoaded] = useState<{ repository: PurchaseRepository; visits: Visit[] } | null>(null);
   const [error, setError] = useState('');
   const [revision, setRevision] = useState(0);
   useEffect(() => {
@@ -17,7 +18,7 @@ export function PurchaseWorkspace({
     repository.list().then(
       (v) => {
         if (active) {
-          setVisits(v);
+          setLoaded({ repository, visits: v });
           setError('');
         }
       },
@@ -33,7 +34,11 @@ export function PurchaseWorkspace({
     <div className="space-y-5">
       <PurchaseEntry markets={markets} repository={repository} onRecorded={() => setRevision((r) => r + 1)} />
       {error && <p role="alert">{error}</p>}
-      <p>{visits.length} submitted visits in this repository.</p>
+      {!error && loaded?.repository === repository ? (
+        <SustainabilityDashboard visits={loaded.visits} markets={markets} />
+      ) : (
+        !error && <p role="status">Loading purchase records…</p>
+      )}
       <button
         className="btn-secondary"
         onClick={async () => {

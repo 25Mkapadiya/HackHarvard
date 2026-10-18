@@ -1,6 +1,6 @@
 import { useId } from 'react';
 import { QUANTITY_UNITS, quantityHelp } from './quantity';
-import { canonicalProductId } from './recognition';
+import { canonicalProductId, canonicalProductName } from './recognition';
 import { newItem, type DraftItem } from './draft';
 export function PurchaseReview({
   items,
@@ -23,7 +23,11 @@ export function PurchaseReview({
       {items.map((item, index) => (
         <fieldset key={item.id} className="min-w-0 space-y-2 rounded border p-3">
           <legend>Product {index + 1}</legend>
-          {item.suggestion && <p className="text-sm">Unconfirmed suggestion. {item.suggestion}</p>}
+          {item.suggestion && (
+            <p className="text-sm">
+              {item.needsReview ? 'Unconfirmed suggestion.' : 'Suggestion checked by you.'} {item.suggestion}
+            </p>
+          )}
           <label>
             Product name
             <input
@@ -40,11 +44,10 @@ export function PurchaseReview({
               }
             />
           </label>
-          {(canonicalProductId(item.product) ?? item.candidateProductId) && (
+          {!canonicalProductId(item.product) && item.candidateProductId && (
             <p className="text-sm">
-              {canonicalProductId(item.product) ? 'Standard food ID' : 'Provider candidate ID (check match)'}:{' '}
-              {canonicalProductId(item.product) ?? item.candidateProductId}. This identifies a food, not its
-              origin.
+              Suggested food match: {canonicalProductName(item.candidateProductId)}. Check that it matches
+              your purchase.
             </p>
           )}
           <div className="grid gap-3 sm:grid-cols-3">

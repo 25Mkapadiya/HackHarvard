@@ -62,3 +62,7 @@ export async function recognizeProducts(
   if (request.signal.aborted) throw new Error('Processing cancelled');
   return result;
 }
+
+export function canonicalProductName(id: string): string | undefined {
+  return seasonalCatalog.products.find((p) => p.id === id)?.name;
+}

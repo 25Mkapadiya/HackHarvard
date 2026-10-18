@@ -28,10 +28,12 @@ test('manual multi-item purchases feed visit counts, spending and honest missing
   await page.getByRole('button', { name: 'Enter purchases', exact: true }).click();
   await page.getByLabel('Visit date').fill('2026-10-17');
   await page.getByLabel('Product name', { exact: true }).fill('Apples');
-  await page.getByLabel('Quantity (optional)', { exact: true }).fill('2');
+  await page.getByLabel('Quantity', { exact: true }).fill('2');
   await page.getByLabel('Unit', { exact: true }).selectOption('lb');
   await page.getByRole('button', { name: 'Add product', exact: true }).click();
   await page.getByLabel('Product name', { exact: true }).nth(1).fill('Bread');
+  await page.getByLabel('Quantity', { exact: true }).nth(1).fill('1');
+  await page.getByLabel('Unit', { exact: true }).nth(1).selectOption('loaf');
   await page.getByLabel('Total spent USD').fill('17.25');
   await page.getByRole('button', { name: 'Confirm information', exact: true }).click();
   await expect(page.getByText('Total spent: $17.25 USD · Counts as one visit.')).toBeVisible();
@@ -85,6 +87,7 @@ test('memory purchases are not persisted across a reload', async ({ page }) => {
   await page.getByLabel('Farmers market', { exact: true }).selectOption({ index: 1 });
   await page.getByRole('button', { name: 'Enter purchases', exact: true }).click();
   await page.getByLabel('Product name', { exact: true }).fill('Apples');
+  await page.getByLabel('Quantity', { exact: true }).fill('1');
   await page.getByLabel('Total spent USD').fill('1');
   await page.getByRole('button', { name: 'Confirm information', exact: true }).click();
   await page.getByRole('button', { name: 'Submit visit', exact: true }).click();

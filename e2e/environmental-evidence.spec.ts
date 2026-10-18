@@ -9,7 +9,7 @@ test('recorded Syracuse apples use public study scenarios only after explicit op
   await page.getByRole('button', { name: 'Enter purchases', exact: true }).click();
   await page.getByLabel('Visit date').fill('2026-10-17');
   await page.getByLabel('Product name', { exact: true }).fill('Apples');
-  await page.getByLabel('Quantity (optional)', { exact: true }).fill('2');
+  await page.getByLabel('Quantity', { exact: true }).fill('2');
   await page.getByLabel('Unit', { exact: true }).selectOption('kg');
   await page.getByLabel('Total spent USD').fill('12.34');
   await page.getByRole('button', { name: 'Confirm information', exact: true }).click();
@@ -57,7 +57,7 @@ test('a Boston apple purchase cannot inherit the Syracuse study distances', asyn
   await page.getByRole('button', { name: 'Enter purchases', exact: true }).click();
   await page.getByLabel('Visit date').fill('2026-10-17');
   await page.getByLabel('Product name', { exact: true }).fill('Apples');
-  await page.getByLabel('Quantity (optional)', { exact: true }).fill('1');
+  await page.getByLabel('Quantity', { exact: true }).fill('1');
   await page.getByLabel('Total spent USD').fill('5');
   await page.getByRole('button', { name: 'Confirm information', exact: true }).click();
   await page.getByRole('button', { name: 'Submit visit', exact: true }).click();

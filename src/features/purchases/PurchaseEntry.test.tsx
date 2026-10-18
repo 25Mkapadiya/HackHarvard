@@ -16,9 +16,11 @@ it('requires review, supports editing, and records multiple items as one visit',
   fireEvent.click(screen.getByRole('button', { name: 'Enter purchases' }));
   fireEvent.change(screen.getByLabelText('Visit date'), { target: { value: '2026-10-17' } });
   fireEvent.change(screen.getByLabelText('Product name'), { target: { value: 'Apples' } });
-  fireEvent.change(screen.getByLabelText('Quantity (optional)'), { target: { value: '2' } });
+  fireEvent.change(screen.getByLabelText('Quantity'), { target: { value: '2' } });
   fireEvent.click(screen.getByRole('button', { name: 'Add product' }));
   fireEvent.change(screen.getAllByLabelText('Product name')[1], { target: { value: 'Bread' } });
+  fireEvent.change(screen.getAllByLabelText('Quantity')[1], { target: { value: '1' } });
+  fireEvent.change(screen.getAllByLabelText('Unit')[1], { target: { value: 'loaf' } });
   fireEvent.change(screen.getByLabelText('Total spent USD'), { target: { value: '12.50' } });
   fireEvent.click(screen.getByRole('button', { name: 'Confirm information' }));
   expect(await repo.list()).toHaveLength(0);
@@ -44,6 +46,7 @@ it('preserves confirmed information after a storage failure', async () => {
   fireEvent.change(screen.getByLabelText('Farmers market'), { target: { value: 'm' } });
   fireEvent.click(screen.getByRole('button', { name: 'Enter purchases' }));
   fireEvent.change(screen.getByLabelText('Product name'), { target: { value: 'Apples' } });
+  fireEvent.change(screen.getByLabelText('Quantity'), { target: { value: '1' } });
   fireEvent.change(screen.getByLabelText('Total spent USD'), { target: { value: '5' } });
   fireEvent.click(screen.getByRole('button', { name: 'Confirm information' }));
   fireEvent.click(screen.getByRole('button', { name: 'Submit visit' }));

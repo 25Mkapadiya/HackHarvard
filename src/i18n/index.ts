@@ -3,6 +3,8 @@ import { initReactI18next } from 'react-i18next';
 import en from './en.json';
 import es from './es.json';
 import communityEn from './community.en.json';
+import featuresEn from './features.en.json';
+import featuresEs from './features.es.json';
 import communityEs from './community.es.json';
 
 const KEY = 'market-day-lang';
@@ -18,8 +20,8 @@ function initialLang(): string {
 
 i18n.use(initReactI18next).init({
   resources: {
-    en: { translation: { ...en, ...communityEn } },
-    es: { translation: { ...es, ...communityEs } },
+    en: { translation: { ...en, ...communityEn }, features: featuresEn },
+    es: { translation: { ...es, ...communityEs }, features: featuresEs },
   },
   lng: initialLang(),
   fallbackLng: 'en',

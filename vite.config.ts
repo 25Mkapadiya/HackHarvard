@@ -5,20 +5,22 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 // GitHub Pages serves this repo under /<repo>/. CI passes VITE_BASE explicitly.
 const base = process.env.VITE_BASE ?? '/HackHarvard/';
+const developmentPreview = process.env.VITE_DEVELOPMENT_PREVIEW === 'true';
 
 export default defineConfig({
   base,
+  envDir: developmentPreview ? false : undefined,
   plugins: [
     react(),
     tailwindcss(),
     VitePWA({
+      disable: developmentPreview,
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg'],
       manifest: {
         name: 'Market Day Boston',
         short_name: 'Market Day',
-        description:
-          'Find farmers markets across the US open now, and where SNAP, HIP and WIC are accepted.',
+        description: 'Find farmers markets across the US open now, and where SNAP, HIP and WIC are accepted.',
         theme_color: '#24513F',
         background_color: '#FBFBF8',
         display: 'standalone',

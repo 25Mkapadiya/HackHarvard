@@ -1,0 +1,3658 @@
+{
+  "version": "2026.10.18.1",
+  "reviewed": "2026-10-18",
+  "products": [
+    {
+      "id": "asparagus",
+      "name": "Asparagus",
+      "nameEs": "Esp\u00e1rragos",
+      "category": "vegetables",
+      "aliases": []
+    },
+    {
+      "id": "rhubarb",
+      "name": "Rhubarb",
+      "nameEs": "Ruibarbo",
+      "category": "vegetables",
+      "aliases": []
+    },
+    {
+      "id": "strawberries",
+      "name": "Strawberries",
+      "nameEs": "Fresas",
+      "category": "fruits",
+      "aliases": [
+        "strawberry"
+      ]
+    },
+    {
+      "id": "peas",
+      "name": "Peas",
+      "nameEs": "Guisantes",
+      "category": "vegetables",
+      "aliases": []
+    },
+    {
+      "id": "lettuce",
+      "name": "Lettuce",
+      "nameEs": "Lechuga",
+      "category": "vegetables",
+      "aliases": []
+    },
+    {
+      "id": "spinach",
+      "name": "Spinach",
+      "nameEs": "Espinaca",
+      "category": "vegetables",
+      "aliases": []
+    },
+    {
+      "id": "kale",
+      "name": "Kale",
+      "nameEs": "Col rizada",
+      "category": "vegetables",
+      "aliases": []
+    },
+    {
+      "id": "chard",
+      "name": "Swiss chard",
+      "nameEs": "Acelga",
+      "category": "vegetables",
+      "aliases": [
+        "swiss chard"
+      ]
+    },
+    {
+      "id": "radishes",
+      "name": "Radishes",
+      "nameEs": "R\u00e1banos",
+      "category": "vegetables",
+      "aliases": []
+    },
+    {
+      "id": "scallions",
+      "name": "Scallions",
+      "nameEs": "Ceboll\u00edn",
+      "category": "vegetables",
+      "aliases": [
+        "green onions",
+        "green onion"
+      ]
+    },
+    {
+      "id": "garlic",
+      "name": "Garlic",
+      "nameEs": "Ajo",
+      "category": "vegetables",
+      "aliases": []
+    },
+    {
+      "id": "beets",
+      "name": "Beets",
+      "nameEs": "Remolacha",
+      "category": "vegetables",
+      "aliases": []
+    },
+    {
+      "id": "carrots",
+      "name": "Carrots",
+      "nameEs": "Zanahorias",
+      "category": "vegetables",
+      "aliases": []
+    },
+    {
+      "id": "broccoli",
+      "name": "Broccoli",
+      "nameEs": "Br\u00f3coli",
+      "category": "vegetables",
+      "aliases": []
+    },
+    {
+      "id": "cabbage",
+      "name": "Cabbage",
+      "nameEs": "Repollo",
+      "category": "vegetables",
+      "aliases": []
+    },
+    {
+      "id": "cauliflower",
+      "name": "Cauliflower",
+      "nameEs": "Coliflor",
+      "category": "vegetables",
+      "aliases": []
+    },
+    {
+      "id": "cucumbers",
+      "name": "Cucumbers",
+      "nameEs": "Pepinos",
+      "category": "vegetables",
+      "aliases": []
+    },
+    {
+      "id": "summer_squash",
+      "name": "Zucchini and summer squash",
+      "nameEs": "Calabac\u00edn",
+      "category": "vegetables",
+      "aliases": [
+        "zucchini",
+        "courgette",
+        "summer squash"
+      ]
+    },
+    {
+      "id": "green_beans",
+      "name": "Green beans",
+      "nameEs": "Ejotes",
+      "category": "vegetables",
+      "aliases": [
+        "snap beans",
+        "snap bean",
+        "green bean"
+      ]
+    },
+    {
+      "id": "tomatoes",
+      "name": "Tomatoes",
+      "nameEs": "Tomates",
+      "category": "vegetables",
+      "aliases": [
+        "tomato"
+      ]
+    },
+    {
+      "id": "peppers",
+      "name": "Peppers",
+      "nameEs": "Pimientos",
+      "category": "vegetables",
+      "aliases": []
+    },
+    {
+      "id": "eggplant",
+      "name": "Eggplant",
+      "nameEs": "Berenjena",
+      "category": "vegetables",
+      "aliases": []
+    },
+    {
+      "id": "sweet_corn",
+      "name": "Sweet corn",
+      "nameEs": "Elote",
+      "category": "vegetables",
+      "aliases": [
+        "sweet corn",
+        "corn"
+      ]
+    },
+    {
+      "id": "potatoes",
+      "name": "Potatoes",
+      "nameEs": "Papas",
+      "category": "vegetables",
+      "aliases": [
+        "potato"
+      ]
+    },
+    {
+      "id": "onions",
+      "name": "Onions",
+      "nameEs": "Cebollas",
+      "category": "vegetables",
+      "aliases": []
+    },
+    {
+      "id": "winter_squash",
+      "name": "Winter squash",
+      "nameEs": "Calabaza de invierno",
+      "category": "vegetables",
+      "aliases": []
+    },
+    {
+      "id": "pumpkins",
+      "name": "Pumpkins",
+      "nameEs": "Calabazas",
+      "category": "vegetables",
+      "aliases": [
+        "pumpkin"
+      ]
+    },
+    {
+      "id": "sweet_potatoes",
+      "name": "Sweet potatoes",
+      "nameEs": "Batatas",
+      "category": "vegetables",
+      "aliases": [
+        "sweet potato"
+      ]
+    },
+    {
+      "id": "brussels_sprouts",
+      "name": "Brussels sprouts",
+      "nameEs": "Coles de Bruselas",
+      "category": "vegetables",
+      "aliases": [
+        "brussels sprout"
+      ]
+    },
+    {
+      "id": "leeks",
+      "name": "Leeks",
+      "nameEs": "Puerros",
+      "category": "vegetables",
+      "aliases": []
+    },
+    {
+      "id": "parsnips",
+      "name": "Parsnips",
+      "nameEs": "Chiriv\u00edas",
+      "category": "vegetables",
+      "aliases": []
+    },
+    {
+      "id": "turnips",
+      "name": "Turnips",
+      "nameEs": "Nabos",
+      "category": "vegetables",
+      "aliases": []
+    },
+    {
+      "id": "blueberries",
+      "name": "Blueberries",
+      "nameEs": "Ar\u00e1ndanos",
+      "category": "fruits",
+      "aliases": [
+        "blueberry"
+      ]
+    },
+    {
+      "id": "raspberries",
+      "name": "Raspberries",
+      "nameEs": "Frambuesas",
+      "category": "fruits",
+      "aliases": [
+        "raspberry"
+      ]
+    },
+    {
+      "id": "peaches",
+      "name": "Peaches",
+      "nameEs": "Duraznos",
+      "category": "fruits",
+      "aliases": [
+        "peach"
+      ]
+    },
+    {
+      "id": "plums",
+      "name": "Plums",
+      "nameEs": "Ciruelas",
+      "category": "fruits",
+      "aliases": []
+    },
+    {
+      "id": "melons",
+      "name": "Melons",
+      "nameEs": "Melones",
+      "category": "fruits",
+      "aliases": []
+    },
+    {
+      "id": "watermelon",
+      "name": "Watermelon",
+      "nameEs": "Sand\u00eda",
+      "category": "fruits",
+      "aliases": [
+        "watermelons"
+      ]
+    },
+    {
+      "id": "apples",
+      "name": "Apples",
+      "nameEs": "Manzanas",
+      "category": "fruits",
+      "aliases": [
+        "apple"
+      ]
+    },
+    {
+      "id": "pears",
+      "name": "Pears",
+      "nameEs": "Peras",
+      "category": "fruits",
+      "aliases": [
+        "pear"
+      ]
+    },
+    {
+      "id": "grapes",
+      "name": "Grapes",
+      "nameEs": "Uvas",
+      "category": "fruits",
+      "aliases": []
+    },
+    {
+      "id": "cranberries",
+      "name": "Cranberries",
+      "nameEs": "Ar\u00e1ndanos rojos",
+      "category": "fruits",
+      "aliases": []
+    },
+    {
+      "id": "basil",
+      "name": "Basil",
+      "nameEs": "Albahaca",
+      "category": "herbs",
+      "aliases": []
+    },
+    {
+      "id": "cilantro",
+      "name": "Cilantro",
+      "nameEs": "Cilantro",
+      "category": "herbs",
+      "aliases": []
+    },
+    {
+      "id": "mushrooms",
+      "name": "Mushrooms",
+      "nameEs": "Hongos",
+      "category": "mushrooms",
+      "aliases": []
+    },
+    {
+      "id": "microgreens",
+      "name": "Microgreens",
+      "nameEs": "Microvegetales",
+      "category": "vegetables",
+      "aliases": []
+    },
+    {
+      "id": "maple_syrup",
+      "name": "Maple syrup (new season)",
+      "nameEs": "Jarabe de arce",
+      "category": "maple_syrup",
+      "aliases": []
+    },
+    {
+      "id": "citrus",
+      "name": "Citrus",
+      "nameEs": "C\u00edtricos",
+      "category": "fruits",
+      "aliases": []
+    },
+    {
+      "id": "avocados",
+      "name": "Avocados",
+      "nameEs": "Aguacates",
+      "category": "fruits",
+      "aliases": []
+    },
+    {
+      "id": "okra",
+      "name": "Okra",
+      "nameEs": "Quimbomb\u00f3",
+      "category": "vegetables",
+      "aliases": []
+    },
+    {
+      "id": "collards",
+      "name": "Collard greens",
+      "nameEs": "Berza",
+      "category": "vegetables",
+      "aliases": [
+        "collard greens"
+      ]
+    },
+    {
+      "id": "pecans",
+      "name": "Pecans",
+      "nameEs": "Nueces pecanas",
+      "category": "nuts",
+      "aliases": [
+        "pecan"
+      ]
+    },
+    {
+      "id": "figs",
+      "name": "Figs",
+      "nameEs": "Higos",
+      "category": "fruits",
+      "aliases": []
+    },
+    {
+      "id": "cherries",
+      "name": "Cherries",
+      "nameEs": "Cerezas",
+      "category": "fruits",
+      "aliases": []
+    },
+    {
+      "id": "green_chile",
+      "name": "Green chile",
+      "nameEs": "Chile verde",
+      "category": "vegetables",
+      "aliases": []
+    },
+    {
+      "id": "blackberries",
+      "name": "Blackberries",
+      "nameEs": "Moras",
+      "category": "fruits",
+      "aliases": [
+        "blackberry"
+      ]
+    },
+    {
+      "id": "bell_peppers",
+      "name": "Bell peppers",
+      "nameEs": "Pimientos dulces",
+      "category": "vegetables",
+      "aliases": [
+        "bell pepper"
+      ]
+    },
+    {
+      "id": "cantaloupe",
+      "name": "Cantaloupe",
+      "nameEs": "Mel\u00f3n cantalupo",
+      "category": "fruits",
+      "aliases": [
+        "cantaloupes"
+      ]
+    },
+    {
+      "id": "oranges",
+      "name": "Oranges",
+      "nameEs": "Naranjas",
+      "category": "fruits",
+      "aliases": [
+        "orange"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "mdar-pyo",
+      "states": [
+        "MA"
+      ],
+      "organization": "Massachusetts Department of Agricultural Resources",
+      "url": "https://www.mass.gov/guides/pick-your-own-farms",
+      "published": null,
+      "lastReviewed": "2026-10-18",
+      "limitations": "Limited pick-your-own windows, rounded to whole months including partial months. Weather, cultivar and farm affect dates; other foods are not covered."
+    },
+    {
+      "id": "ny-harvest",
+      "states": [
+        "NY"
+      ],
+      "organization": "New York State Department of Agriculture and Markets",
+      "url": "https://agriculture.ny.gov/farming/appendices-local-procurement-toolkit",
+      "published": null,
+      "lastReviewed": "2026-10-18",
+      "limitations": "Harvest and availability bars are distinct. Partial months count as whole months. Availability may include storage; do not infer fresh harvest from it. Weather and season extension shift dates. Calendar publication date is unstated; dates elsewhere in the toolkit do not date this chart."
+    },
+    {
+      "id": "cdfa-pyo",
+      "states": [
+        "CA"
+      ],
+      "organization": "California Department of Food and Agriculture (CA GROWN guest article)",
+      "url": "https://plantingseedsblog.cdfa.ca.gov/index.php/2026/06/24/whats-in-season-at-u-pick-farms-across-the-state/",
+      "published": "2026-06-24",
+      "lastReviewed": "2026-10-18",
+      "limitations": "General statewide U-pick guide with examples from different districts, not a commercial production census. Availability varies by farm and cultivar. Apples and broad berry/citrus headings omitted pending clarification; no inference about storage."
+    },
+    {
+      "id": "fdacs-crops",
+      "states": [
+        "FL"
+      ],
+      "organization": "Florida Department of Agriculture and Consumer Services",
+      "url": "https://www.fdacs.gov/Food-Nutrition/Buy-Fresh-from-Florida/crops-in-season",
+      "published": null,
+      "lastReviewed": "2026-10-18",
+      "limitations": "Typical harvest times, not current inventory. Weather and greenhouse production can alter timing. Specific bell peppers, cantaloupe and oranges are not generalized to all peppers, melons or citrus."
+    },
+    {
+      "id": "tda-produce",
+      "states": [
+        "TX"
+      ],
+      "organization": "Texas Department of Agriculture",
+      "url": "https://texasagriculture.gov/Portals/0/forms/MKT/TDA%20Produce%20Commodity%20Card.pdf",
+      "published": null,
+      "lastReviewed": "2026-10-18",
+      "limitations": "Produce varieties and availability; does not distinguish field harvest, storage and protected production. Generic squash, greens, herbs, cabbage variants and greenhouse tomatoes are not generalized. State spans several climates."
+    },
+    {
+      "id": "wsda-fruit",
+      "states": [
+        "WA"
+      ],
+      "organization": "Washington State Department of Agriculture",
+      "url": "https://agr.wa.gov/getmedia/497c614b-5c54-4277-89cf-4d6d1dd79c52/seasonalitychartfruitlegumeherbsfinal.pdf",
+      "published": null,
+      "lastReviewed": "2026-10-18",
+      "limitations": "AGR PUB 200-339 fruit, legume and herb availability chart. Asterisks mark peak harvest for apples and pears; other months may include storage. Unmarked bars are availability, not necessarily harvest. Frozen berries and dried beans excluded. Peach row covers yellow peaches and plum row covers purple plums only; other varieties are not established by these rows."
+    },
+    {
+      "id": "msu-produce",
+      "states": [
+        "MI"
+      ],
+      "organization": "Michigan State University Center for Regional Food Systems",
+      "url": "https://msu-prod.dotcmscloud.com/foodsystems/uploads/files/mi-produce-availability.pdf",
+      "published": "2013-03-29",
+      "lastReviewed": "2026-10-18",
+      "limitations": "Source landing page dates resource March 29, 2013; underlying observations are not dated. Field fresh, extended season and storage colors preserved. Partial months rounded outward; weather, locality and variety vary. Old reference needs periodic re-review, not relabelling as recent observations."
+    },
+    {
+      "id": "uga-guide",
+      "states": [
+        "GA"
+      ],
+      "organization": "University of Georgia Cooperative Extension / Daniel Remar",
+      "url": "https://site.extension.uga.edu/aaecext/2025/12/georgias-month-by-month-produce-guide/",
+      "published": "2025-12-24",
+      "lastReviewed": "2026-10-18",
+      "limitations": "A means available; L means limited availability. General availability may reflect storage/season extension (source footnotes), not harvest. Geography and weather vary; no live inventory. Limited months are retained separately."
+    }
+  ],
+  "records": [
+    {
+      "product": "strawberries",
+      "scope": {
+        "kind": "state",
+        "id": "MA",
+        "states": [
+          "MA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            6,
+            7
+          ]
+        }
+      ],
+      "sourceIds": [
+        "mdar-pyo"
+      ],
+      "locator": "Pick-your-own crop seasons: strawberries and pumpkins"
+    },
+    {
+      "product": "pumpkins",
+      "scope": {
+        "kind": "state",
+        "id": "MA",
+        "states": [
+          "MA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            9,
+            10
+          ]
+        }
+      ],
+      "sourceIds": [
+        "mdar-pyo"
+      ],
+      "locator": "Pick-your-own crop seasons: strawberries and pumpkins"
+    },
+    {
+      "product": "apples",
+      "scope": {
+        "kind": "state",
+        "id": "NY",
+        "states": [
+          "NY"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "kind": "availability",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "ny-harvest"
+      ],
+      "locator": "PDF page 4 (printed page 1), fruit chart; orange harvest / blue availability bars"
+    },
+    {
+      "product": "blackberries",
+      "scope": {
+        "kind": "state",
+        "id": "NY",
+        "states": [
+          "NY"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            8,
+            9
+          ]
+        }
+      ],
+      "sourceIds": [
+        "ny-harvest"
+      ],
+      "locator": "PDF page 4 (printed page 1), fruit chart; orange harvest / blue availability bars"
+    },
+    {
+      "product": "blueberries",
+      "scope": {
+        "kind": "state",
+        "id": "NY",
+        "states": [
+          "NY"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            7,
+            8,
+            9
+          ]
+        }
+      ],
+      "sourceIds": [
+        "ny-harvest"
+      ],
+      "locator": "PDF page 4 (printed page 1), fruit chart; orange harvest / blue availability bars"
+    },
+    {
+      "product": "cantaloupe",
+      "scope": {
+        "kind": "state",
+        "id": "NY",
+        "states": [
+          "NY"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            8,
+            9
+          ]
+        }
+      ],
+      "sourceIds": [
+        "ny-harvest"
+      ],
+      "locator": "PDF page 4 (printed page 1), fruit chart; orange harvest / blue availability bars"
+    },
+    {
+      "product": "grapes",
+      "scope": {
+        "kind": "state",
+        "id": "NY",
+        "states": [
+          "NY"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            8,
+            9,
+            10
+          ]
+        }
+      ],
+      "sourceIds": [
+        "ny-harvest"
+      ],
+      "locator": "PDF page 4 (printed page 1), fruit chart; orange harvest / blue availability bars"
+    },
+    {
+      "product": "peaches",
+      "scope": {
+        "kind": "state",
+        "id": "NY",
+        "states": [
+          "NY"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            7,
+            8,
+            9
+          ]
+        }
+      ],
+      "sourceIds": [
+        "ny-harvest"
+      ],
+      "locator": "PDF page 4 (printed page 1), fruit chart; orange harvest / blue availability bars"
+    },
+    {
+      "product": "pears",
+      "scope": {
+        "kind": "state",
+        "id": "NY",
+        "states": [
+          "NY"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            8,
+            9,
+            10
+          ]
+        },
+        {
+          "kind": "availability",
+          "months": [
+            1,
+            2,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "ny-harvest"
+      ],
+      "locator": "PDF page 4 (printed page 1), fruit chart; orange harvest / blue availability bars"
+    },
+    {
+      "product": "plums",
+      "scope": {
+        "kind": "state",
+        "id": "NY",
+        "states": [
+          "NY"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "kind": "availability",
+          "months": [
+            7,
+            8,
+            9,
+            10
+          ]
+        }
+      ],
+      "sourceIds": [
+        "ny-harvest"
+      ],
+      "locator": "PDF page 4 (printed page 1), fruit chart; orange harvest / blue availability bars"
+    },
+    {
+      "product": "raspberries",
+      "scope": {
+        "kind": "state",
+        "id": "NY",
+        "states": [
+          "NY"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            7,
+            9,
+            10
+          ]
+        }
+      ],
+      "sourceIds": [
+        "ny-harvest"
+      ],
+      "locator": "PDF page 4 (printed page 1), fruit chart; orange harvest / blue availability bars"
+    },
+    {
+      "product": "strawberries",
+      "scope": {
+        "kind": "state",
+        "id": "NY",
+        "states": [
+          "NY"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            6,
+            7
+          ]
+        }
+      ],
+      "sourceIds": [
+        "ny-harvest"
+      ],
+      "locator": "PDF page 4 (printed page 1), fruit chart; orange harvest / blue availability bars"
+    },
+    {
+      "product": "watermelon",
+      "scope": {
+        "kind": "state",
+        "id": "NY",
+        "states": [
+          "NY"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            9,
+            10
+          ]
+        }
+      ],
+      "sourceIds": [
+        "ny-harvest"
+      ],
+      "locator": "PDF page 4 (printed page 1), fruit chart; orange harvest / blue availability bars"
+    },
+    {
+      "product": "strawberries",
+      "scope": {
+        "kind": "state",
+        "id": "CA",
+        "states": [
+          "CA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        }
+      ],
+      "sourceIds": [
+        "cdfa-pyo"
+      ],
+      "locator": "Individual crop headings, U-pick seasons (not aggregate berry / stone-fruit headings)"
+    },
+    {
+      "product": "blueberries",
+      "scope": {
+        "kind": "state",
+        "id": "CA",
+        "states": [
+          "CA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            6,
+            7
+          ]
+        }
+      ],
+      "sourceIds": [
+        "cdfa-pyo"
+      ],
+      "locator": "Individual crop headings, U-pick seasons (not aggregate berry / stone-fruit headings)"
+    },
+    {
+      "product": "raspberries",
+      "scope": {
+        "kind": "state",
+        "id": "CA",
+        "states": [
+          "CA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        }
+      ],
+      "sourceIds": [
+        "cdfa-pyo"
+      ],
+      "locator": "Individual crop headings, U-pick seasons (not aggregate berry / stone-fruit headings)"
+    },
+    {
+      "product": "blackberries",
+      "scope": {
+        "kind": "state",
+        "id": "CA",
+        "states": [
+          "CA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        }
+      ],
+      "sourceIds": [
+        "cdfa-pyo"
+      ],
+      "locator": "Individual crop headings, U-pick seasons (not aggregate berry / stone-fruit headings)"
+    },
+    {
+      "product": "cherries",
+      "scope": {
+        "kind": "state",
+        "id": "CA",
+        "states": [
+          "CA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            5,
+            6
+          ]
+        }
+      ],
+      "sourceIds": [
+        "cdfa-pyo"
+      ],
+      "locator": "Individual crop headings, U-pick seasons (not aggregate berry / stone-fruit headings)"
+    },
+    {
+      "product": "peaches",
+      "scope": {
+        "kind": "state",
+        "id": "CA",
+        "states": [
+          "CA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            7,
+            8,
+            9,
+            10
+          ]
+        }
+      ],
+      "sourceIds": [
+        "cdfa-pyo"
+      ],
+      "locator": "Individual crop headings, U-pick seasons (not aggregate berry / stone-fruit headings)"
+    },
+    {
+      "product": "pumpkins",
+      "scope": {
+        "kind": "state",
+        "id": "CA",
+        "states": [
+          "CA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            9,
+            10,
+            11
+          ]
+        }
+      ],
+      "sourceIds": [
+        "cdfa-pyo"
+      ],
+      "locator": "Individual crop headings, U-pick seasons (not aggregate berry / stone-fruit headings)"
+    },
+    {
+      "product": "avocados",
+      "scope": {
+        "kind": "state",
+        "id": "FL",
+        "states": [
+          "FL"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            1,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "fdacs-crops"
+      ],
+      "locator": "Florida Crops Seasonal Availability: Typical Harvest Times, individual crop rows"
+    },
+    {
+      "product": "bell_peppers",
+      "scope": {
+        "kind": "state",
+        "id": "FL",
+        "states": [
+          "FL"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "fdacs-crops"
+      ],
+      "locator": "Florida Crops Seasonal Availability: Typical Harvest Times, individual crop rows"
+    },
+    {
+      "product": "blueberries",
+      "scope": {
+        "kind": "state",
+        "id": "FL",
+        "states": [
+          "FL"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            4,
+            5
+          ]
+        }
+      ],
+      "sourceIds": [
+        "fdacs-crops"
+      ],
+      "locator": "Florida Crops Seasonal Availability: Typical Harvest Times, individual crop rows"
+    },
+    {
+      "product": "broccoli",
+      "scope": {
+        "kind": "state",
+        "id": "FL",
+        "states": [
+          "FL"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            1,
+            2,
+            3
+          ]
+        }
+      ],
+      "sourceIds": [
+        "fdacs-crops"
+      ],
+      "locator": "Florida Crops Seasonal Availability: Typical Harvest Times, individual crop rows"
+    },
+    {
+      "product": "cabbage",
+      "scope": {
+        "kind": "state",
+        "id": "FL",
+        "states": [
+          "FL"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "fdacs-crops"
+      ],
+      "locator": "Florida Crops Seasonal Availability: Typical Harvest Times, individual crop rows"
+    },
+    {
+      "product": "cantaloupe",
+      "scope": {
+        "kind": "state",
+        "id": "FL",
+        "states": [
+          "FL"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            4,
+            5,
+            6
+          ]
+        }
+      ],
+      "sourceIds": [
+        "fdacs-crops"
+      ],
+      "locator": "Florida Crops Seasonal Availability: Typical Harvest Times, individual crop rows"
+    },
+    {
+      "product": "carrots",
+      "scope": {
+        "kind": "state",
+        "id": "FL",
+        "states": [
+          "FL"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            4,
+            5
+          ]
+        }
+      ],
+      "sourceIds": [
+        "fdacs-crops"
+      ],
+      "locator": "Florida Crops Seasonal Availability: Typical Harvest Times, individual crop rows"
+    },
+    {
+      "product": "cauliflower",
+      "scope": {
+        "kind": "state",
+        "id": "FL",
+        "states": [
+          "FL"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "fdacs-crops"
+      ],
+      "locator": "Florida Crops Seasonal Availability: Typical Harvest Times, individual crop rows"
+    },
+    {
+      "product": "cucumbers",
+      "scope": {
+        "kind": "state",
+        "id": "FL",
+        "states": [
+          "FL"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            3,
+            4,
+            5,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "fdacs-crops"
+      ],
+      "locator": "Florida Crops Seasonal Availability: Typical Harvest Times, individual crop rows"
+    },
+    {
+      "product": "eggplant",
+      "scope": {
+        "kind": "state",
+        "id": "FL",
+        "states": [
+          "FL"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "fdacs-crops"
+      ],
+      "locator": "Florida Crops Seasonal Availability: Typical Harvest Times, individual crop rows"
+    },
+    {
+      "product": "lettuce",
+      "scope": {
+        "kind": "state",
+        "id": "FL",
+        "states": [
+          "FL"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "fdacs-crops"
+      ],
+      "locator": "Florida Crops Seasonal Availability: Typical Harvest Times, individual crop rows"
+    },
+    {
+      "product": "mushrooms",
+      "scope": {
+        "kind": "state",
+        "id": "FL",
+        "states": [
+          "FL"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "fdacs-crops"
+      ],
+      "locator": "Florida Crops Seasonal Availability: Typical Harvest Times, individual crop rows"
+    },
+    {
+      "product": "oranges",
+      "scope": {
+        "kind": "state",
+        "id": "FL",
+        "states": [
+          "FL"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "fdacs-crops"
+      ],
+      "locator": "Florida Crops Seasonal Availability: Typical Harvest Times, individual crop rows"
+    },
+    {
+      "product": "peaches",
+      "scope": {
+        "kind": "state",
+        "id": "FL",
+        "states": [
+          "FL"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            4,
+            5
+          ]
+        }
+      ],
+      "sourceIds": [
+        "fdacs-crops"
+      ],
+      "locator": "Florida Crops Seasonal Availability: Typical Harvest Times, individual crop rows"
+    },
+    {
+      "product": "potatoes",
+      "scope": {
+        "kind": "state",
+        "id": "FL",
+        "states": [
+          "FL"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            2,
+            3,
+            4,
+            5,
+            6
+          ]
+        }
+      ],
+      "sourceIds": [
+        "fdacs-crops"
+      ],
+      "locator": "Florida Crops Seasonal Availability: Typical Harvest Times, individual crop rows"
+    },
+    {
+      "product": "radishes",
+      "scope": {
+        "kind": "state",
+        "id": "FL",
+        "states": [
+          "FL"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "fdacs-crops"
+      ],
+      "locator": "Florida Crops Seasonal Availability: Typical Harvest Times, individual crop rows"
+    },
+    {
+      "product": "green_beans",
+      "scope": {
+        "kind": "state",
+        "id": "FL",
+        "states": [
+          "FL"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "fdacs-crops"
+      ],
+      "locator": "Florida Crops Seasonal Availability: Typical Harvest Times, individual crop rows"
+    },
+    {
+      "product": "spinach",
+      "scope": {
+        "kind": "state",
+        "id": "FL",
+        "states": [
+          "FL"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            3,
+            4
+          ]
+        }
+      ],
+      "sourceIds": [
+        "fdacs-crops"
+      ],
+      "locator": "Florida Crops Seasonal Availability: Typical Harvest Times, individual crop rows"
+    },
+    {
+      "product": "strawberries",
+      "scope": {
+        "kind": "state",
+        "id": "FL",
+        "states": [
+          "FL"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "fdacs-crops"
+      ],
+      "locator": "Florida Crops Seasonal Availability: Typical Harvest Times, individual crop rows"
+    },
+    {
+      "product": "sweet_corn",
+      "scope": {
+        "kind": "state",
+        "id": "FL",
+        "states": [
+          "FL"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "fdacs-crops"
+      ],
+      "locator": "Florida Crops Seasonal Availability: Typical Harvest Times, individual crop rows"
+    },
+    {
+      "product": "tomatoes",
+      "scope": {
+        "kind": "state",
+        "id": "FL",
+        "states": [
+          "FL"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "fdacs-crops"
+      ],
+      "locator": "Florida Crops Seasonal Availability: Typical Harvest Times, individual crop rows"
+    },
+    {
+      "product": "watermelon",
+      "scope": {
+        "kind": "state",
+        "id": "FL",
+        "states": [
+          "FL"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            4,
+            5,
+            6,
+            7
+          ]
+        }
+      ],
+      "sourceIds": [
+        "fdacs-crops"
+      ],
+      "locator": "Florida Crops Seasonal Availability: Typical Harvest Times, individual crop rows"
+    },
+    {
+      "product": "apples",
+      "scope": {
+        "kind": "state",
+        "id": "TX",
+        "states": [
+          "TX"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        }
+      ],
+      "sourceIds": [
+        "tda-produce"
+      ],
+      "locator": "Texas Produce Varieties & Availability, crop rows; field tomatoes only"
+    },
+    {
+      "product": "beets",
+      "scope": {
+        "kind": "state",
+        "id": "TX",
+        "states": [
+          "TX"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "tda-produce"
+      ],
+      "locator": "Texas Produce Varieties & Availability, crop rows; field tomatoes only"
+    },
+    {
+      "product": "blackberries",
+      "scope": {
+        "kind": "state",
+        "id": "TX",
+        "states": [
+          "TX"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            4,
+            5,
+            6
+          ]
+        }
+      ],
+      "sourceIds": [
+        "tda-produce"
+      ],
+      "locator": "Texas Produce Varieties & Availability, crop rows; field tomatoes only"
+    },
+    {
+      "product": "blueberries",
+      "scope": {
+        "kind": "state",
+        "id": "TX",
+        "states": [
+          "TX"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            5,
+            6,
+            7
+          ]
+        }
+      ],
+      "sourceIds": [
+        "tda-produce"
+      ],
+      "locator": "Texas Produce Varieties & Availability, crop rows; field tomatoes only"
+    },
+    {
+      "product": "broccoli",
+      "scope": {
+        "kind": "state",
+        "id": "TX",
+        "states": [
+          "TX"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            1,
+            2,
+            3,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "tda-produce"
+      ],
+      "locator": "Texas Produce Varieties & Availability, crop rows; field tomatoes only"
+    },
+    {
+      "product": "carrots",
+      "scope": {
+        "kind": "state",
+        "id": "TX",
+        "states": [
+          "TX"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "tda-produce"
+      ],
+      "locator": "Texas Produce Varieties & Availability, crop rows; field tomatoes only"
+    },
+    {
+      "product": "cauliflower",
+      "scope": {
+        "kind": "state",
+        "id": "TX",
+        "states": [
+          "TX"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "tda-produce"
+      ],
+      "locator": "Texas Produce Varieties & Availability, crop rows; field tomatoes only"
+    },
+    {
+      "product": "cantaloupe",
+      "scope": {
+        "kind": "state",
+        "id": "TX",
+        "states": [
+          "TX"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            5,
+            6,
+            7,
+            10,
+            11
+          ]
+        }
+      ],
+      "sourceIds": [
+        "tda-produce"
+      ],
+      "locator": "Texas Produce Varieties & Availability, crop rows; field tomatoes only"
+    },
+    {
+      "product": "cucumbers",
+      "scope": {
+        "kind": "state",
+        "id": "TX",
+        "states": [
+          "TX"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "tda-produce"
+      ],
+      "locator": "Texas Produce Varieties & Availability, crop rows; field tomatoes only"
+    },
+    {
+      "product": "kale",
+      "scope": {
+        "kind": "state",
+        "id": "TX",
+        "states": [
+          "TX"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "tda-produce"
+      ],
+      "locator": "Texas Produce Varieties & Availability, crop rows; field tomatoes only"
+    },
+    {
+      "product": "lettuce",
+      "scope": {
+        "kind": "state",
+        "id": "TX",
+        "states": [
+          "TX"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ]
+        }
+      ],
+      "sourceIds": [
+        "tda-produce"
+      ],
+      "locator": "Texas Produce Varieties & Availability, crop rows; field tomatoes only"
+    },
+    {
+      "product": "mushrooms",
+      "scope": {
+        "kind": "state",
+        "id": "TX",
+        "states": [
+          "TX"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "tda-produce"
+      ],
+      "locator": "Texas Produce Varieties & Availability, crop rows; field tomatoes only"
+    },
+    {
+      "product": "onions",
+      "scope": {
+        "kind": "state",
+        "id": "TX",
+        "states": [
+          "TX"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        }
+      ],
+      "sourceIds": [
+        "tda-produce"
+      ],
+      "locator": "Texas Produce Varieties & Availability, crop rows; field tomatoes only"
+    },
+    {
+      "product": "oranges",
+      "scope": {
+        "kind": "state",
+        "id": "TX",
+        "states": [
+          "TX"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "tda-produce"
+      ],
+      "locator": "Texas Produce Varieties & Availability, crop rows; field tomatoes only"
+    },
+    {
+      "product": "peaches",
+      "scope": {
+        "kind": "state",
+        "id": "TX",
+        "states": [
+          "TX"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        }
+      ],
+      "sourceIds": [
+        "tda-produce"
+      ],
+      "locator": "Texas Produce Varieties & Availability, crop rows; field tomatoes only"
+    },
+    {
+      "product": "pears",
+      "scope": {
+        "kind": "state",
+        "id": "TX",
+        "states": [
+          "TX"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            6,
+            7,
+            8,
+            9
+          ]
+        }
+      ],
+      "sourceIds": [
+        "tda-produce"
+      ],
+      "locator": "Texas Produce Varieties & Availability, crop rows; field tomatoes only"
+    },
+    {
+      "product": "pecans",
+      "scope": {
+        "kind": "state",
+        "id": "TX",
+        "states": [
+          "TX"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            1,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "tda-produce"
+      ],
+      "locator": "Texas Produce Varieties & Availability, crop rows; field tomatoes only"
+    },
+    {
+      "product": "potatoes",
+      "scope": {
+        "kind": "state",
+        "id": "TX",
+        "states": [
+          "TX"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        }
+      ],
+      "sourceIds": [
+        "tda-produce"
+      ],
+      "locator": "Texas Produce Varieties & Availability, crop rows; field tomatoes only"
+    },
+    {
+      "product": "pumpkins",
+      "scope": {
+        "kind": "state",
+        "id": "TX",
+        "states": [
+          "TX"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            9,
+            10,
+            11
+          ]
+        }
+      ],
+      "sourceIds": [
+        "tda-produce"
+      ],
+      "locator": "Texas Produce Varieties & Availability, crop rows; field tomatoes only"
+    },
+    {
+      "product": "spinach",
+      "scope": {
+        "kind": "state",
+        "id": "TX",
+        "states": [
+          "TX"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "tda-produce"
+      ],
+      "locator": "Texas Produce Varieties & Availability, crop rows; field tomatoes only"
+    },
+    {
+      "product": "sweet_potatoes",
+      "scope": {
+        "kind": "state",
+        "id": "TX",
+        "states": [
+          "TX"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "tda-produce"
+      ],
+      "locator": "Texas Produce Varieties & Availability, crop rows; field tomatoes only"
+    },
+    {
+      "product": "tomatoes",
+      "scope": {
+        "kind": "state",
+        "id": "TX",
+        "states": [
+          "TX"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        }
+      ],
+      "sourceIds": [
+        "tda-produce"
+      ],
+      "locator": "Texas Produce Varieties & Availability, crop rows; field tomatoes only"
+    },
+    {
+      "product": "turnips",
+      "scope": {
+        "kind": "state",
+        "id": "TX",
+        "states": [
+          "TX"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "tda-produce"
+      ],
+      "locator": "Texas Produce Varieties & Availability, crop rows; field tomatoes only"
+    },
+    {
+      "product": "watermelon",
+      "scope": {
+        "kind": "state",
+        "id": "TX",
+        "states": [
+          "TX"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        }
+      ],
+      "sourceIds": [
+        "tda-produce"
+      ],
+      "locator": "Texas Produce Varieties & Availability, crop rows; field tomatoes only"
+    },
+    {
+      "product": "apples",
+      "scope": {
+        "kind": "state",
+        "id": "WA",
+        "states": [
+          "WA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "peak",
+          "months": [
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "kind": "availability",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "wsda-fruit"
+      ],
+      "locator": "AGR PUB 200-339 fruit and herb rows; apple/pear asterisks retained as peak harvest"
+    },
+    {
+      "product": "pears",
+      "scope": {
+        "kind": "state",
+        "id": "WA",
+        "states": [
+          "WA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "peak",
+          "months": [
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "kind": "availability",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "wsda-fruit"
+      ],
+      "locator": "AGR PUB 200-339 fruit and herb rows; apple/pear asterisks retained as peak harvest"
+    },
+    {
+      "product": "cantaloupe",
+      "scope": {
+        "kind": "state",
+        "id": "WA",
+        "states": [
+          "WA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            8,
+            9
+          ]
+        }
+      ],
+      "sourceIds": [
+        "wsda-fruit"
+      ],
+      "locator": "AGR PUB 200-339 fruit and herb rows; apple/pear asterisks retained as peak harvest"
+    },
+    {
+      "product": "peaches",
+      "scope": {
+        "kind": "state",
+        "id": "WA",
+        "states": [
+          "WA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            6,
+            7,
+            8,
+            9
+          ]
+        }
+      ],
+      "sourceIds": [
+        "wsda-fruit"
+      ],
+      "locator": "AGR PUB 200-339 fruit and herb rows; apple/pear asterisks retained as peak harvest; yellow peaches only"
+    },
+    {
+      "product": "plums",
+      "scope": {
+        "kind": "state",
+        "id": "WA",
+        "states": [
+          "WA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            6,
+            7,
+            8,
+            9
+          ]
+        }
+      ],
+      "sourceIds": [
+        "wsda-fruit"
+      ],
+      "locator": "AGR PUB 200-339 fruit and herb rows; apple/pear asterisks retained as peak harvest; purple plums only"
+    },
+    {
+      "product": "blackberries",
+      "scope": {
+        "kind": "state",
+        "id": "WA",
+        "states": [
+          "WA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            6,
+            7,
+            8
+          ]
+        }
+      ],
+      "sourceIds": [
+        "wsda-fruit"
+      ],
+      "locator": "AGR PUB 200-339 fruit and herb rows; apple/pear asterisks retained as peak harvest"
+    },
+    {
+      "product": "blueberries",
+      "scope": {
+        "kind": "state",
+        "id": "WA",
+        "states": [
+          "WA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            7,
+            8,
+            9
+          ]
+        }
+      ],
+      "sourceIds": [
+        "wsda-fruit"
+      ],
+      "locator": "AGR PUB 200-339 fruit and herb rows; apple/pear asterisks retained as peak harvest"
+    },
+    {
+      "product": "raspberries",
+      "scope": {
+        "kind": "state",
+        "id": "WA",
+        "states": [
+          "WA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            6,
+            7,
+            8
+          ]
+        }
+      ],
+      "sourceIds": [
+        "wsda-fruit"
+      ],
+      "locator": "AGR PUB 200-339 fruit and herb rows; apple/pear asterisks retained as peak harvest"
+    },
+    {
+      "product": "strawberries",
+      "scope": {
+        "kind": "state",
+        "id": "WA",
+        "states": [
+          "WA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        }
+      ],
+      "sourceIds": [
+        "wsda-fruit"
+      ],
+      "locator": "AGR PUB 200-339 fruit and herb rows; apple/pear asterisks retained as peak harvest"
+    },
+    {
+      "product": "grapes",
+      "scope": {
+        "kind": "state",
+        "id": "WA",
+        "states": [
+          "WA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            8,
+            9,
+            10,
+            11
+          ]
+        }
+      ],
+      "sourceIds": [
+        "wsda-fruit"
+      ],
+      "locator": "AGR PUB 200-339 fruit and herb rows; apple/pear asterisks retained as peak harvest"
+    },
+    {
+      "product": "watermelon",
+      "scope": {
+        "kind": "state",
+        "id": "WA",
+        "states": [
+          "WA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            8,
+            9,
+            10
+          ]
+        }
+      ],
+      "sourceIds": [
+        "wsda-fruit"
+      ],
+      "locator": "AGR PUB 200-339 fruit and herb rows; apple/pear asterisks retained as peak harvest"
+    },
+    {
+      "product": "basil",
+      "scope": {
+        "kind": "state",
+        "id": "WA",
+        "states": [
+          "WA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            7,
+            8,
+            9
+          ]
+        }
+      ],
+      "sourceIds": [
+        "wsda-fruit"
+      ],
+      "locator": "AGR PUB 200-339 fruit and herb rows; apple/pear asterisks retained as peak harvest"
+    },
+    {
+      "product": "cilantro",
+      "scope": {
+        "kind": "state",
+        "id": "WA",
+        "states": [
+          "WA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        }
+      ],
+      "sourceIds": [
+        "wsda-fruit"
+      ],
+      "locator": "AGR PUB 200-339 fruit and herb rows; apple/pear asterisks retained as peak harvest"
+    },
+    {
+      "product": "garlic",
+      "scope": {
+        "kind": "state",
+        "id": "WA",
+        "states": [
+          "WA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "wsda-fruit"
+      ],
+      "locator": "AGR PUB 200-339 fruit and herb rows; apple/pear asterisks retained as peak harvest"
+    },
+    {
+      "product": "apples",
+      "scope": {
+        "kind": "state",
+        "id": "MI",
+        "states": [
+          "MI"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "kind": "storage",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "msu-produce"
+      ],
+      "locator": "PDF page 2; field fresh green, extended season yellow, storage purple"
+    },
+    {
+      "product": "blueberries",
+      "scope": {
+        "kind": "state",
+        "id": "MI",
+        "states": [
+          "MI"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            7,
+            8,
+            9
+          ]
+        }
+      ],
+      "sourceIds": [
+        "msu-produce"
+      ],
+      "locator": "PDF page 2; field fresh green, extended season yellow, storage purple"
+    },
+    {
+      "product": "blackberries",
+      "scope": {
+        "kind": "state",
+        "id": "MI",
+        "states": [
+          "MI"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            8,
+            9
+          ]
+        }
+      ],
+      "sourceIds": [
+        "msu-produce"
+      ],
+      "locator": "PDF page 2; field fresh green, extended season yellow, storage purple"
+    },
+    {
+      "product": "peaches",
+      "scope": {
+        "kind": "state",
+        "id": "MI",
+        "states": [
+          "MI"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            7,
+            8,
+            9
+          ]
+        }
+      ],
+      "sourceIds": [
+        "msu-produce"
+      ],
+      "locator": "PDF page 2; field fresh green, extended season yellow, storage purple"
+    },
+    {
+      "product": "pears",
+      "scope": {
+        "kind": "state",
+        "id": "MI",
+        "states": [
+          "MI"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            8,
+            9
+          ]
+        },
+        {
+          "kind": "storage",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "msu-produce"
+      ],
+      "locator": "PDF page 2; field fresh green, extended season yellow, storage purple"
+    },
+    {
+      "product": "plums",
+      "scope": {
+        "kind": "state",
+        "id": "MI",
+        "states": [
+          "MI"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            8,
+            9
+          ]
+        }
+      ],
+      "sourceIds": [
+        "msu-produce"
+      ],
+      "locator": "PDF page 2; field fresh green, extended season yellow, storage purple"
+    },
+    {
+      "product": "raspberries",
+      "scope": {
+        "kind": "state",
+        "id": "MI",
+        "states": [
+          "MI"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            7,
+            9
+          ]
+        },
+        {
+          "kind": "extended",
+          "months": [
+            10
+          ]
+        }
+      ],
+      "sourceIds": [
+        "msu-produce"
+      ],
+      "locator": "PDF page 2; field fresh green, extended season yellow, storage purple"
+    },
+    {
+      "product": "rhubarb",
+      "scope": {
+        "kind": "state",
+        "id": "MI",
+        "states": [
+          "MI"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            5
+          ]
+        }
+      ],
+      "sourceIds": [
+        "msu-produce"
+      ],
+      "locator": "PDF page 2; field fresh green, extended season yellow, storage purple"
+    },
+    {
+      "product": "strawberries",
+      "scope": {
+        "kind": "state",
+        "id": "MI",
+        "states": [
+          "MI"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            6,
+            7
+          ]
+        },
+        {
+          "kind": "extended",
+          "months": [
+            7,
+            8,
+            9,
+            10
+          ]
+        }
+      ],
+      "sourceIds": [
+        "msu-produce"
+      ],
+      "locator": "PDF page 2; field fresh green, extended season yellow, storage purple"
+    },
+    {
+      "product": "watermelon",
+      "scope": {
+        "kind": "state",
+        "id": "MI",
+        "states": [
+          "MI"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            8,
+            9
+          ]
+        }
+      ],
+      "sourceIds": [
+        "msu-produce"
+      ],
+      "locator": "PDF page 2; field fresh green, extended season yellow, storage purple"
+    },
+    {
+      "product": "cranberries",
+      "scope": {
+        "kind": "state",
+        "id": "MI",
+        "states": [
+          "MI"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            9,
+            10,
+            11
+          ]
+        }
+      ],
+      "sourceIds": [
+        "msu-produce"
+      ],
+      "locator": "PDF page 2; field fresh green, extended season yellow, storage purple"
+    },
+    {
+      "product": "grapes",
+      "scope": {
+        "kind": "state",
+        "id": "MI",
+        "states": [
+          "MI"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            9,
+            10
+          ]
+        }
+      ],
+      "sourceIds": [
+        "msu-produce"
+      ],
+      "locator": "PDF page 2; field fresh green, extended season yellow, storage purple"
+    },
+    {
+      "product": "winter_squash",
+      "scope": {
+        "kind": "state",
+        "id": "MI",
+        "states": [
+          "MI"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            9,
+            10
+          ]
+        },
+        {
+          "kind": "storage",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "msu-produce"
+      ],
+      "locator": "PDF page 2; field fresh green, extended season yellow, storage purple"
+    },
+    {
+      "product": "sweet_potatoes",
+      "scope": {
+        "kind": "state",
+        "id": "MI",
+        "states": [
+          "MI"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        {
+          "kind": "storage",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "msu-produce"
+      ],
+      "locator": "PDF page 2; field fresh green, extended season yellow, storage purple"
+    },
+    {
+      "product": "cilantro",
+      "scope": {
+        "kind": "state",
+        "id": "MI",
+        "states": [
+          "MI"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "harvest",
+          "months": [
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "kind": "extended",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "msu-produce"
+      ],
+      "locator": "PDF page 2; field fresh green, extended season yellow, storage purple"
+    },
+    {
+      "product": "apples",
+      "scope": {
+        "kind": "state",
+        "id": "GA",
+        "states": [
+          "GA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        }
+      ],
+      "sourceIds": [
+        "uga-guide"
+      ],
+      "locator": "Georgia Produce Seasonality Chart: A and L cells; notes i\u2013iii preserved in source limitations"
+    },
+    {
+      "product": "asparagus",
+      "scope": {
+        "kind": "state",
+        "id": "GA",
+        "states": [
+          "GA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            4,
+            5,
+            6
+          ]
+        }
+      ],
+      "sourceIds": [
+        "uga-guide"
+      ],
+      "locator": "Georgia Produce Seasonality Chart: A and L cells; notes i\u2013iii preserved in source limitations"
+    },
+    {
+      "product": "basil",
+      "scope": {
+        "kind": "state",
+        "id": "GA",
+        "states": [
+          "GA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "kind": "limited",
+          "months": [
+            10,
+            11
+          ]
+        }
+      ],
+      "sourceIds": [
+        "uga-guide"
+      ],
+      "locator": "Georgia Produce Seasonality Chart: A and L cells; notes i\u2013iii preserved in source limitations"
+    },
+    {
+      "product": "green_beans",
+      "scope": {
+        "kind": "state",
+        "id": "GA",
+        "states": [
+          "GA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        }
+      ],
+      "sourceIds": [
+        "uga-guide"
+      ],
+      "locator": "Georgia Produce Seasonality Chart: A and L cells; notes i\u2013iii preserved in source limitations"
+    },
+    {
+      "product": "beets",
+      "scope": {
+        "kind": "state",
+        "id": "GA",
+        "states": [
+          "GA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "uga-guide"
+      ],
+      "locator": "Georgia Produce Seasonality Chart: A and L cells; notes i\u2013iii preserved in source limitations"
+    },
+    {
+      "product": "blackberries",
+      "scope": {
+        "kind": "state",
+        "id": "GA",
+        "states": [
+          "GA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            5,
+            6,
+            7
+          ]
+        }
+      ],
+      "sourceIds": [
+        "uga-guide"
+      ],
+      "locator": "Georgia Produce Seasonality Chart: A and L cells; notes i\u2013iii preserved in source limitations"
+    },
+    {
+      "product": "blueberries",
+      "scope": {
+        "kind": "state",
+        "id": "GA",
+        "states": [
+          "GA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            5,
+            6,
+            7,
+            8
+          ]
+        }
+      ],
+      "sourceIds": [
+        "uga-guide"
+      ],
+      "locator": "Georgia Produce Seasonality Chart: A and L cells; notes i\u2013iii preserved in source limitations"
+    },
+    {
+      "product": "broccoli",
+      "scope": {
+        "kind": "state",
+        "id": "GA",
+        "states": [
+          "GA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "uga-guide"
+      ],
+      "locator": "Georgia Produce Seasonality Chart: A and L cells; notes i\u2013iii preserved in source limitations"
+    },
+    {
+      "product": "brussels_sprouts",
+      "scope": {
+        "kind": "state",
+        "id": "GA",
+        "states": [
+          "GA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            1,
+            2,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "uga-guide"
+      ],
+      "locator": "Georgia Produce Seasonality Chart: A and L cells; notes i\u2013iii preserved in source limitations"
+    },
+    {
+      "product": "cabbage",
+      "scope": {
+        "kind": "state",
+        "id": "GA",
+        "states": [
+          "GA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "uga-guide"
+      ],
+      "locator": "Georgia Produce Seasonality Chart: A and L cells; notes i\u2013iii preserved in source limitations"
+    },
+    {
+      "product": "cantaloupe",
+      "scope": {
+        "kind": "state",
+        "id": "GA",
+        "states": [
+          "GA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            6,
+            7,
+            8
+          ]
+        }
+      ],
+      "sourceIds": [
+        "uga-guide"
+      ],
+      "locator": "Georgia Produce Seasonality Chart: A and L cells; notes i\u2013iii preserved in source limitations"
+    },
+    {
+      "product": "carrots",
+      "scope": {
+        "kind": "state",
+        "id": "GA",
+        "states": [
+          "GA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "uga-guide"
+      ],
+      "locator": "Georgia Produce Seasonality Chart: A and L cells; notes i\u2013iii preserved in source limitations"
+    },
+    {
+      "product": "cauliflower",
+      "scope": {
+        "kind": "state",
+        "id": "GA",
+        "states": [
+          "GA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "uga-guide"
+      ],
+      "locator": "Georgia Produce Seasonality Chart: A and L cells; notes i\u2013iii preserved in source limitations"
+    },
+    {
+      "product": "chard",
+      "scope": {
+        "kind": "state",
+        "id": "GA",
+        "states": [
+          "GA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "sourceIds": [
+        "uga-guide"
+      ],
+      "locator": "Georgia Produce Seasonality Chart: A and L cells; notes i\u2013iii preserved in source limitations"
+    },
+    {
+      "product": "cucumbers",
+      "scope": {
+        "kind": "state",
+        "id": "GA",
+        "states": [
+          "GA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "kind": "limited",
+          "months": [
+            5,
+            10,
+            11
+          ]
+        }
+      ],
+      "sourceIds": [
+        "uga-guide"
+      ],
+      "locator": "Georgia Produce Seasonality Chart: A and L cells; notes i\u2013iii preserved in source limitations"
+    },
+    {
+      "product": "kale",
+      "scope": {
+        "kind": "state",
+        "id": "GA",
+        "states": [
+          "GA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            3,
+            4,
+            5,
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "kind": "limited",
+          "months": [
+            1,
+            2
+          ]
+        }
+      ],
+      "sourceIds": [
+        "uga-guide"
+      ],
+      "locator": "Georgia Produce Seasonality Chart: A and L cells; notes i\u2013iii preserved in source limitations"
+    },
+    {
+      "product": "peaches",
+      "scope": {
+        "kind": "state",
+        "id": "GA",
+        "states": [
+          "GA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            5,
+            6,
+            7,
+            8
+          ]
+        }
+      ],
+      "sourceIds": [
+        "uga-guide"
+      ],
+      "locator": "Georgia Produce Seasonality Chart: A and L cells; notes i\u2013iii preserved in source limitations"
+    },
+    {
+      "product": "pears",
+      "scope": {
+        "kind": "state",
+        "id": "GA",
+        "states": [
+          "GA"
+        ]
+      },
+      "windows": [
+        {
+          "kind": "availability",
+          "months": [
+            8,
+            9,
+            10,
+            11
+          ]
+        }
+      ],
+      "sourceIds": [
+        "uga-guide"
+      ],
+      "locator": "Georgia Produce Seasonality Chart: A and L cells; notes i\u2013iii preserved in source limitations"
+    }
+  ]
+}

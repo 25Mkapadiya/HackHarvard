@@ -54,7 +54,6 @@ const NAV = [
   ['/', 'nav.home'],
   ['/explore', 'nav.explore'],
   ['/search', 'nav.search'],
-  ['/seasonal', 'nav.seasonal'],
   ['/benefits', 'nav.benefits'],
   ['/rewards', 'nav.rewards'],
 ] as const;

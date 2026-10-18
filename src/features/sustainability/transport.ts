@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import type { Visit } from '../purchases/model';
-import { evidence, itemEvidenceKey, metric, type Evidence, type Provenance } from './evidence';
+import { evidence, itemEvidenceKey, metric, type Provenance } from './evidence';
 import { quantityKg, type FoodEvidence } from './foodMiles';
 export const EPA_SOURCE: Provenance = {
   source: 'US EPA Emission Factors for Greenhouse Gas Inventories, 15 January 2025, Tables 8 and 11',

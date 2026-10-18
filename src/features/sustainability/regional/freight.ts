@@ -51,7 +51,17 @@ export function regionalFreightSummary(resolution: RegionalResolution, catalog =
                 ...e.transport,
                 local: e.transport[branch].map((leg) => ({
                   ...leg,
-                  distance: { ...leg.distance, value: 0 },
+                  distance: {
+                    ...leg.distance,
+                    value: 0,
+                    provenance: {
+                      ...leg.distance.provenance,
+                      assumptions: [
+                        ...leg.distance.provenance.assumptions,
+                        'Computational zero reference used only to obtain a single-chain total with the difference engine; not a sourced zero-distance supply chain.',
+                      ],
+                    },
+                  },
                 })),
                 conventional: e.transport[branch],
               },

@@ -23,7 +23,16 @@ const schema = z.strictObject({
   reviewedAt: z.iso.date(),
   applicableFrom: z.iso.date(),
   applicableTo: z.iso.date(),
-  sources: z.array(source.extend({ id: text, products: z.array(text).min(1), observedFrom: z.iso.date(), observedTo: z.iso.date() })).min(1),
+  sources: z
+    .array(
+      source.extend({
+        id: text,
+        products: z.array(text).min(1),
+        observedFrom: z.iso.date(),
+        observedTo: z.iso.date(),
+      }),
+    )
+    .min(1),
   pointSource: source.extend({ locator: text, dateBasis: text }),
   modeSource: z.strictObject({
     organization: text,

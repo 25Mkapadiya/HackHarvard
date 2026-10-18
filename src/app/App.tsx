@@ -6,6 +6,10 @@ import { store } from '../lib/store';
 import { BACKEND } from './config';
 import { Loading } from '../components/Badges';
 import Home from '../routes/Home';
+import { AuthProvider } from '../features/auth/AuthProvider';
+import { useAuth } from '../features/auth/authContext';
+import { useCommunityRealtime } from '../features/community/hooks';
+import { getSupabaseClient } from '../lib/supabaseClient';
 
 const Explore = lazy(() => import('../routes/Explore'));
 const MarketDetail = lazy(() => import('../routes/MarketDetail'));
@@ -20,6 +24,21 @@ const Manager = lazy(() => import('../routes/Manager'));
 const HowScores = lazy(() => import('../routes/HowScores'));
 const About = lazy(() => import('../routes/About'));
 const NotFound = lazy(() => import('../routes/NotFound'));
+const Signup = lazy(() => import('../routes/Signup'));
+const Login = lazy(() => import('../routes/Login'));
+const Feed = lazy(() => import('../features/community/Feed'));
+const Account = lazy(() => import('../features/community/Account'));
+const Manage = lazy(() => import('../features/community/Manage'));
+const PublicProfile = lazy(() => import('../features/community/PublicProfile'));
+const MarketDirectory = lazy(() =>
+  import('../features/community/PublicProfile').then((m) => ({ default: m.MarketDirectory })),
+);
+const MarketCommunity = lazy(() =>
+  import('../features/community/PublicProfile').then((m) => ({ default: m.MarketCommunity })),
+);
+const AuthCallback = lazy(() => import('../features/auth/AuthCallback'));
+const AuthEmail = lazy(() => import('../features/auth/AuthEmail'));
+const ResetPassword = lazy(() => import('../features/auth/PasswordForm'));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -31,6 +50,7 @@ function ScrollToTop() {
 }
 
 const NAV = [
+  ['/feed', 'community.feed'],
   ['/', 'nav.home'],
   ['/explore', 'nav.explore'],
   ['/search', 'nav.search'],
@@ -40,6 +60,26 @@ const NAV = [
 
 function Header() {
   const { t, i18n } = useTranslation();
+  const auth = useAuth();
+  useCommunityRealtime();
+  const userId = auth.user?.id;
+  useEffect(() => {
+    if (!userId) return;
+    const state = getSupabaseClient();
+    if (state.status !== 'ready') return;
+    let active = true;
+    void Promise.resolve(
+      state.client.from('community_profiles').select('preferred_language').eq('id', userId).maybeSingle(),
+    )
+      .then(({ data }) => {
+        if (active && data && ['en', 'es'].includes(data.preferred_language))
+          void i18n.changeLanguage(data.preferred_language);
+      })
+      .catch(() => {});
+    return () => {
+      active = false;
+    };
+  }, [userId, i18n]);
   const [open, setOpen] = useState(false);
   const link = ({ isActive }: { isActive: boolean }) =>
     `block rounded-lg px-3 py-2 font-bold no-underline ${isActive ? 'bg-kale text-white' : 'text-ink hover:bg-kale-light'}`;
@@ -90,6 +130,18 @@ function Header() {
               </NavLink>
             </li>
           ))}
+          <li>
+            <NavLink to={auth.user ? '/account' : '/login'} className={link} onClick={() => setOpen(false)}>
+              {t(auth.user ? 'account.title' : 'auth.login')}
+            </NavLink>
+          </li>
+          {!auth.user && (
+            <li>
+              <NavLink to="/signup" className={link} onClick={() => setOpen(false)}>
+                {t('auth.signup')}
+              </NavLink>
+            </li>
+          )}
         </ul>
       </nav>
     </header>
@@ -100,10 +152,22 @@ function Footer() {
   const { t, i18n } = useTranslation();
   const { simulated, now } = useNow();
   const [cleared, setCleared] = useState(false);
+  const { pathname } = useLocation();
+  const legacyData = ![
+    '/feed',
+    '/account',
+    '/community',
+    '/signup',
+    '/login',
+    '/auth',
+    '/forgot-password',
+    '/resend-confirmation',
+    '/reset-password',
+  ].some((prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`));
   return (
     <footer className="mt-12 border-t border-line bg-white">
       <div className="mx-auto max-w-6xl space-y-3 px-4 py-6 text-sm">
-        {BACKEND === 'demo' && store.mode === 'demo' && (
+        {legacyData && BACKEND === 'demo' && store.mode === 'demo' && (
           <p className="flex flex-wrap items-center gap-2">
             <span className="font-bold">{t('app.demo')}</span>
             <button
@@ -148,35 +212,49 @@ function Footer() {
 export default function App() {
   return (
     <HashRouter>
-      <StoreProvider>
-        <NowProvider>
-          <LocationProvider>
-            <ScrollToTop />
-            <Header />
-            <main id="main" tabIndex={-1} className="outline-none">
-              <Suspense fallback={<Loading />}>
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/explore" element={<Explore />} />
-                  <Route path="/market/:id" element={<MarketDetail />} />
-                  <Route path="/vendors/:id" element={<VendorDetail />} />
-                  <Route path="/search" element={<Search />} />
-                  <Route path="/seasonal" element={<Seasonal />} />
-                  <Route path="/benefits" element={<Benefits />} />
-                  <Route path="/rewards" element={<Rewards />} />
-                  <Route path="/checkin/:marketId" element={<CheckIn />} />
-                  <Route path="/vendor" element={<VendorPortal />} />
-                  <Route path="/manager" element={<Manager />} />
-                  <Route path="/how-scores-work" element={<HowScores />} />
-                  <Route path="/about" element={<About />} />
-                  <Route path="*" element={<NotFound />} />
-                </Routes>
-              </Suspense>
-            </main>
-            <Footer />
-          </LocationProvider>
-        </NowProvider>
-      </StoreProvider>
+      <AuthProvider>
+        <StoreProvider>
+          <NowProvider>
+            <LocationProvider>
+              <ScrollToTop />
+              <Header />
+              <main id="main" tabIndex={-1} className="outline-none">
+                <Suspense fallback={<Loading />}>
+                  <Routes>
+                    <Route path="/feed" element={<Feed />} />
+                    <Route path="/account" element={<Account />} />
+                    <Route path="/account/identities" element={<Manage />} />
+                    <Route path="/community/profile/:id" element={<PublicProfile />} />
+                    <Route path="/community/markets" element={<MarketDirectory />} />
+                    <Route path="/community/markets/:sourceId" element={<MarketCommunity />} />
+                    <Route path="/auth/callback" element={<AuthCallback />} />
+                    <Route path="/forgot-password" element={<AuthEmail />} />
+                    <Route path="/resend-confirmation" element={<AuthEmail resend />} />
+                    <Route path="/reset-password" element={<ResetPassword />} />
+                    <Route path="/signup" element={<Signup />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/" element={<Home />} />
+                    <Route path="/explore" element={<Explore />} />
+                    <Route path="/market/:id" element={<MarketDetail />} />
+                    <Route path="/vendors/:id" element={<VendorDetail />} />
+                    <Route path="/search" element={<Search />} />
+                    <Route path="/seasonal" element={<Seasonal />} />
+                    <Route path="/benefits" element={<Benefits />} />
+                    <Route path="/rewards" element={<Rewards />} />
+                    <Route path="/checkin/:marketId" element={<CheckIn />} />
+                    <Route path="/vendor" element={<VendorPortal />} />
+                    <Route path="/manager" element={<Manager />} />
+                    <Route path="/how-scores-work" element={<HowScores />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="*" element={<NotFound />} />
+                  </Routes>
+                </Suspense>
+              </main>
+              <Footer />
+            </LocationProvider>
+          </NowProvider>
+        </StoreProvider>
+      </AuthProvider>
     </HashRouter>
   );
 }

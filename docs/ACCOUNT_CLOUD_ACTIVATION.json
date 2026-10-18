@@ -1,0 +1,2993 @@
+{
+  "project": "hackharvard",
+  "projectRef": "mlgufxqhleyiulcyrzaz",
+  "databaseBranch": "main (primary)",
+  "database": "postgres",
+  "method": "Migration 001: authenticated Supabase SQL Editor; migration 002: psql original-file execution through Session pooler",
+  "approval": "Explicit user approval in this chat for these two exact migrations, 001 then 002; no unrelated settings or provisioning.",
+  "startedAt": "2026-10-18T06:07:16.819Z",
+  "migrationHistory": "Manual execution; no CLI history table will be created or fabricated. Reconcile before future CLI db push.",
+  "migrations": [
+    {
+      "file": "202610180001_account_community.sql",
+      "sha256": "f77f8ff13b64d734cc9a14ac96de5dcfed50f0a785422cd61c4556da42f0b004",
+      "status": "applied_and_verified",
+      "editorContentVerified": true,
+      "requestedAt": "2026-10-18T06:07:52.988Z",
+      "executionResult": "Success. No rows returned.",
+      "executionObservedAt": "2026-10-18T06:08:20.258Z",
+      "verifiedAt": "2026-10-18T06:11:11.560Z"
+    },
+    {
+      "file": "202610180002_discovery_references.sql",
+      "sha256": "0eef738b4053731a0335d14b944eb6137fbe4495f817b64fe8ba19c4ef38000e",
+      "status": "applied_and_verified",
+      "continuationApproval": "Explicit user approval to continue 002 after the corrected verification of 001; 001 must not be rerun.",
+      "editorContentVerified": true,
+      "requestedAt": "2026-10-18T06:14:25.379Z",
+      "executionResult": "BEGIN\r\nINSERT 0 14241\r\nCOMMIT",
+      "executionObservedAt": "2026-10-18T06:47:32.850Z",
+      "submittedFileBytes": 1387476,
+      "retryCount": 0,
+      "previousSqlEditorAttempt": {
+        "result": "Error running SQL query: Query is too large to be run via the SQL Editor",
+        "observedAt": "2026-10-18T06:14:51.022Z",
+        "requestedAt": "2026-10-18T06:14:25.379Z",
+        "notAppliedConfirmed": true
+      },
+      "method": "psql 17.11; original unchanged SQL file; Session pooler port 5432; sslmode=verify-full",
+      "verifiedAt": "2026-10-18T06:47:32.850Z",
+      "postgresqlExecutionCount": 1
+    }
+  ],
+  "verification": {
+    "migration001": {
+      "bucket": {
+        "id": "community-images",
+        "mime": [
+          "image/jpeg",
+          "image/png",
+          "image/webp"
+        ],
+        "limit": 5242880,
+        "public": true
+      },
+      "tables": [
+        {
+          "rls": true,
+          "name": "community_admins",
+          "owner": "postgres"
+        },
+        {
+          "rls": true,
+          "name": "community_affiliations",
+          "owner": "postgres"
+        },
+        {
+          "rls": true,
+          "name": "community_audit",
+          "owner": "postgres"
+        },
+        {
+          "rls": true,
+          "name": "community_comments",
+          "owner": "postgres"
+        },
+        {
+          "rls": true,
+          "name": "community_follows",
+          "owner": "postgres"
+        },
+        {
+          "rls": true,
+          "name": "community_identities",
+          "owner": "postgres"
+        },
+        {
+          "rls": true,
+          "name": "community_likes",
+          "owner": "postgres"
+        },
+        {
+          "rls": true,
+          "name": "community_market_catalog",
+          "owner": "postgres"
+        },
+        {
+          "rls": true,
+          "name": "community_members",
+          "owner": "postgres"
+        },
+        {
+          "rls": true,
+          "name": "community_organizer_requests",
+          "owner": "postgres"
+        },
+        {
+          "rls": true,
+          "name": "community_posts",
+          "owner": "postgres"
+        },
+        {
+          "rls": true,
+          "name": "community_profiles",
+          "owner": "postgres"
+        },
+        {
+          "rls": true,
+          "name": "community_public_updates",
+          "owner": "postgres"
+        },
+        {
+          "rls": true,
+          "name": "community_reports",
+          "owner": "postgres"
+        },
+        {
+          "rls": true,
+          "name": "community_saves",
+          "owner": "postgres"
+        }
+      ],
+      "columns": [
+        {
+          "role": "anon",
+          "table": "community_affiliations",
+          "column": "id",
+          "selectable": true
+        },
+        {
+          "role": "authenticated",
+          "table": "community_affiliations",
+          "column": "id",
+          "selectable": true
+        },
+        {
+          "role": "anon",
+          "table": "community_affiliations",
+          "column": "vendor_id",
+          "selectable": true
+        },
+        {
+          "role": "authenticated",
+          "table": "community_affiliations",
+          "column": "vendor_id",
+          "selectable": true
+        },
+        {
+          "role": "anon",
+          "table": "community_affiliations",
+          "column": "market_id",
+          "selectable": true
+        },
+        {
+          "role": "authenticated",
+          "table": "community_affiliations",
+          "column": "market_id",
+          "selectable": true
+        },
+        {
+          "role": "anon",
+          "table": "community_affiliations",
+          "column": "status",
+          "selectable": true
+        },
+        {
+          "role": "authenticated",
+          "table": "community_affiliations",
+          "column": "status",
+          "selectable": true
+        },
+        {
+          "role": "anon",
+          "table": "community_affiliations",
+          "column": "requested_by",
+          "selectable": false
+        },
+        {
+          "role": "authenticated",
+          "table": "community_affiliations",
+          "column": "requested_by",
+          "selectable": false
+        },
+        {
+          "role": "anon",
+          "table": "community_affiliations",
+          "column": "reviewed_by",
+          "selectable": false
+        },
+        {
+          "role": "authenticated",
+          "table": "community_affiliations",
+          "column": "reviewed_by",
+          "selectable": false
+        },
+        {
+          "role": "anon",
+          "table": "community_affiliations",
+          "column": "reviewed_at",
+          "selectable": false
+        },
+        {
+          "role": "authenticated",
+          "table": "community_affiliations",
+          "column": "reviewed_at",
+          "selectable": false
+        },
+        {
+          "role": "anon",
+          "table": "community_affiliations",
+          "column": "created_at",
+          "selectable": false
+        },
+        {
+          "role": "authenticated",
+          "table": "community_affiliations",
+          "column": "created_at",
+          "selectable": false
+        },
+        {
+          "role": "anon",
+          "table": "community_identities",
+          "column": "id",
+          "selectable": true
+        },
+        {
+          "role": "authenticated",
+          "table": "community_identities",
+          "column": "id",
+          "selectable": true
+        },
+        {
+          "role": "anon",
+          "table": "community_identities",
+          "column": "kind",
+          "selectable": true
+        },
+        {
+          "role": "authenticated",
+          "table": "community_identities",
+          "column": "kind",
+          "selectable": true
+        },
+        {
+          "role": "anon",
+          "table": "community_identities",
+          "column": "display_name",
+          "selectable": true
+        },
+        {
+          "role": "authenticated",
+          "table": "community_identities",
+          "column": "display_name",
+          "selectable": true
+        },
+        {
+          "role": "anon",
+          "table": "community_identities",
+          "column": "description",
+          "selectable": true
+        },
+        {
+          "role": "authenticated",
+          "table": "community_identities",
+          "column": "description",
+          "selectable": true
+        },
+        {
+          "role": "anon",
+          "table": "community_identities",
+          "column": "location",
+          "selectable": true
+        },
+        {
+          "role": "authenticated",
+          "table": "community_identities",
+          "column": "location",
+          "selectable": true
+        },
+        {
+          "role": "anon",
+          "table": "community_identities",
+          "column": "details",
+          "selectable": true
+        },
+        {
+          "role": "authenticated",
+          "table": "community_identities",
+          "column": "details",
+          "selectable": true
+        },
+        {
+          "role": "anon",
+          "table": "community_identities",
+          "column": "image_path",
+          "selectable": true
+        },
+        {
+          "role": "authenticated",
+          "table": "community_identities",
+          "column": "image_path",
+          "selectable": true
+        },
+        {
+          "role": "anon",
+          "table": "community_identities",
+          "column": "personal_user_id",
+          "selectable": false
+        },
+        {
+          "role": "authenticated",
+          "table": "community_identities",
+          "column": "personal_user_id",
+          "selectable": false
+        },
+        {
+          "role": "anon",
+          "table": "community_identities",
+          "column": "source_market_id",
+          "selectable": true
+        },
+        {
+          "role": "authenticated",
+          "table": "community_identities",
+          "column": "source_market_id",
+          "selectable": true
+        },
+        {
+          "role": "anon",
+          "table": "community_identities",
+          "column": "lat",
+          "selectable": true
+        },
+        {
+          "role": "authenticated",
+          "table": "community_identities",
+          "column": "lat",
+          "selectable": true
+        },
+        {
+          "role": "anon",
+          "table": "community_identities",
+          "column": "lng",
+          "selectable": true
+        },
+        {
+          "role": "authenticated",
+          "table": "community_identities",
+          "column": "lng",
+          "selectable": true
+        },
+        {
+          "role": "anon",
+          "table": "community_identities",
+          "column": "created_at",
+          "selectable": true
+        },
+        {
+          "role": "authenticated",
+          "table": "community_identities",
+          "column": "created_at",
+          "selectable": true
+        },
+        {
+          "role": "anon",
+          "table": "community_identities",
+          "column": "updated_at",
+          "selectable": true
+        },
+        {
+          "role": "authenticated",
+          "table": "community_identities",
+          "column": "updated_at",
+          "selectable": true
+        }
+      ],
+      "history": null,
+      "trigger": [
+        {
+          "name": "community_new_user",
+          "enabled": "O",
+          "definition": "CREATE TRIGGER community_new_user AFTER INSERT ON auth.users FOR EACH ROW EXECUTE FUNCTION community_initialize_user()"
+        }
+      ],
+      "backfill": {
+        "users": 1,
+        "profiles": 1,
+        "customers": 1,
+        "missing_profiles": 0,
+        "missing_memberships": 0,
+        "folder_equals_auth_id": 0
+      },
+      "database": "postgres",
+      "policies": [
+        {
+          "cmd": "SELECT",
+          "qual": "true",
+          "roles": [
+            "public"
+          ],
+          "tablename": "community_public_updates",
+          "permissive": "PERMISSIVE",
+          "policyname": "community_updates_read",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "true",
+          "roles": [
+            "public"
+          ],
+          "tablename": "community_identities",
+          "permissive": "PERMISSIVE",
+          "policyname": "community_identity_read",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "((status = 'approved'::text) OR community_manages(vendor_id) OR community_manages(market_id) OR community_is_admin())",
+          "roles": [
+            "public"
+          ],
+          "tablename": "community_affiliations",
+          "permissive": "PERMISSIVE",
+          "policyname": "community_affiliation_read",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "(id = auth.uid())",
+          "roles": [
+            "public"
+          ],
+          "tablename": "community_profiles",
+          "permissive": "PERMISSIVE",
+          "policyname": "community_profile_private",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "true",
+          "roles": [
+            "public"
+          ],
+          "tablename": "community_market_catalog",
+          "permissive": "PERMISSIVE",
+          "policyname": "community_catalog_read",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "true",
+          "roles": [
+            "public"
+          ],
+          "tablename": "community_posts",
+          "permissive": "PERMISSIVE",
+          "policyname": "community_post_read",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "true",
+          "roles": [
+            "public"
+          ],
+          "tablename": "community_comments",
+          "permissive": "PERMISSIVE",
+          "policyname": "community_comment_read",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "((user_id = auth.uid()) OR community_is_admin())",
+          "roles": [
+            "public"
+          ],
+          "tablename": "community_members",
+          "permissive": "PERMISSIVE",
+          "policyname": "community_members_private",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "((applicant_id = auth.uid()) OR community_is_admin())",
+          "roles": [
+            "public"
+          ],
+          "tablename": "community_organizer_requests",
+          "permissive": "PERMISSIVE",
+          "policyname": "community_claim_private",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "(user_id = auth.uid())",
+          "roles": [
+            "public"
+          ],
+          "tablename": "community_likes",
+          "permissive": "PERMISSIVE",
+          "policyname": "community_likes_private",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "(user_id = auth.uid())",
+          "roles": [
+            "public"
+          ],
+          "tablename": "community_follows",
+          "permissive": "PERMISSIVE",
+          "policyname": "community_follows_private",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "(user_id = auth.uid())",
+          "roles": [
+            "public"
+          ],
+          "tablename": "community_saves",
+          "permissive": "PERMISSIVE",
+          "policyname": "community_saves_private",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "((reporter_id = auth.uid()) OR community_is_admin())",
+          "roles": [
+            "public"
+          ],
+          "tablename": "community_reports",
+          "permissive": "PERMISSIVE",
+          "policyname": "community_reports_private",
+          "schemaname": "public",
+          "with_check": null
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "community_is_admin()",
+          "roles": [
+            "public"
+          ],
+          "tablename": "community_audit",
+          "permissive": "PERMISSIVE",
+          "policyname": "community_audit_admin",
+          "schemaname": "public",
+          "with_check": null
+        }
+      ],
+      "realtime": [
+        "community_comments",
+        "community_posts",
+        "community_public_updates"
+      ],
+      "functions": [
+        {
+          "anon": true,
+          "name": "community_is_admin",
+          "owner": "postgres",
+          "config": [
+            "search_path=\"\""
+          ],
+          "definer": true,
+          "source_md5": "582a88afee64dd9d4a201683eb741453",
+          "authenticated": true
+        },
+        {
+          "anon": false,
+          "name": "community_affiliation_private",
+          "owner": "postgres",
+          "config": [
+            "search_path=\"\""
+          ],
+          "definer": true,
+          "source_md5": "4b05d2ebb0ca2211a3faeb04e5a008c0",
+          "authenticated": true
+        },
+        {
+          "anon": true,
+          "name": "community_identity",
+          "owner": "postgres",
+          "config": [
+            "search_path=\"\""
+          ],
+          "definer": true,
+          "source_md5": "7b1dd10982fffd644459cca8472880a3",
+          "authenticated": true
+        },
+        {
+          "anon": false,
+          "name": "community_initialize_user",
+          "owner": "postgres",
+          "config": [
+            "search_path=\"\""
+          ],
+          "definer": true,
+          "source_md5": "1b8a75e18c079ff9a231914cb196212c",
+          "authenticated": false
+        },
+        {
+          "anon": true,
+          "name": "community_manages",
+          "owner": "postgres",
+          "config": [
+            "search_path=\"\""
+          ],
+          "definer": true,
+          "source_md5": "765b84f2de9a9033b20d78b5fcc43fd3",
+          "authenticated": true
+        },
+        {
+          "anon": false,
+          "name": "community_command",
+          "owner": "postgres",
+          "config": [
+            "search_path=\"\""
+          ],
+          "definer": true,
+          "source_md5": "4a7ffe688216bbfb27d65c93142a267d",
+          "authenticated": true
+        },
+        {
+          "anon": true,
+          "name": "community_feed",
+          "owner": "postgres",
+          "config": [
+            "search_path=\"\""
+          ],
+          "definer": true,
+          "source_md5": "bfe43c1c861728e5f94923803a1793d7",
+          "authenticated": true
+        }
+      ],
+      "sequences": [
+        {
+          "anon": false,
+          "name": "community_audit_id_seq",
+          "authenticated": false
+        }
+      ],
+      "admin_count": 0,
+      "market_count": 0,
+      "storage_policies": [
+        {
+          "cmd": "DELETE",
+          "qual": "((bucket_id = 'community-images'::text) AND ((storage.foldername(name))[1] = ( SELECT (community_profiles.image_folder)::text AS image_folder\n FROM community_profiles\n WHERE (community_profiles.id = auth.uid()))))",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "objects",
+          "permissive": "PERMISSIVE",
+          "policyname": "community_images_delete",
+          "schemaname": "storage",
+          "with_check": null
+        },
+        {
+          "cmd": "INSERT",
+          "qual": null,
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "objects",
+          "permissive": "PERMISSIVE",
+          "policyname": "community_images_insert",
+          "schemaname": "storage",
+          "with_check": "((bucket_id = 'community-images'::text) AND ((storage.foldername(name))[1] = ( SELECT (community_profiles.image_folder)::text AS image_folder\n FROM community_profiles\n WHERE (community_profiles.id = auth.uid()))) AND (name !~~ '%..%'::text))"
+        },
+        {
+          "cmd": "SELECT",
+          "qual": "((bucket_id = 'community-images'::text) AND ((storage.foldername(name))[1] = ( SELECT (community_profiles.image_folder)::text AS image_folder\n FROM community_profiles\n WHERE (community_profiles.id = auth.uid()))))",
+          "roles": [
+            "authenticated"
+          ],
+          "tablename": "objects",
+          "permissive": "PERMISSIVE",
+          "policyname": "community_images_read",
+          "schemaname": "storage",
+          "with_check": null
+        }
+      ],
+      "guest_private_reads": null,
+      "write_privilege_leaks": null
+    },
+    "checks001": [
+      {
+        "check": "database",
+        "passed": true
+      },
+      {
+        "check": "tables/RLS/owners",
+        "passed": true
+      },
+      {
+        "check": "no client writes or guest private table reads",
+        "passed": true
+      },
+      {
+        "check": "exact column inventory",
+        "passed": true
+      },
+      {
+        "check": "private/public column grants",
+        "passed": true
+      },
+      {
+        "check": "function count",
+        "passed": true
+      },
+      {
+        "check": "function community_is_admin",
+        "passed": true
+      },
+      {
+        "check": "function community_affiliation_private",
+        "passed": true
+      },
+      {
+        "check": "function community_identity",
+        "passed": true
+      },
+      {
+        "check": "function community_initialize_user",
+        "passed": true
+      },
+      {
+        "check": "function community_manages",
+        "passed": true
+      },
+      {
+        "check": "function community_command",
+        "passed": true
+      },
+      {
+        "check": "function community_feed",
+        "passed": true
+      },
+      {
+        "check": "read-only policies",
+        "passed": true
+      },
+      {
+        "check": "sequence inaccessible to clients",
+        "passed": true
+      },
+      {
+        "check": "signup trigger",
+        "passed": true
+      },
+      {
+        "check": "backfill and opaque folders",
+        "passed": true
+      },
+      {
+        "check": "bucket",
+        "passed": true
+      },
+      {
+        "check": "Storage owner-only policies",
+        "passed": true
+      },
+      {
+        "check": "Realtime",
+        "passed": true
+      },
+      {
+        "check": "no references/admin provisioning/history fabrication",
+        "passed": true
+      }
+    ],
+    "pre002": {
+      "role": "postgres",
+      "history": null,
+      "database": "postgres",
+      "references": 0,
+      "catalog_triggers": 0
+    },
+    "after002Rejection": {
+      "observedAt": "2026-10-18T06:15:12.903Z",
+      "marketCount": 0,
+      "configurationMatchesVerified001": true,
+      "details": {
+        "bucket": {
+          "id": "community-images",
+          "mime": [
+            "image/jpeg",
+            "image/png",
+            "image/webp"
+          ],
+          "limit": 5242880,
+          "public": true
+        },
+        "tables": [
+          {
+            "rls": true,
+            "name": "community_admins",
+            "owner": "postgres"
+          },
+          {
+            "rls": true,
+            "name": "community_affiliations",
+            "owner": "postgres"
+          },
+          {
+            "rls": true,
+            "name": "community_audit",
+            "owner": "postgres"
+          },
+          {
+            "rls": true,
+            "name": "community_comments",
+            "owner": "postgres"
+          },
+          {
+            "rls": true,
+            "name": "community_follows",
+            "owner": "postgres"
+          },
+          {
+            "rls": true,
+            "name": "community_identities",
+            "owner": "postgres"
+          },
+          {
+            "rls": true,
+            "name": "community_likes",
+            "owner": "postgres"
+          },
+          {
+            "rls": true,
+            "name": "community_market_catalog",
+            "owner": "postgres"
+          },
+          {
+            "rls": true,
+            "name": "community_members",
+            "owner": "postgres"
+          },
+          {
+            "rls": true,
+            "name": "community_organizer_requests",
+            "owner": "postgres"
+          },
+          {
+            "rls": true,
+            "name": "community_posts",
+            "owner": "postgres"
+          },
+          {
+            "rls": true,
+            "name": "community_profiles",
+            "owner": "postgres"
+          },
+          {
+            "rls": true,
+            "name": "community_public_updates",
+            "owner": "postgres"
+          },
+          {
+            "rls": true,
+            "name": "community_reports",
+            "owner": "postgres"
+          },
+          {
+            "rls": true,
+            "name": "community_saves",
+            "owner": "postgres"
+          }
+        ],
+        "columns": [
+          {
+            "role": "anon",
+            "table": "community_affiliations",
+            "column": "id",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_affiliations",
+            "column": "id",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_affiliations",
+            "column": "vendor_id",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_affiliations",
+            "column": "vendor_id",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_affiliations",
+            "column": "market_id",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_affiliations",
+            "column": "market_id",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_affiliations",
+            "column": "status",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_affiliations",
+            "column": "status",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_affiliations",
+            "column": "requested_by",
+            "selectable": false
+          },
+          {
+            "role": "authenticated",
+            "table": "community_affiliations",
+            "column": "requested_by",
+            "selectable": false
+          },
+          {
+            "role": "anon",
+            "table": "community_affiliations",
+            "column": "reviewed_by",
+            "selectable": false
+          },
+          {
+            "role": "authenticated",
+            "table": "community_affiliations",
+            "column": "reviewed_by",
+            "selectable": false
+          },
+          {
+            "role": "anon",
+            "table": "community_affiliations",
+            "column": "reviewed_at",
+            "selectable": false
+          },
+          {
+            "role": "authenticated",
+            "table": "community_affiliations",
+            "column": "reviewed_at",
+            "selectable": false
+          },
+          {
+            "role": "anon",
+            "table": "community_affiliations",
+            "column": "created_at",
+            "selectable": false
+          },
+          {
+            "role": "authenticated",
+            "table": "community_affiliations",
+            "column": "created_at",
+            "selectable": false
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "id",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "id",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "kind",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "kind",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "display_name",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "display_name",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "description",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "description",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "location",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "location",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "details",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "details",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "image_path",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "image_path",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "personal_user_id",
+            "selectable": false
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "personal_user_id",
+            "selectable": false
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "source_market_id",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "source_market_id",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "lat",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "lat",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "lng",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "lng",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "created_at",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "created_at",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "updated_at",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "updated_at",
+            "selectable": true
+          }
+        ],
+        "history": null,
+        "trigger": [
+          {
+            "name": "community_new_user",
+            "enabled": "O",
+            "definition": "CREATE TRIGGER community_new_user AFTER INSERT ON auth.users FOR EACH ROW EXECUTE FUNCTION community_initialize_user()"
+          }
+        ],
+        "backfill": {
+          "users": 1,
+          "profiles": 1,
+          "customers": 1,
+          "missing_profiles": 0,
+          "missing_memberships": 0,
+          "folder_equals_auth_id": 0
+        },
+        "database": "postgres",
+        "policies": [
+          {
+            "cmd": "SELECT",
+            "qual": "true",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_public_updates",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_updates_read",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "true",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_identities",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_identity_read",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "((status = 'approved'::text) OR community_manages(vendor_id) OR community_manages(market_id) OR community_is_admin())",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_affiliations",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_affiliation_read",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "(id = auth.uid())",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_profiles",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_profile_private",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "true",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_market_catalog",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_catalog_read",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "true",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_posts",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_post_read",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "true",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_comments",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_comment_read",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "((user_id = auth.uid()) OR community_is_admin())",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_members",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_members_private",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "((applicant_id = auth.uid()) OR community_is_admin())",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_organizer_requests",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_claim_private",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "(user_id = auth.uid())",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_likes",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_likes_private",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "(user_id = auth.uid())",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_follows",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_follows_private",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "(user_id = auth.uid())",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_saves",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_saves_private",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "((reporter_id = auth.uid()) OR community_is_admin())",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_reports",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_reports_private",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "community_is_admin()",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_audit",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_audit_admin",
+            "schemaname": "public",
+            "with_check": null
+          }
+        ],
+        "realtime": [
+          "community_comments",
+          "community_posts",
+          "community_public_updates"
+        ],
+        "functions": [
+          {
+            "anon": true,
+            "name": "community_is_admin",
+            "owner": "postgres",
+            "config": [
+              "search_path=\"\""
+            ],
+            "definer": true,
+            "source_md5": "582a88afee64dd9d4a201683eb741453",
+            "authenticated": true
+          },
+          {
+            "anon": false,
+            "name": "community_affiliation_private",
+            "owner": "postgres",
+            "config": [
+              "search_path=\"\""
+            ],
+            "definer": true,
+            "source_md5": "4b05d2ebb0ca2211a3faeb04e5a008c0",
+            "authenticated": true
+          },
+          {
+            "anon": true,
+            "name": "community_identity",
+            "owner": "postgres",
+            "config": [
+              "search_path=\"\""
+            ],
+            "definer": true,
+            "source_md5": "7b1dd10982fffd644459cca8472880a3",
+            "authenticated": true
+          },
+          {
+            "anon": false,
+            "name": "community_initialize_user",
+            "owner": "postgres",
+            "config": [
+              "search_path=\"\""
+            ],
+            "definer": true,
+            "source_md5": "1b8a75e18c079ff9a231914cb196212c",
+            "authenticated": false
+          },
+          {
+            "anon": true,
+            "name": "community_manages",
+            "owner": "postgres",
+            "config": [
+              "search_path=\"\""
+            ],
+            "definer": true,
+            "source_md5": "765b84f2de9a9033b20d78b5fcc43fd3",
+            "authenticated": true
+          },
+          {
+            "anon": false,
+            "name": "community_command",
+            "owner": "postgres",
+            "config": [
+              "search_path=\"\""
+            ],
+            "definer": true,
+            "source_md5": "4a7ffe688216bbfb27d65c93142a267d",
+            "authenticated": true
+          },
+          {
+            "anon": true,
+            "name": "community_feed",
+            "owner": "postgres",
+            "config": [
+              "search_path=\"\""
+            ],
+            "definer": true,
+            "source_md5": "bfe43c1c861728e5f94923803a1793d7",
+            "authenticated": true
+          }
+        ],
+        "sequences": [
+          {
+            "anon": false,
+            "name": "community_audit_id_seq",
+            "authenticated": false
+          }
+        ],
+        "admin_count": 0,
+        "market_count": 0,
+        "storage_policies": [
+          {
+            "cmd": "DELETE",
+            "qual": "((bucket_id = 'community-images'::text) AND ((storage.foldername(name))[1] = ( SELECT (community_profiles.image_folder)::text AS image_folder\n FROM community_profiles\n WHERE (community_profiles.id = auth.uid()))))",
+            "roles": [
+              "authenticated"
+            ],
+            "tablename": "objects",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_images_delete",
+            "schemaname": "storage",
+            "with_check": null
+          },
+          {
+            "cmd": "INSERT",
+            "qual": null,
+            "roles": [
+              "authenticated"
+            ],
+            "tablename": "objects",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_images_insert",
+            "schemaname": "storage",
+            "with_check": "((bucket_id = 'community-images'::text) AND ((storage.foldername(name))[1] = ( SELECT (community_profiles.image_folder)::text AS image_folder\n FROM community_profiles\n WHERE (community_profiles.id = auth.uid()))) AND (name !~~ '%..%'::text))"
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "((bucket_id = 'community-images'::text) AND ((storage.foldername(name))[1] = ( SELECT (community_profiles.image_folder)::text AS image_folder\n FROM community_profiles\n WHERE (community_profiles.id = auth.uid()))))",
+            "roles": [
+              "authenticated"
+            ],
+            "tablename": "objects",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_images_read",
+            "schemaname": "storage",
+            "with_check": null
+          }
+        ],
+        "guest_private_reads": null,
+        "write_privilege_leaks": null
+      }
+    },
+    "postgresqlPreflight": {
+      "verifiedAt": "2026-10-18T06:44:14.172Z",
+      "host": "aws-0-us-east-1.pooler.supabase.com",
+      "port": 5432,
+      "mode": "Session pooler",
+      "database": "postgres",
+      "role": "postgres",
+      "client": "psql 17.11",
+      "clientTls": "sslmode=verify-full; official Supabase prod CA plus trusted public CAs",
+      "poolerBackendSsl": {
+        "ssl": false,
+        "cipher": null,
+        "version": null
+      },
+      "checks": {
+        "database": true,
+        "role": true,
+        "empty": true,
+        "insert": true,
+        "noCatalogTriggers": true,
+        "historyAbsent": true,
+        "tables": true,
+        "columns": true,
+        "policies": true,
+        "functions": true,
+        "bucket": true,
+        "realtime": true,
+        "noWriteLeaks": true,
+        "sequences": true,
+        "trigger": true,
+        "originalMigrationHash": true,
+        "canonicalDiscoveryUnchanged": true,
+        "noUnrelatedPublicTables": true
+      },
+      "snapshot": {
+        "ssl": {
+          "ssl": false,
+          "cipher": null,
+          "version": null
+        },
+        "role": "postgres",
+        "bucket": {
+          "id": "community-images",
+          "mime": [
+            "image/jpeg",
+            "image/png",
+            "image/webp"
+          ],
+          "limit": 5242880,
+          "public": true
+        },
+        "tables": [
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres}",
+            "rls": true,
+            "name": "community_admins",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres}",
+            "rls": true,
+            "name": "community_affiliations",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,authenticated=r/postgres}",
+            "rls": true,
+            "name": "community_audit",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,anon=r/postgres,authenticated=r/postgres}",
+            "rls": true,
+            "name": "community_comments",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,authenticated=r/postgres}",
+            "rls": true,
+            "name": "community_follows",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres}",
+            "rls": true,
+            "name": "community_identities",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,authenticated=r/postgres}",
+            "rls": true,
+            "name": "community_likes",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,anon=r/postgres,authenticated=r/postgres}",
+            "rls": true,
+            "name": "community_market_catalog",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,authenticated=r/postgres}",
+            "rls": true,
+            "name": "community_members",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,authenticated=r/postgres}",
+            "rls": true,
+            "name": "community_organizer_requests",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,anon=r/postgres,authenticated=r/postgres}",
+            "rls": true,
+            "name": "community_posts",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,authenticated=r/postgres}",
+            "rls": true,
+            "name": "community_profiles",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,anon=r/postgres,authenticated=r/postgres}",
+            "rls": true,
+            "name": "community_public_updates",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,authenticated=r/postgres}",
+            "rls": true,
+            "name": "community_reports",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,authenticated=r/postgres}",
+            "rls": true,
+            "name": "community_saves",
+            "owner": "postgres"
+          }
+        ],
+        "columns": [
+          {
+            "role": "anon",
+            "table": "community_affiliations",
+            "column": "id",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_affiliations",
+            "column": "id",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_affiliations",
+            "column": "vendor_id",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_affiliations",
+            "column": "vendor_id",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_affiliations",
+            "column": "market_id",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_affiliations",
+            "column": "market_id",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_affiliations",
+            "column": "status",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_affiliations",
+            "column": "status",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_affiliations",
+            "column": "requested_by",
+            "selectable": false
+          },
+          {
+            "role": "authenticated",
+            "table": "community_affiliations",
+            "column": "requested_by",
+            "selectable": false
+          },
+          {
+            "role": "anon",
+            "table": "community_affiliations",
+            "column": "reviewed_by",
+            "selectable": false
+          },
+          {
+            "role": "authenticated",
+            "table": "community_affiliations",
+            "column": "reviewed_by",
+            "selectable": false
+          },
+          {
+            "role": "anon",
+            "table": "community_affiliations",
+            "column": "reviewed_at",
+            "selectable": false
+          },
+          {
+            "role": "authenticated",
+            "table": "community_affiliations",
+            "column": "reviewed_at",
+            "selectable": false
+          },
+          {
+            "role": "anon",
+            "table": "community_affiliations",
+            "column": "created_at",
+            "selectable": false
+          },
+          {
+            "role": "authenticated",
+            "table": "community_affiliations",
+            "column": "created_at",
+            "selectable": false
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "id",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "id",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "kind",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "kind",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "display_name",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "display_name",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "description",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "description",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "location",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "location",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "details",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "details",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "image_path",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "image_path",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "personal_user_id",
+            "selectable": false
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "personal_user_id",
+            "selectable": false
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "source_market_id",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "source_market_id",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "lat",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "lat",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "lng",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "lng",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "created_at",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "created_at",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "updated_at",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "updated_at",
+            "selectable": true
+          }
+        ],
+        "history": null,
+        "database": "postgres",
+        "policies": [
+          {
+            "cmd": "SELECT",
+            "qual": "((status = 'approved'::text) OR community_manages(vendor_id) OR community_manages(market_id) OR community_is_admin())",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_affiliations",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_affiliation_read",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "community_is_admin()",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_audit",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_audit_admin",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "true",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_comments",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_comment_read",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "(user_id = auth.uid())",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_follows",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_follows_private",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "true",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_identities",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_identity_read",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "(user_id = auth.uid())",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_likes",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_likes_private",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "true",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_market_catalog",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_catalog_read",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "((user_id = auth.uid()) OR community_is_admin())",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_members",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_members_private",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "((applicant_id = auth.uid()) OR community_is_admin())",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_organizer_requests",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_claim_private",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "true",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_posts",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_post_read",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "(id = auth.uid())",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_profiles",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_profile_private",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "true",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_public_updates",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_updates_read",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "((reporter_id = auth.uid()) OR community_is_admin())",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_reports",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_reports_private",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "(user_id = auth.uid())",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_saves",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_saves_private",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "DELETE",
+            "qual": "((bucket_id = 'community-images'::text) AND ((storage.foldername(name))[1] = ( SELECT (community_profiles.image_folder)::text AS image_folder\n   FROM community_profiles\n  WHERE (community_profiles.id = auth.uid()))))",
+            "roles": [
+              "authenticated"
+            ],
+            "tablename": "objects",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_images_delete",
+            "schemaname": "storage",
+            "with_check": null
+          },
+          {
+            "cmd": "INSERT",
+            "qual": null,
+            "roles": [
+              "authenticated"
+            ],
+            "tablename": "objects",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_images_insert",
+            "schemaname": "storage",
+            "with_check": "((bucket_id = 'community-images'::text) AND ((storage.foldername(name))[1] = ( SELECT (community_profiles.image_folder)::text AS image_folder\n   FROM community_profiles\n  WHERE (community_profiles.id = auth.uid()))) AND (name !~~ '%..%'::text))"
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "((bucket_id = 'community-images'::text) AND ((storage.foldername(name))[1] = ( SELECT (community_profiles.image_folder)::text AS image_folder\n   FROM community_profiles\n  WHERE (community_profiles.id = auth.uid()))))",
+            "roles": [
+              "authenticated"
+            ],
+            "tablename": "objects",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_images_read",
+            "schemaname": "storage",
+            "with_check": null
+          }
+        ],
+        "realtime": [
+          "community_comments",
+          "community_posts",
+          "community_public_updates"
+        ],
+        "triggers": [
+          {
+            "name": "community_new_user",
+            "enabled": "O",
+            "definition": "CREATE TRIGGER community_new_user AFTER INSERT ON auth.users FOR EACH ROW EXECUTE FUNCTION community_initialize_user()"
+          }
+        ],
+        "functions": [
+          {
+            "acl": "{postgres=X/postgres,service_role=X/postgres,authenticated=X/postgres}",
+            "anon": false,
+            "name": "community_affiliation_private",
+            "owner": "postgres",
+            "config": [
+              "search_path=\"\""
+            ],
+            "definer": true,
+            "source_md5": "4cddde96880d17abcf96de34825bbbbb",
+            "authenticated": true,
+            "definition_md5": "22838b2d83a7fcd7a66ab30e750298d8"
+          },
+          {
+            "acl": "{postgres=X/postgres,service_role=X/postgres,authenticated=X/postgres}",
+            "anon": false,
+            "name": "community_command",
+            "owner": "postgres",
+            "config": [
+              "search_path=\"\""
+            ],
+            "definer": true,
+            "source_md5": "8da87ea8099229a14f81b4738e66ce2b",
+            "authenticated": true,
+            "definition_md5": "8cec02d28dbb171e2ac05f89d64c3d51"
+          },
+          {
+            "acl": "{postgres=X/postgres,service_role=X/postgres,anon=X/postgres,authenticated=X/postgres}",
+            "anon": true,
+            "name": "community_feed",
+            "owner": "postgres",
+            "config": [
+              "search_path=\"\""
+            ],
+            "definer": true,
+            "source_md5": "b6c0732946659702a7297abd9f805dd5",
+            "authenticated": true,
+            "definition_md5": "99fdfd6e050c9a149e84d540a1f6d8d7"
+          },
+          {
+            "acl": "{postgres=X/postgres,service_role=X/postgres,anon=X/postgres,authenticated=X/postgres}",
+            "anon": true,
+            "name": "community_identity",
+            "owner": "postgres",
+            "config": [
+              "search_path=\"\""
+            ],
+            "definer": true,
+            "source_md5": "032115bc721b009b97ba01bbb609ebd4",
+            "authenticated": true,
+            "definition_md5": "2eae2dcb85649ac0e46f7956c3119fbc"
+          },
+          {
+            "acl": "{postgres=X/postgres,service_role=X/postgres}",
+            "anon": false,
+            "name": "community_initialize_user",
+            "owner": "postgres",
+            "config": [
+              "search_path=\"\""
+            ],
+            "definer": true,
+            "source_md5": "a77278c2bdafd4acb075b22e36ff1bf6",
+            "authenticated": false,
+            "definition_md5": "d7119d65d2bb3d119011d3057d5d78f6"
+          },
+          {
+            "acl": "{postgres=X/postgres,service_role=X/postgres,anon=X/postgres,authenticated=X/postgres}",
+            "anon": true,
+            "name": "community_is_admin",
+            "owner": "postgres",
+            "config": [
+              "search_path=\"\""
+            ],
+            "definer": true,
+            "source_md5": "edd9aa130fb1563b9da618eea6c4dac6",
+            "authenticated": true,
+            "definition_md5": "6e275557ea4422beb0d52fc78947c1b7"
+          },
+          {
+            "acl": "{postgres=X/postgres,service_role=X/postgres,anon=X/postgres,authenticated=X/postgres}",
+            "anon": true,
+            "name": "community_manages",
+            "owner": "postgres",
+            "config": [
+              "search_path=\"\""
+            ],
+            "definer": true,
+            "source_md5": "9f32a6c7b8f8eaf9aa7c3ed60447aa9f",
+            "authenticated": true,
+            "definition_md5": "6b537844e187fdd59d2a9f01266eb711"
+          }
+        ],
+        "sequences": [
+          {
+            "acl": "{postgres=rwU/postgres,service_role=rwU/postgres}",
+            "anon": false,
+            "name": "community_audit_id_seq",
+            "authenticated": false
+          }
+        ],
+        "market_count": 0,
+        "insert_allowed": true,
+        "catalog_triggers": 0,
+        "other_public_tables": null,
+        "write_privilege_leaks": null
+      },
+      "notes": [
+        "pg_stat_ssl describes the pooler-to-database backend, not the certificate-verified client-to-pooler TLS connection.",
+        "Function bodies match the reviewed migration with CRLF line endings; policy deparser whitespace normalized for comparison.",
+        "Database password was entered locally, used only in child-process memory/environment, and not saved."
+      ]
+    },
+    "migration002": {
+      "verifiedAt": "2026-10-18T06:47:32.850Z",
+      "integrity": {
+        "actual": 14241,
+        "expected": 14241,
+        "differences": 0,
+        "distinct_ids": 14241,
+        "invalid_coordinates": 0
+      },
+      "checks": {
+        "expectedCount": true,
+        "actualCount": true,
+        "distinctCount": true,
+        "allImportedFieldsMatch": true,
+        "validCoordinates": true,
+        "securityUnchanged": true,
+        "historyStillAbsent": true,
+        "canonicalDiscoveryUnchanged": true,
+        "migrationFileUnchanged": true
+      },
+      "securitySnapshot": {
+        "ssl": {
+          "ssl": false,
+          "cipher": null,
+          "version": null
+        },
+        "role": "postgres",
+        "bucket": {
+          "id": "community-images",
+          "mime": [
+            "image/jpeg",
+            "image/png",
+            "image/webp"
+          ],
+          "limit": 5242880,
+          "public": true
+        },
+        "tables": [
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres}",
+            "rls": true,
+            "name": "community_admins",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres}",
+            "rls": true,
+            "name": "community_affiliations",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,authenticated=r/postgres}",
+            "rls": true,
+            "name": "community_audit",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,anon=r/postgres,authenticated=r/postgres}",
+            "rls": true,
+            "name": "community_comments",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,authenticated=r/postgres}",
+            "rls": true,
+            "name": "community_follows",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres}",
+            "rls": true,
+            "name": "community_identities",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,authenticated=r/postgres}",
+            "rls": true,
+            "name": "community_likes",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,anon=r/postgres,authenticated=r/postgres}",
+            "rls": true,
+            "name": "community_market_catalog",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,authenticated=r/postgres}",
+            "rls": true,
+            "name": "community_members",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,authenticated=r/postgres}",
+            "rls": true,
+            "name": "community_organizer_requests",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,anon=r/postgres,authenticated=r/postgres}",
+            "rls": true,
+            "name": "community_posts",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,authenticated=r/postgres}",
+            "rls": true,
+            "name": "community_profiles",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,anon=r/postgres,authenticated=r/postgres}",
+            "rls": true,
+            "name": "community_public_updates",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,authenticated=r/postgres}",
+            "rls": true,
+            "name": "community_reports",
+            "owner": "postgres"
+          },
+          {
+            "acl": "{postgres=arwdDxtm/postgres,service_role=arwdDxtm/postgres,authenticated=r/postgres}",
+            "rls": true,
+            "name": "community_saves",
+            "owner": "postgres"
+          }
+        ],
+        "columns": [
+          {
+            "role": "anon",
+            "table": "community_affiliations",
+            "column": "id",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_affiliations",
+            "column": "id",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_affiliations",
+            "column": "vendor_id",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_affiliations",
+            "column": "vendor_id",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_affiliations",
+            "column": "market_id",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_affiliations",
+            "column": "market_id",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_affiliations",
+            "column": "status",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_affiliations",
+            "column": "status",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_affiliations",
+            "column": "requested_by",
+            "selectable": false
+          },
+          {
+            "role": "authenticated",
+            "table": "community_affiliations",
+            "column": "requested_by",
+            "selectable": false
+          },
+          {
+            "role": "anon",
+            "table": "community_affiliations",
+            "column": "reviewed_by",
+            "selectable": false
+          },
+          {
+            "role": "authenticated",
+            "table": "community_affiliations",
+            "column": "reviewed_by",
+            "selectable": false
+          },
+          {
+            "role": "anon",
+            "table": "community_affiliations",
+            "column": "reviewed_at",
+            "selectable": false
+          },
+          {
+            "role": "authenticated",
+            "table": "community_affiliations",
+            "column": "reviewed_at",
+            "selectable": false
+          },
+          {
+            "role": "anon",
+            "table": "community_affiliations",
+            "column": "created_at",
+            "selectable": false
+          },
+          {
+            "role": "authenticated",
+            "table": "community_affiliations",
+            "column": "created_at",
+            "selectable": false
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "id",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "id",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "kind",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "kind",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "display_name",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "display_name",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "description",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "description",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "location",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "location",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "details",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "details",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "image_path",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "image_path",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "personal_user_id",
+            "selectable": false
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "personal_user_id",
+            "selectable": false
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "source_market_id",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "source_market_id",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "lat",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "lat",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "lng",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "lng",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "created_at",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "created_at",
+            "selectable": true
+          },
+          {
+            "role": "anon",
+            "table": "community_identities",
+            "column": "updated_at",
+            "selectable": true
+          },
+          {
+            "role": "authenticated",
+            "table": "community_identities",
+            "column": "updated_at",
+            "selectable": true
+          }
+        ],
+        "history": null,
+        "database": "postgres",
+        "policies": [
+          {
+            "cmd": "SELECT",
+            "qual": "((status = 'approved'::text) OR community_manages(vendor_id) OR community_manages(market_id) OR community_is_admin())",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_affiliations",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_affiliation_read",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "community_is_admin()",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_audit",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_audit_admin",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "true",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_comments",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_comment_read",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "(user_id = auth.uid())",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_follows",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_follows_private",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "true",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_identities",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_identity_read",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "(user_id = auth.uid())",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_likes",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_likes_private",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "true",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_market_catalog",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_catalog_read",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "((user_id = auth.uid()) OR community_is_admin())",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_members",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_members_private",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "((applicant_id = auth.uid()) OR community_is_admin())",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_organizer_requests",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_claim_private",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "true",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_posts",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_post_read",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "(id = auth.uid())",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_profiles",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_profile_private",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "true",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_public_updates",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_updates_read",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "((reporter_id = auth.uid()) OR community_is_admin())",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_reports",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_reports_private",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "(user_id = auth.uid())",
+            "roles": [
+              "public"
+            ],
+            "tablename": "community_saves",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_saves_private",
+            "schemaname": "public",
+            "with_check": null
+          },
+          {
+            "cmd": "DELETE",
+            "qual": "((bucket_id = 'community-images'::text) AND ((storage.foldername(name))[1] = ( SELECT (community_profiles.image_folder)::text AS image_folder\n   FROM community_profiles\n  WHERE (community_profiles.id = auth.uid()))))",
+            "roles": [
+              "authenticated"
+            ],
+            "tablename": "objects",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_images_delete",
+            "schemaname": "storage",
+            "with_check": null
+          },
+          {
+            "cmd": "INSERT",
+            "qual": null,
+            "roles": [
+              "authenticated"
+            ],
+            "tablename": "objects",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_images_insert",
+            "schemaname": "storage",
+            "with_check": "((bucket_id = 'community-images'::text) AND ((storage.foldername(name))[1] = ( SELECT (community_profiles.image_folder)::text AS image_folder\n   FROM community_profiles\n  WHERE (community_profiles.id = auth.uid()))) AND (name !~~ '%..%'::text))"
+          },
+          {
+            "cmd": "SELECT",
+            "qual": "((bucket_id = 'community-images'::text) AND ((storage.foldername(name))[1] = ( SELECT (community_profiles.image_folder)::text AS image_folder\n   FROM community_profiles\n  WHERE (community_profiles.id = auth.uid()))))",
+            "roles": [
+              "authenticated"
+            ],
+            "tablename": "objects",
+            "permissive": "PERMISSIVE",
+            "policyname": "community_images_read",
+            "schemaname": "storage",
+            "with_check": null
+          }
+        ],
+        "realtime": [
+          "community_comments",
+          "community_posts",
+          "community_public_updates"
+        ],
+        "triggers": [
+          {
+            "name": "community_new_user",
+            "enabled": "O",
+            "definition": "CREATE TRIGGER community_new_user AFTER INSERT ON auth.users FOR EACH ROW EXECUTE FUNCTION community_initialize_user()"
+          }
+        ],
+        "functions": [
+          {
+            "acl": "{postgres=X/postgres,service_role=X/postgres,authenticated=X/postgres}",
+            "anon": false,
+            "name": "community_affiliation_private",
+            "owner": "postgres",
+            "config": [
+              "search_path=\"\""
+            ],
+            "definer": true,
+            "source_md5": "4cddde96880d17abcf96de34825bbbbb",
+            "authenticated": true,
+            "definition_md5": "22838b2d83a7fcd7a66ab30e750298d8"
+          },
+          {
+            "acl": "{postgres=X/postgres,service_role=X/postgres,authenticated=X/postgres}",
+            "anon": false,
+            "name": "community_command",
+            "owner": "postgres",
+            "config": [
+              "search_path=\"\""
+            ],
+            "definer": true,
+            "source_md5": "8da87ea8099229a14f81b4738e66ce2b",
+            "authenticated": true,
+            "definition_md5": "8cec02d28dbb171e2ac05f89d64c3d51"
+          },
+          {
+            "acl": "{postgres=X/postgres,service_role=X/postgres,anon=X/postgres,authenticated=X/postgres}",
+            "anon": true,
+            "name": "community_feed",
+            "owner": "postgres",
+            "config": [
+              "search_path=\"\""
+            ],
+            "definer": true,
+            "source_md5": "b6c0732946659702a7297abd9f805dd5",
+            "authenticated": true,
+            "definition_md5": "99fdfd6e050c9a149e84d540a1f6d8d7"
+          },
+          {
+            "acl": "{postgres=X/postgres,service_role=X/postgres,anon=X/postgres,authenticated=X/postgres}",
+            "anon": true,
+            "name": "community_identity",
+            "owner": "postgres",
+            "config": [
+              "search_path=\"\""
+            ],
+            "definer": true,
+            "source_md5": "032115bc721b009b97ba01bbb609ebd4",
+            "authenticated": true,
+            "definition_md5": "2eae2dcb85649ac0e46f7956c3119fbc"
+          },
+          {
+            "acl": "{postgres=X/postgres,service_role=X/postgres}",
+            "anon": false,
+            "name": "community_initialize_user",
+            "owner": "postgres",
+            "config": [
+              "search_path=\"\""
+            ],
+            "definer": true,
+            "source_md5": "a77278c2bdafd4acb075b22e36ff1bf6",
+            "authenticated": false,
+            "definition_md5": "d7119d65d2bb3d119011d3057d5d78f6"
+          },
+          {
+            "acl": "{postgres=X/postgres,service_role=X/postgres,anon=X/postgres,authenticated=X/postgres}",
+            "anon": true,
+            "name": "community_is_admin",
+            "owner": "postgres",
+            "config": [
+              "search_path=\"\""
+            ],
+            "definer": true,
+            "source_md5": "edd9aa130fb1563b9da618eea6c4dac6",
+            "authenticated": true,
+            "definition_md5": "6e275557ea4422beb0d52fc78947c1b7"
+          },
+          {
+            "acl": "{postgres=X/postgres,service_role=X/postgres,anon=X/postgres,authenticated=X/postgres}",
+            "anon": true,
+            "name": "community_manages",
+            "owner": "postgres",
+            "config": [
+              "search_path=\"\""
+            ],
+            "definer": true,
+            "source_md5": "9f32a6c7b8f8eaf9aa7c3ed60447aa9f",
+            "authenticated": true,
+            "definition_md5": "6b537844e187fdd59d2a9f01266eb711"
+          }
+        ],
+        "sequences": [
+          {
+            "acl": "{postgres=rwU/postgres,service_role=rwU/postgres}",
+            "anon": false,
+            "name": "community_audit_id_seq",
+            "authenticated": false
+          }
+        ],
+        "market_count": 14241,
+        "insert_allowed": true,
+        "catalog_triggers": 0,
+        "other_public_tables": null,
+        "write_privilege_leaks": null
+      },
+      "clientTls": "Verified TLS certificate and hostname using official Supabase CA",
+      "poolerBackendSsl": {
+        "ssl": false,
+        "cipher": null,
+        "version": null
+      }
+    }
+  },
+  "limitations": [
+    "The subsequent minimal live demo passed real Auth login, Feed interactions, organizer/vendor approval and selected cross-user authorization denials; see ACCOUNT_DEMO_RECORDS.json.",
+    "Hosted Storage image operations, Realtime delivery, and full production email delivery/recovery remain outside the verified minimal live demo."
+  ],
+  "precheck": {
+    "role": "postgres",
+    "history": null,
+    "database": "postgres",
+    "auth_triggers": 0,
+    "bucket_exists": false,
+    "storage_policies": 0,
+    "community_functions": 0,
+    "community_relations": 0
+  },
+  "status": "both_migrations_applied_and_verified",
+  "canonicalDiscovery": {
+    "path": "public/data/markets.geojson",
+    "sha256Before": "7e87a6c96d589553e050b4be05de0c3faeff6e7617250923c4de5a310dec6599",
+    "uniqueReferences": 14241,
+    "sha256After": "7e87a6c96d589553e050b4be05de0c3faeff6e7617250923c4de5a310dec6599",
+    "unchanged": true
+  },
+  "lastUpdatedAt": "2026-10-18T06:47:32.850Z",
+  "nextRequiredTask": "Separate approval for email/authentication configuration, administrator provisioning and dedicated-account live end-to-end testing. No changes to these settings were performed.",
+  "events": [
+    {
+      "type": "local_verifier_count_correction",
+      "message": "After migration 001, the local verifier expected 44 column entries instead of 42. Corrected checks passed; execution stopped before 002 and user explicitly reauthorized continuation.",
+      "verificationRecordedAt": "2026-10-18T06:11:11.560Z"
+    },
+    {
+      "type": "migration002_sql_editor_rejection",
+      "observedAt": "2026-10-18T06:14:51.022Z",
+      "submittedSha256": "0eef738b4053731a0335d14b944eb6137fbe4495f817b64fe8ba19c4ef38000e",
+      "catalogRowsAfter": 0,
+      "retryCount": 0,
+      "configurationUnchanged": true
+    },
+    {
+      "type": "postgresql_read_only_preflight_succeeded",
+      "observedAt": "2026-10-18T06:44:14.172Z",
+      "marketCount": 0,
+      "cloudWrites": false,
+      "checksPassed": 18
+    },
+    {
+      "type": "migration002_psql_execution_started",
+      "observedAt": "2026-10-18T06:47:27.804Z",
+      "sha256": "0eef738b4053731a0335d14b944eb6137fbe4495f817b64fe8ba19c4ef38000e",
+      "method": "psql 17.11 original-file execution through Session pooler 5432; verify-full; password memory only",
+      "approval": "Explicit user approval in chat for verified psql command"
+    },
+    {
+      "type": "migration002_psql_applied_and_verified",
+      "observedAt": "2026-10-18T06:47:32.850Z",
+      "sha256": "0eef738b4053731a0335d14b944eb6137fbe4495f817b64fe8ba19c4ef38000e",
+      "exitCode": 0,
+      "marketReferences": 14241,
+      "checks": {
+        "expectedCount": true,
+        "actualCount": true,
+        "distinctCount": true,
+        "allImportedFieldsMatch": true,
+        "validCoordinates": true,
+        "securityUnchanged": true,
+        "historyStillAbsent": true,
+        "canonicalDiscoveryUnchanged": true,
+        "migrationFileUnchanged": true
+      }
+    }
+  ],
+  "previousStopReason": {
+    "type": "sql_editor_query_size_limit",
+    "message": "The exact 1,387,476-byte migration was rejected by SQL Editor. No splitting, alternate write path, or retry was attempted."
+  },
+  "finalDemoRecord": "docs/ACCOUNT_DEMO_RECORDS.json",
+  "migrationHashNote": "SHA-256 values record the exact original Windows CRLF file bytes applied to the cloud. Git checkout line-ending normalization may change byte hashes without changing SQL; do not rerun these already applied migrations."
+}

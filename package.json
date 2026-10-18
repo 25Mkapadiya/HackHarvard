@@ -12,7 +12,8 @@
     "test:e2e": "playwright test",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "seasonal:validate": "node --import tsx scripts/seasonal-report.ts"
+    "seasonal:validate": "node --import tsx scripts/seasonal-report.ts",
+    "build:preview": "node scripts/build-preview.mjs"
   },
   "dependencies": {
     "@turf/boolean-point-in-polygon": "^7.4.0",

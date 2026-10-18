@@ -62,3 +62,15 @@ invalid inputs, provider unavailability, explicit confirmation, one-visit counti
 idempotency, spending, mobile overflow and existing environmental scenarios.
 Use the documented apostrophe-free build copy and local Chrome browser runner.
 Push only the requested feature branch after checking its remote base.
+
+## Quantity reference investigation
+
+Reviewed USDA FoodData Central Foundation Foods documentation:
+https://fdc.nal.usda.gov/Foundation_Foods_Documentation/
+It provides food-specific portion measures, and notes that portions/weights are
+specific to each data type. This supports a future reviewed, product/size/portion
+catalog, not a universal grams-per-fruit conversion. No such catalog is bundled
+here. Counts stay counts; only user-entered measured mass reaches the existing
+engine. Suggested provider mass is displayed for correction but not copied into
+the measured-weight field. Future accepted estimates require separate provenance
+and model/engine integration review before they can affect environmental metrics.

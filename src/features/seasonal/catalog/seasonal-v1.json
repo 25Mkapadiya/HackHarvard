@@ -533,7 +533,7 @@
       "url": "https://agr.wa.gov/getmedia/497c614b-5c54-4277-89cf-4d6d1dd79c52/seasonalitychartfruitlegumeherbsfinal.pdf",
       "published": null,
       "lastReviewed": "2026-10-18",
-      "limitations": "AGR PUB 200-339 fruit, legume and herb availability chart. Asterisks mark peak harvest for apples and pears; other months may include storage. Unmarked bars are availability, not necessarily harvest. Frozen berries and dried beans excluded."
+      "limitations": "AGR PUB 200-339 fruit, legume and herb availability chart. Asterisks mark peak harvest for apples and pears; other months may include storage. Unmarked bars are availability, not necessarily harvest. Frozen berries and dried beans excluded. Peach row covers yellow peaches and plum row covers purple plums only; other varieties are not established by these rows."
     },
     {
       "id": "msu-produce",
@@ -2458,7 +2458,7 @@
       "sourceIds": [
         "wsda-fruit"
       ],
-      "locator": "AGR PUB 200-339 fruit and herb rows; apple/pear asterisks retained as peak harvest"
+      "locator": "AGR PUB 200-339 fruit and herb rows; apple/pear asterisks retained as peak harvest; yellow peaches only"
     },
     {
       "product": "plums",
@@ -2483,7 +2483,7 @@
       "sourceIds": [
         "wsda-fruit"
       ],
-      "locator": "AGR PUB 200-339 fruit and herb rows; apple/pear asterisks retained as peak harvest"
+      "locator": "AGR PUB 200-339 fruit and herb rows; apple/pear asterisks retained as peak harvest; purple plums only"
     },
     {
       "product": "blackberries",

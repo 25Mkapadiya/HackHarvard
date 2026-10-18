@@ -124,7 +124,12 @@ export function PurchaseEntry({
           </label>
           <label>
             Farmers market
-            <select className="field" value={marketId} onChange={(e) => setMarketId(e.target.value)}>
+            <select
+              aria-label="Farmers market"
+              className="field"
+              value={marketId}
+              onChange={(e) => setMarketId(e.target.value)}
+            >
               <option value="">Select a market</option>
               {choices.map((m) => (
                 <option key={m.id} value={m.id}>
@@ -183,6 +188,7 @@ export function PurchaseEntry({
                   Unit
                   <select
                     className="field"
+                    aria-label="Unit"
                     value={item.unit}
                     onChange={(e) => patchItem(item.id, { unit: e.target.value as DraftItem['unit'] })}
                   >

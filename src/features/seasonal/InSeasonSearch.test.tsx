@@ -5,7 +5,7 @@ import InSeasonSearch from './InSeasonSearch';
 vi.mock('../../app/data', () => ({
   useCrops: () => ({
     data: {
-      regions: { NE: { name: 'Northeast', states: ['MA'] }, SW: { name: 'Southwest', states: ['AZ'] } },
+      regions: { NE: { name: 'Northeast', states: ['MA', 'NY'] }, SW: { name: 'Southwest', states: ['AZ'] } },
       crops: [
         {
           id: 'apples',
@@ -21,12 +21,12 @@ vi.mock('../../app/data', () => ({
     },
   }),
   useMarkets: () => ({
-    data: ['MA', 'AZ'].map((state) => ({
+    data: ['MA', 'AZ', 'NY'].map((state) => ({
       id: state,
       state,
       name: `${state} Market`,
       city: '',
-      geo: { lat: 42, lng: -71 },
+      geo: state === 'NY' ? { lat: 40, lng: -74 } : { lat: 42, lng: -71 },
       products: ['fruits'],
       productsAreSample: false,
     })),
@@ -46,6 +46,8 @@ it('changes market region without leaking results from the previous region', () 
     </MemoryRouter>,
   );
   expect(screen.getByText('MA Market')).toBeInTheDocument();
+  expect(screen.getByText('NY Market')).toBeInTheDocument();
+  expect(screen.getByText(/1 markets report fruits/)).toBeInTheDocument();
   expect(screen.queryByText('AZ Market')).not.toBeInTheDocument();
   fireEvent.change(screen.getByLabelText('Growing region'), { target: { value: 'SW' } });
   expect(screen.getByText('AZ Market')).toBeInTheDocument();

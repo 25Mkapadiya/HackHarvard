@@ -33,7 +33,7 @@ export function metric(
 ): Metric {
   const sum = values.reduce((a, b) => a + b, 0);
   if (!Number.isFinite(sum)) throw new Error('Metric overflow');
-  const complete = values.length === expected && missing.length === 0;
+  const complete = expected > 0 && values.length === expected && missing.length === 0;
   return {
     value: complete ? sum : null,
     knownSubtotal: values.length ? sum : null,

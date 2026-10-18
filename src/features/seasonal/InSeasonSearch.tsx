@@ -50,12 +50,20 @@ export default function InSeasonSearch() {
     ...c,
     months: { ...c.months, ...(VERIFIED_MA.months[c.id] ? { 'verified-ma': VERIFIED_MA.months[c.id] } : {}) },
   }));
-  const ranked = recommend(calendar, region, month, nearby);
+  const nearbyForRanking = regionalMarkets(markets.data, selected.states, origin, 80);
+  const ranked = recommend(calendar, region, month, nearbyForRanking);
   const foods = ranked.filter(
     ({ crop }) =>
       !q || `${crop.name} ${crop.nameEs} ${crop.category.replaceAll('_', ' ')}`.toLowerCase().includes(q),
   );
-  const matches = q ? new Set(foods.flatMap((f) => f.reported.map((m) => m.id))) : null;
+  const queriedCategories = new Set(foods.map((f) => f.crop.category));
+  const matches = q
+    ? new Set(
+        nearby
+          .filter((m) => !m.productsAreSample && m.products.some((p) => queriedCategories.has(p)))
+          .map((m) => m.id),
+      )
+    : null;
   const results = nearby.filter(
     (m) =>
       !q ||
@@ -64,6 +72,17 @@ export default function InSeasonSearch() {
       `${m.name} ${m.city}`.toLowerCase().includes(q),
   );
   const seasonal = foods.filter((f) => f.signals.A === 1);
+  const categoryCounts = new Map<string, number>();
+  for (const market of nearbyForRanking)
+    if (!market.productsAreSample) {
+      for (const category of new Set(market.products)) {
+        if (['flowers', 'plants', 'body_care', 'crafts', 'pet_food', 'firewood'].includes(category)) continue;
+        if (!q || category.replaceAll('_', ' ').includes(q) || queriedCategories.has(category)) {
+          categoryCounts.set(category, (categoryCounts.get(category) ?? 0) + 1);
+        }
+      }
+    }
+  const reportedCategories = [...categoryCounts].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]));
   return (
     <div className="mx-auto max-w-5xl space-y-6 px-4 py-6">
       <h1 className="text-3xl font-extrabold">In Season Search</h1>
@@ -87,7 +106,12 @@ export default function InSeasonSearch() {
           <div className="grid gap-3 sm:grid-cols-3">
             <label>
               Growing region
-              <select className="field" value={region} onChange={(e) => param('region', e.target.value)}>
+              <select
+                aria-label="Growing region"
+                className="field"
+                value={region}
+                onChange={(e) => param('region', e.target.value)}
+              >
                 {Object.entries(regions).map(([id, r]) => (
                   <option key={id} value={id}>
                     {r.name}
@@ -97,7 +121,12 @@ export default function InSeasonSearch() {
             </label>
             <label>
               Month
-              <select className="field" value={month} onChange={(e) => param('month', e.target.value)}>
+              <select
+                aria-label="Month"
+                className="field"
+                value={month}
+                onChange={(e) => param('month', e.target.value)}
+              >
                 {Array.from({ length: 12 }, (_, i) => (
                   <option key={i} value={i + 1}>
                     {monthName(i + 1, 'en')}
@@ -139,9 +168,13 @@ export default function InSeasonSearch() {
               {region === 'verified-ma' ? VERIFIED_MA.source : crops.data.source}
             </a>
             <ul className="flex flex-wrap gap-2">
-              {seasonal.map(({ crop }) => (
+              {seasonal.map(({ crop, score }) => (
                 <li key={crop.id}>
-                  <button className="chip" onClick={() => param('q', crop.name)}>
+                  <button
+                    title={`Recommendation score ${score?.toFixed(2) ?? 'unknown'} / 1; availability signal uses category reports only`}
+                    className="chip"
+                    onClick={() => param('q', crop.name)}
+                  >
                     {crop.name}
                   </button>
                 </li>
@@ -152,27 +185,27 @@ export default function InSeasonSearch() {
             )}
           </section>
           <section className="space-y-3">
-            <h2 className="section-title">Commonly reported food categories</h2>
+            <h2 className="section-title">Reported food categories within 80 km</h2>
             <p>
               Popularity and agricultural relevance measurements are unavailable. Ranking uses seasonal
               guidance and non-sample directory category reports, redistributing missing weights.
             </p>
             <ul className="grid gap-3 sm:grid-cols-3">
-              {foods
-                .filter((f) => f.reported.length)
-                .slice(0, 12)
-                .map(({ crop, reported, score }) => (
-                  <li key={crop.id} className="card p-3">
-                    <button className="font-bold underline" onClick={() => param('q', crop.name)}>
-                      {crop.name}
-                    </button>
-                    <p>
-                      {reported.length} markets report {crop.category}; exact product unconfirmed.
-                    </p>
-                    <p>Recommendation: {score?.toFixed(2)} / 1</p>
-                  </li>
-                ))}
+              {reportedCategories.slice(0, 12).map(([category, count]) => (
+                <li key={category} className="card p-3">
+                  <button
+                    className="font-bold underline"
+                    onClick={() => param('q', category.replaceAll('_', ' '))}
+                  >
+                    {category.replaceAll('_', ' ')}
+                  </button>
+                  <p>
+                    {count} markets report {category.replaceAll('_', ' ')}; exact products unconfirmed.
+                  </p>
+                </li>
+              ))}
             </ul>
+            {!reportedCategories.length && <p>No matching non-sample category reports within 80 km.</p>}
           </section>
           <section className="space-y-3">
             <h2 className="section-title">
@@ -195,8 +228,11 @@ export default function InSeasonSearch() {
                 <li key={m.id}>
                   <MarketCard m={m} now={now} origin={origin} compact />
                   <p className="text-sm">
-                    {m.scheduleRaw || 'Operating information unavailable — confirm with market.'} · Dataset
-                    update: {m.lastUpdated || 'unknown'}
+                    {m.scheduleRaw ||
+                      (m.scheduleParsed && m.schedules.length
+                        ? 'See schedule above; confirm with market.'
+                        : 'Operating information unavailable — confirm with market.')}{' '}
+                    · Source record update: {m.lastUpdated || 'unknown'}
                   </p>
                 </li>
               ))}

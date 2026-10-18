@@ -52,6 +52,7 @@ it('preserves negative food-mile results and aggregates trips instead of item co
 it('renders an empty repository without claiming environmental savings', () => {
   render(<SustainabilityDashboard visits={[]} />);
   expect(screen.getByText('No visits recorded in this repository.')).toBeInTheDocument();
+  expect(screen.getAllByText('Unavailable')).toHaveLength(5);
   expect(screen.getByText('Market visits').nextElementSibling).toHaveTextContent('0');
   expect(
     within(screen.getByRole('region', { name: 'Total life-cycle CO₂e difference' })).getByText('Unavailable'),

@@ -148,9 +148,8 @@ purchase text or raw responses as error diagnostics.
 - `transport`: existing supported EPA-factor transportation CO2e difference Metric.
 - `lifecycle`: unavailable without compatible, paired stage/boundary LCA evidence.
 
-Every Metric preserves value/unit, knownSubset, quality, covered/expected,
-methodVersion, sources, assumptions and missing information (see evidence.ts for
-exact names; known subset is `knownSubtotal`). Keep evidence/provenance separate
+Every Metric preserves value/unit, knownSubtotal, quality, covered/expected,
+methodVersion, sources, assumptions and missing information (see evidence.ts for exact types). Keep evidence/provenance separate
 from self-reported purchases and expose missing-data warnings. A current or
 historical scenario is never a measured individual-purchase impact by default.
 Historical Syracuse comparisons still require explicit opt-in and geographic,

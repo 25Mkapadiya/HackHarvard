@@ -36,35 +36,50 @@ function payloadFingerprint(visit: VisitInput): string {
 export class MemoryPurchaseRepository implements PurchaseRepository {
   readonly persistence = 'memory' as const;
   private visits: Visit[] = [];
-  private deletedKeys = new Set<string>();
+  private submissions = new Map<string, { payload: string; visitId: string }>();
   constructor(private readonly clock = () => new Date()) {}
   async list(): Promise<Visit[]> {
-    return structuredClone(this.visits);
+    return structuredClone(
+      [...this.visits].sort(
+        (a, b) => a.submittedAt.localeCompare(b.submittedAt) || a.submissionId.localeCompare(b.submissionId),
+      ),
+    );
   }
   async get(submissionId: string): Promise<Visit | null> {
     return structuredClone(this.visits.find((v) => v.submissionId === submissionId) ?? null);
   }
   async submit(input: NewVisitInput): Promise<SubmitResult> {
     const parsed = validateNewVisit(input, this.clock());
-    if (this.deletedKeys.has(parsed.submissionId))
-      throw new Error('This submission was deleted. Start a new visit to record it again.');
-    const sameKey = this.visits.find((v) => v.submissionId === parsed.submissionId);
-    if (sameKey && payloadFingerprint(sameKey) !== payloadFingerprint(parsed))
-      throw new Error('Submission key already used for different information');
-    const existing = sameKey ?? this.visits.find((v) => visitFingerprint(v) === visitFingerprint(parsed));
-    if (existing) return { status: 'duplicate', visit: structuredClone(existing) };
+    const receipt = this.submissions.get(parsed.submissionId);
+    if (receipt) {
+      if (receipt.payload !== payloadFingerprint(parsed))
+        throw new Error('Submission key already used for different information');
+      const saved = this.visits.find((v) => v.submissionId === receipt.visitId);
+      if (!saved) throw new Error('This submission was deleted. Start a new visit to record it again.');
+      return { status: 'duplicate', visit: structuredClone(saved) };
+    }
+    const existing = this.visits.find((v) => visitFingerprint(v) === visitFingerprint(parsed));
+    if (existing) {
+      this.submissions.set(parsed.submissionId, {
+        payload: payloadFingerprint(parsed),
+        visitId: existing.submissionId,
+      });
+      return { status: 'duplicate', visit: structuredClone(existing) };
+    }
     const visit: Visit = { ...parsed, submittedAt: this.clock().toISOString() };
     this.visits.push(structuredClone(visit));
+    this.submissions.set(parsed.submissionId, {
+      payload: payloadFingerprint(parsed),
+      visitId: visit.submissionId,
+    });
     return { status: 'submitted', visit: structuredClone(visit) };
   }
   async delete(submissionId: string): Promise<DeleteResult> {
     if (!this.visits.some((v) => v.submissionId === submissionId)) return { status: 'not-found' };
     this.visits = this.visits.filter((v) => v.submissionId !== submissionId);
-    this.deletedKeys.add(submissionId);
     return { status: 'deleted' };
   }
   async clear(): Promise<void> {
-    for (const visit of this.visits) this.deletedKeys.add(visit.submissionId);
     this.visits = [];
   }
 }

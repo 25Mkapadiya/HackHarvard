@@ -23,12 +23,12 @@ const schema = z.strictObject({
   reviewedAt: z.iso.date(),
   applicableFrom: z.iso.date(),
   applicableTo: z.iso.date(),
-  sources: z.array(source.extend({ id: text, observedFrom: z.iso.date(), observedTo: z.iso.date() })).min(1),
+  sources: z.array(source.extend({ id: text, products: z.array(text).min(1), observedFrom: z.iso.date(), observedTo: z.iso.date() })).min(1),
   pointSource: source.extend({ locator: text, dateBasis: text }),
   modeSource: z.strictObject({
     organization: text,
     url: z.url(),
-    publishedAt: z.string().regex(/^\d{4}-\d{2}$/),
+    publishedAt: z.string().regex(/^\d{4}-(0[1-9]|1[0-2])$/),
     publicationPrecision: z.literal('month'),
     locator: text,
   }),
@@ -96,6 +96,7 @@ export function validateRegionalCatalog(input: unknown): RegionalCatalog {
     const calendarMonths = calendar ? new Set(calendar.windows.flatMap((w) => w.months)) : new Set<number>();
     if (
       !s ||
+      !s.products.includes(p.productId) ||
       !c.points[p.state] ||
       !seasonalCatalog.products.some((food) => food.id === p.productId) ||
       String(p.cropYear) !== s.observedFrom.slice(0, 4) ||

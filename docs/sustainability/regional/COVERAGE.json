@@ -1,0 +1,1139 @@
+{
+  "modelVersion": "regional-transport/1.0.0",
+  "reviewedAt": "2026-10-18",
+  "applicableFrom": "2026-01-01",
+  "applicableTo": "2026-12-31",
+  "scenarioCount": 10,
+  "products": [
+    "apples",
+    "strawberries"
+  ],
+  "destinations": [
+    "MA",
+    "NY",
+    "MI",
+    "WA",
+    "CA",
+    "FL"
+  ],
+  "sources": [
+    {
+      "organization": "USDA NASS",
+      "url": "https://www.nass.usda.gov/Publications/Todays_Reports/reports/ncit0526.pdf",
+      "publishedAt": "2026-05-01",
+      "sha256": "8770a3d3db79ed9c1a1942cdcbb7a4bac10d9319626dd5ac31e68463d2638576",
+      "id": "nass-fruit-2025",
+      "products": [
+        "apples",
+        "strawberries"
+      ],
+      "observedFrom": "2025-01-01",
+      "observedTo": "2025-12-31"
+    }
+  ],
+  "pointSource": {
+    "organization": "US Census Bureau",
+    "url": "https://www2.census.gov/geo/docs/maps-data/data/gazetteer/2025_Gazetteer/2025_Gaz_state_national.zip",
+    "publishedAt": "2025-09-10",
+    "sha256": "5c0bb56f4824af366538d73bffd229e790d301356624302eeca24d09cf27ba30",
+    "locator": "2025_Gaz_state_national.txt: USPS, INTPTLAT, INTPTLONG; internal points are not production centers",
+    "dateBasis": "Archive last-modified date; 2025 geographic release, not crop observation date"
+  },
+  "modeSource": {
+    "organization": "USDA AMS",
+    "url": "https://www.ams.usda.gov/sites/default/files/media/RTQ1stQuarter2026.pdf",
+    "publishedAt": "2026-05",
+    "publicationPrecision": "month",
+    "locator": "Q1 2026, pp.2,4–5; truck movements justify a conditional bulk-truck case, not actual market routing"
+  },
+  "limitation": "Conditional geometric and bulk-truck illustration only; no observed origin, validated road route or actual emissions.",
+  "rows": [
+    {
+      "destination": "MA",
+      "product": "apples",
+      "scenarios": [
+        {
+          "id": "apples-MA-NY-vs-MI",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "regionalProduction": "apples-NY",
+          "conventionalProduction": "apples-MI",
+          "regionalMode": "truck",
+          "conventionalMode": "truck"
+        },
+        {
+          "id": "apples-MA-NY-vs-WA",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "regionalProduction": "apples-NY",
+          "conventionalProduction": "apples-WA",
+          "regionalMode": "truck",
+          "conventionalMode": "truck"
+        }
+      ],
+      "status": "conditional-straight-line-proxy",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "MA",
+      "product": "potatoes",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "MA",
+      "product": "tomatoes",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "MA",
+      "product": "carrots",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "MA",
+      "product": "strawberries",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "MA",
+      "product": "lettuce",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "MA",
+      "product": "bell_peppers",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "MA",
+      "product": "onions",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "NY",
+      "product": "apples",
+      "scenarios": [
+        {
+          "id": "apples-NY-NY-vs-MI",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "regionalProduction": "apples-NY",
+          "conventionalProduction": "apples-MI",
+          "regionalMode": "truck",
+          "conventionalMode": "truck"
+        },
+        {
+          "id": "apples-NY-NY-vs-WA",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "regionalProduction": "apples-NY",
+          "conventionalProduction": "apples-WA",
+          "regionalMode": "truck",
+          "conventionalMode": "truck"
+        }
+      ],
+      "status": "conditional-straight-line-proxy",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "NY",
+      "product": "potatoes",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "NY",
+      "product": "tomatoes",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "NY",
+      "product": "carrots",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "NY",
+      "product": "strawberries",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "NY",
+      "product": "lettuce",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "NY",
+      "product": "bell_peppers",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "NY",
+      "product": "onions",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "CA",
+      "product": "apples",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "CA",
+      "product": "potatoes",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "CA",
+      "product": "tomatoes",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "CA",
+      "product": "carrots",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "CA",
+      "product": "strawberries",
+      "scenarios": [
+        {
+          "id": "strawberries-CA-CA-vs-FL",
+          "months": [
+            3,
+            4
+          ],
+          "regionalProduction": "strawberries-CA",
+          "conventionalProduction": "strawberries-FL",
+          "regionalMode": "truck",
+          "conventionalMode": "truck"
+        }
+      ],
+      "status": "conditional-straight-line-proxy",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "CA",
+      "product": "lettuce",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "CA",
+      "product": "bell_peppers",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "CA",
+      "product": "onions",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "FL",
+      "product": "apples",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "FL",
+      "product": "potatoes",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "FL",
+      "product": "tomatoes",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "FL",
+      "product": "carrots",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "FL",
+      "product": "strawberries",
+      "scenarios": [
+        {
+          "id": "strawberries-FL-FL-vs-CA",
+          "months": [
+            3,
+            4
+          ],
+          "regionalProduction": "strawberries-FL",
+          "conventionalProduction": "strawberries-CA",
+          "regionalMode": "truck",
+          "conventionalMode": "truck"
+        }
+      ],
+      "status": "conditional-straight-line-proxy",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "FL",
+      "product": "lettuce",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "FL",
+      "product": "bell_peppers",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "FL",
+      "product": "onions",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "TX",
+      "product": "apples",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "TX",
+      "product": "potatoes",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "TX",
+      "product": "tomatoes",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "TX",
+      "product": "carrots",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "TX",
+      "product": "strawberries",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "TX",
+      "product": "lettuce",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "TX",
+      "product": "bell_peppers",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "TX",
+      "product": "onions",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "WA",
+      "product": "apples",
+      "scenarios": [
+        {
+          "id": "apples-WA-WA-vs-NY",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "regionalProduction": "apples-WA",
+          "conventionalProduction": "apples-NY",
+          "regionalMode": "truck",
+          "conventionalMode": "truck"
+        },
+        {
+          "id": "apples-WA-WA-vs-MI",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "regionalProduction": "apples-WA",
+          "conventionalProduction": "apples-MI",
+          "regionalMode": "truck",
+          "conventionalMode": "truck"
+        }
+      ],
+      "status": "conditional-straight-line-proxy",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "WA",
+      "product": "potatoes",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "WA",
+      "product": "tomatoes",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "WA",
+      "product": "carrots",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "WA",
+      "product": "strawberries",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "WA",
+      "product": "lettuce",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "WA",
+      "product": "bell_peppers",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "WA",
+      "product": "onions",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "MI",
+      "product": "apples",
+      "scenarios": [
+        {
+          "id": "apples-MI-MI-vs-NY",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "regionalProduction": "apples-MI",
+          "conventionalProduction": "apples-NY",
+          "regionalMode": "truck",
+          "conventionalMode": "truck"
+        },
+        {
+          "id": "apples-MI-MI-vs-WA",
+          "months": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            8,
+            9,
+            10,
+            11,
+            12
+          ],
+          "regionalProduction": "apples-MI",
+          "conventionalProduction": "apples-WA",
+          "regionalMode": "truck",
+          "conventionalMode": "truck"
+        }
+      ],
+      "status": "conditional-straight-line-proxy",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "MI",
+      "product": "potatoes",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "MI",
+      "product": "tomatoes",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "MI",
+      "product": "carrots",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "MI",
+      "product": "strawberries",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "MI",
+      "product": "lettuce",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "MI",
+      "product": "bell_peppers",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "MI",
+      "product": "onions",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "GA",
+      "product": "apples",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "GA",
+      "product": "potatoes",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "GA",
+      "product": "tomatoes",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "GA",
+      "product": "carrots",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "GA",
+      "product": "strawberries",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "GA",
+      "product": "lettuce",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "GA",
+      "product": "bell_peppers",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    },
+    {
+      "destination": "GA",
+      "product": "onions",
+      "scenarios": [],
+      "status": "unavailable",
+      "missingTransportModes": [],
+      "missingSupplyChainEvidence": [
+        "Actual purchase origin",
+        "Road/network route",
+        "Consolidation/last-mile legs",
+        "Actual mode/load utilization",
+        "Destination-specific sourcing shares"
+      ]
+    }
+  ]
+}

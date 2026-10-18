@@ -1,3 +1,4 @@
+import { RegionalComparison } from './regional/RegionalComparison';
 import type { Visit } from '../purchases/model';
 import type { PurchaseMarket } from '../purchases/PurchaseEntry';
 import { impactSummary, type ImpactData } from './summary';
@@ -78,7 +79,7 @@ export function SustainabilityDashboard({
   comparisonBasis,
 }: {
   visits: Visit[];
-  markets?: PurchaseMarket[];
+  markets?: (PurchaseMarket & { geo?: { lat: number; lng: number } })[];
   evidence?: ImpactData;
   comparisonBasis?: ComparisonBasis;
 }) {
@@ -135,6 +136,7 @@ export function SustainabilityDashboard({
         compatible stage data. Consumer travel is excluded unless an allocated comparison is supplied.
         Transportation is already a component of life-cycle emissions; do not add those cards together.
       </p>
+      <RegionalComparison visits={visits} markets={markets} />
       <section className="space-y-3">
         <h3 className="font-bold">Recorded purchase history</h3>
         {!visits.length && <p>No visits recorded in this repository.</p>}

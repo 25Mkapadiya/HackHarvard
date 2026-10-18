@@ -1,3 +1,4 @@
+import { buildTransportEvidence } from './transportAdapter';
 import { z } from 'zod';
 import { PurchaseItem } from '../../purchases/model';
 import { quantityKg } from '../foodMiles';
@@ -200,10 +201,9 @@ export function createEvidenceAdapter(rawCatalog: unknown) {
         field: 'lifecycle',
         reason: 'No compatible paired, stage-resolved life-cycle dataset covers this item.',
       });
-    result.missing.push({
-      field: 'transport',
-      reason: 'Freight needs complete, compatible vehicle-class and mode evidence for both chains.',
-    });
+    const transport = buildTransportEvidence(record, provenance);
+    if (transport.transport) result.evidence.transport = transport.transport;
+    else result.missing.push({ field: 'transport', reason: transport.reason! });
     return result;
   }
   return { catalog, resolve };

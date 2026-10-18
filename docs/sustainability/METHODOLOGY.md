@@ -3,9 +3,11 @@
 These modules calculate differences from supplied evidence, not proof that
 shopping at any farmers market reduces emissions. Positive means conventional
 minus local; negative results remain negative. No numerical confidence intervals
-are asserted. The application currently has **no verified origin/counterfactual
-or paired local/conventional LCA dataset**, so environmental comparisons are
-unavailable for normal manual entries. Tests use explicitly synthetic data.
+are asserted. Actual purchase origins/counterfactuals and paired local/conventional
+LCA remain undocumented. Phase 7 adds **optional historical Syracuse apple
+scenarios**, using a verified factual extract from USDA ERS ERR-99. They are
+explicitly modeled comparisons, never observations of the recorded purchase.
+Tests distinguish synthetic transactions/alterations from the public source facts.
 
 ## Visits and money
 
@@ -84,3 +86,57 @@ verify the truth of a citation or imply measurement accuracy. The adapter owner
 must audit source suitability. “Partial” means only a subset is calculable;
 “Unavailable” means no supported comparison. No missing value becomes a claimed
 zero saving. UI shows source quality and the known subset separately.
+
+
+## Phase 7 data adapter and scenario interpretation
+
+Dataset `ers-err99-table3/1.0.0-reviewed-2026` contains fresh-apple cases from
+[USDA ERS ERR-99](https://www.ers.usda.gov/publications/46407), Table 3, p.16,
+with the direct-market selling window from p.11. Source publication: 2010-06-21.
+Mainstream records cover August 2008–July 2009; exact case interview dates are
+not supplied, so precise observation endpoints are null and the observation
+period is described in text. Source review/download dates do not update the
+age of the study. See DATA_SOURCES.md and the attributed JSON extract for facts,
+locators, source digest, unit metadata and redistribution basis.
+
+These distances are **published product miles**, not a new map-route computation.
+The adapter neither infers a farm nor recomputes a study endpoint from market
+coordinates. Selecting a market in Syracuse, NY identifies city applicability
+only; it does not establish that the studied supplier delivered to that market.
+
+Three opt-in cases are supported: direct market versus WA retail supply, direct
+market versus NY retail supply, and NY versus WA mainstream retail distribution.
+Direct-market cases are limited to April–December, including stored apples, as
+in the study's selling window. The retail illustration covers all months and is
+explicitly **not a farmers-market supply route**. Only exact fresh-apple aliases
+match; apple pie, other products and other cities/states do not inherit a case.
+
+Reuse for post-publication purchase dates through 2026-12-31 is an explicit
+application scenario policy, not contemporary source validity. Annual review
+is required to extend that cutoff. A scenario selection is required each time
+this view is mounted; it is not written into the purchase record or repository.
+Without a selection, this catalog establishes no actual-purchase comparison.
+
+The existing food-mile engine scales source distances by recorded mass. Missing
+mass or unsupported items keep the full basket result unavailable; any known
+subset is separately labelled. No price-based mass or local-spending fraction
+is generated from these cases. A modeled environmental figure never reclassifies
+recorded trip spending as estimated or locally attributable spending.
+
+The direct case's small van is incompatible with the existing medium/heavy truck
+freight factor, so its freight CO2e remains unavailable. The separate mainstream
+retail case documents eligible freight trucks for all legs. EPA national-average
+combustion factors scale the historical loaded-product distances; this additional
+approximation is not a reproduction of the study's fuel/loading results, actual
+trip emissions, or total climate benefit. Return/empty truck miles are not
+independently inserted as product miles. Rail/ship/air require documented eligible
+legs; none are asserted for the shipped cases. No home address is used.
+
+Catalog validation rejects ambiguous aliases, wrong units, unsupported geographic
+scope, inconsistent segment totals, invalid chronology, and incompatible LCA
+boundaries. Observed evidence requires a reviewed comparison with exact market
+IDs, a matching dated origin document and known observation validity. An origin
+alone still cannot establish a conventional comparison. No such observed records
+are bundled. All calculation formulas and engine methodology version remain
+`market-impact/1.0.0`; catalog versioning is separate. Total LCA remains unavailable
+for the reasons in LIFECYCLE_LIMITATIONS.md.

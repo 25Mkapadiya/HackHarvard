@@ -117,8 +117,97 @@ account-level product completion is **blocked**, not claimed:
 
 - Purchases are tab-memory demo records, not secured durable user-account records. Auth/backend owners must provide the session-bound repository and server-side authorization/idempotency.
 - Verified state calendar coverage is limited to the documented Massachusetts harvest windows. Existing broader regional guides remain explicitly approximate.
-- No real origin, conventional comparison, local-attribution, regional-price or paired LCA adapter exists. Environmental metrics therefore honestly remain unavailable for normal recorded purchases.
+- Actual-purchase origin/counterfactual, local-attribution, regional-price and paired LCA data remain unavailable. Phase 7 adds explicit historical scenarios only; see the Phase 7 section below. These do not establish real purchase-specific environmental reductions.
 - Popularity and agricultural relevance lack measured inputs; weights are redistributed. Directory categories do not prove product stock.
 - Photo/receipt extraction is deferred; no suitable provider was available.
 - New feature labels are English; the existing translated shell is unchanged. Additional feature localization remains a follow-up.
 - Team review and normal deployment are still required; main is untouched.
+
+## Phase 7 — real environmental evidence integration
+
+Starting commit: `56c4ab0e`. Branch: `feature/sustainability-metrics`.
+The source-backed adapter, catalog, opt-in dashboard integration and tests are
+implemented. Actual purchase-specific reductions are **not** established by the
+bundled research data.
+
+### Integrated evidence and coverage
+
+- Version `ers-err99-table3/1.0.0-reviewed-2026`: attributed factual extract from
+  USDA ERS ERR-99 (published 2010-06-21), Table 3 and its vehicle footnotes;
+  direct selling-window context from p.11. Source URL, digest, geographic/product
+  coverage, original units, observation-period uncertainty, methodology and
+  redistribution basis are retained in the catalog and DATA_SOURCES.md.
+- Product aliases: apple, apples, fresh apples. Geography: exact Syracuse, NY
+  market city/state. No nearest-farm inference or fabricated coordinates.
+- Direct-market vs WA/NY mainstream cases: April–December, including stored
+  apples. These provide opt-in **historical food-mile scenarios** with recorded
+  mass; no direct-case freight CO2e is shown because the small van is not a
+  supported heavy freight truck.
+- Separate NY vs WA mainstream retail-distribution illustration: all months,
+  product miles plus documented heavy-truck legs and existing EPA factors.
+  This is explicitly **not a farmers-market supply route**. Its calculated
+  freight is a modeled national-average combustion estimate, not measured
+  emissions or a replication of the source's loading-specific fuel analysis.
+- Reviewed scenario-use dates: post-publication through 2026-12-31. This is an
+  application policy, not source observation validity. Circa-2008/2009 source
+  observations never become current observations because of a new review date.
+
+### Unavailable and deferred
+
+No actual-purchase origin/counterfactual pairs, local-spending fractions, matched
+regional prices, farm-specific LCA refinements or compatible paired total LCA
+are bundled. All other products/locations, inappropriate selling seasons and
+unsupported dates remain unavailable. A documented origin alone cannot establish
+a conventional comparison. Consumer travel stays excluded; no home address is
+required. Authentication/persistence remains untouched and tab-memory only.
+
+### Validation and separation of evidence
+
+The catalog integration assertions use actual published numeric facts. Synthetic
+transaction fixtures and deliberate alterations test rejection, signs and mode
+handling; they are clearly labelled and never become production evidence.
+The UI distinguishes recorded money, actual/observed evidence, modeled scenarios
+and insufficient information, with provenance and missing fields expandable.
+Partial baskets keep whole-basket estimates unavailable while identifying the
+supported subset. Unknown mass is not replaced with an assumed basket or price.
+
+Final validation (2026-10-18):
+
+- `npm test -- --run`: 230 tests in 29 files passed.
+- `npm run lint`: zero errors; the same four existing Fast Refresh warnings.
+- `tsc -b`: passed; `npm run build`: production/PWA build passed.
+- `npm run test:e2e`: eight browser tests passed, including all six prior tests,
+  source-backed Syracuse opt-in workflow, and Boston geographic rejection.
+- Scenario view inspected at 1280 px and 390 px; no horizontal overflow.
+- The apostrophe-free temporary-copy validation approach was retained. Existing
+  locked dependencies and cached npm runtime were used; no manifest/lockfile,
+  build configuration, workflow or hosted service was added or changed.
+- Protected-path audit passed. All six calculation modules (`evidence`,
+  `foodMiles`, `transport`, `lifecycle`, `spending`, `summary`) are byte-for-byte
+  unchanged from the starting commit. Auth/account/profile/social, shared account
+  stores, rewards, QR code, main and unrelated features remain untouched.
+- `git diff --check` passed. Generated screenshots, PDFs, runtimes, builds and
+  browser reports remain outside the committed feature paths.
+
+### Focused commits
+
+- `42dd925a docs: audit environmental evidence integration requirements`
+- `9b64f0c8 docs: evaluate authoritative environmental data sources`
+- `e2ee31ce feat: add verified environmental evidence adapters`
+- `33684cd4 feat: integrate sourced food miles comparison evidence`
+- `713f3c52 feat: connect real transport evidence to emissions calculations`
+- `62f1d397 docs: document lifecycle evidence limitations`
+- `3e5f1fb9 feat: connect sustainability evidence to purchase dashboard`
+- `e53d64cd test: validate real environmental evidence integration`
+- `a202adab fix: distinguish historical scenarios from actual purchase comparisons`
+- Final handoff: `docs: document environmental data coverage and limitations`.
+
+### Handoff and future additions
+
+See INTEGRATION.md for service inputs, registry validation, observed-document
+requirements, adding datasets without formula changes, annual review and account
+integration. See METHODOLOGY.md for modeled versus observed interpretation and
+LIFECYCLE_LIMITATIONS.md for the unmatched-stage blocker. Current runtime use is
+fully static and needs no source API key, new backend or paid service. Feature
+commits are pushed only to the requested branch after checking its upstream;
+team review/deployment and any main merge remain outside this work.

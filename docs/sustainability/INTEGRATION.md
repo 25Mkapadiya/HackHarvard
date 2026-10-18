@@ -51,8 +51,8 @@ Provide audited product/region/date-matched price baselines, item-price local
 attribution, both supply-chain distances, complete freight legs/modes, or paired
 stage-resolved LCA evidence. Preserve source URL, quality, assumptions and exact
 units. A citation's presence is structurally validated but cannot prove its
-content: the data adapter must audit suitability. No real origin/LCA data adapter
-is installed. Consumer-trip comparisons must already include round-trip purpose
+content: the data adapter must audit suitability. Phase 7 installs a source-backed
+historical-scenario adapter; no actual-purchase origin or paired LCA dataset is installed. Consumer-trip comparisons must already include round-trip purpose
 allocation and the correct tank-to-wheel/well-to-wheel boundary. Consult
 METHODOLOGY.md for details; do not sum the freight and life-cycle cards.
 
@@ -93,3 +93,59 @@ Feature commits are pushed only to `origin/feature/sustainability-metrics`.
 This does not deploy GitHub Pages: the existing deployment workflow runs from
 main. The team's normal review/integration/deployment remains outstanding; no
 main merge, workflow execution or production publication is performed here.
+
+
+## Phase 7 adapter entry points
+
+`src/features/sustainability/adapters/` contains the versioned factual extract,
+catalog, strict schemas and pure adapters. `createEvidenceAdapter(catalog)`
+validates an audited catalog, then `resolve(request)` accepts product/item mass,
+market ID/city/state, purchase date, optional scenario ID and optional documented
+origin. It returns existing `ImpactData` item evidence plus basis, source metadata
+and missing fields. Factory validation throws on an invalid catalog rather than
+silently accepting incompatible configuration; invalid/unsupported requests
+return an unknown resolution with diagnostics.
+
+`resolveVisitEvidence(visits, markets, scenarioId?)` uses only each record's
+selected market. A missing directory entry is not replaced by a nearby market.
+PurchaseWorkspace passes the resulting evidence into the existing dashboard;
+EvidenceDetails provides selection, per-item classification, source dates,
+units, scope, methodology, licensing and missing reasons. Scenario figures carry
+an adjacent label saying they are not observed purchase impact. Counts, spending,
+quantities, identity and repository semantics are unchanged.
+
+The default has no historical scenario selected. The optional cases match exact
+fresh-apple aliases and Syracuse/NY only; direct-market cases apply April–December.
+The separate NY/WA retail-distribution illustration may estimate freight with
+EPA average factors, but is not a farmers-market route. Neither a current market
+listing nor a research comparison documents a particular purchase's supply chain.
+Actual origin documentation is accepted by the standalone service, but the
+current purchase form does not collect it and no observed comparison is shipped.
+A future verified-origin workflow must preserve this distinction.
+
+## Adding or updating datasets
+
+1. Audit the primary source before adding an extract: products, destination scope,
+   source and applicability dates, units, stage boundaries, transport classes,
+   source locators, rights, assumptions and measurement quality.
+2. Add only necessary numeric facts and original metadata in a versioned catalog.
+   Source observation dates remain unknown when not documented. Do not bundle
+   PDFs/images, guess origins, or relabel historical values as current observations.
+3. Define exact product aliases and geographic/date/season applicability. A new
+   observed record must name exact market IDs and its source origin document;
+   validate purchase-date coverage for both the record and supplied document.
+4. Add source-attributed integration assertions plus clearly synthetic rejection
+   tests. Verify all freight legs and source units; a small van must not become a
+   default heavy truck. A future LCA record must pass existing stage/boundary
+   validation. New evidence types can extend the adapter while retaining the
+   existing engine input interfaces and formulas.
+5. Increment catalog version, document coverage and manually review annually.
+   Current historical scenario policy ends 2026-12-31. No source API calls occur
+   in the browser and no hosted service, credential or background refresh job is
+   introduced. Static imports travel with the production build/PWA bundle.
+6. Do not infer a local-attribution factor or current regional price from a route.
+   Those require separate source audits/adapters. No new account store is needed.
+
+See DATA_SOURCES.md for candidate evaluations and LIFECYCLE_LIMITATIONS.md for the
+unresolved paired-stage requirement. Authentication-backed persistence remains
+outside this phase; records are still tab-memory and intentionally disappear on reload.

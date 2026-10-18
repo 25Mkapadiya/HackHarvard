@@ -1,5 +1,10 @@
 # Implementation evidence
 
+Current status: **Phase 10 manual-only purchase recording**. See
+[MANUAL_PURCHASES.md](MANUAL_PURCHASES.md) and
+[PURCHASE_STORAGE_CONTRACT.md](PURCHASE_STORAGE_CONTRACT.md). Earlier phases below
+are historical; Phase 9 photo/OCR functionality has been removed.
+
 ## Phase 1 — architecture
 
 `2021006e docs: plan seasonal search and sustainability architecture` (pushed).
@@ -251,3 +256,27 @@ build pass; lint has zero errors and only the four existing warnings. Existing
 seasonal search, visit deduplication/counting, spending, scenario opt-in rules,
 formulas, adapters and all protected systems remain unchanged. Push only the
 requested feature branch; no main merge or deployment.
+
+## Phase 10 — manual purchase simplification and persistence preparation
+
+Base 94964091, feature/sustainability-metrics. Removed all photo/receipt uploads,
+previews, image validation, AI/OCR adapters, cancellation/suggestion UI and related
+tests. The retained manual form requires quantities, suggests standard product
+names, supports optional item price/vendor/origin, and preserves edit/review,
+exact cents, duplicate prevention and one-trip counting. Legacy unknown quantities
+remain readable; typed origin never establishes verified environmental evidence.
+
+PurchaseRepository now supports get/delete, clear and replay-safe idempotency,
+including deleted retry aliases without retaining deleted payload text. The
+private workspace resets on repository identity, disconnects explicitly on null,
+locks on expired-session errors and keeps drafts on ordinary request failures.
+The authenticated repository, verified sessions, durable storage and server
+ownership/atomicity remain the authentication/backend teammate's integration work.
+Memory-only storage is clearly labelled and remains tab-local.
+
+Validation: 291 unit/component tests, 14 browser tests, TypeScript, production/PWA
+build and seasonal catalog checks passed. Lint has zero errors and the same four
+existing warnings. All 12 prior non-photo browser workflows, including Syracuse
+opt-in and Boston rejection, are retained. No calculation, adapter, seasonal/search,
+rewards, shared-store, route, authentication/profile/social or dependency changes.
+The full diff is reviewed; push only the feature branch, without force or main.

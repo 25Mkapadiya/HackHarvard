@@ -11,7 +11,7 @@ dashboard. Its legacy estimates are not reused or endorsed by this implementatio
 
 ## Account persistence — required, not implemented
 
-`PurchaseRepository` defines async `list`, `submit`, `clear` and a persistence
+`PurchaseRepository` defines async `list`, `get`, `submit`, `delete`, `clear` and a persistence
 label. `PurchaseSession.purchases()` is the auth integration seam. Default UI
 uses one tab-memory instance: reload/close loses records; no purchases are
 uploaded, written to localStorage, attributed to a hardcoded user, or logged.
@@ -37,8 +37,8 @@ The authentication/backend owner must supply a repository:
 
 No Supabase schema, auth SDK, hosted service or credential was added. A real
 backend implementation is required before the account-persistence definition
-of done can be met. Receipt/photo extraction is deferred; future extraction
-must use an isolated provider and return editable fields for user confirmation.
+of done can be met. Entry is manual-only; Phase 9 photo/OCR functionality has
+been removed. See MANUAL_PURCHASES.md and PURCHASE_STORAGE_CONTRACT.md.
 
 ## Evidence integration
 
@@ -161,22 +161,27 @@ Run `npm run seasonal:validate` after manual source review and
 state/region selection, inference limits, aliases, source scope and conflict
 handling. The existing market refresh pipeline does not refresh seasonal sources.
 
-## Phase 9 photo and receipt entry
+## Phase 10 manual purchase recording and account integration
 
-[PHOTO_ENTRY.md](PHOTO_ENTRY.md) describes working local inputs, provider contracts,
-manual fallback, runtime validation, cancellation, user confirmation, privacy and
-remaining integration requirements. Photo/receipt selection and manual purchase
-recording work today; automatic recognition/OCR is **unavailable** by default.
-The interfaces and editable suggestion flow are **integration ready**, without a
-connected provider. No images, provider responses or candidate metadata enter the
-existing PurchaseRepository; tab-memory persistence and auth ownership are unchanged.
+[MANUAL_PURCHASES.md](MANUAL_PURCHASES.md) is the current workflow/status handoff.
+[PURCHASE_STORAGE_CONTRACT.md](PURCHASE_STORAGE_CONTRACT.md) defines the backend-neutral
+MarketVisit, PurchaseItem, SustainabilitySummary, repository methods, deletion,
+server idempotency and auth-owner requirements. PHOTO_ENTRY.md is superseded;
+photo/OCR functionality, interfaces and related tests have been removed.
 
-A future owner may inject ProductRecognitionProvider and ReceiptExtractionProvider
-into PurchaseEntry through the existing workspace boundary. It must first supply
-secure infrastructure/credentials, recipient/privacy disclosures, explicit user
-processing action, minimization/redaction, output audits and deletion/retention.
-Never expose secrets in a static build or automatically send selected images.
-Preserve separate product confirmations, final trip review and existing server-side
-validation/idempotency requirements. Reset/unmount all drafts and temporary images
-when the existing session changes. Counted-item mass estimation remains uninstalled;
-accepted estimates need distinct provenance/model support before affecting metrics.
+New writes require quantities and use validateNewVisit/NewVisitInput. Legacy reads
+retain missing-quantity compatibility without inventing values. Optional food ID,
+vendor and origin are annotations only and never replace environmental evidence.
+Product-name suggestions use the existing Phase 8 catalog; unknown names remain
+editable. The form keeps manual review, exact cents, one-trip counting and retries.
+
+The auth owner should inject a fresh repository instance per verified session,
+pass null/unmount before logout, expiry or account switching, and discard late
+session results. Undefined intentionally selects the labelled memory demo; it is
+not a signed-out fallback. Repository identity resets all private feature state,
+and structured session-expired errors lock/clear the private UI. These resets do
+not implement backend authorization or a competing authentication system.
+
+Server-owned identity, durable storage, ownership/RLS, validation, atomic
+owner-scoped deduplication, retry acknowledgements, retention/deletion and cache
+cleanup remain required. No account tables, auth SDK or hosted service are added.

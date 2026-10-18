@@ -1,21 +1,9 @@
 import { useRef, useState, type FormEvent } from 'react';
 import { dollarsToCents, todayLocal, validateVisit, type VisitInput } from './model';
 import type { PurchaseRepository } from './repository';
+import { newItem, type DraftItem } from './draft';
+import { PurchaseReview } from './PurchaseReview';
 export type PurchaseMarket = { id: string; name: string; city: string; state: string };
-type DraftItem = {
-  id: string;
-  product: string;
-  quantity: string;
-  unit: VisitInput['items'][number]['unit'];
-  price: string;
-};
-const newItem = (): DraftItem => ({
-  id: crypto.randomUUID(),
-  product: '',
-  quantity: '',
-  unit: 'kg',
-  price: '',
-});
 export function PurchaseEntry({
   markets,
   repository,
@@ -43,14 +31,13 @@ export function PurchaseEntry({
     .filter((m) => `${m.name} ${m.city} ${m.state}`.toLowerCase().includes(filter.toLowerCase()))
     .slice(0, 50);
   if (market && !choices.some((m) => m.id === market.id)) choices.unshift(market);
-  function patchItem(id: string, patch: Partial<DraftItem>) {
-    setItems(items.map((i) => (i.id === id ? { ...i, ...patch } : i)));
-  }
   function review(e: FormEvent) {
     e.preventDefault();
     setError('');
     try {
       if (!market) throw new Error('Select a market from the directory');
+      if (items.some((i) => i.needsReview))
+        throw new Error('Check each suggested product before confirming the visit.');
       setConfirmed(
         validateVisit({
           submissionId,
@@ -189,89 +176,7 @@ export function PurchaseEntry({
               enabled. Enter or check your products below; your entries are kept when switching methods.
             </p>
           )}
-          {items.map((item, index) => (
-            <fieldset key={item.id} className="space-y-2 rounded border p-3">
-              <legend>Product {index + 1}</legend>
-              <label>
-                Product name
-                <input
-                  className="field"
-                  required
-                  maxLength={120}
-                  value={item.product}
-                  onChange={(e) => patchItem(item.id, { product: e.target.value })}
-                />
-              </label>
-              <div className="grid gap-3 sm:grid-cols-3">
-                <label>
-                  Quantity (optional)
-                  <input
-                    className="field"
-                    type="number"
-                    min="0.000001"
-                    max="10000000"
-                    step="any"
-                    value={item.quantity}
-                    onChange={(e) => patchItem(item.id, { quantity: e.target.value })}
-                  />
-                </label>
-                <label>
-                  Unit
-                  <select
-                    className="field"
-                    aria-label="Unit"
-                    value={item.unit}
-                    onChange={(e) => patchItem(item.id, { unit: e.target.value as DraftItem['unit'] })}
-                  >
-                    {['kg', 'g', 'lb', 'oz', 'each', 'bunch', 'dozen', 'pint', 'quart', 'loaf'].map((u) => (
-                      <option key={u}>{u}</option>
-                    ))}
-                  </select>
-                </label>
-                <label>
-                  Item price USD (optional)
-                  <input
-                    className="field"
-                    type="text"
-                    inputMode="decimal"
-                    value={item.price}
-                    onChange={(e) => patchItem(item.id, { price: e.target.value })}
-                  />
-                </label>
-              </div>
-              <button
-                type="button"
-                className="btn-quiet"
-                disabled={items.length === 1}
-                onClick={() => setItems(items.filter((i) => i.id !== item.id))}
-              >
-                Remove product {index + 1}
-              </button>
-            </fieldset>
-          ))}
-          <button
-            type="button"
-            className="btn-secondary"
-            disabled={items.length >= 100}
-            onClick={() => setItems([...items, newItem()])}
-          >
-            Add product
-          </button>
-          <p>
-            Enter weighed quantities when possible. Each, bunch and volume units cannot be converted to
-            kilograms without product-specific evidence. Missing quantities leave impacts unavailable.
-          </p>
-          <label>
-            Total spent USD
-            <input
-              className="field"
-              required
-              type="text"
-              inputMode="decimal"
-              value={total}
-              onChange={(e) => setTotal(e.target.value)}
-            />
-          </label>
+          <PurchaseReview items={items} onItems={setItems} total={total} onTotal={setTotal} />
           <div className="flex gap-3">
             <button type="button" className="btn-secondary" onClick={() => setStep('market')}>
               Back to market

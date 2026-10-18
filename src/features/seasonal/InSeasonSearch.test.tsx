@@ -2,6 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { expect, it, vi } from 'vitest';
 import InSeasonSearch from './InSeasonSearch';
+const location = vi.hoisted(() => ({ origin: { lat: 42, lng: -71 } }));
 vi.mock('../../app/data', () => ({
   useCrops: () => ({
     data: {
@@ -26,7 +27,12 @@ vi.mock('../../app/data', () => ({
       state,
       name: `${state} Market`,
       city: '',
-      geo: state === 'NY' ? { lat: 40, lng: -74 } : { lat: 42, lng: -71 },
+      geo:
+        state === 'NY'
+          ? { lat: 40, lng: -74 }
+          : state === 'AZ'
+            ? { lat: 33.45, lng: -112.07 }
+            : { lat: 42, lng: -71 },
       products: ['fruits'],
       productsAreSample: false,
     })),
@@ -34,7 +40,7 @@ vi.mock('../../app/data', () => ({
 }));
 vi.mock('../../app/useRegion', () => ({ useRegion: (r: string) => ({ id: r || 'NE' }) }));
 vi.mock('../../app/context', () => ({
-  useLocationState: () => ({ origin: { lat: 42, lng: -71 } }),
+  useLocationState: () => location,
   useNow: () => ({ now: new Date('2026-10-18T12:00Z') }),
 }));
 vi.mock('../markets/LocationPicker', () => ({ LocationPicker: () => <p>Location picker</p> }));
@@ -53,4 +59,24 @@ it('changes market region without leaking results from the previous region', () 
   expect(screen.getByText('AZ Market')).toBeInTheDocument();
   expect(screen.queryByText('MA Market')).not.toBeInTheDocument();
   expect(screen.getByText(/No matching seasonal entries/)).toBeInTheDocument();
+});
+
+it('updates the location hint and recommendations when the selected location changes', () => {
+  const view = () => (
+    <MemoryRouter initialEntries={['/search?month=6&q=strawberry']}>
+      <InSeasonSearch />
+    </MemoryRouter>
+  );
+  const { rerender } = render(view());
+  expect(screen.getByRole('heading', { name: 'June · Massachusetts' })).toBeInTheDocument();
+  expect(screen.getByText('Source-backed state calendar', { exact: true })).toBeInTheDocument();
+  location.origin = { lat: 33.45, lng: -112.07 };
+  rerender(view());
+  expect(screen.getByRole('heading', { name: 'June · Arizona' })).toBeInTheDocument();
+  expect(screen.queryByText('Source-backed state calendar', { exact: true })).not.toBeInTheDocument();
+  location.origin = { lat: 21.3, lng: -157.8 };
+  rerender(view());
+  expect(screen.getByRole('heading', { name: /June · Unknown location/ })).toBeInTheDocument();
+  expect(screen.getByText('Seasonal information unknown', { exact: true })).toBeInTheDocument();
+  location.origin = { lat: 42, lng: -71 };
 });

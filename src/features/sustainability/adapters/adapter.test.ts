@@ -147,3 +147,21 @@ describe('evidence adapter contracts (synthetic)', () => {
     expect(resolve({ ...input, market: { ...input.market, id: 'another-market' } }).basis).toBe('unknown');
   });
 });
+
+it('preserves negative food-mile differences from compatible evidence (SYNTHETIC)', async () => {
+  const { foodMilesSummary } = await import('../foodMiles');
+  const { itemEvidenceKey } = await import('../evidence');
+  const input = request();
+  const resolved = createEvidenceAdapter(fixture()).resolve(input);
+  const visit = {
+    submissionId: 'v',
+    marketId: 'm',
+    date: input.purchaseDate,
+    submittedAt: '',
+    totalCents: 100,
+    items: [input.item],
+  };
+  const result = foodMilesSummary([visit], { [itemEvidenceKey('v', 'a')]: resolved.evidence });
+  expect(result.weightedDifference.value).toBeCloseTo(2 * 0.45359237 * -100);
+  expect(result.averageDifference.value).toBe(-100);
+});

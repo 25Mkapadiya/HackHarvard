@@ -66,3 +66,33 @@ describe('source-backed transportation evidence', () => {
     expect(transport?.local.map((l) => l.mode)).toEqual(['rail', 'ship', 'air']);
   });
 });
+
+it('a shorter air chain can emit more than a longer rail chain (SYNTHETIC scenario)', () => {
+  const record = structuredClone(environmentalEvidence.catalog.comparisons[2]);
+  record.local.distance.value = 100;
+  record.local.legs = [
+    {
+      label: 'SYNTHETIC air leg',
+      distance: { value: 100, unit: 'mile' },
+      mode: 'air',
+      vehicleClass: 'not-applicable',
+      modeEvidence: 'SYNTHETIC fixture only',
+    },
+  ];
+  record.conventional.distance.value = 200;
+  record.conventional.legs = [
+    {
+      label: 'SYNTHETIC rail leg',
+      distance: { value: 200, unit: 'mile' },
+      mode: 'rail',
+      vehicleClass: 'not-applicable',
+      modeEvidence: 'SYNTHETIC fixture only',
+    },
+  ];
+  const transport = buildTransportEvidence(
+    record,
+    recordProvenance(record, environmentalEvidence.catalog.sources[0]),
+  ).transport;
+  const result = transportSummary([visit], { [itemEvidenceKey('v', 'a')]: { transport } });
+  expect(result.value).toBeLessThan(0);
+});

@@ -1,5 +1,5 @@
 {
-  "builtAt": "2026-10-17T14:02:50.466Z",
+  "builtAt": "2026-10-19T16:29:02.479Z",
   "region": "Contiguous United States (Greater Boston focus)",
   "marketCount": 14241,
   "sources": [
@@ -8,7 +8,7 @@
       "name": "MassGIS / MDAR Farmers' Markets (statewide)",
       "url": "https://arcgisserver.digital.mass.gov/arcgisserver/rest/services/DPH/DPH_Farmers_Markets/MapServer/0",
       "license": "MassGIS data: free to use with attribution (MassGIS / MDAR)",
-      "fetchedAt": "2026-10-17",
+      "fetchedAt": "2026-10-19",
       "records": 264,
       "status": "ok"
     },
@@ -17,7 +17,7 @@
       "name": "MassGIS Additional Resources — Farmers' Markets export",
       "url": "https://services1.arcgis.com/ceiitspzDAHrdGO1/ArcGIS/rest/services/Additional_Resources/FeatureServer/35",
       "license": "MassGIS data: free to use with attribution (MassGIS / MDAR)",
-      "fetchedAt": "2026-10-17",
+      "fetchedAt": "2026-10-19",
       "records": 34,
       "status": "ok"
     },
@@ -26,7 +26,7 @@
       "name": "USDA National Farmers Market Directory (2014 export, via Esri StoryMaps)",
       "url": "https://services.arcgis.com/nzS0F0zdNLvs7nc8/arcgis/rest/services/Farmers_Markets_update/FeatureServer/0",
       "license": "U.S. Government work (public domain); hosted by Esri",
-      "fetchedAt": "2026-10-17",
+      "fetchedAt": "2026-10-19",
       "records": 7980,
       "status": "ok"
     },
@@ -35,7 +35,7 @@
       "name": "USDA FNS SNAP Retailer Locator (Farmers and Markets)",
       "url": "https://services1.arcgis.com/RLQu0rK7h4kbsBq5/arcgis/rest/services/snap_retailer_location_data/FeatureServer/0",
       "license": "U.S. Government work (public domain)",
-      "fetchedAt": "2026-10-17",
+      "fetchedAt": "2026-10-19",
       "records": 7042,
       "status": "ok"
     },
@@ -54,7 +54,7 @@
       "name": "USDA ERS Food Access Research Atlas 2025 (low-income / low-access tracts)",
       "url": "https://www.ers.usda.gov/data-products/food-access-research-atlas/",
       "license": "U.S. Government work (public domain)",
-      "fetchedAt": "2026-10-17",
+      "fetchedAt": "2026-10-19",
       "records": 45141,
       "status": "ok"
     },

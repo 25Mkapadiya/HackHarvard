@@ -1,11 +1,11 @@
 # Data quality report
 
-Generated 2026-10-19T16:29:02.479Z.
+Generated 2026-10-26T16:08:46.982Z.
 
-- Markets: 14241
+- Markets: 14236
 - Schedules parsed into RRULEs: 4356 (31%)
 - Stale (last updated more than 12 months ago): 8162
-- In a low-income or low-access tract: 7618 (tract found for 7618)
+- In a low-income or low-access tract: 7614 (tract found for 7614)
 - With sample vendors: 165
 
 ## Schedules shown as raw text (could not be parsed)
@@ -197,7 +197,6 @@ Generated 2026-10-19T16:29:02.479Z.
 - **Aloha Community Farmers' Market** (Beaverton): (no schedule)
 - **Aloha Farmers Market** (Aloha): (no schedule)
 - **Alpena Farmers Market** (Alpena): 05/25/2013 to 10/26/2013 · Wed: 8:00 AM-12:00 PM, Sat: 8:00 AM-12:00 PM | Sat: 10:00 AM-2:00 PM
-- **Alpha Lions Den Ministries** (Derry): (no schedule)
 - **Alpharetta Farmers Market** (Alpharetta): (no schedule)
 - **Alpine Forest Farm LLC** (Gaylord): (no schedule)
 - **Alstede Farms** (Chester): (no schedule)
@@ -240,6 +239,7 @@ Generated 2026-10-19T16:29:02.479Z.
 - **Angela Camille Enterprise Premium Cattle Co LLC** (Albany): (no schedule)
 - **Angelus Bell Farm LLC Ffab** (Fort Fairfield): (no schedule)
 - **Anliker Acres** (Reynolds): (no schedule)
+- **Ann's Produce** (Birmingham): (no schedule)
 - **Annandale Farmers Mk-Annandale Area Community Team** (Annandale): (no schedule)
 - **Anne Arundel County (Riva) Farmers Market** (Annapolis): 12/01/2014 to
 - **Annies Organic Market** (Walterboro): (no schedule)
@@ -4466,7 +4466,6 @@ Generated 2026-10-19T16:29:02.479Z.
 - **Kaiser Permanente Fontana Farmers' Market** (Fontana): (no schedule)
 - **Kaiser Permanente Irvine Farmers' Market** (Irvine): (no schedule)
 - **Kaiser Permanente Irvine Farmers' Market** (Irvine): (no schedule)
-- **Kaiser Permanente Ontario Farmers' Market** (Ontario): (no schedule)
 - **Kaiser Permanente Panorama City** (Panorama City): (no schedule)
 - **Kaiser Permanente (Sacramento) Farmers Market** (Sacramento): Fri: 9:30 AM-1:30 PM
 - **Kaiser Pleasanton Farmers' Market** (Pleasanton): (no schedule)
@@ -4990,6 +4989,7 @@ Generated 2026-10-19T16:29:02.479Z.
 - **Live Oak Farmers Market** (Santa Cruz): (no schedule)
 - **Live Power Community Farm** (Covelo): (no schedule)
 - **Live Well Farms** (Ruffin): (no schedule)
+- **Live Well Montgomery County Farmers Market** (Red Oak): (no schedule)
 - **Lively Farm** (Empire): (no schedule)
 - **Livermore Certified Farmers Market** (Livermore): (no schedule)
 - **Living Being Farms** (Middletown): (no schedule)
@@ -5009,7 +5009,6 @@ Generated 2026-10-19T16:29:02.479Z.
 - **Local Foods Plymouth** (Plymouth): (no schedule)
 - **Local Harvest CSA** (Solon): (no schedule)
 - **Local Kerrville Farmers Market** (Kerrville): (no schedule)
-- **Local Lands Organically Grown Gardens** (Wrightsville): (no schedule)
 - **Local Produce** (Smithfield): (no schedule)
 - **Local Pumpkin** (Pasco): (no schedule)
 - **Local Roots Farm** (Farmersburg): (no schedule)
@@ -5144,8 +5143,6 @@ Generated 2026-10-19T16:29:02.479Z.
 - **Mableton Farmers Market** (Mableton): May to September · Thu:8:30AM - 123PM
 - **Mabous Fish 4sale** (Dry Prong): (no schedule)
 - **Mac Ranch** (Deming): (no schedule)
-- **Macarthur Farm** (Holliston): (no schedule)
-- **Macarthur Farm** (Holliston): (no schedule)
 - **Mace Chasm Farm** (Keeseville): (no schedule)
 - **Macedon Farmers Market** (Macedon): (no schedule)
 - **Macedonia Farmers Market** (Macedonia): (no schedule)
@@ -5285,6 +5282,7 @@ Generated 2026-10-19T16:29:02.479Z.
 - **Mariposa Farm** (Everson): (no schedule)
 - **Marisol Village Farm Stand** (Sacramento): (no schedule)
 - **Marjie's Farm Dba** (Swartz Creek): (no schedule)
+- **Marker 33 Farms LLC** (Dunnellon): (no schedule)
 - **Market at 15th & High** (Columbus): (no schedule)
 - **Market at Dc Ranch** (Scottsdale): (no schedule)
 - **Market at Dothan LLC** (Dothan): (no schedule)
@@ -5974,7 +5972,7 @@ Generated 2026-10-19T16:29:02.479Z.
 - **New Eastern Market** (York): (no schedule)
 - **New Edibles** (Montague): (no schedule)
 - **New England Wild Edibles** (Shelburne Falls): (no schedule)
-- **New Entry Sustainable Farming Project - Farmer** (Beverly): (no schedule)
+- **New Entry Sustainable Farming Project - Food Hub** (Beverly): (no schedule)
 - **New Era Farmers Market** (New Era): (no schedule)
 - **New Gloucester Community Market** (New Gloucester): (no schedule)
 - **New Hampton Farmers Market** (New Hampton): (no schedule)
@@ -6118,7 +6116,6 @@ Generated 2026-10-19T16:29:02.479Z.
 - **North Mecklenburg Farmers Market** (Charlotte): (no schedule)
 - **North Miami Farmers Market** (North Miami): (no schedule)
 - **North Mobile County Food Park and Market** (Mobile): (no schedule)
-- **North of Boston** (Boxford): (no schedule)
 - **North Park Community Market** (Chicago): (no schedule)
 - **North Park Thursday Market** (San Diego): (no schedule)
 - **North Plainsfield Farmers Market** (North Plainsfield): (no schedule)
@@ -6204,6 +6201,7 @@ Generated 2026-10-19T16:29:02.479Z.
 - **O'farrell Farms** (West Branch): (no schedule)
 - **O. Freeman Farm** (Johns Island): (no schedule)
 - **O Grows Opelika Farmers' Market** (Opelika): (no schedule)
+- **Oak Creek Winter Farmers Market** (Oak Creek): (no schedule)
 - **Oak Creek Farmers Market** (Oak Creek): (no schedule)
 - **Oak Glen Farmers Market** (Yucaipa): (no schedule)
 - **Oak Grove Plantation** (Pittstown): (no schedule)
@@ -6388,6 +6386,7 @@ Generated 2026-10-19T16:29:02.479Z.
 - **Organic Blueberries LLC** (West Olive): (no schedule)
 - **Organic Farmers Market at Hoovers** (Altamonte Springs): (no schedule)
 - **Organization for Refugee and Immigrant Success** (Concord): (no schedule)
+- **Organizing for Ward 1 and Other Communities (Owc)** (Saint Paul): (no schedule)
 - **Organpi Farms** (Selma): (no schedule)
 - **Original Farmer's Market** (Owosso): (no schedule)
 - **Orinda Famers Market** (Orinda): (no schedule)
@@ -7359,7 +7358,6 @@ Generated 2026-10-19T16:29:02.479Z.
 - **Roots Urban Growers Market** (Lubbock): (no schedule)
 - **Roper Farms Inc. N/A** (Holyoke): (no schedule)
 - **Rosales Produce** (Albuquerque): (no schedule)
-- **Rosales Produce** (Los Ranchos): (no schedule)
 - **Roscoe Main StreetSquare Farmers Market** (Roscoe): (no schedule)
 - **Roscoe Farmers Market** (): (no schedule)
 - **Roscoe Village Farmers Market** (Chicago): (no schedule)
@@ -7457,7 +7455,6 @@ Generated 2026-10-19T16:29:02.479Z.
 - **S & H Farms** (Campbell): (no schedule)
 - **S.h.giles and Sons Farms** (Gilbertown): (no schedule)
 - **S. J. Organic Farms** (Peck): (no schedule)
-- **S&j Produce** (Madison): (no schedule)
 - **S&k Farms** (Basom): (no schedule)
 - **S.p. Mallow & Sons Farmers Market** (Xenia): (no schedule)
 - **S Ranch LLC** (Pryor): (no schedule)
@@ -7825,7 +7822,6 @@ Generated 2026-10-19T16:29:02.479Z.
 - **Silver City Farmers Market** (Silver City): (no schedule)
 - **Silver Creek Farmers Market** (Silver City): (no schedule)
 - **Silver Lake Cfm** (Los Angeles): (no schedule)
-- **Silver Lake Farm** (Waterloo): (no schedule)
 - **Silverbrook Farm** (North Dartmouth): (no schedule)
 - **Silverton Farmers Market** (Silverton): (no schedule)
 - **Silverwood Farm LLC** (Sherborn): (no schedule)
@@ -7847,7 +7843,6 @@ Generated 2026-10-19T16:29:02.479Z.
 - **Sistersville Farmers Market** (Sistersville): (no schedule)
 - **Six Rivers Market** (Sandpoint): January to December · Mon:0:00 pm - 5:00 pm, Wed:3:30 pm - 6:00 pm, Fri:7:00 am - 0:00 pm
 - **Sixth Street Community Center** (New York): (no schedule)
-- **Sk Herefords** (Medina): (no schedule)
 - **Sk Prime Pastures** (Grapeland): (no schedule)
 - **Skagit Community Market Association** (Concrete): (no schedule)
 - **Skinny Dip Farm** (Westport): (no schedule)
@@ -7999,6 +7994,7 @@ Generated 2026-10-19T16:29:02.479Z.
 - **Southern Sunny Acres Ffab** (Winona): (no schedule)
 - **Southern Towers Farmers' Market** (Alexandria): (no schedule)
 - **Southington - Plantsville Farmers’ Market** (Plantsville): (no schedule)
+- **Southland Farmers Market** (Ontario): (no schedule)
 - **Southlands Farmers Market** (Aurora): (no schedule)
 - **SouthPonte Farmers Market** (Columbus): (no schedule)
 - **Southport Green Market** (Chicago): (no schedule)
@@ -8135,6 +8131,7 @@ Generated 2026-10-19T16:29:02.479Z.
 - **Stamford - High RidgeFarmers Market** (Stamford): (no schedule)
 - **Stamford Museum & Nature Center Farmers’ Market** (Stamford): (no schedule)
 - **Stan's Farmers Market** (Hayti): (no schedule)
+- **Stanchfield Family Farm** (Rayland): (no schedule)
 - **Stanford Cfm Farmers Market** (Standord): (no schedule)
 - **Stanford Farmers Market** (Stanford): (no schedule)
 - **Stanley Farmers Market** (Stanley): (no schedule)
@@ -8181,7 +8178,6 @@ Generated 2026-10-19T16:29:02.479Z.
 - **Stepping Stone Farm Stand** (Mosier): (no schedule)
 - **Steptoe Farm** (Brandywine): (no schedule)
 - **Sterling Farmers Market** (Sterling): (no schedule)
-- **Steve's Farm & Market** (McDavid): (no schedule)
 - **Steve's Farm Market** (Petersburg): (no schedule)
 - **Steven's Farm Stand** (Rochester): (no schedule)
 - **Stevens Point Area Winter Farmers Market** (Stevens Point): (no schedule)
@@ -8656,7 +8652,6 @@ Generated 2026-10-19T16:29:02.479Z.
 - **The Neighborhood Market** (Charlotte): (no schedule)
 - **The New Corpus Christi Farmers Market** (Corpus Christi): (no schedule)
 - **The New Dana Point Cfm Farmers Market** (Dana Point): Sat: 9:00 AM-1:00 PM
-- **The New International City Farmers Market** (Warner Robins): (no schedule)
 - **The New York Botanical Garden Farmers Market** (New York City): (no schedule)
 - **The North East Farmers Market** (North East): (no schedule)
 - **The Northeast Bronx Community Farmers Market** (New York): 06/01/2012 to 11/31/2012

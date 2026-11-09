@@ -1,8 +1,8 @@
 # Data quality report
 
-Generated 2026-11-02T19:30:58.612Z.
+Generated 2026-11-09T19:50:42.411Z.
 
-- Markets: 14236
+- Markets: 14234
 - Schedules parsed into RRULEs: 4356 (31%)
 - Stale (last updated more than 12 months ago): 8162
 - In a low-income or low-access tract: 7614 (tract found for 7614)
@@ -60,6 +60,7 @@ Generated 2026-11-02T19:30:58.612Z.
 - **52 & Shadeland Avenue Farmers Market** (Indianapolis): (no schedule)
 - **52nd and Haverford Farmers Market** (Philadelphia): Wed: 1:00 PM-5:00 PM, Fri: 1:00 PM-5:00 PM
 - **58th and Chester Farmers Market** (Philadelphia): Wed: 2:00 PM-6:00 PM
+- **5m Farms LLC** (Orangeburg): (no schedule)
 - **60th Street Farmers' Market** (Philadelphia): (no schedule)
 - **7 Counties Farmers Market** (Owego): (no schedule)
 - **7 Wonders Farm** (Somerville): (no schedule)
@@ -80,7 +81,6 @@ Generated 2026-11-02T19:30:58.612Z.
 - **A Thrashers Farm LLC** (Pelzer): (no schedule)
 - **Aamc Farmers's Market** (Annapolis): (no schedule)
 - **Ab Farm** (Bealeton): (no schedule)
-- **Abbey of the Redwoods' Sea Goat Farmstand** (McKinleyville): (no schedule)
 - **Abbott Northwestern Farmers Market** (Minneapolis): (no schedule)
 - **Abe's Acres Farm LLC** (Hightstown): (no schedule)
 - **Abercrombies** (Louisville): (no schedule)
@@ -331,6 +331,7 @@ Generated 2026-11-02T19:30:58.612Z.
 - **Ashotn Farmers Market** (Ashton): (no schedule)
 - **Ashtabula Farmers Market** (Ashtabula): (no schedule)
 - **Asian Community Farmer's Market** (Portland): (no schedule)
+- **Asli Family Farm** (Lisbon): (no schedule)
 - **Aspen Moon Farm LLC** (Longmont): (no schedule)
 - **Aspen Saturday Market** (Aspen): (no schedule)
 - **Asprocolas Acres** (Millstone Township): (no schedule)
@@ -1073,7 +1074,7 @@ Generated 2026-11-02T19:30:58.612Z.
 - **By Our Fruit Farms** (Cleveland): (no schedule)
 - **Byler Flea Market** (Hartville): (no schedule)
 - **Byrne's Mill Farmers Market** (Byrne's Mill): (no schedule)
-- **C and T Produce LLC** (Fredericksburg): (no schedule)
+- **C and T Produce** (Fredericksburg): (no schedule)
 - **C+b Produce Mkt** (Slocomb): (no schedule)
 - **C & C Garden** (South Bend): (no schedule)
 - **C & C Lobsters & Fish** (Hull): (no schedule)
@@ -1658,6 +1659,7 @@ Generated 2026-11-02T19:30:58.612Z.
 - **Common Good City Farm** (Washington): (no schedule)
 - **Common Ground Farmers Market** (Atlanta): (no schedule)
 - **Common Hands Farm** (Hillsdale): (no schedule)
+- **Common Roots** (South Burlington): (no schedule)
 - **Common Thread CSA LLC** (Madison): (no schedule)
 - **Communitas Farm** (Hampstead): (no schedule)
 - **Community Action of Laramie County** (Cheyenne): (no schedule)
@@ -2164,7 +2166,6 @@ Generated 2026-11-02T19:30:58.612Z.
 - **Dorset Farmers Market Cooperative** (Dorset): (no schedule)
 - **Dot Ranch Ffab** (Scio): (no schedule)
 - **Double a Meats** (Sparta): (no schedule)
-- **Double J Pastures LLC** (Knoxville): (no schedule)
 - **Double Jb Farm** (Fayetteville): (no schedule)
 - **Double K Farm LLC** (Sebring): (no schedule)
 - **Double L Veggies** (Cedar Rapids): (no schedule)
@@ -2725,7 +2726,6 @@ Generated 2026-11-02T19:30:58.612Z.
 - **Farm on Central** (Franklin): (no schedule)
 - **Farm Stand** (Milwaukee): (no schedule)
 - **Farm Stand on Fishmarket** (McLoud): (no schedule)
-- **Farm Store and Farmers Markets Locally** (Prineville): (no schedule)
 - **Farm Store at Kellogg Ranch** (Pomona): (no schedule)
 - **Farm To Community** (Canton): (no schedule)
 - **Farm To Community - Ogdensburg** (Ogdensburg): (no schedule)
@@ -3252,6 +3252,7 @@ Generated 2026-11-02T19:30:58.612Z.
 - **Gardena Wednesday Farmers Market** (Los Angeles): (no schedule)
 - **Gardendwellers Farm Produce Party** (Churchs Ferry): (no schedule)
 - **Gardener's Flea Market** (Moorhead): (no schedule)
+- **Gardening in the District** (Cleveland): (no schedule)
 - **Gardens Summer GreenMarket at Store** (Palm Beach Gardens): 05/12/2013 to 09/01/2013
 - **Gardner Family Farm** (Spring Grove): (no schedule)
 - **Gardner Farmers Market** (Fitchburg): (no schedule)
@@ -3563,6 +3564,7 @@ Generated 2026-11-02T19:30:58.612Z.
 - **Greene Farms** (Falmouth): (no schedule)
 - **Greene's Country Store and Feed Farmers Market** (Lake St. Louis): Mon: 7:00 AM-9:00 PM, Tue: 7:00 AM-9:00 PM, Wed: 7:00 AM-9:00 PM, Thu: 7:00 AM-9:00 PM, Fri: 7:00 AM-9:00 PM, Sat: 8:00 AM-7:00 PM, Sun: 10:00 AM-5:00 PM
 - **Greene Farmers Market** (Stanardsville): (no schedule)
+- **Greenes Produce** (Sumter): (no schedule)
 - **Greeneville Farmers Market** (Greeneville): (no schedule)
 - **Greenfield Farmers Market** (Greenfield): (no schedule)
 - **Greenfield Farmers Market** (Greenfield): Thu: 4:00 PM-7:00 PM
@@ -4954,7 +4956,6 @@ Generated 2026-11-02T19:30:58.612Z.
 - **Little Big Farm** (Olympia): (no schedule)
 - **Little Bit Farm** (Leicester): (no schedule)
 - **Little Blue's Farm LLC** (Morton): (no schedule)
-- **Little By Slow Farms** (Wesley Chapel): (no schedule)
 - **Little Canada Farmers Market** (Little Canada): (no schedule)
 - **Little Creek Produce** (Cookeville): (no schedule)
 - **Little Dallas Farm** (Dallas): (no schedule)
@@ -5020,7 +5021,7 @@ Generated 2026-11-02T19:30:58.612Z.
 - **Lockard's Produce** (Ripley): (no schedule)
 - **Lockhart Main Street Farmers Market** (Lockhart): (no schedule)
 - **Locklear Farms** (Pembroke): (no schedule)
-- **Lockport Community Winter Farmers Market** (Lockport): (no schedule)
+- **Lockport Community Farmers Market** (Lockport): (no schedule)
 - **Lockport Farmers Market** (Lockport): (no schedule)
 - **Loco Acres Farm** (Millbury): (no schedule)
 - **Locs and Heritage Farm** (Conyers): (no schedule)
@@ -5056,7 +5057,6 @@ Generated 2026-11-02T19:30:58.612Z.
 - **Long Valley Green Market** (Long Valley): (no schedule)
 - **Long Walk Farm** (Council Bluffs): (no schedule)
 - **Long Wharf Farmers Market** (Newport): (no schedule)
-- **Longevity Garden** (Arvada): (no schedule)
 - **Longleaf Farmers Market** (New Port Richey): (no schedule)
 - **Longmont Farmers Market** (Longmont): (no schedule)
 - **Longview Farm LLC** (Plymouth): (no schedule)
@@ -5401,7 +5401,6 @@ Generated 2026-11-02T19:30:58.612Z.
 - **McCook Farmers Market** (McCook): (no schedule)
 - **McCormick Market** (McCormick): (no schedule)
 - **Mccutchen's Cattle Call Ranch** (Checotah): (no schedule)
-- **Mcdaniel Farms** (Millington): (no schedule)
 - **Mcdougal Orchards** (Springvale): (no schedule)
 - **McFarland Farmers Market I** (McFarland): (no schedule)
 - **Mcgruder Farms LLC** (Akron): (no schedule)
@@ -5972,7 +5971,7 @@ Generated 2026-11-02T19:30:58.612Z.
 - **New Eastern Market** (York): (no schedule)
 - **New Edibles** (Montague): (no schedule)
 - **New England Wild Edibles** (Shelburne Falls): (no schedule)
-- **New Entry Sustainable Farming Project - Food Hub** (Beverly): (no schedule)
+- **New Entry Sustainable Farming Project - Farmer** (Beverly): (no schedule)
 - **New Era Farmers Market** (New Era): (no schedule)
 - **New Gloucester Community Market** (New Gloucester): (no schedule)
 - **New Hampton Farmers Market** (New Hampton): (no schedule)
@@ -6044,7 +6043,6 @@ Generated 2026-11-02T19:30:58.612Z.
 - **Nightjar Farm** (Chicopee): (no schedule)
 - **Niles Fremont Farmers Market** (Fremont): (no schedule)
 - **Niles French Market** (Niles): (no schedule)
-- **Nimble Roots Farm** (Catskill): (no schedule)
 - **Ninepatch** (Athens): (no schedule)
 - **Ninety Six Farmers Market** (Ninety Six): (no schedule)
 - **Niskayuna Consumers Coop Inc** (Schenectady): (no schedule)
@@ -6964,7 +6962,6 @@ Generated 2026-11-02T19:30:58.612Z.
 - **Quincey Cattle Beef LLC** (Chiefland): (no schedule)
 - **Quincy Farmers Market** (Quincy): (no schedule)
 - **Quirky Quail Acres** (North Mankato): (no schedule)
-- **Qunicy's Market in the District** (Cleveland): (no schedule)
 - **Quonquont Farm** (Whately): (no schedule)
 - **R&e Ranch Beef LLC** (Holdenville): (no schedule)
 - **R Farm** (Bailey): (no schedule)
@@ -7373,7 +7370,6 @@ Generated 2026-11-02T19:30:58.612Z.
 - **Rosemead Certified Farmers Market** (Rosemead): (no schedule)
 - **Rosemeade Market & Greenhouse** (Carrollton): (no schedule)
 - **Rosemount Farmers Market** (Rosemount): (no schedule)
-- **Rosenati Farm** (Upper Black Eddy): (no schedule)
 - **Rosendale Farmers Market Inc.** (Rosendale): (no schedule)
 - **Roseville Community Center Farmers Market** (Roseville): (no schedule)
 - **Roseville Fountains Farmers Market** (Roseville): (no schedule)
@@ -7679,6 +7675,7 @@ Generated 2026-11-02T19:30:58.612Z.
 - **Scottsboro Farmers Market** (Scottsboro): (no schedule)
 - **Scottsville Farmers Market** (Scottsville): (no schedule)
 - **Scranton Cooperative Farmers Market** (Scranton): (no schedule)
+- **Sea Goat Farmstand & Makers Space** (McKinleyville): (no schedule)
 - **Seaford Farmes Market** (Seaford 11550): Sat: 7:00 AM-12:00 PM
 - **Seaharvest Fresh Shrimp Ffab** (Bayou la Batre): (no schedule)
 - **Seaport Farmers Market** (Boston): (no schedule)
@@ -9720,6 +9717,7 @@ Generated 2026-11-02T19:30:58.612Z.
 - **Windsor Terrace Greenmarket** (Brooklyn): (no schedule)
 - **Windsor Farmers Market** (Windsor): (no schedule)
 - **Windy Acres** (Cheboygan): (no schedule)
+- **Windy Acres Dairy** (Prineville): (no schedule)
 - **Windy Acres Farm** (Penn Yan): (no schedule)
 - **Windy Hill Farm Market LLC** (Windham): (no schedule)
 - **Windy Hill Farm Market** (Madison): (no schedule)
@@ -9843,7 +9841,7 @@ Generated 2026-11-02T19:30:58.612Z.
 - **Yesterday's Farmers-Kustom Gardens Farmers Market** (Bowman): (no schedule)
 - **Yie Livestock** (Springboro): (no schedule)
 - **Yo'ville Community Garden & Farm** (Fresno): (no schedule)
-- **Yoder Cattle Co.** (Halsey): (no schedule)
+- **Yoder Cattle Co.** (Sweet Home): (no schedule)
 - **Yoder Cider Barn Farmers Market** (Martinsburg): (no schedule)
 - **Yoders Sunny Slope Orchard** (Navarre): (no schedule)
 - **Yolo County Mobile Farmers Market** (Woodland): (no schedule)
